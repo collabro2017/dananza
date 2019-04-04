@@ -10,28 +10,11 @@
 	<link rel="stylesheet" type="text/css" href="./res/font-awesome/css/font-awesome.min.css">
 
 	<!-- custome css -->
+	<link rel="stylesheet" type="text/css" href="./res/css/components.min.css">
+	<link rel="stylesheet" type="text/css" href="./res/css/global.css">
 	<link rel="stylesheet" type="text/css" href="./res/css/header.css">
 	<link rel="stylesheet" type="text/css" href="./res/css/homepage.css">
 	<link rel="stylesheet" type="text/css" href="./res/css/footer.css">
-
-	<!-- fonts -->
-	<style type="text/css">
-		@font-face
-		{
-			font-family: "Thasadith-Bold";
-			src: url(./res/fonts/Thasadith-Bold.ttf) format('truetype');
-		}
-		@font-face
-		{
-			font-family: "Thasadith-Regular";
-			src: url(./res/fonts/Thasadith-Regular.ttf) format('truetype');
-		}
-		@font-face
-		{
-			font-family: "Coves-Bold";
-			src: url(./res/fonts/Coves-Bold.otf) format('opentype');
-		}
-	</style>
 </head>
 <body>
 	<!-- header section -->
@@ -55,7 +38,7 @@
 						<a href="#">Log In</a>
 					</li>
 					<li class="menu_last_li">
-						<a href="#" class="menu_adza">Become an Adza</a>
+						<a href="#" class="btn bg-yellow btn-small">Become an Adza</a>
 					</li>
 				</ul>
 			</div>
@@ -82,9 +65,9 @@
 	<div class="homepage_section">
 		<div class="full_container">
 			<div class="row heroblog">
-				<div class="col-md-6 col-sm-6 mk_adv_smp">
+				<div class="col-md-6 col-sm-6 mk_adv_smp color-title">
 					Making Advertising Simple
-					<div class="finding_best_ad">Find The Best Space To Place Your Ad</div>
+					<div class="finding_best_ad ">Find The Best Space To Place Your Ad</div>
 					<div class="finding_ad_select">I want to advertise on
 						<select>
 							<option>Blogs</option>
@@ -97,11 +80,11 @@
 						<input type="text" name="" placeholder="Type any keyword (maximum of 5 keywords)">
 					</div>
 					<div>
-						<button>Find Adzas</button>
+						<button class="btn bg-yellow color-dark btn-mid">Find Adzas</button>
 					</div>
 				</div>
-				<div class="col-sm-5 col-md-5">
-					<img src="./res/img/heroimage.png">
+				<div class="col-sm-6 col-md-6 pull-right">
+					<img src="./res/img/heroimage.png" style="max-width: 100%;">
 				</div>
 			</div>
 			<div class="row what_adza">
@@ -110,22 +93,21 @@
 				</div>
 				<div class="col-md-6 col-sm-6">
 					<div class="info_title">What is an Adza?</div>
-					<div class="info_content">An Adza is any entity that sells space for you to place your ad. These include owners of media such as podcasts, websites, social media, events, billboards and lots more. Seeing as the word “seller” didn’t sound right, we call these customer liaisons Adzas </div>
+					<div class="info_content">An Adza is any entity that sells space for you to place your ad. These include owners of media such as podcasts, websites, social media, events, billboards and lots more. Seeing as the word “seller” didn’t sound right, we call these customer liaisons Adzas instead..</div>
 				</div>
 			</div>
 			<div class="row tell_reach">
-				<div class="col-md-6 col-sm-6">
+				<div class="col-md-7 col-sm-5">
 					<div class="info_title">
-						<span class="you">You</span>Tell Us Wtho You Want to Reach
-						<span class="we">We</span> Show You Where to Reach Them
+						<span class="you">You</span> Tell Us Wtho You Want to Reach <span class="we">We</span> Show You Where to Reach Them
 					</div>
-					<div class="info_content">An Adza is any entity that sells space for you to place your ad. These include owners of media such as podcasts, websites, social media, events, billboards and lots more. Seeing as the word “seller” didn’t sound right, we call these customer liaisons Adzas </div>
+					<div class="info_content">Dananza is an open marketplace that provides businesses with a simple solution to finding the best ad spaces to reach potential customers. Using filters such as interests, location, gender, and age, users can quickly find Adzas most likely to get them in front of their target audience.</div>
 				</div>
-				<div class="col-md-6 col-sm-6 img">
+				<div class="col-md-5 col-sm-7 img">
 					<img src="./res/img/adza_reach.png">
 				</div>
 			</div>
-			<div class="row build_ad">
+			<div class="row build_ad bg-light">
 				<div class="info_title">
 					Build Ad Campaigns
 				</div>
@@ -160,7 +142,7 @@
 				<div class="bg_img col-sm-12">
 					<img src="./res/img/ad_camp.png">
 					<div>
-						<button>Start Ad Campaign</button>
+						<button class="btn btn-mid bg-yellow">Start Ad Campaign</button>
 					</div>
 				</div>
 			</div>
@@ -199,7 +181,7 @@
 							<img src="./res/img/test_slider1.png" class="slide_img">
 							<div class="img_content">
 								<div class="description">
-									"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolor es et quas molestias!"
+									“ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolor es et quas molestias! “
 								</div>
 								<div class="auth">
 									John Doe, Founder
@@ -244,8 +226,8 @@
 			<div class="row customer">
 				<div class="info_title">Your Customers are Waiting For You</div>
 				<div class="customer_link">
-					<a href="#" class="creat_act">Creat Account</a>
-					<a href="#" class="become_adza">Become An Adza</a>
+					<a href="#" class="btn btn-large creat_act color-white bg-blue">Creat Account</a>
+					<a href="#" class="btn btn-large become_adza color-dark bg-yellow">Become An Adza</a>
 				</div>
 			</div>
 		</div>
@@ -256,7 +238,7 @@
 		<div class="footer_info">
 			<div class="full_container">
 				<div class="row">
-					<div class="col-md-2 col-sm-2">
+					<div class="col-md-3 col-sm-3 for_business">
 						<div class="footer_info_title">For Business</div>
 						<ul>
 							<li>Epsum factorial</li>
@@ -291,10 +273,10 @@
 					<div class="col-md-4 col-sm-4">
 						<div class="footer_info_title">Search for Adzas</div>
 						<div class="input-group input-group-lg">
-							<!-- <i class="fa fa-search"></i> -->
-	                        <input type="text" class="form-control input-lg" placeholder="Search for...">
+	                        <input type="text" class="form-control input-lg">
+							<i class="fa fa-search"></i>
 	                        <span class="input-group-btn">
-	                            <button class="btn btn-success" type="button">Search</button>
+	                            <button class="btn bg-blue color-white" type="button">Search</button>
 	                        </span>
 	                    </div>
 					</div>
