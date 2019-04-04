@@ -1,40 +1,56 @@
-@font-face {
-    font-family: myFont;
-    src: url(../fonts/MyriadPro-Regular.otf);
-}
 
 .container {
-    font-family: myFont;
+    font-family: Thasadith-Bold;
 }
 
 .heroblog {
     background-image: url('../img/hero.png');
-    height: 280px;
     position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .hero {
     margin: 0;
-    top: 50%;
-    left: 50%;
+    padding: 10px 0 80px;
+}
+.search-help{
+    width: 40%;
+    margin:0 auto;
+    position: relative;
+}
+.search-help .fa{
+    color: #ccc;
     position: absolute;
-    transform: translate(-50%,-50%);
+    margin: 17px 2px 4px 10px;
+    z-index: 3;
+    width: 16px;
+    font-size: 16px;
+    text-align: center;
+    left: 0;
 }
-
 .search-help > input {
-    width: 517px;
+    width: 100%;
     height: 48px;
-    border-radius: 6px;
+    border-radius: 6px !important;
+    border:0px;
+    padding:15px 35px 20px;
+    line-height: 48px;
 }
-
+.search-help > input::placeholder{
+    font-size: 16px;
+    color: #000c20;
+    vertical-align: middle;
+}
 .f-color {
     color: #2ab7c9;
 }
 
 .tab-bar {
     font-size: 16px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #f3f3f3;
 }
 
 .tab-bar > a {
@@ -65,6 +81,9 @@
     font-size: 16px;
     margin-bottom: 38px;
 }
+.article-section{
+    margin-bottom: 20px; 
+}
 
 .article-section > ul {
     list-style-type: none;
@@ -86,18 +105,12 @@ li > i {
     margin-bottom: 25px;
 }
 
-.btn-yellow {
-    width: 170px;
-    height: 55px;
-    background-color: #ffd766;
-    border-color: #ffd766;
-}
-
 .contact-us {
     margin-bottom: 140px;
 }
-
-.help > span {
+.contact-us button{
+    padding: 0 45px;
+}
+.help > h1 {
     font-size: 56px;
-    color: white;
 }
