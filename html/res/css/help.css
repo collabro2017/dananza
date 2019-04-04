@@ -12,7 +12,7 @@
 
 .hero {
     margin: 0;
-    padding: 10px 0 80px;
+    padding: 30px 0 80px;
 }
 .search-help{
     width: 40%;
@@ -112,4 +112,38 @@ li > i {
 }
 .help > h1 {
     font-size: 56px;
+}
+.about .content{
+    padding-bottom:120px;
+}
+.about .content-body{
+    width: 60%;
+    margin:0 auto;
+    padding-bottom: 90px;
+}
+.about .content-body p{
+    font-size:16px;
+    line-height: 30px;
+    font-family: Thasadith-Regular;
+    margin-bottom: 20px;
+}
+.about .content-body p.italic{
+    font-size:22px;
+    line-height: 36px;
+    font-family: Thasadith-Italic;
+}
+.about .find_out{
+    background-image: url('../img/about_find_out_bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    vertical-align: middle;
+    padding: 40px 80px;
+    border-radius: 10px !important;
+    display: flex;
+    align-items: center;
+}
+.about .find_out button{
+    padding-left: 50px;
+    padding-right: 50px;
 }
