@@ -66,9 +66,8 @@
     text-decoration: none;
 }
 
-.content-body {
-    padding-left: 60px;
-    padding-right: 60px;
+.content-body .info_title{
+    padding: 70px 15px 30px;
 }
 
 .title {
@@ -79,10 +78,10 @@
 
 .article {
     font-size: 16px;
-    margin-bottom: 38px;
+    padding-bottom: 60px;
 }
 .article-section{
-    margin-bottom: 20px; 
+    margin-bottom: 30px; 
 }
 
 .article-section > ul {
