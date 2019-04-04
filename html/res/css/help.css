@@ -1,0 +1,114 @@
+@font-face {
+    font-family: MyriadPro;
+    src: url(../fonts/MyriadPro-Regular.otf);
+}
+@font-face {
+  font-family: 'Thasadith-Bold';
+  src: url('../fonts/Thasadith-bold.ttf?v=4.4.0');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Thasadith-Regular';
+  src: url('../fonts/Thasadith-Regular.ttf?v=4.4.0');
+  font-weight: normal;
+  font-style: normal;
+}
+.container {
+    font-family: MyriadPro;
+}
+
+.heroblog {
+    background-image: url('../img/hero.png');
+    height: 280px;
+    position: relative;
+}
+
+.hero {
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+}
+
+.search-help > input {
+    width: 517px;
+    height: 48px;
+    border-radius: 6px;
+}
+
+.f-color {
+    color: #2ab7c9;
+}
+
+.tab-bar {
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.tab-bar > a {
+    text-decoration: none;
+    margin-right: 35px;
+    cursor: hand;
+}
+
+.tab-bar > a:hover {
+    padding-bottom: 9px;
+    border-bottom: 5px solid #2ab7c9;
+    color: #2ab7c9;
+    text-decoration: none;
+}
+
+.content-body {
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.title {
+    font-size: 32px;
+    padding-top: 94px;
+    padding-bottom: 50px;
+}
+
+.article {
+    font-size: 16px;
+    margin-bottom: 38px;
+}
+
+.article-section > ul {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+ul > li {
+    margin-bottom: 5px;
+}
+
+li > i {
+    font-size: 18px;
+    color: #2ab7c9;
+    padding-right: 5px;
+}
+
+.sub-title {
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.btn-yellow {
+    width: 170px;
+    height: 55px;
+    background-color: #ffd766;
+    border-color: #ffd766;
+}
+
+.contact-us {
+    margin-bottom: 140px;
+}
+
+.help > span {
+    font-size: 56px;
+    color: white;
+}
