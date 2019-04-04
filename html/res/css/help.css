@@ -1,21 +1,10 @@
 @font-face {
-    font-family: MyriadPro;
+    font-family: myFont;
     src: url(../fonts/MyriadPro-Regular.otf);
 }
-@font-face {
-  font-family: 'Thasadith-Bold';
-  src: url('../fonts/Thasadith-bold.ttf?v=4.4.0');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Thasadith-Regular';
-  src: url('../fonts/Thasadith-Regular.ttf?v=4.4.0');
-  font-weight: normal;
-  font-style: normal;
-}
+
 .container {
-    font-family: MyriadPro;
+    font-family: myFont;
 }
 
 .heroblog {
