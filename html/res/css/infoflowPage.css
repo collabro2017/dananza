@@ -19,11 +19,12 @@
     .infoflowPage .cartPart .nav_flow.row ul li {
       color: #7f7f7f; }
       .infoflowPage .cartPart .nav_flow.row ul li .step_num {
-        border-radius: 25px;
-        padding: 4px 10px;
+        border-radius: 50%!important;
+        width:27px; height:27px;line-height:27px;
         color: #ffffff;
         background-color: #7f7f7f;
-        margin-right: 10px; }
+        margin-right: 10px; 
+        display: block; float:left;}
     .infoflowPage .cartPart .nav_flow.row ul .active {
       color: #fe4a49; }
       .infoflowPage .cartPart .nav_flow.row ul .active .step_num {
@@ -39,10 +40,19 @@
   width: fit-content;
   margin: 60px auto; }
 .infoflowPage .cartPart .table_camp {
-  width: 55%;
+  width: 65%;
   margin: 0 auto; }
+  .infoflowPage .cartPart .table_camp .table{
+    font-family: Thasadith-Bold;
+    border-bottom: 1px solid #e7ecf1;
+    margin-bottom: 30px;
+  }
   .infoflowPage .cartPart .table_camp .table thead tr {
-    background: #f1f6f9; }
+    background: #f1f6f9; 
+  }
+  .infoflowPage .cartPart .table_camp .table thead tr th{
+    padding: 14px;
+  }
   .infoflowPage .cartPart .table_camp .table > tbody > tr > td {
     vertical-align: middle !important; }
   .infoflowPage .cartPart .table_camp button {
@@ -63,22 +73,17 @@
   margin: 0 auto;
   width: fit-content; }
   .infoflowPage .cartPart .proceed_chk .checkout a {
-    text-align: center;
     text-decoration: none;
-    font-size: 16px;
-    line-height: 100px;
-    padding: 20px 45px;
-    background: #ffd766;
-    border-radius: 5px;
-    color: #000c20; }
+    padding: 0 45px;
+    }
 .infoflowPage .cartPart .proceed_chk .note {
   font-family: "Thasadith-BoldItalic";
   line-height: 24px;
   font-size: 14px;
   width: 30%;
   margin: 40px auto 60px;
-  text-align: center; }
+  text-align: center; 
+  border: none;
+}
 
 /** infoflowPage end **/
-
-/*# sourceMappingURL=infoflowPage.css.map */

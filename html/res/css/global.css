@@ -80,6 +80,7 @@ button {
   border: none;
 }
 .btn{
+  text-align: center;
   font-family: "Thasadith-Bold";
   border-radius: 5px !important;
   font-size: 18px;
@@ -94,6 +95,10 @@ button {
   line-height: 56px !important;
 }
 
+.input-icon .btn{
+  font-size: 14px;
+  line-height: 25px !important;
+}
 
 /* text title styles */
 .info_title {

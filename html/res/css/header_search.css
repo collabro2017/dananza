@@ -1,16 +1,3 @@
-@font-face {
-  font-family: 'Thasadith-Bold';
-  src: url('../fonts/Thasadith-bold.ttf?v=4.4.0');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Thasadith-Regular';
-  src: url('../fonts/Thasadith-Regular.ttf?v=4.4.0');
-  font-weight: normal;
-  font-style: normal;
-}
-
 /********HEADER**********/
 .page-navbar{
   position: relative;
@@ -56,9 +43,8 @@
       height: 40px;
     }
     .header_section .nav_bar .search-but{
-      border-top-right-radius: 5px !important;
-      border-bottom-right-radius: 5px !important;
-      width: 70px;
+      border-top-left-radius: 0px !important;
+      border-bottom-left-radius: 0px !important;
       height: 40px;
       background-color:#2ab7c9;
     }
