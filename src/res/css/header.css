@@ -47,12 +47,21 @@
     border: none;
     float: right; }
   .header_section .nav_mobile_menu {
+    position:fixed;
+    width:100%;
+    background: #cccccc;
+    z-index: 1000;
     text-align: center; }
   .header_section .nav_mobile_list {
     list-style: none;
+    margin-bottom: 0;
     display: block; }
-  .header_section .nav_mobile_list li {
-    margin-bottom: 43px; }
+  .header_section .nav_mobile_list li a{
+    display: block;
+    padding: 30px 0; }
+  .header_section .nav_mobile_list li a:hover{
+    background-color: #aaaaaa;
+  }
   @media (min-width: 768px) {
     .header_section #navbar_toggler,
     .header_section .nav_mobile_menu {
