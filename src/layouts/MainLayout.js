@@ -6,6 +6,7 @@ import { bindActionCreators } from "redux";
 
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import Footer from "../components/Footer";
 import { logout } from "../store/reducers/authenticate";
 
 const drawerWidth = 240;
@@ -46,7 +47,6 @@ class MainLayout extends Component {
     const { classes, children } = this.props;
     return (
       <Fragment>
-        <div className={classes.root}>
           <Header
             logout={this.props.logout}
             handleToggleDrawer={this.handleToggleDrawer}
@@ -58,8 +58,8 @@ class MainLayout extends Component {
           >
             {children}
           </main>
-        </div>
-        <Sidebar open={this.state.open} drawerWidth={drawerWidth} />
+
+          <Footer/>
       </Fragment>
     );
   }
