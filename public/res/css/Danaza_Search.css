@@ -1,39 +1,58 @@
-.profile_photo img{
-	width: 40px;
-	height: 40px;
+.page-navbar {
+    position: relative;
+    background-color: #f3f3f3;
+    border-top: 1px solid #dadada;
+    display: flex;
 }
-.profile_photo{
-	padding-top: 0px !important;
+.page-navbar-content {
+    margin: 0px auto;
+    list-style: none;
+    display: inline-flex;
+    padding: 0px;
 }
-
-@font-face {
-  font-family: 'Thasadith-Bold';
-  src: url('../fonts/Thasadith-bold.ttf?v=4.4.0');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Thasadith-Regular';
-  src: url('../fonts/Thasadith-Regular.ttf?v=4.4.0');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Coves Bold';
-  src: url('../fonts/Coves-Bold.otf');
-  font-weight: normal;
-  font-style: normal;
+.page-navbar-content label {
+    height: 40px;
+    background-color: unset;
+    border: none;
 }
 
+.page-container{
+	margin: 20px 2%;
+	padding: 0;
+	font-family: 'Thasadith-Regular';
+	font-weight: 900;
+}
+.page-container a{
+	color: black;
+	text-decoration: none;
+}
+.page-container .page-bar{
+	width: 100%;
+	border-bottom: 1px solid #dadada;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+.sort-by{
+	text-align: right;
+	font-size: 16px;
+}
+.sort-by .grey{
+	color: #888;
+	vertical-align: middle;
+}
+.page-bar .bs-select button{
+	border: none;
+}
+.page-bar .bs-select span{
+	font-size: 16px;
+	font-family: 'Thasadith-Bold';
+}
 .page-content{
 	width: 100%;
-	font-family: 'Thasadith-Regular';
-	font-weight: 900 !important;
-	border-top: 1px solid #dadada;
-	position: relative;
+	padding-top: 20px;
 }
 .page-sidebar{
-	width: 330px;
+	width: 270px;
 	position: relative;
 	float: left;
 	margin-right: -100%;
@@ -47,47 +66,6 @@
 .page-sidebar .section .title{
 	font-family: 'Thasadith-Bold';
 	font-size: 16px;
-}
-.page-sidebar .target-tree{
-	padding: 24px;
-}
-.page-sidebar .target-tree .image{
-	text-align: center;
-	width: 100%;
-}
-.page-sidebar .target-tree .dial{
-	width: 60px;
-	margin: 2px;
-	display: inline-block;
-	position: relative;
-}
-.page-sidebar .target-tree .dial input{
-	color:black !important;
-}
-.page-sidebar .target-tree .dial i{
-	color: #fac917;
-    position: absolute;
-    top: 37%;
-    right: 10px;
-}
-.page-sidebar .section .btn-group label{
-	font-size: 14px !important;
-	font-weight: bold !important;
-	width: 100%;
-	text-align: unset;
-	padding-top:17px;
-	padding-bottom: 17px;
-	border: 0.5px;
-}
-.page-sidebar .section .btn-group label i{
-	margin-left: 30px;
-	margin-right: 10px;
-	font-size: 16px;
-}
-.page-sidebar .section .btn-group label.active{
-	border: 0px;
-	border-left: 5px solid #2ab7c9;
-	background-color: #f1f6f9;
 }
 .sub-menu{
 	padding-left: 0px;
@@ -139,69 +117,27 @@
 	padding-left: 15px;
 }
 
-.images .item{
-	position: relative;
-	padding-top: 16px;
+.results .item{
+	border-radius: 8px !important;
+	background-color: #ffd766;
+	padding-left: 8px;
 	padding-right: 7px;
+	font-family: 'Thasadith-Bold';
 	font-size: 11px;
 	height: 16px;
 	width: fit-content;
 	margin-right: 6px;
 	display: inline-table;
 }
-.images .item .closebut{
-    width: 10px;
-    height: 10px;
-    position: absolute;
-    right: 3px;
-    background-color: white;
-    border-radius: 100px !important;
+.results .item span{
+	margin-right: 10px;
 }
-.block{
-	display: block !important;
-}
-.sub-control{
-	margin-top: 20px;
-}
-.add-channel{
-	float: right;
-	font-size: 16px;
-	color: #2ab7c9
-}
-.channel{
-	padding: 16px 30px;
-	background-color: white;
-	color: #4b4b4b;
-	margin-bottom: 15px;
-}
-.channel img{
-	width: 25px;
-	height: 25px;
-}
-.channel .fa-user{
-	padding-left: 26px;
-	padding-right: 8px;
-}
-.channel .toolbox{
-	float: right;
-}
-.channel .toolbox a{
-	font-size: 23px;
-	color: black;
-	margin-left: 15px;
-	color: #4b4b4b;
-}
+
 .feature-slider{
 	width: 100%;
 	margin-top: 18px;
 	padding-right: 12px;
 	padding-left: 12px;
-}
-.no-padding-left{
-	padding-left: 0px;
-}
-.no-padding-right{
-	padding-right: 0px;
 }
 .dark-grey{
 	margin-top: 13px;
@@ -209,10 +145,6 @@
 }
 .noUi-ltblue .noUi-connect{
 	background-color:#2ab7c9;
-}
-#gender{
-	padding-right: 0px;
-	padding-left: 0px;
 }
 #gender .noUi-base{
 	background: linear-gradient(to right,#2ab7c9 40%, #ff99cc 50%); /* Standard syntax */;
@@ -295,61 +227,9 @@
 }
 
 .page-result{
-	background-color: #deebf2;
-	margin-left: 330px;
-	padding: 0px 11.1% 40px;
+	margin-left: 270px;
+	padding: 0px 10px;
 	position: relative;
-}
-.formcontrol{
-	display: flex;
-	padding-bottom: 16px;
-}
-.formcontrol textarea{
-	resize: none;
-	height: 120px;
-}
-.formcontrol .input-icon{
-	width: 100%;
-	height: 48px;
-}
-.formcontrol .input-icon input{
-	width: 100%;
-	height: 48px;
-}
-.formcontrol .input-icon i{
-	margin-top: 16px;
-}
-.formcontrol .input-icon .drag-file{
-	background: unset;
-	border: 3px dashed;
-}
-.controllabel{
-	text-align: right;
-    padding-top: 7px;
-    padding-right: 0px;
-    font-weight: bold;
-    font-size: 16px;
-}
-.controlcontent{
-	padding-left: 32px;
-	display: inline-flex;
-}
-.right-control{
-	padding-left: 80px;
-	top: 30%;
-}
-.page-result .title{
-	font-size: 32px;
-	margin: 30px auto;
-	font-weight: bold;
-}
-.page-result .subtitle{
-	font-size: 24px;
-	margin: 15px auto;
-	width: 100%;
-	border-bottom: 1px solid #89b9d3;
-	font-weight: bold;
-	font-family: Coves Bold;
 }
 .page-result-header{
 	width: 100%;
@@ -519,24 +399,6 @@
 .pagination label{
 	border: none;
 }
-
-.action_group{
-	padding: 20px 0;
-}
-.action_group .btn{
-	padding: 20px 40px;
-	border-radius: 4px !important;
-	font-size: 16px;
-	font-family: Thasadith-Bold;
-}
-.action_group .btn.btn-blue{
-	background-color: #2ab7c9;
-	color: white;
-}
-.action_group .btn.btn-yellow{
-	background-color: #ffd766;
-	color: #01091c;
-}
 /* mobile */
 @media(min-width: 1230px){
 	.page-result-content .item .title{
@@ -636,5 +498,4 @@
     	font-size: 50px;
 	}
 }
-
 /*# sourceMappingURL=header.css.map */

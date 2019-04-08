@@ -10,15 +10,21 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 
+import MainLayout from "./layouts/MainLayout";
+import EmptyLayout from "./layouts/EmptyLayout";
+
 import Home from "./containers/Home";
 import Setting from "./containers/Setting";
 import Signin from "./containers/Signin";
+import Cart from "./containers/Cart";
 import About from "./containers/About";
 import Help from "./containers/Help";
-import BuyerLanding from "./containers/BuyerLanding";
 
-import MainLayout from "./layouts/MainLayout";
-import EmptyLayout from "./layouts/EmptyLayout";
+import SearchResults from "./containers/SearchResults";
+import SellerDashboard from "./containers/SellerDashboard";
+
+import BuyerLanding from "./containers/BuyerLanding";
+import BuyerSaved from "./containers/BuyerSaved";
 
 const NotFound = () => {
   return <div>NotFound</div>;
@@ -61,16 +67,24 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={settings.theme}>
         <CssBaseline />
-        <div style={{ height: "100vh" }}>
+        <div>
           <Router>
               <Switch>
+                <Route path="/signin" render={() => <Redirect to="/" />} />
                 <DashboardRoute path="/dashboard" component={Home} />
                 <DashboardRoute path="/setting" component={Setting} />
-                <DashboardRoute path="/about" component={About} />
-                <DashboardRoute path="/help" component={Help} />
-                <Route path="/signin" render={() => <Redirect to="/" />} />
+
+                <DashboardRoute exact path="/about" component={About} />
+                <DashboardRoute exact path="/help" component={Help} />
+                <DashboardRoute exact path="/cart" component={Cart} />
                 <DashboardRoute exact path="/" component={Home} />
-                <DashboardRoute exact path="/buyerlanding" component={BuyerLanding} />
+
+                <DashboardRoute exact path="/results" component={SearchResults} />
+                <DashboardRoute exact path="/seller_dashboard" component={SellerDashboard} />
+
+                <DashboardRoute exact path="/buyer_landing" component={BuyerLanding} />
+                <DashboardRoute exact path="/buyer_saved" component={BuyerSaved} />
+
                 <EmptyRoute component={NotFound} />
               </Switch>
           </Router>

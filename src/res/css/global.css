@@ -33,8 +33,10 @@
 body {
   color: #4b4b4b !important;
   font-family: "Thasadith-Regular";
-  font-size: 1.36vw;
-  font-weight: 900; }
+/*  font-size: 1.36vw;
+*/  font-weight: 900; 
+  background:white !important;
+}
 input, select, img, a{
   outline: none;
 }
@@ -52,6 +54,9 @@ input, select, img, a{
 .padding-0{
   padding: 0;
 }
+.page-container{
+  background: white !important;
+}
 
 /* BG colors */
 .bg-yellow{
@@ -65,6 +70,9 @@ input, select, img, a{
 }
 .bg-light{
   background-color: #f7fafa !important;
+}
+.bg-green {
+  color: #2ab7c9!important;
 }
 
 /* Colors */
