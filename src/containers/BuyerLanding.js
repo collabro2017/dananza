@@ -23,7 +23,7 @@ class BuyerLanding extends React.Component{
 
   render(){
     return (
-      <div className="page-container">
+      <div className="buyer_landing page-container">
         <div className="page-content">
           <div className="page-sidebar">
             <div className="userinfo">

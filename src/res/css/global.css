@@ -71,6 +71,9 @@ input, select, img, a{
 .bg-light{
   background-color: #f7fafa !important;
 }
+.bg-green {
+  color: #2ab7c9!important;
+}
 
 /* Colors */
 .color-white{

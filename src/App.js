@@ -19,6 +19,7 @@ import Signin from "./containers/Signin";
 import BuyerLanding from "./containers/BuyerLanding";
 import Cart from "./containers/Cart";
 import SearchResults from "./containers/SearchResults";
+import SellerDashboard from "./containers/SellerDashboard";
 import About from "./containers/About";
 import Help from "./containers/Help";
 
@@ -63,7 +64,7 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={settings.theme}>
         <CssBaseline />
-        <div style={{ height: "100vh" }}>
+        <div>
           <Router>
               <Switch>
                 <DashboardRoute path="/dashboard" component={Home} />
@@ -74,7 +75,8 @@ class App extends Component {
                 <Route path="/signin" render={() => <Redirect to="/" />} />
                 <DashboardRoute exact path="/" component={Home} />
                 <DashboardRoute path="/buyerlanding" component={BuyerLanding} />
-                <DashboardRoute path="/results" component={SearchResults} />
+                <DashboardRoute exact path="/results" component={SearchResults} />
+                <DashboardRoute path="/seller_dashboard" component={SellerDashboard} />
                 <EmptyRoute component={NotFound} />
               </Switch>
           </Router>
