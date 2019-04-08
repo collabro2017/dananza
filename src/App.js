@@ -19,6 +19,7 @@ import Signin from "./containers/Signin";
 import About from "./containers/About";
 import Help from "./containers/Help";
 import BuyerLanding from "./containers/BuyerLanding";
+import Cart from "./containers/Cart";
 
 const NotFound = () => {
   return <div>NotFound</div>;
@@ -68,6 +69,7 @@ class App extends Component {
                 <DashboardRoute path="/setting" component={Setting} />
                 <DashboardRoute path="/about" component={About} />
                 <DashboardRoute path="/help" component={Help} />
+                <DashboardRoute path="/cart" component={Cart} />
                 <Route path="/signin" render={() => <Redirect to="/" />} />
                 <DashboardRoute exact path="/" component={Home} />
                 <DashboardRoute exact path="/buyerlanding" component={BuyerLanding} />
