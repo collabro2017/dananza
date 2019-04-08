@@ -1,0 +1,57 @@
+//dashboard-seller-ad-listing start
+	.dashboard_seller
+	{
+		.instagram,
+		.facebook,
+		.business
+		{
+			height: auto;
+			padding: 20px 30px;
+			margin: 25px auto;
+			background-color: #ffffff;
+		}
+		.ad_listings
+		{
+			.ad_list_head
+			{
+				display: flex;
+				position: relative;
+				margin-bottom: 25px;
+				border-bottom: 1px solid #dadada;
+				img
+				{
+					width: 30px;
+					height: 30px;
+					margin-right: 10px;
+					margin-bottom: 15px;
+				}
+				.ad_title
+				{
+					margin-right: 60px;
+				}
+				.ad_toolbox
+				{
+					.fa-trash
+					{
+						
+					}
+				}
+			}
+			.ad_list_content
+			{
+				display: flex;
+				img
+				{
+					width: 30%;
+					margin-right: 30px;
+				}
+				div
+				{
+					width: 70%;
+					font-size: 14px;
+					margin-top: 15px;
+				}
+			}
+		}
+	}
+//dashboard-seller-ad-listing end

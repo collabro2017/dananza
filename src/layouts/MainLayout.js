@@ -6,29 +6,13 @@ import { bindActionCreators } from "redux";
 
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import Footer from "../components/Footer";
 import { logout } from "../store/reducers/authenticate";
 
 const drawerWidth = 240;
 
 const styles = theme => ({
-  root: {
-    display: "flex"
-  },
-  content: {
-    flexGrow: 1,
-    marginLeft: theme.spacing.unit * 9,
-    padding: theme.spacing.unit * 3,
-    marginTop: theme.spacing.unit * 7,
-    overflowX: "hidden"
-  },
-  contentShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  }
+  
 });
 
 class MainLayout extends Component {
@@ -46,7 +30,6 @@ class MainLayout extends Component {
     const { classes, children } = this.props;
     return (
       <Fragment>
-        <div className={classes.root}>
           <Header
             logout={this.props.logout}
             handleToggleDrawer={this.handleToggleDrawer}
@@ -58,8 +41,8 @@ class MainLayout extends Component {
           >
             {children}
           </main>
-        </div>
-        <Sidebar open={this.state.open} drawerWidth={drawerWidth} />
+
+          <Footer/>
       </Fragment>
     );
   }

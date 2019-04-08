@@ -13,6 +13,9 @@ import { connect } from "react-redux";
 import Home from "./containers/Home";
 import Setting from "./containers/Setting";
 import Signin from "./containers/Signin";
+import About from "./containers/About";
+import Help from "./containers/Help";
+import BuyerLanding from "./containers/BuyerLanding";
 
 import MainLayout from "./layouts/MainLayout";
 import EmptyLayout from "./layouts/EmptyLayout";
@@ -60,20 +63,16 @@ class App extends Component {
         <CssBaseline />
         <div style={{ height: "100vh" }}>
           <Router>
-            {auth.authenticate ? (
               <Switch>
                 <DashboardRoute path="/dashboard" component={Home} />
                 <DashboardRoute path="/setting" component={Setting} />
+                <DashboardRoute path="/about" component={About} />
+                <DashboardRoute path="/help" component={Help} />
                 <Route path="/signin" render={() => <Redirect to="/" />} />
                 <DashboardRoute exact path="/" component={Home} />
+                <DashboardRoute exact path="/buyerlanding" component={BuyerLanding} />
                 <EmptyRoute component={NotFound} />
               </Switch>
-            ) : (
-              <Switch>
-                <EmptyRoute path="/signin" component={Signin} />
-                <Redirect to="/signin" />
-              </Switch>
-            )}
           </Router>
         </div>
       </MuiThemeProvider>
