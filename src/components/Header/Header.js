@@ -9,51 +9,87 @@ import PersonIcon from "@material-ui/icons/Person";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 
+import "../../res/bootstrap/css/bootstrap.min.css"
+import "../../res/font-awesome/css/font-awesome.min.css"
+import "../../res/css/components.min.css"
+import "../../res/css/global.css"
+import "../../res/css/header.css"
+
+import $ from "jquery";
+
+import logoUrl from '../../res/img/logo.png';
+
 const styles = theme => ({
-  toolbarRoot: {
-    paddingRight: 24
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 36
-  },
-  title: {
-    flexGrow: 1
-  }
+  
 });
 
-const Header = props => {
-  const { classes, handleToggleDrawer } = props;
-  return (
-    <AppBar position="fixed">
-      <Toolbar disableGutters={true} classes={{ root: classes.toolbarRoot }}>
-        <IconButton
-          color="inherit"
-          aria-label="Open drawer"
-          onClick={handleToggleDrawer}
-          className={classes.menuButton}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography
-          variant="title"
-          color="inherit"
-          noWrap
-          className={classes.title}
-        >
-          Dashboard
-        </Typography>
-        <IconButton color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <IconButton onClick={props.logout} color="inherit">
-          <PersonIcon />
-        </IconButton>
-      </Toolbar>
-    </AppBar>
-  );
+class Header extends React.Component{
+  componentDidMount() {
+    $('.mobile_navbar_toggler').on('click', function() 
+    {
+      console.log( "clicked" );
+      if( !$('.nav_mobile_menu').hasClass('show') ) 
+      {
+        $('.nav_mobile_menu').addClass('show');
+        $('.mobile_navbar_toggler').removeClass('navbar_toggler_open');
+        $('.mobile_navbar_toggler').addClass('navbar_toggler_close');
+      }
+      else 
+      {
+        $('.nav_mobile_menu').removeClass('show');
+        $('.mobile_navbar_toggler').removeClass('navbar_toggler_close');
+        $('.mobile_navbar_toggler').addClass('navbar_toggler_open');
+      }
+      $('.nav_mobile_menu').slideToggle(200);
+    });
+  }
+
+  render(){
+    return (
+      <div className="header_section">
+        <div className="nav_bar">
+          <div className="logo">
+            <img src={logoUrl}/>
+          </div>
+          <div className="nav_menu justify-content-end">
+            <button id="navbar_toggler" className="navbar_toggler_open mobile_navbar_toggler" type="button">
+              <span className="navbar_toggler_icon"></span>
+            </button>
+            <ul className="nav_menu_list">
+              <li>
+                <a href="#">About</a>
+              </li>
+              <li>
+                <a href="#">Sign Up</a>
+              </li>
+              <li>
+                <a href="#">Log In</a>
+              </li>
+              <li className="menu_last_li">
+                <a href="#" className="btn bg-yellow btn-small">Become an Adza</a>
+              </li>
+            </ul>
+          </div>
+        </div>   
+        <div className="nav_mobile_menu" style={{display:'none'}}>
+          <ul className="nav_mobile_list">
+            <li>
+              <a href="#">About</a>
+            </li>
+            <li>
+              <a href="#">Sign Up</a>
+            </li>
+            <li>
+              <a href="#">Log In</a>
+            </li>
+            <li className="menu_last_li">
+              <a href="#" className="menu_adza">Become an Adza</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    );
+  }
 };
 
 export default withStyles(styles)(Header);

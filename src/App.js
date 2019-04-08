@@ -60,7 +60,6 @@ class App extends Component {
         <CssBaseline />
         <div style={{ height: "100vh" }}>
           <Router>
-            {auth.authenticate ? (
               <Switch>
                 <DashboardRoute path="/dashboard" component={Home} />
                 <DashboardRoute path="/setting" component={Setting} />
@@ -68,12 +67,6 @@ class App extends Component {
                 <DashboardRoute exact path="/" component={Home} />
                 <EmptyRoute component={NotFound} />
               </Switch>
-            ) : (
-              <Switch>
-                <EmptyRoute path="/signin" component={Signin} />
-                <Redirect to="/signin" />
-              </Switch>
-            )}
           </Router>
         </div>
       </MuiThemeProvider>
