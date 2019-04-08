@@ -16,10 +16,11 @@ import EmptyLayout from "./layouts/EmptyLayout";
 import Home from "./containers/Home";
 import Setting from "./containers/Setting";
 import Signin from "./containers/Signin";
-import About from "./containers/About";
-import Help from "./containers/Help";
 import BuyerLanding from "./containers/BuyerLanding";
 import Cart from "./containers/Cart";
+import SearchResults from "./containers/SearchResults";
+import About from "./containers/About";
+import Help from "./containers/Help";
 
 const NotFound = () => {
   return <div>NotFound</div>;
@@ -72,7 +73,8 @@ class App extends Component {
                 <DashboardRoute path="/cart" component={Cart} />
                 <Route path="/signin" render={() => <Redirect to="/" />} />
                 <DashboardRoute exact path="/" component={Home} />
-                <DashboardRoute exact path="/buyerlanding" component={BuyerLanding} />
+                <DashboardRoute path="/buyerlanding" component={BuyerLanding} />
+                <DashboardRoute path="/results" component={SearchResults} />
                 <EmptyRoute component={NotFound} />
               </Switch>
           </Router>

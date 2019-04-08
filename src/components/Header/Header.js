@@ -12,7 +12,7 @@ import { withStyles } from "@material-ui/core/styles";
 import "../../res/bootstrap/css/bootstrap.min.css"
 import "../../res/font-awesome/css/font-awesome.min.css"
 import "../../res/css/components.min.css"
-import "../../res/css/global.css"
+// import "../../res/css/global.css"
 import "../../res/css/header.css"
 
 import $ from "jquery";

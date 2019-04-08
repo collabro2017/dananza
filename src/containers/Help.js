@@ -29,7 +29,7 @@ class Help extends React.Component{
           justifyContent: "center"
         }} >
 
-        <div class="full_container">
+        <div class="static_container full_container">
             <div class="heroblog-help">
                 <div class="hero">
                     <div class="help text-center">

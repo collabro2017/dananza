@@ -1,14 +1,19 @@
-@font-face {
-  font-family: 'Thasadith-Bold';
-  src: url(../fonts/Thasadith-Bold.ttf) format("truetype"); 
-  font-weight: normal;
-  font-style: normal;
+.page-navbar {
+    position: relative;
+    background-color: #f3f3f3;
+    border-top: 1px solid #dadada;
+    display: flex;
 }
-@font-face {
-  font-family: 'Thasadith-Regular';
-  src: url(../fonts/Thasadith-Regular.ttf) format("truetype");
-  font-weight: normal;
-  font-style: normal;
+.page-navbar-content {
+    margin: 0px auto;
+    list-style: none;
+    display: inline-flex;
+    padding: 0px;
+}
+.page-navbar-content label {
+    height: 40px;
+    background-color: unset;
+    border: none;
 }
 
 .page-container{
