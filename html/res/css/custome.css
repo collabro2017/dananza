@@ -1,0 +1,30 @@
+.dashboard_seller .instagram,
+.dashboard_seller .facebook,
+.dashboard_seller .business {
+  height: auto;
+  padding: 20px 30px;
+  margin: 25px auto;
+  background-color: #ffffff; }
+.dashboard_seller .ad_listings .ad_list_head {
+  display: flex;
+  position: relative;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #dadada; }
+  .dashboard_seller .ad_listings .ad_list_head img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    margin-bottom: 15px; }
+  .dashboard_seller .ad_listings .ad_list_head .ad_title {
+    margin-right: 60px; }
+.dashboard_seller .ad_listings .ad_list_content {
+  display: flex; }
+  .dashboard_seller .ad_listings .ad_list_content img {
+    width: 30%;
+    margin-right: 30px; }
+  .dashboard_seller .ad_listings .ad_list_content div {
+    width: 70%;
+    font-size: 14px;
+    margin-top: 15px; }
+
+/*# sourceMappingURL=custome.css.map */
