@@ -10,15 +10,15 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 
+import MainLayout from "./layouts/MainLayout";
+import EmptyLayout from "./layouts/EmptyLayout";
+
 import Home from "./containers/Home";
 import Setting from "./containers/Setting";
 import Signin from "./containers/Signin";
 import About from "./containers/About";
 import Help from "./containers/Help";
 import BuyerLanding from "./containers/BuyerLanding";
-
-import MainLayout from "./layouts/MainLayout";
-import EmptyLayout from "./layouts/EmptyLayout";
 
 const NotFound = () => {
   return <div>NotFound</div>;
