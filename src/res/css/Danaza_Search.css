@@ -1,12 +1,12 @@
 @font-face {
   font-family: 'Thasadith-Bold';
-  src: url('../fonts/Thasadith-bold.ttf?v=4.4.0');
+  src: url(../fonts/Thasadith-Bold.ttf) format("truetype"); 
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Thasadith-Regular';
-  src: url('../fonts/Thasadith-Regular.ttf?v=4.4.0');
+  src: url(../fonts/Thasadith-Regular.ttf) format("truetype");
   font-weight: normal;
   font-style: normal;
 }
