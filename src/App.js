@@ -16,12 +16,15 @@ import EmptyLayout from "./layouts/EmptyLayout";
 import Home from "./containers/Home";
 import Setting from "./containers/Setting";
 import Signin from "./containers/Signin";
-import BuyerLanding from "./containers/BuyerLanding";
 import Cart from "./containers/Cart";
-import SearchResults from "./containers/SearchResults";
-import SellerDashboard from "./containers/SellerDashboard";
 import About from "./containers/About";
 import Help from "./containers/Help";
+
+import SearchResults from "./containers/SearchResults";
+import SellerDashboard from "./containers/SellerDashboard";
+
+import BuyerLanding from "./containers/BuyerLanding";
+import BuyerSaved from "./containers/BuyerSaved";
 
 const NotFound = () => {
   return <div>NotFound</div>;
@@ -67,16 +70,21 @@ class App extends Component {
         <div>
           <Router>
               <Switch>
+                <Route path="/signin" render={() => <Redirect to="/" />} />
                 <DashboardRoute path="/dashboard" component={Home} />
                 <DashboardRoute path="/setting" component={Setting} />
-                <DashboardRoute path="/about" component={About} />
-                <DashboardRoute path="/help" component={Help} />
-                <DashboardRoute path="/cart" component={Cart} />
-                <Route path="/signin" render={() => <Redirect to="/" />} />
+
+                <DashboardRoute exact path="/about" component={About} />
+                <DashboardRoute exact path="/help" component={Help} />
+                <DashboardRoute exact path="/cart" component={Cart} />
                 <DashboardRoute exact path="/" component={Home} />
-                <DashboardRoute path="/buyerlanding" component={BuyerLanding} />
+
                 <DashboardRoute exact path="/results" component={SearchResults} />
-                <DashboardRoute path="/seller_dashboard" component={SellerDashboard} />
+                <DashboardRoute exact path="/seller_dashboard" component={SellerDashboard} />
+
+                <DashboardRoute exact path="/buyer_landing" component={BuyerLanding} />
+                <DashboardRoute exact path="/buyer_saved" component={BuyerSaved} />
+
                 <EmptyRoute component={NotFound} />
               </Switch>
           </Router>

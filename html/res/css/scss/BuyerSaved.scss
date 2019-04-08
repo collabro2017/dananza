@@ -1,4 +1,4 @@
-.buyer_landing{
+.buyer_saved{
 	.page-main {
 		width: 80%;
 		padding-top: 20px;
@@ -402,5 +402,20 @@
 		.page_sidebar {
 			margin-left: 0px !important;
 		}
+	}
+
+	.page-main .page-main-header .search-input {
+		border: 0px;
+	    background-color: #deebf2;
+	}
+	.page-main .page-main-header .fa-search {
+		position: absolute;
+	    margin: 10px -12px;
+	}
+	.headline-second {
+		margin-top:7px;
+	}
+	.item {
+		height:360px;
 	}
 }
