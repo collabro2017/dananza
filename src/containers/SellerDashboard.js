@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { increment, decrement } from "../store/reducers/stepCounter";
 
-import "../res/css/Danaza_Dashboard_Seller.css"
+import "../res/css/Dananza_Dashboard_Seller.css"
 
 class SellerDashboard extends React.Component{
   constructor(props) {

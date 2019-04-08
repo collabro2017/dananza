@@ -22,13 +22,7 @@ class About extends React.Component{
 
   render(){
     return (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center"
-        }} >
-
+      <div className="help_container">
         <div className="static_container full_container about">
             <div className="heroblog-help">
                 <div className="hero">

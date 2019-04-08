@@ -9,12 +9,9 @@ import { connect } from "react-redux";
 
 import { increment, decrement } from "../store/reducers/stepCounter";
 
-import "../res/bootstrap/css/bootstrap.min.css"
-import "../res/font-awesome/css/font-awesome.min.css"
 import "../res/bootstrap-select/css/bootstrap-select.min.css"
 import "../res/css/global.css"
-import "../res/css/Danaza_Search.css"
-import "../res/css/components.min.css"
+import "../res/css/Dananza_Search.css"
 import "../res/icheck/skins/ltblue.css"
 import "../res/css/nouislider.css"
 
@@ -29,7 +26,7 @@ class SearchResults extends React.Component{
 
   render(){
     return (
-    	<div className="full_container">
+    	<div className="search_page full_container">
 			<div className="page-navbar">
 				<div className="page-navbar-content">
 					<div className="btn-group" data-toggle="buttons">
