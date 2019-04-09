@@ -12,8 +12,12 @@ import { increment, decrement } from "../store/reducers/stepCounter";
 import "../res/css/homepage.css"
 
 class Home extends React.Component{
+
+  state={'headerType': "static"}
+
   constructor(props) {
     super(props);
+    props.changeHeaderType( this.state.headerType )
   }
 
   componentDidMount(){

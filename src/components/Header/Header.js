@@ -24,7 +24,21 @@ const styles = theme => ({
 });
 
 class Header extends React.Component{
+  state = {
+    headerType: "static"
+  };
+
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillReceiveProps( nextProps ){
+    this.setState({headerType: nextProps.type})
+  }
+
   componentDidMount() {
+    this.setState({headerType: this.props.type});
+
     $('.mobile_navbar_toggler').on('click', function() 
     {
       console.log( "clicked" );
@@ -44,49 +58,65 @@ class Header extends React.Component{
     });
   }
 
+  renderSwitchHeader(){
+
+    if( this.state.headerType == 'search_header' )
+        return ( 'search_header' );
+    else if( this.state.headerType == 'seller_header' )
+        return ( 'seller_header' );
+    else if( this.state.headerType == 'buyer_header' )
+        return ( 'buyer_header' );
+    else // static header
+    {
+        return (<div className="header_section static">
+            <div className="nav_bar">
+              <div className="logo">
+                <img src={logoUrl}/>
+              </div>
+              <div className="nav_menu justify-content-end">
+                <button id="navbar_toggler" className="navbar_toggler_open mobile_navbar_toggler" type="button">
+                  <span className="navbar_toggler_icon"></span>
+                </button>
+                <ul className="nav_menu_list">
+                  <li>
+                    <a href="#">About</a>
+                  </li>
+                  <li>
+                    <a href="#">Sign Up</a>
+                  </li>
+                  <li>
+                    <a href="#">Log In</a>
+                  </li>
+                  <li className="menu_last_li">
+                    <a href="#" className="btn bg-yellow btn-small">Become an Adza</a>
+                  </li>
+                </ul>
+              </div>
+            </div>   
+            <div className="nav_mobile_menu" style={{display:'none'}}>
+              <ul className="nav_mobile_list">
+                <li>
+                  <a href="#">About</a>
+                </li>
+                <li>
+                  <a href="#">Sign Up</a>
+                </li>
+                <li>
+                  <a href="#">Log In</a>
+                </li>
+                <li className="menu_last_li">
+                  <a href="#" className="menu_adza">Become an Adza</a>
+                </li>
+              </ul>
+            </div>
+          </div>);
+    }
+  }
+
   render(){
     return (
-      <div className="header_section">
-        <div className="nav_bar">
-          <div className="logo">
-            <img src={logoUrl}/>
-          </div>
-          <div className="nav_menu justify-content-end">
-            <button id="navbar_toggler" className="navbar_toggler_open mobile_navbar_toggler" type="button">
-              <span className="navbar_toggler_icon"></span>
-            </button>
-            <ul className="nav_menu_list">
-              <li>
-                <a href="#">About</a>
-              </li>
-              <li>
-                <a href="#">Sign Up</a>
-              </li>
-              <li>
-                <a href="#">Log In</a>
-              </li>
-              <li className="menu_last_li">
-                <a href="#" className="btn bg-yellow btn-small">Become an Adza</a>
-              </li>
-            </ul>
-          </div>
-        </div>   
-        <div className="nav_mobile_menu" style={{display:'none'}}>
-          <ul className="nav_mobile_list">
-            <li>
-              <a href="#">About</a>
-            </li>
-            <li>
-              <a href="#">Sign Up</a>
-            </li>
-            <li>
-              <a href="#">Log In</a>
-            </li>
-            <li className="menu_last_li">
-              <a href="#" className="menu_adza">Become an Adza</a>
-            </li>
-          </ul>
-        </div>
+      <div>
+        { this.renderSwitchHeader() }
       </div>
     );
   }

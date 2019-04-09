@@ -17,31 +17,33 @@ const styles = theme => ({
 
 class MainLayout extends Component {
   state = {
-    open: false
+    headerType: 'dfdfd'
   };
 
-  handleToggleDrawer = () => {
-    this.setState(prevState => {
-      return { open: !prevState.open };
-    });
+  handleHeader = (headerType) => {
+    this.setState({headerType: headerType});
   };
 
   render() {
     const { classes, children } = this.props;
+    const childrenWithProps = React.Children.map(this.props.children, child =>
+      React.cloneElement(child, { changeHeaderType : this.handleHeader })
+    );
+
     return (
       <Fragment>
           <Header
             logout={this.props.logout}
-            handleToggleDrawer={this.handleToggleDrawer}
+            type={this.state.headerType}
           />
           <main
             className={classNames(classes.content, {
               [classes.contentShift]: this.state.open
             })}
           >
-            {children}
-          </main>
+            {childrenWithProps}
 
+          </main>
           <Footer/>
       </Fragment>
     );

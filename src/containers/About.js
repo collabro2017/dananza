@@ -12,8 +12,12 @@ import { increment, decrement } from "../store/reducers/stepCounter";
 import "../res/css/help.css"
 
 class About extends React.Component{
+
+  state={'headerType': "search_header"}
+
   constructor(props) {
     super(props);
+    props.changeHeaderType( this.state.headerType )
   }
 
   componentDidMount(){
