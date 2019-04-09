@@ -12,8 +12,12 @@ import { increment, decrement } from "../store/reducers/stepCounter";
 import "../res/css/BuyerSaved.css"
 
 class BuyerSaved extends React.Component{
+
+  state={'headerType': "buyer"}
+
   constructor(props) {
     super(props);
+    props.changeHeaderType( this.state.headerType )
   }
 
   componentDidMount(){

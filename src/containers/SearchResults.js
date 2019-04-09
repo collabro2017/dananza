@@ -16,8 +16,12 @@ import "../res/icheck/skins/ltblue.css"
 import "../res/css/nouislider.css"
 
 class SearchResults extends React.Component{
+
+  state={'headerType': "seller"}
+
   constructor(props) {
     super(props);
+    props.changeHeaderType( this.state.headerType )
   }
 
   componentDidMount(){
