@@ -85,3 +85,24 @@
     display: block; }
   .header_search .nav_mobile_list li {
     margin-bottom: 43px; }
+
+.header_search .top-menu {
+  margin: 0;
+  padding: 0;
+  float: right;
+  width: 60%;
+  position: relative;
+}
+.header_search .dropdown-user {
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+.header_search .nav > li > a {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #000c20;
+  text-decoration: none !important;
+}
+.header_search .nav > li > a:focus, .header_search .nav > li > a:hover {
+  background-color: white;
+}

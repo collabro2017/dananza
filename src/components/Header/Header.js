@@ -72,7 +72,73 @@ class Header extends React.Component{
     if( this.state.headerType == 'seller' ) // Seller Pages
         return ( 'seller_header' );
     else if( this.state.headerType == 'buyer' ) // Buyer Pages
-        return ( 'buyer_header' );
+        return ( 
+          <div className="header_search">
+            <div className="nav_bar">
+              <div className="logo">
+                <Link to="/"><img src={logoUrl}/></Link>
+                <div className="input-icon">
+                  <i className="fa fa-search input"></i>
+                  <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
+                  <button className="btn green search-but">Search</button>
+                </div>
+              </div>
+              <div className="top-menu">
+                <a href="javascript:;" className="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-nav"></a>
+                <ul className="nav navbar-nav pull-right">
+                  <li>
+                    <Link to="/buyer_saved">Saved</Link>
+                  </li>
+                  <li>
+                    <a href="#">Campaigns</a>
+                  </li>
+                  <li>
+                    <a href="#"><img src={require("../../res/img/notice-message.png")} style={{margin:'0px 4px 12px'}} alt=""/>Messages</a>
+                  </li>
+                  <li>
+                    <Link to="/cart"><i className="fa fa-shopping-cart"></i>Cart</Link>
+                  </li>
+                  <li className="dropdown dropdown-user">
+                    <a href="javascript:;" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        <img className="img-circle" src={require("../../res/img/logged_user.png")} alt=""/>
+                        <i className="fa fa-angle-down"></i>
+                    </a>
+                    <ul className="dropdown-menu dropdown-menu-default">
+                      <li>
+                          <a href="page_user_profile_1.html">
+                              <i className="icon-user"></i> My Profile </a>
+                      </li>
+                      <li>
+                          <a href="app_calendar.html">
+                              <i className="icon-calendar"></i> My Dashboard </a>
+                      </li>
+                      <li>
+                          <a href="app_inbox.html">
+                              <i className="icon-envelope-open"></i> Account Setting
+                          </a>
+                      </li>
+                      <li className="divider"> </li>
+                      <li>
+                          <a href="app_todo.html">
+                              <i className="icon-rocket"></i> Switch to Buyer
+                              <span className="badge badge-success"> 7 </span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="page_user_lock_1.html">
+                              <i className="icon-lock"></i> Help </a>
+                      </li>
+                      <li>
+                          <a href="page_user_login_1.html">
+                              <i className="icon-key"></i> Logout </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        );
     else if( this.state.headerType == 'homepage' ) // Homepage
     {
         return (
@@ -123,18 +189,18 @@ class Header extends React.Component{
     else // Static Pages
     {
         return ( 
-          <div class="header_search">
-              <div class="nav_bar">
-                  <div class="logo">
+          <div className="header_search">
+              <div className="nav_bar">
+                  <div className="logo">
                       <Link to="/"><img src={logoUrl}/></Link>
-                      <div class="input-icon">
-                          <i class="fa fa-search input"></i>
-                          <input type="text" class="form-control search-input" placeholder="Where do you want to see your ad?" />
-                          <a class="btn bg-blue search-but color-white">Search</a>
+                      <div className="input-icon">
+                          <i className="fa fa-search input"></i>
+                          <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
+                          <a className="btn bg-blue search-but color-white">Search</a>
                       </div>
                   </div>
-                  <div class="nav_menu justify-content-end">
-                      <ul class="nav_menu_list">
+                  <div className="nav_menu justify-content-end">
+                      <ul className="nav_menu_list">
                           <li>
                               <Link to="/about">About</Link>
                           </li>
@@ -144,8 +210,8 @@ class Header extends React.Component{
                           <li>
                               <a href="#">Log In</a>
                           </li>
-                          <li class="menu_last_li">
-                              <a href="#" class="menu_adza">Become an Adza</a>
+                          <li className="menu_last_li">
+                              <a href="#" className="menu_adza">Become an Adza</a>
                           </li>
                       </ul>
                   </div>
