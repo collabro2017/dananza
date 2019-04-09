@@ -13,7 +13,7 @@ import "../res/css/help.css"
 
 class About extends React.Component{
 
-  state={'headerType': "search_header"}
+  state={'headerType': "static"}
 
   constructor(props) {
     super(props);

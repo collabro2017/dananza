@@ -13,7 +13,7 @@ import "../res/css/homepage.css"
 
 class Home extends React.Component{
 
-  state={'headerType': "static"}
+  state={'headerType': "homepage"}
 
   constructor(props) {
     super(props);

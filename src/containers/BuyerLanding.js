@@ -13,8 +13,12 @@ import "../res/css/layout.min.css"
 import "../res/css/BuyerLanding.css"
 
 class BuyerLanding extends React.Component{
+
+  state={'headerType': "buyer"}
+
   constructor(props) {
     super(props);
+    props.changeHeaderType( this.state.headerType )
   }
 
   componentDidMount(){
