@@ -70,8 +70,41 @@ class Header extends React.Component{
   renderSwitchHeader(){
 
     if( this.state.headerType == 'seller' ) // Seller Pages
-        return ( 'seller_header' );
+    {
+        return (
+          <div className="header_search">
+            <div className="nav_bar">
+              <div className="logo">
+                <Link to="/"><img src={logoUrl}/></Link>
+                <div className="input-icon">
+                  <i className="fa fa-search input"></i>
+                  <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" value=""/>
+                  <a href="#" className="btn green search-but">Search</a>
+                </div>
+              </div>
+              <div className="nav_menu justify-content-end">
+                <ul className="nav_menu_list">
+                  <li>
+                    <a href="#">Adza Page</a>
+                  </li>
+                  <li>
+                    <a href="#">Campaign</a>
+                  </li>
+                  <li>
+                    <a href="#">Messages</a>
+                  </li>
+                  <li className="profile_photo">
+                    <img src={require("../../res/img/profile_photo.png")} alt=""/>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        );
+    }
     else if( this.state.headerType == 'buyer' ) // Buyer Pages
+    {
         return ( 
           <div className="header_search">
             <div className="nav_bar">
@@ -139,6 +172,7 @@ class Header extends React.Component{
             </div>
           </div>
         );
+    }
     else if( this.state.headerType == 'homepage' ) // Homepage
     {
         return (
