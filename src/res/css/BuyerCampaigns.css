@@ -1,0 +1,63 @@
+.buyer_campaign .dropdown-menu > li > a:focus, .buyer_campaign .dropdown-menu > li > a:hover {
+  background-color: #2ab7c9 !important;
+}
+.buyer_campaign .headline-second .dropdown-menu.dropdown-menu-default {
+  border-radius: 6px !important;
+  box-shadow: none;
+}
+.buyer_campaign .third-title {
+  margin-left: 100px;
+}
+.buyer_campaign .panel {
+  width: 80% !important;
+  float: left;
+}
+.buyer_campaign .panel-left {
+  width: 25%;
+  float: left;
+}
+.buyer_campaign .panel-right {
+  width: 73%;
+  float: left;
+}
+.buyer_campaign .panel-right .header {
+  font-size: 16px;
+  margin-top: 15px;
+}
+.buyer_campaign .panel-right .pull-right {
+  margin-right: 35px;
+}
+.buyer_campaign .panel-right .header a {
+  color: #2ab7c9;
+}
+.buyer_campaign .mt-step-content span {
+  font-size: 15px;
+}
+.buyer_campaign .panel-right .footer {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 0px;
+}
+.buyer_campaign .img-item {
+  height: 270px;
+  width: 80%;
+}
+.buyer_campaign .panel-right {
+  margin-left: 10px;
+}
+.buyer_campaign .panel {
+  border-radius: 18px !important;
+}
+.buyer_campaign .page-main-content {
+  margin-top: 0px;
+}
+.buyer_campaign .panel-item {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  float: left;
+  border-radius: 18px !important;
+}
+
+/*# sourceMappingURL=../BuyerCampaigns.css.map */

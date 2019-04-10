@@ -16,6 +16,7 @@ import "../../res/css/components.min.css"
 import "../../res/css/global.css"
 import "../../res/css/header.css"
 import "../../res/css/header_search.css"
+import "../../res/css/layout.min.css"
 
 import $ from "jquery";
 
