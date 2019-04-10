@@ -1,0 +1,27 @@
+.headline-second.pull-right>i {
+	margin-left:10px !important;
+}
+.pd-bottom {
+	padding-bottom:75px;
+}
+.controlcontent .mt-radio.mt-radio-outline {
+	font-weight: inherit !important;	
+} 
+.btn-radius {
+	border-radius: 5px !important;
+}
+.controlcontent>input {
+	height:50px;
+}
+.placeholder-img
+{
+	position:absolute;
+	top:14px;
+	left: 12px;
+}
+.add-website {
+	float: right;
+    font-size: 16px;
+    color: #2ab7c9 !important;
+    margin-top: -25px;
+}
