@@ -27,6 +27,7 @@ import BuyerLanding from "./containers/BuyerLanding";
 import BuyerSaved from "./containers/BuyerSaved";
 import BuyerProfile from "./containers/BuyerProfile";
 import BuyerCampaigns from "./containers/BuyerCampaigns";
+import BuyerMessages from "./containers/BuyerMessages";
 
 const NotFound = () => {
   return <div>NotFound</div>;
@@ -88,6 +89,7 @@ class App extends Component {
                 <DashboardRoute exact path="/buyer_saved" component={BuyerSaved} />
                 <DashboardRoute exact path="/buyer_profile" component={BuyerProfile} />
                 <DashboardRoute exact path="/buyer_campaigns" component={BuyerCampaigns} />
+                <DashboardRoute exact path="/buyer_messages" component={BuyerMessages} />
 
                 <EmptyRoute component={NotFound} />
               </Switch>

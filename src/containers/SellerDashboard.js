@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import { increment, decrement } from "../store/reducers/stepCounter";
+import SellerSidebar from "../components/Sidebar/SellerSidebar";
 
 import "../res/css/Dananza_Dashboard_Seller.css"
 
@@ -23,51 +24,7 @@ class SellerDashboard extends React.Component{
     return (
     	<div className="dashboard_seller">
 	    	<div className="page-content">
-				<div className="page-sidebar">
-					<div className="section target-tree">
-						<div className="image">
-							<img alt="" src={require("../res/img/profile_photo.png")}/>
-							<h1> Target Tree </h1>
-						</div>
-						<div className="dial">
-							<input className="knob" data-fgcolor="#2ab7c9" data-width="100%" data-min="0" data-displayprevious="true" value="44" readOnly=""/>
-						</div>
-						<div className="dial">
-							<input className="knob" data-fgcolor="#2ab7c9" data-width="100%" data-min="0" data-displayprevious="true" value="99" readOnly=""/>
-						</div>
-						<div className="dial">
-							<input className="knob" data-fgcolor="#2ab7c9" data-width="100%" data-min="0" data-displayprevious="true" value="98" readOnly=""/>
-						</div>
-						<div className="dial">
-							<input className="rate" data-fgcolor="#2ab7c9" data-width="100%" data-max="5.0" data-displayprevious="true" value="5.0" readOnly=""/>
-							<i className="fa fa-star"></i>
-						</div>
-					</div>
-					<div className="section">
-						<div className="btn-group" data-toggle="buttons" id="pages">
-		                    <label className="btn btn-default active">
-		                    	<i className="fa fa-shopping-cart"></i>
-		                        <input type="radio" className="toggle"/> Orders
-		                    </label>
-		                    <label className="btn btn-default">
-		                    	<i className=" fa fa-bar-chart"></i>
-		                        <input type="radio" className="toggle"/> Analytics
-		                    </label>
-		                    <label className="btn btn-default">
-		                    	<i className="fa fa-calendar"></i>
-		                        <input type="radio" className="toggle"/> Calendar
-		                    </label>
-		                    <label className="btn btn-default">
-		                    	<i className="fa fa-user"></i>
-		                        <input type="radio" className="toggle"/> Seller's Page
-		                    </label>
-		                    <label className="btn btn-default">
-		                    	<i className="fa fa-comment-o"></i>
-		                        <input type="radio" className="toggle"/> Messages
-		                    </label>
-		                </div>
-					</div>
-				</div>
+				<SellerSidebar />
 				<div className="page-result">
 					<label className="title">Edit Your Profile Page</label>
 					<div className="form-group">

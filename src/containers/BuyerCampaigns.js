@@ -8,6 +8,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import { increment, decrement } from "../store/reducers/stepCounter";
+import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
 
 import "../res/css/Dananza_Search.css"
 import "../res/css/BuyerCampaigns.css"
@@ -30,29 +31,8 @@ class BuyerCampaigns extends React.Component{
       <div className="buyer_landing buyer_campaign">
         <div className="page-container">
            <div className="page-content">
-              <div className="page-sidebar">
-                <div className="userinfo">
-                  <img src={require("../res/img/userinfo_img.png")} />
-                  <h3>Michaela Seyra</h3>
-                  <h5>@michaela_Syr</h5>
-                </div>
-                <div className="selector">
-                  <ul className="page-sidebar-menu">
-                    <li className="nav-item">
-                      <a> <img className="nav-icon" src={require("../res/img/person.png")} /> Profile Page</a>
-                    </li>
-                    <li className="nav-item">
-                      <a> <img className="nav-icon" src={require("../res/img/saved.png")} />Saved</a>
-                    </li>
-                    <li className="nav-item">
-                      <a> <img className="nav-icon" src={require("../res/img/champaigns.png")} />Campaigns</a>
-                    </li>
-                    <li className="nav-item last">
-                      <a> <img className="nav-icon" src={require("../res/img/messages.png")} />Messages</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              <BuyerSidebar />
+
               <div class="page-main">
                 <div class="page-main-header">
                   <span class="headline-first">
