@@ -18,9 +18,9 @@ import "../../res/css/header.css"
 import "../../res/css/header_search.css"
 import "../../res/css/layout.min.css"
 
-import $ from "jquery";
-
 import logoUrl from '../../res/img/logo.png';
+
+import $ from "jquery";
 
 const styles = theme => ({
   
@@ -37,6 +37,11 @@ class Header extends React.Component{
 
   componentWillReceiveProps( nextProps ){
     this.setState({headerType: nextProps.type})
+    window.jQuery = $;
+    window.$ = $;
+    global.jQuery = $;
+    
+    const bootstrap = require('bootstrap');
   }
 
   componentDidMount() {
@@ -59,6 +64,8 @@ class Header extends React.Component{
       }
       $('.nav_mobile_menu').slideToggle(200);
     });
+
+
   }
 
   /*
@@ -80,16 +87,16 @@ class Header extends React.Component{
                 <div className="input-icon">
                   <i className="fa fa-search input"></i>
                   <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" value=""/>
-                  <Link to="/results"><a href="#" className="btn green search-but">Search</a></Link>
+                  <Link to="/results" className="btn green search-but">Search</Link>
                 </div>
               </div>
               <div className="nav_menu justify-content-end">
                 <ul className="nav_menu_list">
                   <li>
-                    <Link to="/seller_page">Adza Page</Link>
+                    <Link to="/seller_page">Profile</Link>
                   </li>
                   <li>
-                    <Link to="/seller_campaigns">Campaign</Link>
+                    <Link to="/seller_Dashboard">Campaign</Link>
                   </li>
                   <li>
                     <Link to="/seller_messages">Messages</Link>

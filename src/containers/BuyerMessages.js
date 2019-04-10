@@ -32,7 +32,7 @@ class BuyerMessages extends React.Component{
           <div className="page-content">
             <BuyerSidebar />
 
-            <div class="page-main">
+            <div className="page-main">
             </div>
           </div>
         </div>

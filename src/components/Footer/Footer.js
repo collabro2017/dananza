@@ -48,7 +48,7 @@ const Footer = props => {
                   <input type="text" className="form-control input-lg"/>
                   <i className="fa fa-search"></i>
                     <span className="input-group-btn">
-                        <Link to="/results"><button className="btn bg-blue color-white" type="button">Search</button></Link>
+                        <Link to="/results" className="btn bg-blue color-white" type="button">Search</Link>
                     </span>
                 </div>
               </div>
