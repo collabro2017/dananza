@@ -7,3 +7,9 @@
 .page-content{
 	overflow: hidden;
 }
+.target-tree .dial i{
+	right: 15px !important;
+}
+.dial > .rate > input{
+	margin-left: -51px !important;
+}

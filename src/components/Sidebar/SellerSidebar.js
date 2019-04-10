@@ -8,6 +8,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import SettingsIcon from "@material-ui/icons/Settings";
 import { Link } from "react-router-dom";
+import Knob from 'react-canvas-knob';
 
 import "../../res/css/SellerSidebar.css"
 
@@ -24,16 +25,49 @@ const SellerSidebar = props => {
               <h1> Target Tree </h1>
             </div>
             <div className="dial">
-              <input className="knob" data-fgcolor="#2ab7c9" data-width="100%" data-min="0" data-displayprevious="true" value="44" readOnly=""/>
+              <Knob
+                value={44}
+                fgColor={'#2ab7c9'}
+                className="knob"
+                displayprevious="true"
+                width="60"
+                height="60"
+                thickness={0.2}
+              />
             </div>
             <div className="dial">
-              <input className="knob" data-fgcolor="#2ab7c9" data-width="100%" data-min="0" data-displayprevious="true" value="99" readOnly=""/>
+              <Knob
+                value={99}
+                fgColor={'#2ab7c9'}
+                className="knob"
+                displayprevious="true"
+                width="60"
+                height="60"
+                thickness={0.2}
+              />
             </div>
             <div className="dial">
-              <input className="knob" data-fgcolor="#2ab7c9" data-width="100%" data-min="0" data-displayprevious="true" value="98" readOnly=""/>
+              <Knob
+                value={98}
+                fgColor={'#2ab7c9'}
+                className="knob"
+                displayprevious="true"
+                width="60"
+                height="60"
+                thickness={0.2}
+              />
             </div>
             <div className="dial">
-              <input className="rate" data-fgcolor="#2ab7c9" data-width="100%" data-max="5.0" data-displayprevious="true" value="5.0" readOnly=""/>
+              <Knob
+                max={5.0}
+                value={5.0}
+                fgColor={'#2ab7c9'}
+                className="rate"
+                displayprevious="true"
+                width="60"
+                height="60"
+                thickness={0.2}
+              />
               <i className="fa fa-star"></i>
             </div>
           </div>
