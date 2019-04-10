@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 import "../../res/css/footer.css"
 
@@ -37,7 +38,7 @@ const Footer = props => {
                   <li>Company</li>
                   <li>Careers</li>
                   <li>Blog</li>
-                  <li>Help</li>
+                  <li><Link to="/help">Help</Link></li>
                   <li>Contact</li>
                 </ul>
               </div>

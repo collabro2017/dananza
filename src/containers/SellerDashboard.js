@@ -7,8 +7,12 @@ import { increment, decrement } from "../store/reducers/stepCounter";
 import "../res/css/Dananza_Dashboard_Seller.css"
 
 class SellerDashboard extends React.Component{
+
+  state={'headerType': "seller"}
+
   constructor(props) {
     super(props);
+    props.changeHeaderType( this.state.headerType )
   }
 
   componentDidMount(){
