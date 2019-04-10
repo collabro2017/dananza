@@ -9,6 +9,9 @@ import { connect } from "react-redux";
 
 import { increment, decrement } from "../store/reducers/stepCounter";
 
+import 'icheck/skins/all.css';
+import {Checkbox, Radio} from 'react-icheck';
+
 import "../res/bootstrap-select/css/bootstrap-select.min.css"
 import "../res/css/global.css"
 import "../res/css/Dananza_Search.css"
@@ -86,100 +89,124 @@ class SearchResults extends React.Component{
 								<ul className="sub-menu">
 									<li className="active">
 										<div className="nav-link nav-toggle">
-											<label>
-			                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
-			                                </label>
-											<a>Social Media</a>
+											<Checkbox
+											  checkboxClass="icheckbox_square-ltblue"
+											  increaseArea="20%"
+											  label="Social Media"
+											  className="icheck"
+											/>
 										</div>
 										<ul className="sub-menu">
 											<li>
 												<div className="nav-link">
-													<label>
-					                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
-					                                </label>
-													<a>Facebook</a>
+													<Checkbox
+													  checkboxClass="icheckbox_square-ltblue"
+													  increaseArea="40%"
+													  label="Facebook"
+													  className="icheck"
+													/>
 												</div>
 											</li>
 											<li>
 												<div className="nav-link">
-													<label>
-					                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
-					                                </label>
-													<a>Instagram</a>
+													<Checkbox
+													  checkboxClass="icheckbox_square-ltblue"
+													  increaseArea="40%"
+													  label="Instagram"
+													  className="icheck"
+													/>
 												</div>
 											</li>
 											<li>
 												<div className="nav-link">
-													<label>
-					                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
-					                                </label>
-													<a>Twitter</a>
+													<Checkbox
+													  checkboxClass="icheckbox_square-ltblue"
+													  increaseArea="40%"
+													  label="Twitter"
+													  className="icheck"
+													/>
 												</div>
 											</li>
 											<li>
 												<div className="nav-link">
-													<label>
-					                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
-					                                </label>
-													<a>Linkedin</a>
+													<Checkbox
+													  checkboxClass="icheckbox_square-ltblue"
+													  increaseArea="40%"
+													  label="Linkedin"
+													  className="icheck"
+													/>
 												</div>
 											</li>
 											<li>
 												<div className="nav-link">
-													<label>
-					                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
-					                                </label>
-													<a>YouTube</a>
+													<Checkbox
+													  checkboxClass="icheckbox_square-ltblue"
+													  increaseArea="40%"
+													  label="YouTube"
+													  className="icheck"
+													/>
 												</div>
 											</li>
 											<li>
 												<div className="nav-link">
-													<label>
-					                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
-					                                </label>
-													<a>Pinterest</a>
+													<Checkbox
+													  checkboxClass="icheckbox_square-ltblue"
+													  increaseArea="40%"
+													  label="Pinterest"
+													  className="icheck"
+													/>
 												</div>
 											</li>
 										</ul>
 									</li>
 									<li>
 										<div className="nav-link">
-											<label>
-			                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
-			                                </label>
-											<a>Websites</a>
+											<Checkbox
+											  checkboxClass="icheckbox_square-ltblue"
+											  increaseArea="40%"
+											  label="Websites"
+											  className="icheck"
+											/>
 										</div>
 									</li>
 									<li>
 										<div className="nav-link">
-											<label>
-			                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
-			                                </label>
-											<a>Podcasts</a>
+											<Checkbox
+											  checkboxClass="icheckbox_square-ltblue"
+											  increaseArea="40%"
+											  label="Podcasts"
+											  className="icheck"
+											/>
 										</div>
 									</li>
 									<li>
 										<div className="nav-link">
-											<label>
-			                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
-			                                </label>
-											<a>Print</a>
+											<Checkbox
+											  checkboxClass="icheckbox_square-ltblue"
+											  increaseArea="40%"
+											  label="Print"
+											  className="icheck"
+											/>
 										</div>
 									</li>
 									<li>
 										<div className="nav-link">
-											<label>
-			                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
-			                                </label>
-											<a>Sponsorships</a>
+											<Checkbox
+											  checkboxClass="icheckbox_square-ltblue"
+											  increaseArea="40%"
+											  label="Sponsorships"
+											  className="icheck"
+											/>
 										</div>
 									</li>
 									<li>
 										<div className="nav-link">
-											<label>
-			                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
-			                                </label>
-											<a>Billboards</a>
+											<Checkbox
+											  checkboxClass="icheckbox_square-ltblue"
+											  increaseArea="40%"
+											  label="Billboards"
+											  className="icheck"
+											/>
 										</div>
 									</li>
 								</ul>
