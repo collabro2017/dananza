@@ -80,19 +80,19 @@ class Header extends React.Component{
                 <div className="input-icon">
                   <i className="fa fa-search input"></i>
                   <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" value=""/>
-                  <a href="#" className="btn green search-but">Search</a>
+                  <Link to="/results"><a href="#" className="btn green search-but">Search</a></Link>
                 </div>
               </div>
               <div className="nav_menu justify-content-end">
                 <ul className="nav_menu_list">
                   <li>
-                    <a href="#">Adza Page</a>
+                    <Link to="/seller_page">Adza Page</Link>
                   </li>
                   <li>
-                    <a href="#">Campaign</a>
+                    <Link to="/seller_campaigns">Campaign</Link>
                   </li>
                   <li>
-                    <a href="#">Messages</a>
+                    <Link to="/seller_messages">Messages</Link>
                   </li>
                   <li className="profile_photo">
                     <img src={require("../../res/img/profile_photo.png")} alt=""/>
@@ -114,7 +114,7 @@ class Header extends React.Component{
                 <div className="input-icon">
                   <i className="fa fa-search input"></i>
                   <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
-                  <button className="btn green search-but">Search</button>
+                  <Link to="/results"><button className="btn green search-but">Search</button></Link>
                 </div>
               </div>
               <div className="top-menu">
@@ -124,10 +124,10 @@ class Header extends React.Component{
                     <Link to="/buyer_saved">Saved</Link>
                   </li>
                   <li>
-                    <a href="#">Campaigns</a>
+                    <Link to="/buyer_campaigns">Campaigns</Link>
                   </li>
                   <li>
-                    <a href="#"><img src={require("../../res/img/notice-message.png")} style={{margin:'0px 4px 12px'}} alt=""/>Messages</a>
+                    <Link to="/buyer_messages"><img src={require("../../res/img/notice-message.png")} style={{margin:'0px 4px 12px'}} alt=""/>Messages</Link>
                   </li>
                   <li>
                     <Link to="/cart"><i className="fa fa-shopping-cart"></i>Cart</Link>
@@ -139,32 +139,31 @@ class Header extends React.Component{
                     </a>
                     <ul className="dropdown-menu dropdown-menu-default">
                       <li>
-                          <a href="page_user_profile_1.html">
-                              <i className="icon-user"></i> My Profile </a>
+                          <Link to="/buyer_profile">
+                              <i className="icon-user"></i> My Profile </Link>
                       </li>
                       <li>
-                          <a href="app_calendar.html">
-                              <i className="icon-calendar"></i> My Dashboard </a>
+                          <Link to="/buyer_landing">
+                              <i className="icon-calendar"></i> My Dashboard</Link>
                       </li>
                       <li>
-                          <a href="app_inbox.html">
-                              <i className="icon-envelope-open"></i> Account Setting
-                          </a>
+                          <Link to="/buyer_settings">
+                              <i className="icon-envelope-open"></i> Account Setting</Link>
                       </li>
                       <li className="divider"> </li>
                       <li>
-                          <a href="app_todo.html">
-                              <i className="icon-rocket"></i> Switch to Buyer
+                          <Link to="/seller_dashboard">
+                              <i className="icon-rocket"></i> Switch to Seller
                               <span className="badge badge-success"> 7 </span>
-                          </a>
+                          </Link>
                       </li>
                       <li>
-                          <a href="page_user_lock_1.html">
-                              <i className="icon-lock"></i> Help </a>
+                          <Link to="/help">
+                              <i className="icon-lock"></i> Help </Link>
                       </li>
                       <li>
-                          <a href="page_user_login_1.html">
-                              <i className="icon-key"></i> Logout </a>
+                          <Link to="/">
+                              <i className="icon-key"></i> Logout </Link>
                       </li>
                     </ul>
                   </li>
@@ -191,13 +190,13 @@ class Header extends React.Component{
                     <Link to="/about">About</Link>
                   </li>
                   <li>
-                    <a href="#">Sign Up</a>
+                    <Link to="/">Sign Up</Link>
                   </li>
                   <li>
-                    <a href="#">Log In</a>
+                    <Link to="/buyer_landing">Log In</Link>
                   </li>
                   <li className="menu_last_li">
-                    <a href="#" className="btn bg-yellow btn-small">Become an Adza</a>
+                    <Link to="/seller_dashboard" className="btn bg-yellow btn-small">Become an Adza</Link>
                   </li>
                 </ul>
               </div>
@@ -208,13 +207,13 @@ class Header extends React.Component{
                   <Link to="/about">About</Link>
                 </li>
                 <li>
-                  <a href="#">Sign Up</a>
+                  <Link to="/">Sign Up</Link>
                 </li>
                 <li>
-                  <a href="#">Log In</a>
+                  <Link to="/buyer_landing">Log In</Link>
                 </li>
                 <li className="menu_last_li">
-                  <a href="#" className="menu_adza">Become an Adza</a>
+                    <Link to="/seller_dashboard" className="btn bg-yellow btn-small">Become an Adza</Link>
                 </li>
               </ul>
             </div>
@@ -231,7 +230,7 @@ class Header extends React.Component{
                       <div className="input-icon">
                           <i className="fa fa-search input"></i>
                           <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
-                          <a className="btn bg-blue search-but color-white">Search</a>
+                          <Link to="/results" className="btn bg-blue search-but color-white">Search</Link>
                       </div>
                   </div>
                   <div className="nav_menu justify-content-end">
@@ -240,13 +239,13 @@ class Header extends React.Component{
                               <Link to="/about">About</Link>
                           </li>
                           <li>
-                              <a href="#">Sign Up</a>
+                              <Link to="/">Sign Up</Link>
                           </li>
                           <li>
-                              <a href="#">Log In</a>
+                              <Link to="/buyer_landing">Log In</Link>
                           </li>
                           <li className="menu_last_li">
-                              <a href="#" className="menu_adza">Become an Adza</a>
+                              <Link to="/seller_dashboard" className="menu_adza">Become an Adza</Link>
                           </li>
                       </ul>
                   </div>

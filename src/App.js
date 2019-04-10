@@ -22,6 +22,11 @@ import Help from "./containers/Help";
 
 import SearchResults from "./containers/SearchResults";
 import SellerDashboard from "./containers/SellerDashboard";
+import SellerOrders from "./containers/SellerOrders";
+import SellerAnalytics from "./containers/SellerAnalytics";
+import SellerCalendar from "./containers/SellerCalendar";
+import SellerPage from "./containers/SellerPage";
+import SellerMessages from "./containers/SellerMessages";
 
 import BuyerLanding from "./containers/BuyerLanding";
 import BuyerSaved from "./containers/BuyerSaved";
@@ -84,6 +89,11 @@ class App extends Component {
 
                 <DashboardRoute exact path="/results" component={SearchResults} />
                 <DashboardRoute exact path="/seller_dashboard" component={SellerDashboard} />
+                <DashboardRoute exact path="/seller_orders" component={SellerOrders} />
+                <DashboardRoute exact path="/seller_analytics" component={SellerAnalytics} />
+                <DashboardRoute exact path="/seller_calendar" component={SellerCalendar} />
+                <DashboardRoute exact path="/seller_page" component={SellerPage} />
+                <DashboardRoute exact path="/seller_messages" component={SellerMessages} />
 
                 <DashboardRoute exact path="/buyer_landing" component={BuyerLanding} />
                 <DashboardRoute exact path="/buyer_saved" component={BuyerSaved} />

@@ -39,26 +39,36 @@ const SellerSidebar = props => {
           </div>
           <div className="section">
             <div className="btn-group" data-toggle="buttons" id="pages">
-              <label className="btn btn-default active">
-                <i className="fa fa-shopping-cart"></i>
-                  <input type="radio" className="toggle"/> Orders
-              </label>
-              <label className="btn btn-default">
-                <i className=" fa fa-bar-chart"></i>
-                  <input type="radio" className="toggle"/> Analytics
-              </label>
-              <label className="btn btn-default">
-                <i className="fa fa-calendar"></i>
-                  <input type="radio" className="toggle"/> Calendar
-              </label>
-              <label className="btn btn-default">
-                <i className="fa fa-user"></i>
-                  <input type="radio" className="toggle"/> Seller's Page
-              </label>
-              <label className="btn btn-default">
-                <i className="fa fa-comment-o"></i>
-                  <input type="radio" className="toggle"/> Messages
-              </label>
+              <Link to="/seller_orders">
+                <label className="btn btn-default">
+                  <i className="fa fa-shopping-cart"></i>
+                    <input type="radio" className="toggle"/> Orders
+                </label>
+              </Link>
+              <Link to="/seller_analytics">
+                <label className="btn btn-default">
+                  <i className=" fa fa-bar-chart"></i>
+                    <input type="radio" className="toggle"/> Analytics
+                </label>
+              </Link>
+              <Link to="/seller_calendar">
+                <label className="btn btn-default">
+                  <i className="fa fa-calendar"></i>
+                    <input type="radio" className="toggle"/> Calendar
+                </label>
+              </Link>
+              <Link to="/seller_page">
+                <label className="btn btn-default">
+                  <i className="fa fa-user"></i>
+                    <input type="radio" className="toggle"/> Seller's Page
+                </label>
+              </Link>
+              <Link to="/seller_messages">
+                <label className="btn btn-default">
+                  <i className="fa fa-comment-o"></i>
+                    <input type="radio" className="toggle"/> Messages
+                </label>
+              </Link>
           </div>
         </div>
       </div>

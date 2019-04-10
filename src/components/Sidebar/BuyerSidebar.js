@@ -26,16 +26,24 @@ const BuyerSidebar = props => {
       <div className="selector">
         <ul className="page-sidebar-menu">
           <li className="nav-item">
-            <a> <img className="nav-icon" src={require("../../res/img/person.png")} /> Profile Page</a>
+            <Link to="/buyer_profile">
+              <img className="nav-icon" src={require("../../res/img/person.png")} /> Profile Page
+            </Link>
           </li>
           <li className="nav-item">
-            <a> <img className="nav-icon" src={require("../../res/img/saved.png")} />Saved</a>
+            <Link to="/buyer_saved">
+              <img className="nav-icon" src={require("../../res/img/saved.png")} />Saved
+            </Link>
           </li>
           <li className="nav-item">
-            <a> <img className="nav-icon" src={require("../../res/img/champaigns.png")} />Campaigns</a>
+            <Link to="/buyer_campaigns"> 
+              <img className="nav-icon" src={require("../../res/img/champaigns.png")} />Campaigns
+            </Link>
           </li>
           <li className="nav-item last">
-            <a> <img className="nav-icon" src={require("../../res/img/messages.png")} />Messages</a>
+            <Link to="/buyer_messages">
+              <img className="nav-icon" src={require("../../res/img/messages.png")} />Messages
+            </Link>
           </li>
         </ul>
       </div>
