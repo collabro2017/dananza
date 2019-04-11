@@ -318,27 +318,47 @@ class SearchResults extends React.Component{
 							<span className="title">Average Rating</span>
 							<div className="content average-rating">
 								<label>
-		                            <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+									<Checkbox
+									  checkboxClass="icheckbox_square-ltblue"
+									  increaseArea="10%"
+									  className="icheck"
+									/>
 		                            <i className="fa fa-star"></i>
 		                            <span>5.0</span>
 		                        </label>
 		                        <label>
-		                            <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+									<Checkbox
+									  checkboxClass="icheckbox_square-ltblue"
+									  increaseArea="10%"
+									  className="icheck"
+									/>
 		                            <i className="fa fa-star"></i>
 		                            <span>4.0</span>
 		                        </label>
 		                        <label>
-		                            <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+									<Checkbox
+									  checkboxClass="icheckbox_square-ltblue"
+									  increaseArea="10%"
+									  className="icheck"
+									/>
 		                            <i className="fa fa-star"></i>
 		                            <span>3.0</span>
 		                        </label>
 		                        <label>
-		                            <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+									<Checkbox
+									  checkboxClass="icheckbox_square-ltblue"
+									  increaseArea="10%"
+									  className="icheck"
+									/>
 		                            <i className="fa fa-star"></i>
 		                            <span>2.0</span>
 		                        </label>
 		                        <label>
-		                            <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+									<Checkbox
+									  checkboxClass="icheckbox_square-ltblue"
+									  increaseArea="10%"
+									  className="icheck"
+									/>
 		                            <i className="fa fa-star"></i>
 		                            <span>1.0</span>
 		                        </label>
