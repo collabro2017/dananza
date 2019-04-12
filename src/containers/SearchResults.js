@@ -7,6 +7,12 @@ import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { withStyles } from '@material-ui/core/styles';
+
 import { increment, decrement } from "../store/reducers/stepCounter";
 
 import 'icheck/skins/all.css';
@@ -18,14 +24,24 @@ import "../res/css/Dananza_Search.css"
 import "../res/icheck/skins/ltblue.css"
 import "../res/css/nouislider.css"
 
+const styles = theme => ({
+  
+});
+
 class SearchResults extends React.Component{
 
-  state={'headerType': "seller"}
+  state={
+  		'headerType': "seller",
+  		'relevance': 'relevance'}
 
   constructor(props) {
     super(props);
     props.changeHeaderType( this.state.headerType )
   }
+
+  handleChange = event => {
+	this.setState({ [event.target.name]: event.target.value });
+  };
 
   componentDidMount(){
     document.title = "Search Results"
@@ -72,13 +88,29 @@ class SearchResults extends React.Component{
 				<div className="page-bar bg-white">
 					<div className="sort-by">
 						<span className="grey">Sort by:</span>
-						<select value="Relevance" className="bs-select" data-width="120px">
+						<FormControl>
+						  <Select
+						    value={this.state.relevance}
+						    onChange={this.handleChange}
+						    inputProps={{
+						      name: 'relevance',
+						      id: 'relevance-simple',
+						    }}
+						  >
+						    <MenuItem value={'relevance'}>Relevance</MenuItem>
+						    <MenuItem value={'relevance1'}>Relevance1</MenuItem>
+						    <MenuItem value={'relevance2'}>Relevance2</MenuItem>
+						    <MenuItem value={'relevance3'}>Relevance3</MenuItem>
+						    <MenuItem value={'relevance4'}>Relevance4</MenuItem>
+						  </Select>
+						</FormControl>
+						{/*<select value="Relevance" className="bs-select" data-width="120px">
 							<option>Relevance</option>
 							<option>Relevance1</option>
 							<option>Relevance2</option>
 							<option>Relevance3</option>
 							<option>Relevance4</option>
-						</select>
+						</select>*/}
 					</div>
 				</div>
 				<div className="page-content">
@@ -770,4 +802,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SearchResults);
+)(withStyles(styles)(SearchResults));
