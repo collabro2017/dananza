@@ -33,7 +33,8 @@
 body {
   color: #4b4b4b !important;
   font-family: "Thasadith-Regular";
-  font-weight: 900; 
+/*  font-size: 1.36vw;
+*/  font-weight: 900; 
   background:white !important;
 }
 input, select, img, a{
@@ -128,6 +129,15 @@ button {
   width: 67%;
   line-height: 32px; }
 
-div.icheckbox_square-ltblue{
-  margin-right: 10px;
-}
+/*start buyer global styles*/
+  /* headline styles*/
+  .headline-first {
+    margin-top: 20px;
+    font-size: 30px;
+    font-family: "Coves-Bold";
+  }
+  .headline-second {
+    margin-top: 20px;
+    font-size: 16px;
+    font-family: "Thasadith-Regular";
+  }

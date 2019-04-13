@@ -54,11 +54,12 @@ class BuyerSaved extends React.Component{
 												<img src={require("../res/img/instagram.png")} />
 												<img src={require("../res/img/facebook.png")} />
 												<img src={require("../res/img/youtube.png")} />
-												<a className="btn btn-default btn-type btn-food">Food</a>
 											</div>
 											<div className="types">
-												<a className="btn btn-default btn-type btn-millenials">Millennials</a>
-												<a className="btn btn-default btn-type btn-topchef">TopChef</a>
+												<a class="btn btn-default btn-type btn-food">Food</a>
+												<a class="btn btn-default btn-type btn-topchef">TopChef</a>
+												<a class="btn btn-default btn-type btn-millenials">Millenials</a>
+												<div class="hide-end"></div>
 											</div>
 										</div>
 										<div className="item-image">
@@ -92,10 +93,12 @@ class BuyerSaved extends React.Component{
 												<img src={require("../res/img/facebook.png")} />
 												<img src={require("../res/img/youtube.png")} />
 												<img src={require("../res/img/twitter.png")} />
-												<a className="btn btn-default btn-type btn-websites">Website</a>
 											</div>
 											<div className="types">
-												<a className="btn btn-default btn-type btn-marketing">Marketing</a>
+												<a class="btn btn-default btn-type btn-marketing">Marketing</a>
+												<a class="btn btn-default btn-type btn-website">Website</a>
+												<a class="btn btn-default btn-type btn-restaurant">Restaurant</a>
+												<div class="hide-end"></div>
 											</div>
 										</div>
 										<div className="item-image">
@@ -129,10 +132,12 @@ class BuyerSaved extends React.Component{
 												<img src={require("../res/img/facebook.png")} />
 												<img src={require("../res/img/youtube.png")} />
 												<img src={require("../res/img/www.png")} />
-												<a className="btn btn-default btn-type btn-sports">Sports</a>
 											</div>
 											<div className="types">
-												<a className="btn btn-default btn-type btn-mlami">Mlami</a>
+												<a class="btn btn-default btn-type btn-mlami">Mlami</a>
+												<a class="btn btn-default btn-type btn-sports">Sports</a>
+												<a class="btn btn-default btn-type btn-marketing">Marketing</a>
+												<div class="hide-end"></div>
 											</div>
 										</div>
 										<div className="item-image">
@@ -167,11 +172,13 @@ class BuyerSaved extends React.Component{
 												<img src={require("../res/img/instagram.png")} />
 												<img src={require("../res/img/facebook.png")} />
 												<img src={require("../res/img/twitter.png")} />
-												<a className="btn btn-default btn-type btn-food">Food</a>
+												<img src={require("../res/img/www.png")} />
 											</div>
 											<div className="types">
-												<a className="btn btn-default btn-type btn-millenials">Millennials</a>
-												<a className="btn btn-default btn-type btn-topchef">TopChef</a>
+												<a class="btn btn-default btn-type btn-food">Mlami</a>
+												<a class="btn btn-default btn-type btn-millenials">Millenials</a>
+												<a class="btn btn-default btn-type btn-restaurant">Restaurant</a>
+												<div class="hide-end"></div>
 											</div>
 										</div>
 										<div className="item-image">
@@ -203,11 +210,12 @@ class BuyerSaved extends React.Component{
 												<img src={require("../res/img/instagram.png")} />
 												<img src={require("../res/img/facebook.png")} />
 												<img src={require("../res/img/youtube.png")} />
-												<img src={require("../res/img/twitter.png")} />
-												<a className="btn btn-default btn-type btn-websites">Website</a>
 											</div>
 											<div className="types">
-												<a className="btn btn-default btn-type btn-marketing">Marketing</a>
+												<a class="btn btn-default btn-type btn-technology">Technology</a>
+												<a class="btn btn-default btn-type btn-food">Food</a>
+												<a class="btn btn-default btn-type btn-millenials">Millenials</a>
+												<div class="hide-end"></div>
 											</div>
 										</div>
 										<div className="item-image">
@@ -241,10 +249,12 @@ class BuyerSaved extends React.Component{
 												<img src={require("../res/img/facebook.png")} />
 												<img src={require("../res/img/youtube.png")} />
 												<img src={require("../res/img/www.png")} />
-												<a className="btn btn-default btn-type btn-sports">Sports</a>
 											</div>
 											<div className="types">
-												<a className="btn btn-default btn-type btn-mlami">Mlami</a>
+												<a class="btn btn-default btn-type btn-marketing">Marketing</a>
+												<a class="btn btn-default btn-type btn-website">Website</a>
+												<a class="btn btn-default btn-type btn-millenials">Millenials</a>
+												<div class="hide-end"></div>
 											</div>
 										</div>
 										<div className="item-image">
@@ -280,11 +290,12 @@ class BuyerSaved extends React.Component{
 												<img src={require("../res/img/twitter.png")} />
 												<img src={require("../res/img/youtube.png")} />
 												<img src={require("../res/img/www.png")} />
-												<a className="btn btn-default btn-type btn-food">Food</a>
 											</div>
 											<div className="types">
-												<a className="btn btn-default btn-type btn-millenials">Millennials</a>
-												<a className="btn btn-default btn-type btn-topchef">TopChef</a>
+												<a class="btn btn-default btn-type btn-mlami">Mlami</a>
+												<a class="btn btn-default btn-type btn-sports">Sports</a>
+												<a class="btn btn-default btn-type btn-millenials">Millenials</a>
+												<div class="hide-end"></div>
 											</div>
 										</div>
 										<div className="item-image">
@@ -318,10 +329,12 @@ class BuyerSaved extends React.Component{
 												<img src={require("../res/img/facebook.png")} />
 												<img src={require("../res/img/youtube.png")} />
 												<img src={require("../res/img/twitter.png")} />
-												<a className="btn btn-default btn-type btn-websites">Website</a>
 											</div>
 											<div className="types">
-												<a className="btn btn-default btn-type btn-marketing">Marketing</a>
+												<a class="btn btn-default btn-type btn-millenials">Millernals</a>
+												<a class="btn btn-default btn-type btn-restaurant">Restaurant</a>
+												<a class="btn btn-default btn-type btn-food">Food</a>
+												<div class="hide-end"></div>
 											</div>
 										</div>
 										<div className="item-image">
@@ -354,11 +367,12 @@ class BuyerSaved extends React.Component{
 												<img src={require("../res/img/instagram.png")} />
 												<img src={require("../res/img/facebook.png")} />
 												<img src={require("../res/img/youtube.png")} />
-												<img src={require("../res/img/www.png")} />
-												<a className="btn btn-default btn-type btn-sports">Sports</a>
 											</div>
 											<div className="types">
-												<a className="btn btn-default btn-type btn-mlami">Mlami</a>
+												<a class="btn btn-default btn-type btn-food">Food</a>
+												<a class="btn btn-default btn-type btn-topchef">Topchef</a>
+												<a class="btn btn-default btn-type btn-millenials">Millernals</a>
+												<div class="hide-end"></div>
 											</div>
 										</div>
 										<div className="item-image">

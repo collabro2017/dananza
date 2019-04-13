@@ -18,9 +18,9 @@ import "../../res/css/header.css"
 import "../../res/css/header_search.css"
 import "../../res/css/layout.min.css"
 
-import logoUrl from '../../res/img/logo.png';
-
 import $ from "jquery";
+
+import logoUrl from '../../res/img/logo.png';
 
 const styles = theme => ({
   
@@ -37,11 +37,6 @@ class Header extends React.Component{
 
   componentWillReceiveProps( nextProps ){
     this.setState({headerType: nextProps.type})
-    window.jQuery = $;
-    window.$ = $;
-    global.jQuery = $;
-    
-    const bootstrap = require('bootstrap');
   }
 
   componentDidMount() {
@@ -64,8 +59,6 @@ class Header extends React.Component{
       }
       $('.nav_mobile_menu').slideToggle(200);
     });
-
-
   }
 
   /*
@@ -87,16 +80,16 @@ class Header extends React.Component{
                 <div className="input-icon">
                   <i className="fa fa-search input"></i>
                   <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" value=""/>
-                  <Link to="/results" className="btn green search-but">Search</Link>
+                  <Link to="/results"><a href="#" className="btn green search-but">Search</a></Link>
                 </div>
               </div>
               <div className="nav_menu justify-content-end">
                 <ul className="nav_menu_list">
                   <li>
-                    <Link to="/seller_page">Profile</Link>
+                    <Link to="/seller_page">Adza Page</Link>
                   </li>
                   <li>
-                    <Link to="/seller_Dashboard">Campaign</Link>
+                    <Link to="/seller_campaigns">Campaign</Link>
                   </li>
                   <li>
                     <Link to="/seller_messages">Messages</Link>
@@ -125,7 +118,6 @@ class Header extends React.Component{
                 </div>
               </div>
               <div className="top-menu">
-                <a href="javascript:;" className="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-nav"></a>
                 <ul className="nav navbar-nav pull-right">
                   <li>
                     <Link to="/buyer_saved">Saved</Link>
@@ -141,37 +133,38 @@ class Header extends React.Component{
                   </li>
                   <li className="dropdown dropdown-user">
                     <a href="javascript:;" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                        <img className="img-circle" src={require("../../res/img/logged_user.png")} alt=""/>
+                        <img alt="" className="img-circle" src={require("../../res/img/logged_user.png")} />
                         <i className="fa fa-angle-down"></i>
                     </a>
                     <ul className="dropdown-menu dropdown-menu-default">
-                      <li>
-                          <Link to="/buyer_profile">
-                              <i className="icon-user"></i> My Profile </Link>
-                      </li>
-                      <li>
-                          <Link to="/buyer_landing">
-                              <i className="icon-calendar"></i> My Dashboard</Link>
-                      </li>
-                      <li>
-                          <Link to="/buyer_settings">
-                              <i className="icon-envelope-open"></i> Account Setting</Link>
-                      </li>
-                      <li className="divider"> </li>
-                      <li>
-                          <Link to="/seller_dashboard">
-                              <i className="icon-rocket"></i> Switch to Seller
-                              <span className="badge badge-success"> 7 </span>
-                          </Link>
-                      </li>
-                      <li>
-                          <Link to="/help">
-                              <i className="icon-lock"></i> Help </Link>
-                      </li>
-                      <li>
-                          <Link to="/">
-                              <i className="icon-key"></i> Logout </Link>
-                      </li>
+                        <li>
+                            <Link to="/buyer_profile">My Profile </Link>
+                        </li>
+                        <li>
+                            <Link to="/buyer_landing">My Dashboard </Link>
+                        </li>
+                        <li>
+                            <Link to="/buyer_settings">Account Setting</Link>
+                        </li>
+                        <li className="divider"> </li>
+                        <li>
+                            <Link to="/seller_dashboard">
+                                Switch to Buyer
+                                <img src={require("../../res/img/switch.png")}/>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/help">
+                                Help 
+                                <img src={require("../../res/img/help.png")}/>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/">
+                              logout
+                                <img src={require("../../res/img/logout.png")}/>
+                            </Link>
+                        </li>
                     </ul>
                   </li>
                 </ul>

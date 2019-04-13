@@ -169,7 +169,7 @@ class BuyerLanding extends React.Component{
                         <img src={require("../res/img/facebook.png")}/>
                         <img src={require("../res/img/youtube.png")}/>
                         <img src={require("../res/img/twitter.png")}/>
-                        <a className="btn btn-default btn-type btn-websites">Website</a>
+                        <a className="btn btn-default btn-type btn-website">Website</a>
                       </div>
                       <div className="types">
                         <a className="btn btn-default btn-type btn-marketing">Marketing</a>

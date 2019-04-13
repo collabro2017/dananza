@@ -18,36 +18,43 @@ const BuyerSidebar = props => {
   const { open, classes } = props;
   return (
     <div className="page-sidebar">
-      <div className="userinfo">
-        <img src={require("../../res/img/userinfo_img.png")} />
-        <h3>Michaela Seyra</h3>
-        <h5>@michaela_Syr</h5>
-      </div>
-      <div className="selector">
-        <ul className="page-sidebar-menu">
-          <li className="nav-item">
+        <div className="section target-tree">
+          <div className="image">
+            <img src={require("../../res/img/userinfo_img.png")} />
+            <h1 className="buyer-name">Michaela Seyra</h1>
+            <h5 className="buyer-mail">@michaela_Syr</h5>
+          </div>
+        </div>
+        <div className="section">
+          <div className="btn-group" data-toggle="buttons" id="pages">
             <Link to="/buyer_profile">
-              <img className="nav-icon" src={require("../../res/img/person.png")} /> Profile Page
+              <label className="btn btn-default active">
+                <img className="nav-icon" src={require("../../res/img/person.png")} />
+                  <input type="radio" className="toggle" /> Profile Page
+              </label>
             </Link>
-          </li>
-          <li className="nav-item">
             <Link to="/buyer_saved">
-              <img className="nav-icon" src={require("../../res/img/saved.png")} />Saved
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/buyer_campaigns"> 
-              <img className="nav-icon" src={require("../../res/img/champaigns.png")} />Campaigns
-            </Link>
-          </li>
-          <li className="nav-item last">
+              <label className="btn btn-default">
+                <img className="nav-icon" src={require("../../res/img/saved.png")} />
+                  <input type="radio" className="toggle" /> Saved
+              </label>
+            </Link>  
+            <Link to="/buyer_campaigns">   
+              <label className="btn btn-default">
+                <img className="nav-icon" src={require("../../res/img/campaigns.png")} />
+                  <input type="radio" className="toggle" /> Campaigns
+              </label>
+            </Link>  
             <Link to="/buyer_messages">
-              <img className="nav-icon" src={require("../../res/img/messages.png")} />Messages
+              <label className="btn btn-default">
+                <img className="nav-icon" src={require("../../res/img/messages.png")} />
+                  <input type="radio" className="toggle" /> Messages
+              </label>
             </Link>
-          </li>
-        </ul>
+            </div>
+        </div>
       </div>
-    </div>
+    
   );
 };
 

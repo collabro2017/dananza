@@ -5,11 +5,19 @@
   padding-bottom: 75px;
 }
 .buyer_profile .controlcontent .mt-radio.mt-radio-outline {
-  font-weight: inherit !important;
+  font-family: "Thasadith-Bold" !important;
+  font-size: 16px;
 }
 .buyer_profile .btn-radius {
   border-radius: 5px !important;
 }
+.buyer_profile .controlcontent {
+  padding-left: 32px !important;
+  display: inline-flex;
+}
+ .buyer_profile .formcontrol {
+    display: flex;
+  }
 .buyer_profile .controlcontent > input {
   height: 50px;
 }
@@ -24,5 +32,24 @@
   color: #2ab7c9 !important;
   margin-top: -25px;
 }
-
+.buyer_profile .controllabel {
+  font-family: "Thasadith-Bold" !important;
+  font-size: 16px;
+}
+.buyer_profile .img-comment {
+  font-family: "Thasadith-Regular" !important;
+  font-size: 16px;  
+}
+.buyer_profile .question {
+  font-family: "Thasadith-Bold" !important;
+  font-size: 16px;
+}
+@media(max-width: 992px){
+  .buyer_profile .controlcontent {
+    display: block;
+  }
+  .buyer_profile .formcontrol {
+    display: block;
+  }
+}
 /*# sourceMappingURL=../BuyerProfile.css.map */
