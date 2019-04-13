@@ -128,3 +128,16 @@ button {
   font-size: 16px;
   width: 67%;
   line-height: 32px; }
+
+/*start buyer global styles*/
+  /* headline styles*/
+  .headline-first {
+    margin-top: 20px;
+    font-size: 30px;
+    font-family: "Coves-Bold";
+  }
+  .headline-second {
+    margin-top: 20px;
+    font-size: 16px;
+    font-family: "Thasadith-Regular";
+  }

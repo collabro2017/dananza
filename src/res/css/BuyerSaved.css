@@ -144,6 +144,7 @@
   top: 72%;
   position: absolute;
   width: 100%;
+  font-size: 1.36vw;
 }
 .buyer_saved .adzas .item .item-header .sites img {
   margin-right: 2px;
@@ -223,23 +224,38 @@
   background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
   right: -1px;
 }
-.buyer_saved .btn-sports {
-  background-color: #ea8891;
+.buyer_saved .item .sites .btn-type {
+  font-size: 1.1vw !important;  
 }
-.buyer_saved .btn-mlami {
-  background-color: #96b8da;
+.buyer_saved .item .sites img {
+  width: 20px !important;  
 }
-.buyer_saved .btn-websites {
-  background-color: #ffd766;
+.buyer_saved .btn-food{
+  background-color: #eeb0a0 !important;
 }
-.buyer_saved .btn-mrketing {
-  background-color: #c9aedf;
+.buyer_saved .btn-topchef{
+  background-color: #ff9865 !important;
 }
-.buyer_saved .page-footer {
-  width: 100%;
+.buyer_saved .btn-millenials{
+  background-color: #f3b4b3 !important;
 }
-.buyer_saved .about {
-  background-color: #f1f6f9;
+.buyer_saved .btn-marketing{
+  background-color: #c9aedf !important;
+}
+.buyer_saved .btn-website{
+  background-color: #ffd766 !important;
+}
+.buyer_saved .btn-restaurant{
+  background-color: #96dab0 !important;
+}
+.buyer_saved .btn-mlami{
+  background-color: #96b8da !important;
+}
+.buyer_saved .btn-sports{
+  background-color: #ea8891 !important;
+}
+.buyer_saved .btn-technology{
+  background-color: #99cccc !important;
 }
 .buyer_saved .foot {
   background-color: #e1eaf0;
@@ -398,5 +414,17 @@
 .buyer_saved .item {
   height: 360px;
 }
-
+@media (min-width: 1230px){
+  .item .types a {
+      font-size: 1.35vw !important;
+  } 
+}
+@media (max-width: 992px){
+  .item .types a {
+      font-size: 3.1vw !important;
+  } 
+  .item .item-footer {
+      font-size: 30px;
+  }
+}
 /*# sourceMappingURL=../BuyerSaved.css.map */

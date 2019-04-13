@@ -16,6 +16,7 @@ import "../../res/css/components.min.css"
 import "../../res/css/global.css"
 import "../../res/css/header.css"
 import "../../res/css/header_search.css"
+import "../../res/css/layout.min.css"
 
 import $ from "jquery";
 
@@ -79,19 +80,19 @@ class Header extends React.Component{
                 <div className="input-icon">
                   <i className="fa fa-search input"></i>
                   <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" value=""/>
-                  <a href="#" className="btn green search-but">Search</a>
+                  <Link to="/results"><a href="#" className="btn green search-but">Search</a></Link>
                 </div>
               </div>
               <div className="nav_menu justify-content-end">
                 <ul className="nav_menu_list">
                   <li>
-                    <a href="#">Adza Page</a>
+                    <Link to="/seller_page">Adza Page</Link>
                   </li>
                   <li>
-                    <a href="#">Campaign</a>
+                    <Link to="/seller_campaigns">Campaign</Link>
                   </li>
                   <li>
-                    <a href="#">Messages</a>
+                    <Link to="/seller_messages">Messages</Link>
                   </li>
                   <li className="profile_photo">
                     <img src={require("../../res/img/profile_photo.png")} alt=""/>
@@ -113,58 +114,57 @@ class Header extends React.Component{
                 <div className="input-icon">
                   <i className="fa fa-search input"></i>
                   <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
-                  <button className="btn green search-but">Search</button>
+                  <Link to="/results"><button className="btn green search-but">Search</button></Link>
                 </div>
               </div>
               <div className="top-menu">
-                <a href="javascript:;" className="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-nav"></a>
                 <ul className="nav navbar-nav pull-right">
                   <li>
                     <Link to="/buyer_saved">Saved</Link>
                   </li>
                   <li>
-                    <a href="#">Campaigns</a>
+                    <Link to="/buyer_campaigns">Campaigns</Link>
                   </li>
                   <li>
-                    <a href="#"><img src={require("../../res/img/notice-message.png")} style={{margin:'0px 4px 12px'}} alt=""/>Messages</a>
+                    <Link to="/buyer_messages"><img src={require("../../res/img/notice-message.png")} style={{margin:'0px 4px 12px'}} alt=""/>Messages</Link>
                   </li>
                   <li>
                     <Link to="/cart"><i className="fa fa-shopping-cart"></i>Cart</Link>
                   </li>
                   <li className="dropdown dropdown-user">
                     <a href="javascript:;" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                        <img className="img-circle" src={require("../../res/img/logged_user.png")} alt=""/>
+                        <img alt="" className="img-circle" src={require("../../res/img/logged_user.png")} />
                         <i className="fa fa-angle-down"></i>
                     </a>
                     <ul className="dropdown-menu dropdown-menu-default">
-                      <li>
-                          <a href="page_user_profile_1.html">
-                              <i className="icon-user"></i> My Profile </a>
-                      </li>
-                      <li>
-                          <a href="app_calendar.html">
-                              <i className="icon-calendar"></i> My Dashboard </a>
-                      </li>
-                      <li>
-                          <a href="app_inbox.html">
-                              <i className="icon-envelope-open"></i> Account Setting
-                          </a>
-                      </li>
-                      <li className="divider"> </li>
-                      <li>
-                          <a href="app_todo.html">
-                              <i className="icon-rocket"></i> Switch to Buyer
-                              <span className="badge badge-success"> 7 </span>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="page_user_lock_1.html">
-                              <i className="icon-lock"></i> Help </a>
-                      </li>
-                      <li>
-                          <a href="page_user_login_1.html">
-                              <i className="icon-key"></i> Logout </a>
-                      </li>
+                        <li>
+                            <Link to="/buyer_profile">My Profile </Link>
+                        </li>
+                        <li>
+                            <Link to="/buyer_landing">My Dashboard </Link>
+                        </li>
+                        <li>
+                            <Link to="/buyer_settings">Account Setting</Link>
+                        </li>
+                        <li className="divider"> </li>
+                        <li>
+                            <Link to="/seller_dashboard">
+                                Switch to Buyer
+                                <img src={require("../../res/img/switch.png")}/>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/help">
+                                Help 
+                                <img src={require("../../res/img/help.png")}/>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/">
+                              logout
+                                <img src={require("../../res/img/logout.png")}/>
+                            </Link>
+                        </li>
                     </ul>
                   </li>
                 </ul>
@@ -190,13 +190,13 @@ class Header extends React.Component{
                     <Link to="/about">About</Link>
                   </li>
                   <li>
-                    <a href="#">Sign Up</a>
+                    <Link to="/">Sign Up</Link>
                   </li>
                   <li>
-                    <a href="#">Log In</a>
+                    <Link to="/buyer_landing">Log In</Link>
                   </li>
                   <li className="menu_last_li">
-                    <a href="#" className="btn bg-yellow btn-small">Become an Adza</a>
+                    <Link to="/seller_dashboard" className="btn bg-yellow btn-small">Become an Adza</Link>
                   </li>
                 </ul>
               </div>
@@ -207,13 +207,13 @@ class Header extends React.Component{
                   <Link to="/about">About</Link>
                 </li>
                 <li>
-                  <a href="#">Sign Up</a>
+                  <Link to="/">Sign Up</Link>
                 </li>
                 <li>
-                  <a href="#">Log In</a>
+                  <Link to="/buyer_landing">Log In</Link>
                 </li>
                 <li className="menu_last_li">
-                  <a href="#" className="menu_adza">Become an Adza</a>
+                    <Link to="/seller_dashboard" className="btn bg-yellow btn-small">Become an Adza</Link>
                 </li>
               </ul>
             </div>
@@ -230,7 +230,7 @@ class Header extends React.Component{
                       <div className="input-icon">
                           <i className="fa fa-search input"></i>
                           <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
-                          <a className="btn bg-blue search-but color-white">Search</a>
+                          <Link to="/results" className="btn bg-blue search-but color-white">Search</Link>
                       </div>
                   </div>
                   <div className="nav_menu justify-content-end">
@@ -239,13 +239,13 @@ class Header extends React.Component{
                               <Link to="/about">About</Link>
                           </li>
                           <li>
-                              <a href="#">Sign Up</a>
+                              <Link to="/">Sign Up</Link>
                           </li>
                           <li>
-                              <a href="#">Log In</a>
+                              <Link to="/buyer_landing">Log In</Link>
                           </li>
                           <li className="menu_last_li">
-                              <a href="#" className="menu_adza">Become an Adza</a>
+                              <Link to="/seller_dashboard" className="menu_adza">Become an Adza</Link>
                           </li>
                       </ul>
                   </div>

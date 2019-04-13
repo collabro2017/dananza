@@ -1,0 +1,65 @@
+.buyer_campaign
+{
+	.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+	    background-color: #2ab7c9 !important;
+	}
+	.headline-second .dropdown-menu.dropdown-menu-default {
+		border-radius: 6px !important;
+	    box-shadow: none;
+	}
+	.third-title {
+		margin-left: 100px;
+	}
+
+	.panel {
+		width:80% !important;
+		float:left;
+	}
+	.panel-left {
+		width:25%;
+		float: left;
+	}
+	.panel-right {
+		width:73%;
+		float: left;
+	}
+	.panel-right .header {
+		font-size:16px;
+		margin-top: 15px;
+	}
+	.panel-right .pull-right {
+		margin-right: 35px;
+	}
+	.panel-right .header a {
+		color:#2ab7c9;
+	}
+	.mt-step-content span {
+		font-size: 15px;
+	}
+	.panel-right .footer {
+		font-size:16px;
+		font-weight: bold;
+		margin-top: 0px;
+	}
+	.img-item {
+		height: 270px;
+		width:80%;
+	}
+	.panel-right {
+		margin-left:10px;
+	}
+	.panel {
+		border-radius: 18px !important;
+	}
+	.page-main-content {
+		margin-top: 0px;
+	}
+	.panel-item {
+		width:100%;
+		margin-bottom: 20px;
+	    background-color: #fff;
+	    border: 1px solid transparent;
+	    float:left;
+	    border-radius: 18px !important;
+	}
+}

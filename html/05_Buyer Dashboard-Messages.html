@@ -1,0 +1,362 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>05_Buyer Dashboard-Landing_Dananza_V1</title>
+	<link rel="stylesheet" type="text/css" href="./res/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./res/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./res/css/Danaza_Search.css">
+	<link rel="stylesheet" type="text/css" href="./res/css/BuyerLanding.css"/>
+	<link rel="stylesheet" type="text/css" href="./res/css/components.min.css">
+	<link rel="stylesheet" type="text/css" href="./res/css/plugins.min.css">
+	<link rel="stylesheet" type="text/css" href="./res/css/global.css"/>
+	<link rel="stylesheet" type="text/css" href="./res/css/header_search.css"/>
+	<link rel="stylesheet" type="text/css" href="./res/css/sidebar_buyer.css"/>
+	<link rel="stylesheet" type="text/css" href="./res/css/footer.css">
+	<link rel="stylesheet" type="text/css" href="./res/css/layout.min.css">
+	<link rel="stylesheet" type="text/css" href="./res/css/BuyerDashboardMessages.css">
+</head>
+<body>
+	<div class="header_section">
+		<div class="nav_bar">
+			<div class="logo">
+				<img src="./res/img/logo.png">
+				<div class="input-icon">
+                    <i class="fa fa-search input"></i>
+                    <input type="text" class="form-control search-input" placeholder="Search..." value="Where do you want to see your ad?">
+                    <a class="btn green search-but"> Search</a>
+                </div>
+			</div>
+			<div class="top-menu">
+				
+				<ul class="nav navbar-nav pull-right">
+					<li>
+						<a href="#">Saved</a>
+					</li>
+					<li>
+						<a href="#">Campaigns</a>
+					</li>
+					<li>
+						<a href="#"><img src="./res/img/notice-message.png" style="margin: 0px 4px 12px;">Messages</a>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-shopping-cart"></i>Cart</a>
+					</li>
+					<li class="dropdown dropdown-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <img alt="" class="img-circle" src="res/img/logged_user.png" />
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a href="#">My Profile </a>
+                            </li>
+                            <li>
+                                <a href="#">My Dashboard </a>
+                            </li>
+                            <li>
+                                <a href="#">Account Setting</a>
+                            </li>
+                            <li class="divider"> </li>
+                            <li>
+                                <a href="#">
+                                    Switch to Buyer
+                                    <img src="./res/img/switch.png"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Help 
+                                    <img src="./res/img/help.png"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                	logout
+                                    <img src="./res/img/switch.png"/>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="page-container">
+		<div class="page-content">
+			<div class="page-sidebar">
+				<div class="section target-tree">
+					<div class="image">
+						<img src="./res/img/userinfo_img.png">
+						<h1 class="buyer-name">Michaela Seyra</h1>
+						<h5 class="buyer-mail">@michaela_Syr</h5>
+					</div>
+				</div>
+				<div class="section">
+					<div class="btn-group" data-toggle="buttons" id="pages">
+	                    <label class="btn btn-default active">
+	                    	<img class="nav-icon" src="res/img/person.png">
+	                        <input type="radio" class="toggle"> Profile Page
+	                    </label>
+	                    <label class="btn btn-default">
+	                    	<img class="nav-icon" src="res/img/saved.png">
+	                        <input type="radio" class="toggle"> Saved
+	                    </label>
+	                    <label class="btn btn-default">
+	                    	<img class="nav-icon" src="res/img/campaigns.png">
+	                        <input type="radio" class="toggle"> Campaigns
+	                    </label>
+	                    <label class="btn btn-default">
+	                    	<img class="nav-icon" src="res/img/messages.png">
+	                        <input type="radio" class="toggle"> Messages
+	                    </label>
+	                </div>
+				</div>
+			</div>
+			<div class="page-main message-main">
+				<div class="page-panel">
+					<div class="user-search">
+						<input class="form-control" type="text" placeholder="Search">
+						<i class="fa fa-search"></i>
+					</div>
+					<div class="btn-group" data-toggle="buttons" id="pages">
+	                    <label class="btn active">
+	                    	<img src="./res/img/user1.png">
+	                    	<div class="detail">
+	                    		<div class="f-16"> AdamInTech</div>
+	                    		<div class="f-13 darkgrey"> Wonderful! When do you...</div>
+	                    		<div class="f-11 lightgrey"> 1 hour ago</div>
+	                    	</div>
+	                    	<input type="radio" class="toggle">
+	                    </label>
+	                    <label class="btn">
+	                    	<img src="./res/img/user1.png">
+	                    	<div class="detail">
+	                    		<div class="f-16"> AdamInTech</div>
+	                    		<div class="f-13 darkgrey"> Wonderful! When do you...</div>
+	                    		<div class="f-11 lightgrey"> 1 hour ago</div>
+	                    	</div>
+	                    	<input type="radio" class="toggle">
+	                    </label>
+	                    <label class="btn">
+	                    	<img src="./res/img/user1.png">
+	                    	<div class="detail">
+	                    		<div class="f-16"> AdamInTech</div>
+	                    		<div class="f-13 darkgrey"> Wonderful! When do you...</div>
+	                    		<div class="f-11 lightgrey"> 1 hour ago</div>
+	                    	</div>
+	                    	<input type="radio" class="toggle">
+	                    </label>
+	                    <label class="btn">
+	                    	<img src="./res/img/user1.png">
+	                    	<div class="detail">
+	                    		<div class="f-16"> AdamInTech</div>
+	                    		<div class="f-13 darkgrey"> Wonderful! When do you...</div>
+	                    		<div class="f-11 lightgrey"> 1 hour ago</div>
+	                    	</div>
+	                    	<input type="radio" class="toggle">
+	                    </label>
+	                    <label class="btn">
+	                    	<img src="./res/img/user1.png">
+	                    	<div class="detail">
+	                    		<div class="f-16"> AdamInTech</div>
+	                    		<div class="f-13 darkgrey"> Wonderful! When do you...</div>
+	                    		<div class="f-11 lightgrey"> 1 hour ago</div>
+	                    	</div>
+	                    	<input type="radio" class="toggle">
+	                    </label>
+	                    <label class="btn">
+	                    	<img src="./res/img/user1.png">
+	                    	<div class="detail">
+	                    		<div class="f-16"> AdamInTech</div>
+	                    		<div class="f-13 darkgrey"> Wonderful! When do you...</div>
+	                    		<div class="f-11 lightgrey"> 1 hour ago</div>
+	                    	</div>
+	                    	<input type="radio" class="toggle">
+	                    </label>
+	                    <label class="btn">
+	                    	<img src="./res/img/user1.png">
+	                    	<div class="detail">
+	                    		<div class="f-16"> AdamInTech</div>
+	                    		<div class="f-13 darkgrey"> Wonderful! When do you...</div>
+	                    		<div class="f-11 lightgrey"> 1 hour ago</div>
+	                    	</div>
+	                    	<input type="radio" class="toggle">
+	                    </label>
+	                    <label class="btn">
+	                    	<img src="./res/img/user1.png">
+	                    	<div class="detail">
+	                    		<div class="f-16"> AdamInTech</div>
+	                    		<div class="f-13 darkgrey"> Wonderful! When do you...</div>
+	                    		<div class="f-11 lightgrey"> 1 hour ago</div>
+	                    	</div>
+	                    	<input type="radio" class="toggle">
+	                    </label>
+	                </div>
+				</div>
+				<div class="page-message">
+					<div class="user-profile">
+						<div class="profile-image">
+							<img src="./res/img/user1.png">
+						</div>
+						<div class="profile-detail">
+							<div class="f-16"> AdamInTech </div>
+							<div class="rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<span class="rating-num">5.0</span>
+								<span class="review-num">(17 Reviews)</span>
+							</div>
+						</div>
+						<div class="action">
+							<a class="btn btn-yellow">View Profile</a>
+							<a>
+								<i class="fa fa-trash"></i>
+							</a>
+						</div>
+					</div>
+					<div class="date darkgrey">
+						Friday, February 22, 2019
+					</div>
+					<div class="message-content">
+						<div class="history">
+							<div class="sender">
+								<img class="profile" src="./res/img/user1.png">
+								<span class="f-16"> AdamInTech </span>
+							</div>
+							<div class="history-content">
+								<div class="content-row">
+									<div class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+										
+									Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+
+									Quis autem vel eum iure reprehenderit qui in ea voluptate</div>
+									<div class="date">
+										9:47 AM
+									</div>
+								</div>
+								<div class="content-row">
+									<div class="text">
+										At vero eos et accusamus et iusto odio dignissimos
+									</div>
+									<div class="date">
+										10:01 AM
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="history">
+							<div class="sender">
+								<img class="profile" src="./res/img/user1.png">
+								<span class="f-16"> AnnaSay </span>
+							</div>
+							<div class="history-content">
+								<div class="content-row">
+									<div class="text">Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+
+									Quis autem vel eum iure reprehenderit qui in ea voluptate. At vero eos et accusamus sed quia consequuntur magni dolores
+									</div>
+									<div class="date">
+										1:06 PM
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="send-message">
+						<i class="fa fa-paperclip lightgrey pin-icon"></i>
+						<div class="wrapper">
+							<input class="form-control" type="text">
+							<i class="fa fa-smile-o lightgrey"></i>
+						</div>
+						<button class="btn btn-yellow">
+							Send
+						</button>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- footer section -->
+	<div class="footer_section">
+		<div class="footer_info">
+			<div class="full_container">
+				<div class="row">
+					<div class="col-md-3 col-sm-3 for_business">
+						<div class="footer_info_title">For Business</div>
+						<ul>
+							<li>Epsum factorial</li>
+							<li>Deposit quid pro</li>
+							<li>Escorol</li>
+							<li>Tempus</li>
+							<li>Condominium</li>
+							<li>Facile et</li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-2">
+						<div class="footer_info_title">For Adzas</div>
+						<ul>
+							<li>Epsum factorial</li>
+							<li>Deposit quid pro</li>
+							<li>Escorol</li>
+							<li>Tempus</li>
+							<li>Condominium</li>
+							<li>Facile et</li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-2">
+						<div class="footer_info_title">About</div>
+						<ul>
+							<li>Company</li>
+							<li>Careers</li>
+							<li>Blog</li>
+							<li>Help</li>
+							<li>Contact</li>
+						</ul>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<div class="footer_info_title">Search for Adzas</div>
+						<div class="input-group input-group-lg">
+	                        <input type="text" class="form-control input-lg">
+							<i class="fa fa-search"></i>
+	                        <span class="input-group-btn">
+	                            <button class="btn bg-blue color-white" type="button">Search</button>
+	                        </span>
+	                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer_copyright">
+			<div>Copyright © 2018 Dananza - All Rights Reserved.</div>
+			<div>Terms & Conditions</div>
+			<div>Privacy</div>
+			<div class="social_icons">
+				<ul>
+					<li>
+						<a href="#" class="fa fa-facebook"></a>
+					</li>
+					<li>
+						<a href="#" class="fa fa-twitter"></a>
+					</li>
+					<li>
+						<a href="#" class="fa fa-linkedin"></a>
+					</li>
+					<li>
+						<a href="#" class="fa fa-instagram"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="./res/js/jquery.min.js"></script>
+	<script type="text/javascript" src="./res/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./res/js/app.min.js"></script>
+	
+</body>
+</html>
+

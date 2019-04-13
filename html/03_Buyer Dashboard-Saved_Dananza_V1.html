@@ -4,19 +4,18 @@
 	<title>03_Buyer Dashboard-Saved_Dananza_V1</title>
 	<link rel="stylesheet" type="text/css" href="./res/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./res/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="./res/bootstrap-select/css/bootstrap-select.min.css">
+	<link rel="stylesheet" type="text/css" href="./res/css/Danaza_Search.css">
+	<link rel="stylesheet" type="text/css" href="./res/css/BuyerLanding.css"/>
+	<link rel="stylesheet" type="text/css" href="./res/css/BuyerSavedDananza.css"/>
 	<link rel="stylesheet" type="text/css" href="./res/css/components.min.css">
 	<link rel="stylesheet" type="text/css" href="./res/css/plugins.min.css">
-	<link rel="stylesheet" type="text/css" href="./res/icheck/skins/ltblue.css ">
-	<link rel="stylesheet" type="text/css" href="./res/css/nouislider.css"/>
-	<link rel="stylesheet" type="text/css" href="./res/css/global.css">
-	<link rel="stylesheet" type="text/css" href="./res/css/layout.min.css">
+	<link rel="stylesheet" type="text/css" href="./res/css/global.css"/>
 	<link rel="stylesheet" type="text/css" href="./res/css/header_search.css"/>
+	<link rel="stylesheet" type="text/css" href="./res/css/sidebar_buyer.css"/>
 	<link rel="stylesheet" type="text/css" href="./res/css/footer.css">
-	<link rel="stylesheet" type="text/css" href="./res/css/BuyerLanding.css">
-	<link rel="stylesheet" type="text/css" href="./res/css/BuyerSaved.css"/>
+	<link rel="stylesheet" type="text/css" href="./res/css/layout.min.css">
 </head>
-<body class="buyer_saved">
+<body>
 	<div class="header_section">
 		<div class="nav_bar">
 			<div class="logo">
@@ -28,7 +27,7 @@
                 </div>
 			</div>
 			<div class="top-menu">
-				<a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-nav"></a>
+				
 				<ul class="nav navbar-nav pull-right">
 					<li>
 						<a href="#">Saved</a>
@@ -49,32 +48,32 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>
-                                <a href="page_user_profile_1.html">
-                                    <i class="icon-user"></i> My Profile </a>
+                                <a href="#">My Profile </a>
                             </li>
                             <li>
-                                <a href="app_calendar.html">
-                                    <i class="icon-calendar"></i> My Dashboard </a>
+                                <a href="#">My Dashboard </a>
                             </li>
                             <li>
-                                <a href="app_inbox.html">
-                                    <i class="icon-envelope-open"></i> Account Setting
-                                </a>
+                                <a href="#">Account Setting</a>
                             </li>
                             <li class="divider"> </li>
                             <li>
-                                <a href="app_todo.html">
-                                    <i class="icon-rocket"></i> Switch to Buyer
-                                    <span class="badge badge-success"> 7 </span>
+                                <a href="#">
+                                    Switch to Buyer
+                                    <img src="./res/img/switch.png"/>
                                 </a>
                             </li>
                             <li>
-                                <a href="page_user_lock_1.html">
-                                    <i class="icon-lock"></i> Help </a>
+                                <a href="#">
+                                    Help 
+                                    <img src="./res/img/help.png"/>
+                                </a>
                             </li>
                             <li>
-                                <a href="page_user_login_1.html">
-                                    <i class="icon-key"></i> Logout </a>
+                                <a href="#">
+                                	logout
+                                    <img src="./res/img/switch.png"/>
+                                </a>
                             </li>
                         </ul>
                     </li>
@@ -85,26 +84,32 @@
 	<div class="page-container">
 		<div class="page-content">
 			<div class="page-sidebar">
-				<div class="userinfo">
-					<img src="./res/img/userinfo_img.png">
-					<h3>Michaela Seyra</h3>
-					<h5>@michaela_Syr</h5>
+				<div class="section target-tree">
+					<div class="image">
+						<img src="./res/img/userinfo_img.png">
+						<h1 class="buyer-name">Michaela Seyra</h1>
+						<h5 class="buyer-mail">@michaela_Syr</h5>
+					</div>
 				</div>
-				<div class="selector">
-					<ul class="page-sidebar-menu">
-						<li class="nav-item">
-							<a> <img class="nav-icon" src="res/img/person.png"> Profile Page</a>
-						</li>
-						<li class="nav-item">
-							<a> <img class="nav-icon" src="res/img/saved.png">Saved</a>
-						</li>
-						<li class="nav-item">
-							<a> <img class="nav-icon" src="res/img/champaigns.png">Campaigns</a>
-						</li>
-						<li class="nav-item last">
-							<a> <img class="nav-icon" src="res/img/messages.png">Messages</a>
-						</li>
-					</ul>
+				<div class="section">
+					<div class="btn-group" data-toggle="buttons" id="pages">
+	                    <label class="btn btn-default active">
+	                    	<img class="nav-icon" src="res/img/person.png">
+	                        <input type="radio" class="toggle"> Profile Page
+	                    </label>
+	                    <label class="btn btn-default">
+	                    	<img class="nav-icon" src="res/img/saved.png">
+	                        <input type="radio" class="toggle"> Saved
+	                    </label>
+	                    <label class="btn btn-default">
+	                    	<img class="nav-icon" src="res/img/campaigns.png">
+	                        <input type="radio" class="toggle"> Campaigns
+	                    </label>
+	                    <label class="btn btn-default">
+	                    	<img class="nav-icon" src="res/img/messages.png">
+	                        <input type="radio" class="toggle"> Messages
+	                    </label>
+	                </div>
 				</div>
 			</div>
 			<div class="page-main">
@@ -114,7 +119,7 @@
 					</span>
 					<span class="headline-second pull-right">
 						<i class="fa fa-search input"></i>
-                    	<input type="text" class="form-control search-input" placeholder="Search..." value="Search for saved Adza">
+                    	<input type="text" class="form-control search-input" placeholder="Search for saved Adza">
 					</sapn>
 				</div>
 				<hr class="divider-line">
@@ -130,11 +135,12 @@
 										<img src="./res/img/Instagram.png">
 										<img src="./res/img/Facebook.png">
 										<img src="./res/img/YouTube.png">
-										<a class="btn btn-default btn-type btn-food">Food</a>
 									</div>
 									<div class="types">
-										<a class="btn btn-default btn-type btn-millenials">Millennials</a>
+										<a class="btn btn-default btn-type btn-food">Food</a>
 										<a class="btn btn-default btn-type btn-topchef">TopChef</a>
+										<a class="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
+										<div class="hide-end"></div>
 									</div>
 								</div>
 								<div class="item-image">
@@ -168,10 +174,12 @@
 										<img src="./res/img/Facebook.png">
 										<img src="./res/img/YouTube.png">
 										<img src="./res/img/twitter.png">
-										<a class="btn btn-default btn-type btn-websites">Website</a>
 									</div>
 									<div class="types">
 										<a class="btn btn-default btn-type btn-marketing">Marketing</a>
+										<a class="btn btn-default btn-type btn-websites">Website</a>
+										<a class="btn btn-default btn-type btn-restaurant">Restaurant</a>
+										<div class="hide-end"></div>
 									</div>
 								</div>
 								<div class="item-image">
@@ -205,10 +213,12 @@
 										<img src="./res/img/Facebook.png">
 										<img src="./res/img/YouTube.png">
 										<img src="./res/img/www.png">
-										<a class="btn btn-default btn-type btn-sports">Sports</a>
 									</div>
 									<div class="types">
 										<a class="btn btn-default btn-type btn-mlami">Mlami</a>
+										<a class="btn btn-default btn-type btn-sports">Sports</a>
+										<a class="btn btn-default btn-type btn-marketing">Marketing</a>
+										<div class="hide-end"></div>
 									</div>
 								</div>
 								<div class="item-image">
@@ -243,11 +253,13 @@
 										<img src="./res/img/Instagram.png">
 										<img src="./res/img/Facebook.png">
 										<img src="./res/img/YouTube.png">
-										<a class="btn btn-default btn-type btn-food">Food</a>
+										<img src="./res/img/www.png">
 									</div>
 									<div class="types">
-										<a class="btn btn-default btn-type btn-millenials">Millennials</a>
-										<a class="btn btn-default btn-type btn-topchef">TopChef</a>
+										<a class="btn btn-default btn-type btn-food">Mlami</a>
+										<a class="btn btn-default btn-type btn-millenials">Millenials</a>
+										<a class="btn btn-default btn-type btn-restaurant">Restaurant</a>
+										<div class="hide-end"></div>
 									</div>
 								</div>
 								<div class="item-image">
@@ -280,11 +292,12 @@
 										<img src="./res/img/Instagram.png">
 										<img src="./res/img/Facebook.png">
 										<img src="./res/img/YouTube.png">
-										<img src="./res/img/twitter.png">
-										<a class="btn btn-default btn-type btn-websites">Website</a>
 									</div>
 									<div class="types">
-										<a class="btn btn-default btn-type btn-marketing">Marketing</a>
+										<a class="btn btn-default btn-type btn-technology">Technology</a>
+										<a class="btn btn-default btn-type btn-food">Food</a>
+										<a class="btn btn-default btn-type btn-millenials">Millenials</a>
+										<div class="hide-end"></div>
 									</div>
 								</div>
 								<div class="item-image">
@@ -317,11 +330,12 @@
 										<img src="./res/img/Instagram.png">
 										<img src="./res/img/Facebook.png">
 										<img src="./res/img/YouTube.png">
-										<img src="./res/img/www.png">
-										<a class="btn btn-default btn-type btn-sports">Sports</a>
+										<img src="./res/img/twitter.png">
 									</div>
 									<div class="types">
-										<a class="btn btn-default btn-type btn-mlami">Mlami</a>
+										<a class="btn btn-default btn-type btn-marketing">Marketing</a>
+										<a class="btn btn-default btn-type btn-website">Website</a>
+										<a class="btn btn-default btn-type btn-millenials">Millenials</a>
 									</div>
 								</div>
 								<div class="item-image">
@@ -356,11 +370,13 @@
 										<img src="./res/img/Instagram.png">
 										<img src="./res/img/Facebook.png">
 										<img src="./res/img/YouTube.png">
-										<a class="btn btn-default btn-type btn-food">Food</a>
+										<img src="./res/img/www.png">
 									</div>
 									<div class="types">
-										<a class="btn btn-default btn-type btn-millenials">Millennials</a>
-										<a class="btn btn-default btn-type btn-topchef">TopChef</a>
+										<a class="btn btn-default btn-type btn-mlami">Mlami</a>
+										<a class="btn btn-default btn-type btn-sports">Sports</a>
+										<a class="btn btn-default btn-type btn-millenials">Millenials</a>
+										<div class="hide-end"></div>
 									</div>
 								</div>
 								<div class="item-image">
@@ -393,11 +409,13 @@
 										<img src="./res/img/Instagram.png">
 										<img src="./res/img/Facebook.png">
 										<img src="./res/img/YouTube.png">
-										<img src="./res/img/twitter.png">
-										<a class="btn btn-default btn-type btn-websites">Website</a>
+										<img src="./res/img/www.png">
 									</div>
 									<div class="types">
-										<a class="btn btn-default btn-type btn-marketing">Marketing</a>
+										<a class="btn btn-default btn-type btn-millenials">Millernals</a>
+										<a class="btn btn-default btn-type btn-restaurant">Restaurant</a>
+										<a class="btn btn-default btn-type btn-food">Food</a>
+										<div class="hide-end"></div>
 									</div>
 								</div>
 								<div class="item-image">
@@ -430,11 +448,12 @@
 										<img src="./res/img/Instagram.png">
 										<img src="./res/img/Facebook.png">
 										<img src="./res/img/YouTube.png">
-										<img src="./res/img/www.png">
-										<a class="btn btn-default btn-type btn-sports">Sports</a>
 									</div>
 									<div class="types">
-										<a class="btn btn-default btn-type btn-mlami">Mlami</a>
+										<a class="btn btn-default btn-type btn-food">Food</a>
+										<a class="btn btn-default btn-type btn-topchef">Topchef</a>
+										<a class="btn btn-default btn-type btn-millenials">Millernals</a>
+										<div class="hide-end"></div>
 									</div>
 								</div>
 								<div class="item-image">
@@ -537,13 +556,7 @@
 
 	<script type="text/javascript" src="./res/js/jquery.min.js"></script>
 	<script type="text/javascript" src="./res/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="./res/bootstrap-select/js/bootstrap-select.min.js"></script>
-	<script type="text/javascript" src="./res/icheck/icheck.min.js"></script>
-	<script type="text/javascript" src="./res/nouislider/wNumb.min.js"></script>
-    <script type="text/javascript" src="./res/nouislider/nouislider.js"></script>
 	<script type="text/javascript" src="./res/js/app.min.js"></script>
-	<script type="text/javascript" src="./res/js/components-bootstrap-select.min.js"></script>
-	<script type="text/javascript" src="./res/js/danaza_sliders.js"></script>
 	
 </body>
 </html>

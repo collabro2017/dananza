@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 	<title>04_Buyer Dashboard-Campaigns_Dananza_V1</title>
@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="./res/css/plugins.min.css">
 	<link rel="stylesheet" type="text/css" href="./res/css/global.css"/>
 	<link rel="stylesheet" type="text/css" href="./res/css/header_search.css"/>
+	<link rel="stylesheet" type="text/css" href="./res/css/sidebar_buyer.css"/>
 	<link rel="stylesheet" type="text/css" href="./res/css/footer.css">
 	<link rel="stylesheet" type="text/css" href="./res/css/layout.min.css">
 </head>
@@ -47,32 +48,32 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>
-                                <a href="page_user_profile_1.html">
-                                    <i class="icon-user"></i> My Profile </a>
+                                <a href="#">My Profile </a>
                             </li>
                             <li>
-                                <a href="app_calendar.html">
-                                    <i class="icon-calendar"></i> My Dashboard </a>
+                                <a href="#">My Dashboard </a>
                             </li>
                             <li>
-                                <a href="app_inbox.html">
-                                    <i class="icon-envelope-open"></i> Account Setting
-                                </a>
+                                <a href="#">Account Setting</a>
                             </li>
                             <li class="divider"> </li>
                             <li>
-                                <a href="app_todo.html">
-                                    <i class="icon-rocket"></i> Switch to Buyer
-                                    <span class="badge badge-success"> 7 </span>
+                                <a href="#">
+                                    Switch to Buyer
+                                    <img src="./res/img/switch.png"/>
                                 </a>
                             </li>
                             <li>
-                                <a href="page_user_lock_1.html">
-                                    <i class="icon-lock"></i> Help </a>
+                                <a href="#">
+                                    Help 
+                                    <img src="./res/img/help.png"/>
+                                </a>
                             </li>
                             <li>
-                                <a href="page_user_login_1.html">
-                                    <i class="icon-key"></i> Logout </a>
+                                <a href="#">
+                                	logout
+                                    <img src="./res/img/switch.png"/>
+                                </a>
                             </li>
                         </ul>
                     </li>
@@ -82,27 +83,33 @@
 	</div>
 	<div class="page-container">
 		<div class="page-content">
-			<div class="page_sidebar">
-				<div class="userinfo">
-					<img src="./res/img/userinfo_img.png">
-					<h3>Michaela Seyra</h3>
-					<h5>@michaela_Syr</h5>
+			<div class="page-sidebar">
+				<div class="section target-tree">
+					<div class="image">
+						<img src="./res/img/userinfo_img.png">
+						<h1 class="buyer-name">Michaela Seyra</h1>
+						<h5 class="buyer-mail">@michaela_Syr</h5>
+					</div>
 				</div>
-				<div class="selector">
-					<ul class="page_sidebar-menu">
-						<li class="nav-item">
-							<a> <img class="nav-icon" src="res/img/person.png"> Profile Page</a>
-						</li>
-						<li class="nav-item">
-							<a> <img class="nav-icon" src="res/img/saved.png">Saved</a>
-						</li>
-						<li class="nav-item">
-							<a> <img class="nav-icon" src="res/img/champaigns.png">Campaigns</a>
-						</li>
-						<li class="nav-item last">
-							<a> <img class="nav-icon" src="res/img/messages.png">Messages</a>
-						</li>
-					</ul>
+				<div class="section">
+					<div class="btn-group" data-toggle="buttons" id="pages">
+	                    <label class="btn btn-default active">
+	                    	<img class="nav-icon" src="res/img/person.png">
+	                        <input type="radio" class="toggle"> Profile Page
+	                    </label>
+	                    <label class="btn btn-default">
+	                    	<img class="nav-icon" src="res/img/saved.png">
+	                        <input type="radio" class="toggle"> Saved
+	                    </label>
+	                    <label class="btn btn-default">
+	                    	<img class="nav-icon" src="res/img/campaigns.png">
+	                        <input type="radio" class="toggle"> Campaigns
+	                    </label>
+	                    <label class="btn btn-default">
+	                    	<img class="nav-icon" src="res/img/messages.png">
+	                        <input type="radio" class="toggle"> Messages
+	                    </label>
+	                </div>
 				</div>
 			</div>
 			<div class="page-main">
@@ -115,7 +122,7 @@
 					</sapn>
 					<span class="dropdown dropdown-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            All Campaigns
+                            <span>All Campaigns</span>
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
@@ -137,9 +144,8 @@
 				</div>
 				<hr class="divider-line" />
 				<span class="third-title">Pending Campaigns</span></p>
-				<div class="page-main-content row">
-
-                    <div class="panel">
+				<div class="main-slider">
+                    <div class="slider-item">
                         <div class="panel-title">
                             <span class="first">Ad Campaign 1</span>
                             <span class="second"><img src="./res/img/Messages.png">Message</span>
@@ -203,10 +209,11 @@
 	                        </div>
 	                        <div class="cancel">
 	                        	<a href="#"><img src="./res/img/remove.png"> Cancel Ad</a>
+	                        	<button class="btn btn-lg preview-media pull-right"><img src="./res/img/review.png"/>Review Media</button>
 	                        </div>
                         </div>
                     </div>
-                    <!-- <div class="panel">
+                    <div class="slider-item">
                         <div class="panel-title">
                             <span class="first">Ad Campaign 1</span>
                             <span class="second"><img src="./res/img/Messages.png">Message</span>
@@ -270,10 +277,85 @@
 	                        </div>
 	                        <div class="cancel">
 	                        	<a href="#"><img src="./res/img/remove.png"> Cancel Ad</a>
+	                        	<button class="btn btn-lg preview-media pull-right"><img src="./res/img/review.png"/>Review Media</button>
 	                        </div>
                         </div>
-                    </div> -->
+                    </div>
+                    <div class="slider-item">
+                        <div class="panel-title">
+                            <span class="first">Ad Campaign 1</span>
+                            <span class="second"><img src="./res/img/Messages.png">Message</span>
+                        </div>
+                        <div class="panel-body">
+	                        <div class="mt-element-step">
+                                <div class="row step-line">
+                                	
+                                    <div class="mt-step-col first done">
+                                        <div class="mt-step-number bg-green"><img src="./res/img/check.png"></span></div>
+                                        <div class="mt-step-title "><span>Order Date</span></div>
+                                        <div class="mt-step-content "><span>03/11</span></div>
+                                    </div>
+                                    <div class="mt-step-col done">
+                                        <div class="mt-step-number bg-green"><img src="./res/img/check.png"></span></div>
+                                        <div class="mt-step-title "><span>Media Uploaded</span></div>
+                                        <div class="mt-step-content "><span>03/11</span></div>
+                                    </div>
+                                    <div class="mt-step-col done">
+                                        <div class="mt-step-number bg-green"><img src="./res/img/check.png"></span></div>
+                                        <div class="mt-step-title "><span>Order Accepted</span></div>
+                                        <div class="mt-step-content "><span>03/12</span></div>
+                                    </div>
+                                    <div class="mt-step-col done">
+                                    	<div class="mt-step-number bg-green"><img src="./res/img/check.png"></span></div>
+                                        
+                                        <div class="mt-step-title "><span>Ad Laundched</span></div>
+                                    </div>
+                                    <div class="mt-step-col last">
+                                        <div class="mt-step-number bg-white">&nbsp;</div>
+                                        <div class="mt-step-title "><span>Approve</span></div>
+                                        <div class="mt-step-content "><span>Your Ad</span></div>
+                                    </div>
+                                </div>
+                            </div>
+	                        <div class="message-table">
+	                        	<table class="table table-condensed">
+								    <thead>
+								      <tr style="background-color: #f1f6f9;">
+								        <th><span class="left">adza</span></th>
+								        <th>Medium</th>
+								        <th>Schedule Date</th>
+								        <th>Amount</th>
+								      </tr>
+								    </thead>
+								    <tbody>
+								      <tr style="height:73px;">
+								        <td><img class="left" src="./res/img/themainmenu_1.png">@themainmenu</td>
+								        <td>Instagram Story</td>
+								        <td>03/10/2019</td>
+								        <td>$100</td>
+								      </tr>
+								      <tr class="end">
+								        <td><img class="left" src="./res/img/themainmenu_2.png">@themainmenu</td>
+								        <td>Blog Post</td>
+								        <td>03/10/2019</td>
+								        <td>$100</td>
+								      </tr>
+								    </tbody>
+								</table>
+	                        </div>
+	                        <div class="cancel">
+	                        	<a href="#"><img src="./res/img/remove.png"> Cancel Ad</a>
+	                        	<button class="btn btn-lg preview-media pull-right"><img src="./res/img/review.png"/>Review Media</button>
+	                        </div>
+                        </div>
+                    </div>
 				</div>
+
+				<div class="indicator">
+					<a class="next"><i class="fa fa-angle-right"></i></a>	
+					<a class="previous"><i class="fa fa-angle-left"></i></a>
+				</div>
+				</br></br></br>
 				<hr class="divider-line">
 				<div class="page-main-content row">
 					<span class="fourth-title">Completed Campaigns</span></p>
@@ -284,9 +366,15 @@
 
 						<div class="panel-right">
 							<div class="header">
-								<img src="./res/img/twitter1.png"/>Twitter Ad&nbsp;&nbsp;
-								<a>@themainmenu</a>
-								<span class="pull-right">$65 &nbsp;&nbsp;&nbsp;<img src="./res/img/messages.png" />Message</span>
+								<img src="./res/img/twitter1.png"/>
+								<span class="social-link">
+									Twitter Ad&nbsp;&nbsp;
+									<a>@themainmenu</a>
+								</span>
+								<span class="price pull-right">
+									$65 &nbsp;&nbsp;&nbsp;
+									<i class="fa fa-comment-o"></i>Message
+								</span>
 							</div>
 							<div class="mt-element-step">
 		                        <div class="row step-line">
@@ -319,8 +407,7 @@
 		                    </div>
 		                    <div class="footer">
 		                    	<hr class="footer bg-grey"/>
-		                    	<img src="./res/img/eye.png"/>
-		                    	View This Ad
+		                    	<span class="social-link"><img src="./res/img/eye.png"/>View This Ad</span>
 		                    </div>
 		                </div>
 					</div>
@@ -333,9 +420,15 @@
 
 						<div class="panel-right">
 							<div class="header">
-								<img src="./res/img/instagram1.png"/>Instagram Post&nbsp;&nbsp;
-								<a>@beastyboyy</a>
-								<span class="pull-right">$100 &nbsp;&nbsp;&nbsp;<img src="./res/img/messages.png" />Message</span>
+								<img src="./res/img/instagram1.png"/>
+								<span class="social-link">
+									Instagram Post&nbsp;&nbsp;
+									<a>@beastyboyy</a>
+								</span>
+								<span class="price pull-right">
+									$100 &nbsp;&nbsp;&nbsp;
+									<i class="fa fa-comment-o"></i>Message
+								</span>
 							</div>
 							<div class="mt-element-step">
 		                        <div class="row step-line">
@@ -368,8 +461,9 @@
 		                    </div>
 		                    <div class="footer">
 		                    	<hr class="footer bg-grey"/>
-		                    	<img src="./res/img/eye.png"/>
-		                    	View This Ad
+		                    	<span class="social-link">
+		                    		<img src="./res/img/eye.png"/>View This Ad
+		                    	</span>
 		                    </div>
 		                </div>
 					</div>
@@ -377,14 +471,20 @@
 				<div class="page-main-content row">
 					<div class="panel-item">
 						<div class="panel-left">
-							<img src="./res/img/male2.png" class="img-item"/>
+							<img src="./res/img/male2.png" class="img-item third"/>
 						</div>
 
 						<div class="panel-right">
 							<div class="header">
-								<img src="./res/img/twitter1.png"/>Ad Campaign&nbsp;&nbsp;
-								<a>@Target Tree</a>
-								<span class="pull-right">$400 &nbsp;&nbsp;&nbsp;<img src="./res/img/messages.png" />Message</span>
+								<img src="./res/img/campaign1.png"/>
+								<span class="social-link">
+									Ad Campaign&nbsp;&nbsp;
+									<a>Target Tree</a>
+								</span>
+								<span class="price pull-right">
+									$400 &nbsp;&nbsp;&nbsp;
+									<i class="fa fa-comment-o"></i>Message
+								</span>
 							</div>
 							<div class="mt-element-step">
 		                        <div class="row step-line">
@@ -417,8 +517,9 @@
 		                    </div>
 		                    <div class="footer">
 		                    	<hr class="footer bg-grey"/>
-		                    	<img src="./res/img/eye.png"/>
-		                    	View This Ad
+		                    	<span class="social-link">
+		                    		<img src="./res/img/eye.png"/>View This Ad
+		                    	</span>
 		                    </div>
 		                </div>
 					</div>
@@ -426,14 +527,20 @@
 				<div class="page-main-content row">
 					<div class="panel-item">
 						<div class="panel-left">
-							<img src="./res/img/male3.png" class="img-item"/>
+							<img src="./res/img/male3.png" class="img-item fourth"/>
 						</div>
 
 						<div class="panel-right">
 							<div class="header">
-								<img src="./res/img/instagram1.png"/>Instagram Ad&nbsp;&nbsp;
-								<a>@marie_condo</a>
-								<span class="pull-right">$100 &nbsp;&nbsp;&nbsp;<img src="./res/img/messages.png" />Message</span>
+								<img src="./res/img/instagram1.png"/>
+								<span class="social-link">
+									Instagram Ad&nbsp;&nbsp;
+									<a>marie_condo</a>
+								</span>
+								<span class="price pull-right">
+									$100 &nbsp;&nbsp;&nbsp;
+									<i class="fa fa-comment-o"></i>Message
+								</span>
 							</div>
 							<div class="mt-element-step">
 		                        <div class="row step-line">
@@ -466,10 +573,38 @@
 		                    </div>
 		                    <div class="footer">
 		                    	<hr class="footer bg-grey"/>
-		                    	<img src="./res/img/eye.png"/>
-		                    	View This Ad
+		                    	<span class="social-link">
+		                    		<img src="./res/img/eye.png"/>View This Ad
+		                    	</span>
 		                    </div>
 		                </div>
+					</div>
+				</div>
+				<div class="page-main-content row">
+					<div class="pagination">
+						<div class="btn-group" data-toggle="buttons" id="pages">
+		                    <label class="btn btn-pagecol active">
+		                        <input type="radio" class="toggle"> 1 </label>
+		                    <label class="btn btn-pagecol">
+		                        <input type="radio" class="toggle"> 2 </label>
+		                    <label class="btn btn-pagecol">
+		                        <input type="radio" class="toggle"> 3 </label>
+		                    <label class="btn btn-pagecol">
+		                        <input type="radio" class="toggle"> 4 </label>
+		                    <label class="btn btn-pagecol">
+		                        <input type="radio" class="toggle"> 5 </label>
+		                    <label class="btn btn-pagecol">
+		                        <input type="radio" class="toggle"> 6 </label>
+		                    <label class="btn btn-pagecol">
+		                        <input type="radio" class="toggle"> 7 </label>
+		                    <label class="btn btn-pagecol">
+		                        <input type="radio" class="toggle"> 8 </label>
+		                    <label class="btn btn-pagecol">
+		                        <input type="radio" class="toggle"> 9 </label>
+		                    <label class="btn btn-pagecol">
+		                        <input type="radio" class="toggle"> 10 </label>
+		                </div>
+		                <a class="btn btn-default" id="next"> &gt; </a>
 					</div>
 				</div>
 			</div>
@@ -554,3 +689,47 @@
 	
 </body>
 </html>
+
+<script type="text/javascript">
+	var itemLeft 	= parseInt($(".slider-item").css('margin-left'));
+	var itemWidth 	= parseInt($(".slider-item").css('width'));
+	var index 		= 1;
+	var sliderItemCount = $(".slider-item").length;
+
+	if(sliderItemCount == index) {
+		$(".indicator .next").addClass('disabled');
+	}
+
+	if(index == 1) {
+		$(".indicator .previous").addClass('disabled');
+	}
+
+	$(".next").click(function () {
+		if(sliderItemCount == index+1) {
+			$(".indicator .next").addClass('disabled');
+		}
+		else{
+			$(".indicator .next").removeClass('disabled');	
+		}
+		$(".indicator .previous").removeClass('disabled');	
+
+		$(".slider-item:first").animate({'margin-left': itemLeft - itemWidth + 'px'}, "slow");
+		itemLeft -= itemWidth;
+		index++;
+	});
+
+	$(".previous").click(function () {
+		if(index == 2) {
+			$(".indicator .previous").addClass('disabled');
+		}
+		else{
+			$(".indicator .previous").removeClass('disabled');	
+		}
+		$(".indicator .next").removeClass('disabled');	
+
+		$(".slider-item:first").animate({'margin-left': itemLeft + itemWidth + 'px'}, "slow");
+		itemLeft += itemWidth;
+		index--;
+	});
+
+</script>

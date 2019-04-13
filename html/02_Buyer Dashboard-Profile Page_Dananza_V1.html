@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="./res/css/plugins.min.css">
 	<link rel="stylesheet" type="text/css" href="./res/css/global.css"/>
 	<link rel="stylesheet" type="text/css" href="./res/css/header_search.css"/>
+	<link rel="stylesheet" type="text/css" href="./res/css/sidebar_buyer.css"/>
 	<link rel="stylesheet" type="text/css" href="./res/css/footer.css">
 	<link rel="stylesheet" type="text/css" href="./res/css/layout.min.css">
 </head>
@@ -48,32 +49,32 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>
-                                <a href="page_user_profile_1.html">
-                                    <i class="icon-user"></i> My Profile </a>
+                                <a href="#">My Profile </a>
                             </li>
                             <li>
-                                <a href="app_calendar.html">
-                                    <i class="icon-calendar"></i> My Dashboard </a>
+                                <a href="#">My Dashboard </a>
                             </li>
                             <li>
-                                <a href="app_inbox.html">
-                                    <i class="icon-envelope-open"></i> Account Setting
-                                </a>
+                                <a href="#">Account Setting</a>
                             </li>
                             <li class="divider"> </li>
                             <li>
-                                <a href="app_todo.html">
-                                    <i class="icon-rocket"></i> Switch to Buyer
-                                    <span class="badge badge-success"> 7 </span>
+                                <a href="#">
+                                    Switch to Buyer
+                                    <img src="./res/img/switch.png"/>
                                 </a>
                             </li>
                             <li>
-                                <a href="page_user_lock_1.html">
-                                    <i class="icon-lock"></i> Help </a>
+                                <a href="#">
+                                    Help 
+                                    <img src="./res/img/help.png"/>
+                                </a>
                             </li>
                             <li>
-                                <a href="page_user_login_1.html">
-                                    <i class="icon-key"></i> Logout </a>
+                                <a href="#">
+                                	logout
+                                    <img src="./res/img/switch.png"/>
+                                </a>
                             </li>
                         </ul>
                     </li>
@@ -83,27 +84,33 @@
 	</div>
 	<div class="page-container">
 		<div class="page-content">
-			<div class="page_sidebar">
-				<div class="userinfo">
-					<img src="./res/img/userinfo_img.png">
-					<h3>Michaela Seyra</h3>
-					<h5>@michaela_Syr</h5>
+			<div class="page-sidebar">
+				<div class="section target-tree">
+					<div class="image">
+						<img src="./res/img/userinfo_img.png">
+						<h1 class="buyer-name">Michaela Seyra</h1>
+						<h5 class="buyer-mail">@michaela_Syr</h5>
+					</div>
 				</div>
-				<div class="selector">
-					<ul class="page_sidebar-menu">
-						<li class="nav-item">
-							<a> <img class="nav-icon" src="res/img/person.png"> Profile Page</a>
-						</li>
-						<li class="nav-item">
-							<a> <img class="nav-icon" src="res/img/saved.png">Saved</a>
-						</li>
-						<li class="nav-item">
-							<a> <img class="nav-icon" src="res/img/champaigns.png">Campaigns</a>
-						</li>
-						<li class="nav-item last">
-							<a> <img class="nav-icon" src="res/img/messages.png">Messages</a>
-						</li>
-					</ul>
+				<div class="section">
+					<div class="btn-group" data-toggle="buttons" id="pages">
+	                    <label class="btn btn-default active">
+	                    	<img class="nav-icon" src="res/img/person.png">
+	                        <input type="radio" class="toggle"> Profile Page
+	                    </label>
+	                    <label class="btn btn-default">
+	                    	<img class="nav-icon" src="res/img/saved.png">
+	                        <input type="radio" class="toggle"> Saved
+	                    </label>
+	                    <label class="btn btn-default">
+	                    	<img class="nav-icon" src="res/img/campaigns.png">
+	                        <input type="radio" class="toggle"> Campaigns
+	                    </label>
+	                    <label class="btn btn-default">
+	                    	<img class="nav-icon" src="res/img/messages.png">
+	                        <input type="radio" class="toggle"> Messages
+	                    </label>
+	                </div>
 				</div>
 			</div>
 			<div class="page-main">
@@ -117,120 +124,124 @@
 				</div>
 				<hr class="divider-line">
 				<div class="page-main-content pd-bottom row">
-					<div class="formcontrol row">
-						<label class="col-md-2 controllabel"> Profile photo</label>
-						<div class="col-md-10 controlcontent">
-							<img src="./res/img/userinfo_img.png">
-							<div class="right-control col-md-8">
-								<a class="btn dark btn-outline btn-radius">
-									<i class="fa fa-file-image-o"></i>
-									<b>Choose Photo</b>
-								</a>
-								<div>This photo is your identity in Dananza.</div>
+					<form role="form" class="form-horizontal">
+						<div class="form-body">
+							<div class="formcontrol row">
+								<label class="col-md-2 controllabel"> Profile photo</label>
+								<div class="col-md-10 controlcontent">
+									<img src="./res/img/userinfo_img.png" class="col-md-2">
+									<div class="right-control col-md-8">
+										<a class="btn dark btn-outline btn-radius">
+											<img src="./res/img/upload.png" />
+											<b>Choose Photo</b>
+										</a>
+										<div class="img-comment">This photo is your identity in Dananza.</div>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="formcontrol row">
-						<label class="col-md-2 controllabel">
-							Describe</br>
-							Yourself/Your</br>
-							Company in a few</br>
-							words
-						</label>
-						<div class="col-md-10 controlcontent">
-							<textarea class="form-control btn-radius" placeholder="Hi there!"></textarea>
-						</div>
-					</div>
-					<div class="formcontrol row">
-						<label class="col-md-2 controllabel">
-							What do you do?
-						</label>
-						<div class="col-md-10 controlcontent">
-                            <div class="mt-radio-list">
-                                <label class="mt-radio mt-radio-outline">
-                                    <input type="radio" name="optionsRadios" id="optionsRadios22" value="option1" checked=""> Business Owner
-                                    <span></span>
-                                </label>
-                                <label class="mt-radio mt-radio-outline">
-                                    <input type="radio" name="optionsRadios" id="optionsRadios23" value="option2" checked=""> Freelancer
-                                    <span></span>
-                                </label>
-                                <label class="mt-radio mt-radio-outline">
-                                    <input type="radio" name="optionsRadios" id="optionsRadios23" value="option2" checked=""> Employee
-                                    <span></span>
-                                </label>
-                                <label class="mt-radio mt-radio-outline">
-                                    <input type="radio" name="optionsRadios" id="optionsRadios23" value="option2" checked=""> Agency
-                                    <span></span>
-                                </label>
+							<div class="formcontrol row">
+								<label class="col-md-2 controllabel">
+									Describe</br>
+									Yourself/Your</br>
+									Company in a few</br>
+									words
+								</label>
+								<div class="col-md-10 controlcontent">
+									<textarea class="form-control btn-radius" rows="5" placeholder="Hi there!" style="height:auto !important;"></textarea>
+								</div>
+							</div>
+							<div class="formcontrol row">
+								<label class="col-md-2 controllabel">
+									What do you do?
+								</label>
+								<div class="col-md-10 controlcontent">
+		                            <div class="mt-radio-list">
+		                                <label class="mt-radio mt-radio-outline">
+		                                    <input type="radio" name="optionsRadios" id="optionsRadios22" value="option1" checked=""> Business Owner
+		                                    <span></span>
+		                                </label>
+		                                <label class="mt-radio mt-radio-outline">
+		                                    <input type="radio" name="optionsRadios" id="optionsRadios23" value="option2" checked=""> Freelancer
+		                                    <span></span>
+		                                </label>
+		                                <label class="mt-radio mt-radio-outline">
+		                                    <input type="radio" name="optionsRadios" id="optionsRadios23" value="option2" checked=""> Employee
+		                                    <span></span>
+		                                </label>
+		                                <label class="mt-radio mt-radio-outline">
+		                                    <input type="radio" name="optionsRadios" id="optionsRadios23" value="option2" checked=""> Agency
+		                                    <span></span>
+		                                </label>
 
-                                <p>Which industry does the workplace/business belong to?
-                            </div>
-						</div>
-					</div>
-					<div class="formcontrol row">
-						<label class="col-md-2 controllabel">
-							
-						</label>
-						<div class="col-md-10 controlcontent">
-							<input type="text" class="form-control btn-radius" placeholder="ex: Ad Agency">
-						</div>
-					</div>
-					<div class="formcontrol row">
-						<label class="col-md-2 controllabel">
-							Location
-						</label>
-						<div class="col-md-10 controlcontent">
-							<div class="input-icon">
-								<img src="./res/img/minami.png" class="placeholder-img"/>
-								<input type="text" class="form-control btn-radius" placeholder="ex: Ad Agency">
+		                                <p class="question">Which industry does the workplace/business belong to?
+		                            </div>
+								</div>
+							</div>
+							<div class="formcontrol row">
+								<label class="col-md-2 controllabel">
+									
+								</label>
+								<div class="col-md-10 controlcontent">
+									<input type="text" class="form-control btn-radius" placeholder="ex: Ad Agency">
+								</div>
+							</div>
+							<div class="formcontrol row">
+								<label class="col-md-2 controllabel">
+									Location
+								</label>
+								<div class="col-md-10 controlcontent">
+									<div class="input-icon">
+										<img src="./res/img/minami.png" class="placeholder-img"/>
+										<input type="text" class="form-control btn-radius" placeholder="ex: Ad Agency">
+									</div>
+								</div>
+							</div>
+							<div class="formcontrol row">
+								<label class="col-md-2 controllabel">
+									Linked Accounts
+								</label>
+								<div class="col-md-10 controlcontent">
+									<div class="input-icon">
+										<img src="./res/img/play.png" class="placeholder-img"/>
+										<input type="text" class="form-control btn-radius" placeholder="Choose Media Type">
+									</div>
+								</div>
+							</div>
+							<div class="formcontrol row">
+								<label class="col-md-2 controllabel">
+									
+								</label>
+								<div class="col-md-10 controlcontent">
+									<div class="input-icon">
+										<img src="./res/img/username.png" class="placeholder-img"/>
+										<input type="text" class="form-control btn-radius" placeholder="Username">
+									</div>
+								</div>
+							</div>
+					        <div class="formcontrol row">
+								<label class="col-md-2 controllabel">
+									
+								</label>
+								<div class="col-md-10 controlcontent">
+									<div class="input-icon">
+										<img src="./res/img/link.png" class="placeholder-img"/>
+										<input type="text" class="form-control btn-radius" placeholder="Linked Account">
+									</div>
+								</div>
+							</div>
+							<div class="formcontrol row">
+								<label class="col-md-2 controllabel">
+									Websites
+								</label>
+								<div class="col-md-10 controlcontent">
+									<div class="input-icon">
+										<img src="./res/img/link.png" class="placeholder-img"/>
+										<input type="text" class="form-control btn-radius" placeholder="https://itsmichaelaseyra.com">
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="formcontrol row">
-						<label class="col-md-2 controllabel">
-							Linked Accounts
-						</label>
-						<div class="col-md-10 controlcontent">
-							<div class="input-icon">
-								<img src="./res/img/play.png" class="placeholder-img"/>
-								<input type="text" class="form-control btn-radius" placeholder="Choose Media Type">
-							</div>
-						</div>
-					</div>
-					<div class="formcontrol row">
-						<label class="col-md-2 controllabel">
-							
-						</label>
-						<div class="col-md-10 controlcontent">
-							<div class="input-icon">
-								<img src="./res/img/username.png" class="placeholder-img"/>
-								<input type="text" class="form-control btn-radius" placeholder="Username">
-							</div>
-						</div>
-					</div>
-			        <div class="formcontrol row">
-						<label class="col-md-2 controllabel">
-							
-						</label>
-						<div class="col-md-10 controlcontent">
-							<div class="input-icon">
-								<img src="./res/img/link.png" class="placeholder-img"/>
-								<input type="text" class="form-control btn-radius" placeholder="Linked Account">
-							</div>
-						</div>
-					</div>
-					<div class="formcontrol row">
-						<label class="col-md-2 controllabel">
-							Websites
-						</label>
-						<div class="col-md-10 controlcontent">
-							<div class="input-icon">
-								<img src="./res/img/link.png" class="placeholder-img"/>
-								<input type="text" class="form-control btn-radius" placeholder="https://itsmichaelaseyra.com">
-							</div>
-						</div>
-					</div>
+					</form>
 					<p><a class="add-website">+ Add Another Website</a> 
 				</div>
 			</div>
