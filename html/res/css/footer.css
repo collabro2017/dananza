@@ -26,7 +26,11 @@
   list-style: none;
   margin-bottom: 20px;
 }
+<<<<<<< HEAD
 .footer_section .footer_info .for_business{
+=======
+.footer_section .footer_info .for_business {
+>>>>>>> jcr_work
   font-family: MyriadPro-Regular;
 }
 .footer_section .footer_copyright {

@@ -1,0 +1,151 @@
+// sellers page start --jcr
+	.sellers
+	{
+		margin-top: 40px;
+		.fa-star
+		{
+			color: #fac917;
+			font-size: 18px;
+		}
+		.reviews_star
+		{
+			color: #a7a7a7;
+			margin-left: 5px;
+		}
+		.sidebar
+		{
+			border: 1px solid #dadada;
+			border-radius: 5px !important;
+			padding: 3% 2%;
+
+			.target_tree
+			{
+				text-align: center;
+				font-family: "Thasadith-Bold";
+				font-size: 16px;
+				line-height: 24.33px;
+				border-bottom: 1px solid #dadada;
+				margin-bottom: 15px;
+				div
+				{
+					margin: 10px 0;
+				}
+				.tree
+				{
+					font-family: "Coves-Bold";
+					font-size: 20px;
+					line-height: 24px;
+				}
+				
+				.official
+				{
+					font-family: "Thasadith-Regular";
+					font-size: 13px;
+					line-height: 16px;
+				}
+				.msg
+				{
+					margin-top: 50px;
+					margin-bottom: 30px;
+					a
+					{
+						border-radius: 5px !important;
+						padding: 10px 75px;
+						background-color: #ffd766;
+						color: #333;
+						text-decoration: none;
+					}
+				}
+			}
+			.from_avg, .channels
+			{
+				font-family: "Coves-Bold";
+				font-size: 16px;
+				line-height: 24px;
+				border-bottom: 1px solid #dadada;
+				div
+				{
+					margin-bottom: 17px;
+				}
+				.fa
+				{
+					margin-right: 10px;
+				}
+				.value, .social_icons
+				{
+					float: right;
+				}
+			}
+			.channels, .audience
+			{
+				padding: 20px 0;
+			}
+			.audience
+			{
+				text-align: center;
+				.felid
+				{
+					font-family: "Coves-Bold";
+					font-size: 16px;
+					text-align: right;
+				}
+				.value
+				{
+					font-family: "Thasadith-Bold";
+					font-size: 13px;
+					text-align: left;
+				}
+			}
+		}
+		.sellers_content
+		{
+			padding: 30px;
+			.row
+			{
+				margin: 0;
+			}
+			.caption
+			{
+				font-family: "Coves-Bold";
+				font-size: 32px;
+				line-height: 48px;
+			}
+			.row.slider
+			{
+				text-align: center;
+			}
+			.row.listings
+			{
+				margin-top: 50px;
+			}
+			.row.reviews
+			{
+				span
+				{
+					font-family: "Thasadith-Bold";
+					font-size: 16.42px;
+				}
+				.review_lists
+				{
+					i
+					{
+						margin: 20px 0px 20px 30px;
+					}
+					.content
+					{
+						    border-bottom: 1px solid #dadada;
+						    /* margin-bottom: 20px; */
+						    padding-bottom: 20px;
+					}
+					.seemore
+					{
+						color: #46c1d0;
+						font-family: "Thasadith-Bold";
+						font-size: 16px;
+						line-height: 32px;
+					}
+				}
+			}
+		}
+	}
+// sellers page end --end

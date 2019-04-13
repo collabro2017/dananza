@@ -5,7 +5,10 @@
   /* dropmenu end */ }
   .header_section .logo{
     padding-top:10px;
+<<<<<<< HEAD
     z-index: 9;
+=======
+>>>>>>> jcr_work
   }
   .header_section .nav_bar {
     margin: 16px 30px;

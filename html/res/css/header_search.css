@@ -43,7 +43,12 @@
       height: 40px;
     }
     .header_section .nav_bar .search-but{
+<<<<<<< HEAD
       border-radius: 0px 5px 5px 0px !important;
+=======
+      border-top-left-radius: 0px !important;
+      border-bottom-left-radius: 0px !important;
+>>>>>>> jcr_work
       height: 40px;
       background-color:#2ab7c9;
     }
@@ -59,11 +64,14 @@
         margin-right: 35px;
         padding-top: 10px;
       }
+<<<<<<< HEAD
         .header_section .nav_menu ul li.profile_photo{
           padding-top: 0px !important; }
           .header_section .nav_menu ul li.profile_photo img{
             width: 40px;
             height: 40px; }
+=======
+>>>>>>> jcr_work
         .header_section .nav_menu ul li a {
           color: #000c20;
           text-decoration: none !important; }
