@@ -1,0 +1,228 @@
+.profile_photo img{
+	width: 40px;
+	height: 40px;
+}
+.profile_photo{
+	padding-top: 0px !important;
+}
+
+@font-face {
+  font-family: 'Thasadith-Bold';
+  src: url('../fonts/Thasadith-bold.ttf?v=4.4.0');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Thasadith-Regular';
+  src: url('../fonts/Thasadith-Regular.ttf?v=4.4.0');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Coves-Bold';
+  src: url('../fonts/Coves-Bold.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.page-content{
+	width: 100%;
+	font-family: 'Thasadith-Regular';
+	font-weight: 900 !important;
+	border-top: 1px solid #dadada;
+	position: relative;
+}
+.right{
+	float: right;
+}
+.page-result-wrapper{
+	background-color: #deebf2;
+	margin-left: 330px;
+	position: relative;
+}
+.page-result{
+	width: 698px;
+	margin: 0px auto;
+	position: relative;
+	padding-bottom: 40px;
+}
+.page-result .title{
+	font-size: 32px;
+	margin: 30px auto;
+	font-weight: bold;
+	font-family: Coves-Bold;
+	border-bottom: 1px solid #89b9d3;
+	width: 100%;
+}
+.page-result .subtitle{
+	font-size: 24px;
+	margin: 15px auto;
+	width: 100%;
+	font-weight: bold;
+	font-family: Coves-Bold;
+}
+.page-result-content .row{
+	position: relative;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	display: inline-flex;
+}
+.upcoming-box{
+	padding: 15px;
+	background-color: white;
+	display: inline-flex;
+	width: 100%;
+}
+.upcoming-box .user-profile{
+	width: 56px;
+	height: 56px;
+	margin: 0px 15px;
+}
+.upcoming-box .username{
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+.upcoming-box .detail{
+	display: inline-flex;
+	margin-bottom: 20px;
+}
+.upcoming-box .detail .date{
+	margin-left: 48px;
+}
+.upcoming-box .detail img{
+	margin-right: 8px;
+	width: 16px;
+	height: 16px;
+}
+.upcoming-box .actions{
+	margin-left: -15px !important;
+}
+.trans-select button{
+	background: unset;
+	border: unset;
+	font-weight: bold;
+}
+.btn-yellow{
+	background-color: #ffd766;
+	border-radius: 5px !important;
+	border: unset;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 100%;
+}
+.btn-yellow i{
+	padding-right: 15px;
+	font-size: 16px;
+}
+.btn-circle{
+	width: 24px;
+	height: 24px;
+	border-radius: 50% !important;
+	margin-right: 7px;
+	background: white;
+	border: unset;
+	box-shadow: 0px 0px 10px 5px #0000004d;
+	font-size: 20px;
+	vertical-align: inherit;
+	margin-bottom: 20px;
+}
+
+.calendar-btn-group{
+	float: right;
+	margin-top: 10px;
+}
+.calendar-btn-group .btn{
+	font-size: 15.4px;
+	background: unset;
+	border: unset;
+	font-weight: 100 !important;
+	font-family: Thasadith-Regular;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.calendar-btn-group .btn.active{
+	font-size: 15.4px;
+	background: unset;
+	border-bottom: 3px solid #2ab7c9;
+	font-weight: bold !important;
+}
+.calendar{
+	background-color: white;
+}
+.calendar .row-week{
+	display: flex;
+}
+.calendar .col-week{
+	width: 14.29%;
+	text-align: right;
+	padding-top: 20px;
+	padding-bottom: 16px;
+	padding-right: 10px;
+	border-bottom: 1px solid #dadada;
+}
+.calendar .col-day{
+	width: 14.29%;
+	height: 88px;
+	text-align: right;
+	padding: 12px;
+	border: 1px solid #dadada;
+}
+.calendar .col-day .date{
+	width: 25px;
+	height: 25px;
+	float: right;
+	text-align: right;
+}
+.calendar .col-day .date.active{
+	border-radius: 50% !important;
+	background: #2ab7c9;
+	color: white;
+    padding-top: 3px;
+    margin-top: -3px;
+   	margin-right: -9px;
+    text-align: center;
+}
+.calendar .col-day .events{
+	display: block;
+	float: left;
+}
+.calendar .col-day .events img{
+	width: 17px;
+	height: 17px;
+}
+.calendar .grey{
+	color: #c4c4c4;
+}
+.calendar .back-grey{
+	background-color: #f7f7f7;
+}
+.f-24{
+	font-size: 24px !important;
+}
+.f-16{
+	font-size: 16px !important;
+}
+.f-14{
+	font-size: 14px !important;
+}
+.darkgrey{
+	color: #4b4b4b;
+}
+
+/* mobile */
+@media(min-width: 1230px){
+}
+@media(max-width:1229px){
+}
+@media(max-width: 992px){
+	.page-result-wrapper{
+		margin: 0px;
+	}
+}
+@media(max-width: 768px){
+}
+
+/*# sourceMappingURL=header.css.map */

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adza_Signup_Danaza</title>
+	
+	<!-- bootstrap -->
+	<link rel="stylesheet" type="text/css" href="./res/bootstrap/css/bootstrap.min.css">
+
+	<!-- fontawesome -->
+	<link rel="stylesheet" type="text/css" href="./res/font-awesome/css/font-awesome.min.css">
+
+	<!-- custome css -->
+	<link rel="stylesheet" type="text/css" href="./res/css/components.min.css">
+	<link rel="stylesheet" type="text/css" href="./res/css/global.css">
+	<link rel="stylesheet" type="text/css" href="./res/css/header.css">
+	<link rel="stylesheet" type="text/css" href="./res/css/footer.css">
+	<link rel="stylesheet" type="text/css" href="./res/css/homepage.css">
+	<link rel="stylesheet" type="text/css" href="./res/css/adza_signup_dananza.css">
+</head>
+<body>
+	<!-- header section -->
+	<div class="header_section">
+		<div class="nav_bar">
+			<div class="logo">
+				<img src="./res/img/logo.png">
+			</div>
+			<div class="nav_menu justify-content-end">
+				<button id="navbar_toggler" class="navbar_toggler_open mobile_navbar_toggler" type="button">
+					<span class="navbar_toggler_icon"></span>
+				</button>
+				<ul class="nav_menu_list">
+					<li>
+						<a href="#">About</a>
+					</li>
+					<li>
+						<a href="#">Sign Up</a>
+					</li>
+					<li>
+						<a href="#">Log In</a>
+					</li>
+					<li class="menu_last_li">
+						<a href="#" class="btn bg-yellow btn-small">Become an Adza</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="nav_mobile_menu" style="display: none">
+			<ul class="nav_mobile_list">
+				<li>
+					<a href="#">About</a>
+				</li>
+				<li>
+					<a href="#">Sign Up</a>
+				</li>
+				<li>
+					<a href="#">Log In</a>
+				</li>
+				<li class="menu_last_li">
+					<a href="#" class="menu_adza">Become an Adza</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- page content -->
+	<div class="adza_signup_section">
+		<div class="full_container">
+			<div class="row heroblog">
+				<div class="image">
+					<img src="./res/img/heroimage1.png">
+					<div class="col-sm-6 col-md-6">
+					</div>
+					<div class="col-md-6 col-sm-6 mk_adv_smp color-title">
+						Adzas Do It Better
+						<div class="finding_best_ad ">
+							Promote, sell, and manage ads across all your channels all without a monthly fee.
+						</div>
+					</div>
+				</div>		
+			</div>
+			<div class="row what_waiting">
+				<div class="col-sm-12 info_title">
+					What Are You Waiting For?
+				</div>
+				<div class="col-sm-12 sub_title">
+					Sign Up Below & Let’s Make Advertising Simple
+				</div>
+				<div class="col-sm-12">
+					<input type="text" class="form-control" placeholder="Business Name">
+					<i class="fa fa-briefcase show-icon"></i>
+				</div>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" placeholder="First Name">
+					<i class="fa fa-user show-icon"></i>
+				</div>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" placeholder="Last Name">
+					<i class="fa fa-user show-icon"></i>
+				</div>
+				<div class="col-sm-12">
+					<input type="text" class="form-control"  placeholder="Enter Your Email">
+					<i class="fa fa-envelope-o show-icon"></i>
+				</div>
+				<div class="col-sm-6">
+					<input type="text" class="form-control"  placeholder="Your Password">
+					<i class="fa fa-key show-icon"></i>
+				</div>
+				<div class="col-sm-6">
+					<input type="text" class="form-control"  placeholder="Confirm Password">
+					<i class="fa fa-key show-icon"></i>
+				</div>
+				<div class="col-sm-12 align-center">
+					<button class="form-button">
+						Next<i class="fa fa-long-arrow-right"></i>
+					</button>
+				</div>
+			</div>
+			<div class="row how_works">
+				<div class="col-sm-12 info_title">
+					How It Works
+				</div>
+				<div class="col-sm-12">
+					<div class="col-sm-4 part">
+						<div>
+							<img src="./res/img/papercopy.png">
+						</div>
+						<div class="sub-title">
+							Build An Adza Page
+						</div>
+						<div class="sub-content">
+							Sign up for free, create a killer Adza page, and get found by buyers that need you.
+						</div>
+					</div>
+					<div class="col-sm-4 part">
+						<div>
+							<img src="./res/img/stamp.png">
+						</div>
+						<div class="sub-title">
+							Your Page, Your Ads
+						</div>
+						<div class="sub-content">
+							When a buyer purchases an ad, you can approve it or message them to fix it up.
+						</div>
+					</div>
+					<div class="col-sm-4 part">
+						<div>
+							<img src="./res/img/papercopy.png">
+						</div>
+						<div class="sub-title">
+							Simplified Selling
+						</div>
+						<div class="sub-content">
+							Your dashboard will tell you when, what, and where to post - plus how hard you’re killing it.
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row preview">
+				<div class="select-panel">
+					<label class="info_title">
+						Here’s a Little Preview
+					</label>
+					<div class="btn-group" data-toggle="buttons" id="pages">
+	                    <label class="btn btn-default active" onclick="changeImage('order')">
+	                    	<i class="fa fa-shopping-cart"></i>
+	                        <input type="radio" class="toggle"> Orders
+	                    </label>
+	                    <label class="btn btn-default" onclick="changeImage('analytics')">
+	                    	<i class=" fa fa-bar-chart"></i>
+	                        <input type="radio" class="toggle"> Analytics
+	                    </label>
+	                    <label class="btn btn-default" onclick="changeImage('calendar')">
+	                    	<i class="fa fa-calendar"></i>
+	                        <input type="radio" class="toggle"> Calendar
+	                    </label>
+	                    <label class="btn btn-default" onclick="changeImage('sellers_page')">
+	                    	<i class="fa fa-user"></i>
+	                        <input type="radio" class="toggle"> Seller's Page
+	                    </label>
+	                    <label class="btn btn-default" onclick="changeImage('messages')">
+	                    	<i class="fa fa-comment-o"></i>
+	                        <input type="radio" class="toggle"> Messages
+	                    </label>
+	                </div>
+				</div>
+				<div class="result-panel">
+					<img src="./res/img/image_dashboard_order.png">
+				</div>
+			</div>
+			<div class="row simple_convenient">
+				<div class="image-panel">
+					<img src="./res/img/image_simple.png">
+				</div>
+				<div class="contents-panel">
+					<label class="info_title">
+						Simple & Convenient
+					</label>
+					<div class="sub-title">
+						<img src="./res/img/icon-less.png">
+						Work as Little as Possible
+					</div>
+					<div class="sub-content">
+						All Adzas face a vetting process to confirm you are the owner of the accounts you say you are. Profile stats are automatically loaded from most channels so you work as little as possible.
+					</div>
+					<div class="sub-title">
+						<img src="./res/img/affordable.png">
+						Only for a Small Fee
+					</div>
+					<div class="sub-content">
+						When you sell an ad spot, you’ll only be charged a small 6% fee which is only about 6% the fee of the “other guys”. Our platform is open to everyone meaning you can just send everyone to your Dananza page and have everything organized in one spot. Let’s skip the emails, calls, and bargaining because we’re not in 1999 anymore.
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="footer_section">
+		<div class="footer_info">
+			<div class="full_container">
+				<div class="row">
+					<div class="col-md-3 col-sm-3 for_business">
+						<div class="footer_info_title">For Business</div>
+						<ul>
+							<li>Epsum factorial</li>
+							<li>Deposit quid pro</li>
+							<li>Escorol</li>
+							<li>Tempus</li>
+							<li>Condominium</li>
+							<li>Facile et</li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-2">
+						<div class="footer_info_title">For Adzas</div>
+						<ul>
+							<li>Epsum factorial</li>
+							<li>Deposit quid pro</li>
+							<li>Escorol</li>
+							<li>Tempus</li>
+							<li>Condominium</li>
+							<li>Facile et</li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-2">
+						<div class="footer_info_title">About</div>
+						<ul>
+							<li>Company</li>
+							<li>Careers</li>
+							<li>Blog</li>
+							<li>Help</li>
+							<li>Contact</li>
+						</ul>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<div class="footer_info_title">Search for Adzas</div>
+						<div class="input-group input-group-lg">
+	                        <input type="text" class="form-control input-lg">
+							<i class="fa fa-search"></i>
+	                        <span class="input-group-btn">
+	                            <button class="btn bg-blue color-white" type="button">Search</button>
+	                        </span>
+	                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer_copyright">
+			<div>Copyright © 2018 Dananza - All Rights Reserved.</div>
+			<div>Terms & Conditions</div>
+			<div>Privacy</div>
+			<div class="social_icons">
+				<ul>
+					<li>
+						<a href="#" class="fa fa-facebook"></a>
+					</li>
+					<li>
+						<a href="#" class="fa fa-twitter"></a>
+					</li>
+					<li>
+						<a href="#" class="fa fa-linkedin"></a>
+					</li>
+					<li>
+						<a href="#" class="fa fa-instagram"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- initial scripts -->
+	<script type="text/javascript" src="./res/js/jquery.min.js"></script>
+	<script type="text/javascript" src="./res/bootstrap/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="./res/bootstrap-select/js/bootstrap-select.min.js"></script>
+	<script type="text/javascript" src="./res/js/app.min.js"></script>
+	<script type="text/javascript" src="./res/js/components-bootstrap-select.min.js"></script>
+
+	<script type="text/javascript">
+		function changeImage(src){
+			$('.result-panel>img').attr("src","./res/img/image_dashboard_"+src+".png");
+		}
+		$(document).ready(function()
+		{
+			$('.mobile_navbar_toggler').on('click', function() 
+			{
+				if( !$('.nav_mobile_menu').hasClass('show') ) 
+				{
+					$('.nav_mobile_menu').addClass('show');
+					$('.mobile_navbar_toggler').removeClass('navbar_toggler_open');
+					$('.mobile_navbar_toggler').addClass('navbar_toggler_close');
+				}
+				else 
+				{
+					$('.nav_mobile_menu').removeClass('show');
+					$('.mobile_navbar_toggler').removeClass('navbar_toggler_close');
+					$('.mobile_navbar_toggler').addClass('navbar_toggler_open');
+				}
+				
+				// $('.nav_mobile_menu').slideToggle(200);
+			});
+		});
+		
+	</script>
+</body>
+</html>
