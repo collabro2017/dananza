@@ -33,7 +33,8 @@
 body {
   color: #4b4b4b !important;
   font-family: "Thasadith-Regular";
-  font-weight: 900; 
+/*  font-size: 1.36vw;
+*/  font-weight: 900; 
   background:white !important;
 }
 input, select, img, a{
@@ -127,7 +128,3 @@ button {
   font-size: 16px;
   width: 67%;
   line-height: 32px; }
-
-div.icheckbox_square-ltblue{
-  margin-right: 10px;
-}

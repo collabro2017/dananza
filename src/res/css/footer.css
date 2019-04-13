@@ -26,10 +26,6 @@
   list-style: none;
   margin-bottom: 20px;
 }
-.footer_section .footer_info ul li a {
-  color: #000c20;
-  text-decoration: none;
-}
 .footer_section .footer_info .for_business {
   font-family: MyriadPro-Regular;
 }
@@ -69,7 +65,7 @@
   border-radius: 50% !important;
   text-decoration: none;
 }
-.footer_section .input-group-btn a {
+.footer_section .input-group button {
   border-top-left-radius: 0px !important;
   border-bottom-left-radius: 0px !important;
 }

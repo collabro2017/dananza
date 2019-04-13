@@ -6,12 +6,8 @@ import { increment, decrement } from "../store/reducers/stepCounter";
 import "../res/css/infoflowPage.css"
 
 class Cart extends React.Component{
-
-  state={'headerType': "static"}
-
   constructor(props) {
     super(props);
-    props.changeHeaderType( this.state.headerType )
   }
 
   componentDidMount(){

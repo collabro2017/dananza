@@ -7,16 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import { withStyles } from '@material-ui/core/styles';
-
 import { increment, decrement } from "../store/reducers/stepCounter";
-
-import 'icheck/skins/all.css';
-import {Checkbox, Radio} from 'react-icheck';
 
 import "../res/bootstrap-select/css/bootstrap-select.min.css"
 import "../res/css/global.css"
@@ -24,24 +15,10 @@ import "../res/css/Dananza_Search.css"
 import "../res/icheck/skins/ltblue.css"
 import "../res/css/nouislider.css"
 
-const styles = theme => ({
-  
-});
-
 class SearchResults extends React.Component{
-
-  state={
-  		'headerType': "seller",
-  		'relevance': 'relevance'}
-
   constructor(props) {
     super(props);
-    props.changeHeaderType( this.state.headerType )
   }
-
-  handleChange = event => {
-	this.setState({ [event.target.name]: event.target.value });
-  };
 
   componentDidMount(){
     document.title = "Search Results"
@@ -88,29 +65,13 @@ class SearchResults extends React.Component{
 				<div className="page-bar bg-white">
 					<div className="sort-by">
 						<span className="grey">Sort by:</span>
-						<FormControl>
-						  <Select
-						    value={this.state.relevance}
-						    onChange={this.handleChange}
-						    inputProps={{
-						      name: 'relevance',
-						      id: 'relevance-simple',
-						    }}
-						  >
-						    <MenuItem value={'relevance'}>Relevance</MenuItem>
-						    <MenuItem value={'relevance1'}>Relevance1</MenuItem>
-						    <MenuItem value={'relevance2'}>Relevance2</MenuItem>
-						    <MenuItem value={'relevance3'}>Relevance3</MenuItem>
-						    <MenuItem value={'relevance4'}>Relevance4</MenuItem>
-						  </Select>
-						</FormControl>
-						{/*<select value="Relevance" className="bs-select" data-width="120px">
+						<select value="Relevance" className="bs-select" data-width="120px">
 							<option>Relevance</option>
 							<option>Relevance1</option>
 							<option>Relevance2</option>
 							<option>Relevance3</option>
 							<option>Relevance4</option>
-						</select>*/}
+						</select>
 					</div>
 				</div>
 				<div className="page-content">
@@ -121,124 +82,100 @@ class SearchResults extends React.Component{
 								<ul className="sub-menu">
 									<li className="active">
 										<div className="nav-link nav-toggle">
-											<Checkbox
-											  checkboxClass="icheckbox_square-ltblue"
-											  increaseArea="20%"
-											  label="Social Media"
-											  className="icheck"
-											/>
+											<label>
+			                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+			                                </label>
+											<a>Social Media</a>
 										</div>
 										<ul className="sub-menu">
 											<li>
 												<div className="nav-link">
-													<Checkbox
-													  checkboxClass="icheckbox_square-ltblue"
-													  increaseArea="40%"
-													  label="Facebook"
-													  className="icheck"
-													/>
+													<label>
+					                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+					                                </label>
+													<a>Facebook</a>
 												</div>
 											</li>
 											<li>
 												<div className="nav-link">
-													<Checkbox
-													  checkboxClass="icheckbox_square-ltblue"
-													  increaseArea="40%"
-													  label="Instagram"
-													  className="icheck"
-													/>
+													<label>
+					                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+					                                </label>
+													<a>Instagram</a>
 												</div>
 											</li>
 											<li>
 												<div className="nav-link">
-													<Checkbox
-													  checkboxClass="icheckbox_square-ltblue"
-													  increaseArea="40%"
-													  label="Twitter"
-													  className="icheck"
-													/>
+													<label>
+					                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+					                                </label>
+													<a>Twitter</a>
 												</div>
 											</li>
 											<li>
 												<div className="nav-link">
-													<Checkbox
-													  checkboxClass="icheckbox_square-ltblue"
-													  increaseArea="40%"
-													  label="Linkedin"
-													  className="icheck"
-													/>
+													<label>
+					                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+					                                </label>
+													<a>Linkedin</a>
 												</div>
 											</li>
 											<li>
 												<div className="nav-link">
-													<Checkbox
-													  checkboxClass="icheckbox_square-ltblue"
-													  increaseArea="40%"
-													  label="YouTube"
-													  className="icheck"
-													/>
+													<label>
+					                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+					                                </label>
+													<a>YouTube</a>
 												</div>
 											</li>
 											<li>
 												<div className="nav-link">
-													<Checkbox
-													  checkboxClass="icheckbox_square-ltblue"
-													  increaseArea="40%"
-													  label="Pinterest"
-													  className="icheck"
-													/>
+													<label>
+					                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+					                                </label>
+													<a>Pinterest</a>
 												</div>
 											</li>
 										</ul>
 									</li>
 									<li>
 										<div className="nav-link">
-											<Checkbox
-											  checkboxClass="icheckbox_square-ltblue"
-											  increaseArea="40%"
-											  label="Websites"
-											  className="icheck"
-											/>
+											<label>
+			                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+			                                </label>
+											<a>Websites</a>
 										</div>
 									</li>
 									<li>
 										<div className="nav-link">
-											<Checkbox
-											  checkboxClass="icheckbox_square-ltblue"
-											  increaseArea="40%"
-											  label="Podcasts"
-											  className="icheck"
-											/>
+											<label>
+			                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+			                                </label>
+											<a>Podcasts</a>
 										</div>
 									</li>
 									<li>
 										<div className="nav-link">
-											<Checkbox
-											  checkboxClass="icheckbox_square-ltblue"
-											  increaseArea="40%"
-											  label="Print"
-											  className="icheck"
-											/>
+											<label>
+			                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+			                                </label>
+											<a>Print</a>
 										</div>
 									</li>
 									<li>
 										<div className="nav-link">
-											<Checkbox
-											  checkboxClass="icheckbox_square-ltblue"
-											  increaseArea="40%"
-											  label="Sponsorships"
-											  className="icheck"
-											/>
+											<label>
+			                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+			                                </label>
+											<a>Sponsorships</a>
 										</div>
 									</li>
 									<li>
 										<div className="nav-link">
-											<Checkbox
-											  checkboxClass="icheckbox_square-ltblue"
-											  increaseArea="40%"
-											  label="Billboards"
-											  className="icheck"
-											/>
+											<label>
+			                                    <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
+			                                </label>
+											<a>Billboards</a>
 										</div>
 									</li>
 								</ul>
@@ -350,47 +287,27 @@ class SearchResults extends React.Component{
 							<span className="title">Average Rating</span>
 							<div className="content average-rating">
 								<label>
-									<Checkbox
-									  checkboxClass="icheckbox_square-ltblue"
-									  increaseArea="10%"
-									  className="icheck"
-									/>
+		                            <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
 		                            <i className="fa fa-star"></i>
 		                            <span>5.0</span>
 		                        </label>
 		                        <label>
-									<Checkbox
-									  checkboxClass="icheckbox_square-ltblue"
-									  increaseArea="10%"
-									  className="icheck"
-									/>
+		                            <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
 		                            <i className="fa fa-star"></i>
 		                            <span>4.0</span>
 		                        </label>
 		                        <label>
-									<Checkbox
-									  checkboxClass="icheckbox_square-ltblue"
-									  increaseArea="10%"
-									  className="icheck"
-									/>
+		                            <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
 		                            <i className="fa fa-star"></i>
 		                            <span>3.0</span>
 		                        </label>
 		                        <label>
-									<Checkbox
-									  checkboxClass="icheckbox_square-ltblue"
-									  increaseArea="10%"
-									  className="icheck"
-									/>
+		                            <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
 		                            <i className="fa fa-star"></i>
 		                            <span>2.0</span>
 		                        </label>
 		                        <label>
-									<Checkbox
-									  checkboxClass="icheckbox_square-ltblue"
-									  increaseArea="10%"
-									  className="icheck"
-									/>
+		                            <input type="checkbox" className="icheck" data-checkbox="icheckbox_square-ltblue"/>
 		                            <i className="fa fa-star"></i>
 		                            <span>1.0</span>
 		                        </label>
@@ -802,4 +719,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(SearchResults));
+)(SearchResults);

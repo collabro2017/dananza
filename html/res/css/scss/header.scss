@@ -1,6 +1,7 @@
 /* header start */
 .header_section
 {
+    margin-bottom: 105px;
 	.nav_bar
 	{
 		margin: 30px 25px;
@@ -59,26 +60,17 @@
 	/* dropmenu  start */
 	.nav_mobile_menu
 	{
-		position:fixed;
-	    width:100%;
-	    background: #cccccc;
-	    z-index: 1000;
 		text-align: center;
 	}
 	.nav_mobile_list
 	{
 		list-style: none;
 		display: block;
-	    margin-bottom: 0;
-		li a{
-		    display: block;
-		    padding: 30px 0; 
-		    &:hover{
-		    	background-color: #aaaaaa;
-		    }
-		}
 	}
-
+	.nav_mobile_list li
+	{
+		margin-bottom: 43px;
+	}
 	/* dropmenu end */
 	@media (min-width: 768px)
 	{

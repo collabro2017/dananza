@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+		
+	<!-- bootstrap -->
+	<link rel="stylesheet" type="text/css" href="./res/bootstrap/css/bootstrap.min.css">
+
+	<!-- fontawesome -->
+	<link rel="stylesheet" type="text/css" href="./res/font-awesome/css/font-awesome.min.css">
+
+	<!-- layout -->
+	<link rel="stylesheet" type="text/css" href="./res/css/layout.min.css"/>
+
+	<!-- main style -->
+	<link rel="stylesheet" type="text/css" href="./res/css/infoflowPage.css"/>
+	<link rel="stylesheet" type="text/css" href="./res/css/header.css"/>
+	<link rel="stylesheet" type="text/css" href="./res/css/footer.css"/>
+	<link rel="stylesheet" type="text/css" href="./res/css/global.css"/>
+	
+</head>
+<body>
+
+	<!-- header section -->
+	<div class="header_section">
+		<div class="nav_bar">
+			<div class="logo">
+				<img src="./res/img/logo.png">
+			</div>
+			<div class="nav_menu justify-content-end">
+				<button id="navbar_toggler" class="navbar_toggler_open mobile_navbar_toggler" type="button">
+					<span class="navbar_toggler_icon"></span>
+				</button>
+				<ul class="nav_menu_list">
+					<li>
+						<a href="#">About</a>
+					</li>
+					<li>
+						<a href="#">Sign Up</a>
+					</li>
+					<li>
+						<a href="#">Log In</a>
+					</li>
+					<li class="menu_last_li">
+						<a href="#" class="btn bg-yellow btn-small">Become an Adza</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="nav_mobile_menu" style="display: none">
+			<ul class="nav_mobile_list">
+				<li>
+					<a href="#">About</a>
+				</li>
+				<li>
+					<a href="#">Sign Up</a>
+				</li>
+				<li>
+					<a href="#">Log In</a>
+				</li>
+				<li class="menu_last_li">
+					<a href="#" class="menu_adza">Become an Adza</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- page content -->
+	<div class="infoflowPage">
+		<div class="checkout full_container">
+			<div class="nav_flow row">
+				<ul class="">
+					<li class="cart actived">
+						<span class="step_num">1</span>
+						Cart Details
+						<i class="fa fa-chevron-right"></i>
+					</li>
+					<li class="checkout active">
+						<span class="step_num">2</span>
+						Checkout
+						<i class="fa fa-chevron-right"></i>
+					</li>
+					<li class="upload">
+						<span class="step_num">3</span>
+						Uploads Media Ad Files
+					</li>
+				</ul>
+			</div>
+			<div class="chk_info row">
+				<div class="col-md-9 options">
+					<div class="visa">
+						<div class="title">
+							Payment Options
+						</div>
+						<div class="brand">
+							<input type="radio" name="" />
+							<img src="./res/img/visa_brand.png" />
+							<img src="./res/img/mastercard.png" />
+							<img src="./res/img/amex.png" />
+						</div>
+						<div class="input_info">
+							<div class="col-md-6">
+								Card Number <input type="input" id="card_no" />
+							</div>
+							<div class="col-md-4">
+								Expiration Date <input type="input" id="exp_date" />
+							</div>
+							<div class="col-md-2">
+								CVV <input type="input" id="cvv" />
+							</div>
+							<div class="col-md-6">
+								First Name
+								<input type="input" id="f_name" />
+							</div>
+							<div class="col-md-6">
+								Last Name
+								<input type="input" id="l_name" />
+							</div>
+						</div>
+					</div>
+					<div class="paypal">
+						<div class="brand">
+							<input type="radio" name="" />
+							<img src="./res/img/paypal_brand.png" />
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 summary">
+					<div class="smy_title">Summary</div>
+					<div class="site_info">
+						<div class="col-md-2">
+							<img src="./res/img/themainmenu_1.png" />
+						</div>
+						<div class="info_detail col-md-9">
+							@themainmenu<br/>
+							X1 Instagram Story<br/>
+							$100
+						</div>
+					</div>
+					<div class="divider"></div>
+					<div class="site_info">
+						<div class="col-md-2">
+							<img src="./res/img/themainmenu_2.png" />
+						</div>
+						<div class="info_detail col-md-9">
+							@themainmenu<br/>
+							X1 Blog Post<br/>
+							$100
+						</div>
+					</div>
+					<div class="sub_total">
+						<div class="sub_title col-md-6">Subtotal</div>
+						<div class="sub_value col-md-6">$200</div>
+					</div>
+					<div class="other_fee">
+						<div class="fee_title col-md-6">Other Fees</div>
+						<div class="fee_value col-md-6">$3.50</div>
+					</div>
+					<div class="divider"></div>
+					<div class="total">
+						<div class="total_title col-md-6">Total</div>
+						<div class="total_value col-md-6">$203.50</div>
+					</div>
+					<div class="confirm">
+						<a href="#">Confirm & Pay</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- footer section -->
+	<div class="footer_section">
+		<div class="footer_info">
+			<div class="full_container">
+				<div class="row">
+					<div class="col-md-3 col-sm-3 for_business">
+						<div class="footer_info_title">For Business</div>
+						<ul>
+							<li>Epsum factorial</li>
+							<li>Deposit quid pro</li>
+							<li>Escorol</li>
+							<li>Tempus</li>
+							<li>Condominium</li>
+							<li>Facile et</li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-2">
+						<div class="footer_info_title">For Adzas</div>
+						<ul>
+							<li>Epsum factorial</li>
+							<li>Deposit quid pro</li>
+							<li>Escorol</li>
+							<li>Tempus</li>
+							<li>Condominium</li>
+							<li>Facile et</li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-2">
+						<div class="footer_info_title">About</div>
+						<ul>
+							<li>Company</li>
+							<li>Careers</li>
+							<li>Blog</li>
+							<li>Help</li>
+							<li>Contact</li>
+						</ul>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<div class="footer_info_title">Search for Adzas</div>
+						<div class="input-group input-group-lg">
+	                        <input type="text" class="form-control input-lg">
+							<i class="fa fa-search"></i>
+	                        <span class="input-group-btn">
+	                            <button class="btn bg-blue color-white" type="button">Search</button>
+	                        </span>
+	                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer_copyright">
+			<div>Copyright © 2018 Dananza - All Rights Reserved.</div>
+			<div>Terms & Conditions</div>
+			<div>Privacy</div>
+			<div class="social_icons">
+				<ul>
+					<li>
+						<a href="#" class="fa fa-facebook"></a>
+					</li>
+					<li>
+						<a href="#" class="fa fa-twitter"></a>
+					</li>
+					<li>
+						<a href="#" class="fa fa-linkedin"></a>
+					</li>
+					<li>
+						<a href="#" class="fa fa-instagram"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

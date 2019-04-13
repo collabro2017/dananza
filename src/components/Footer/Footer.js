@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 
 import "../../res/css/footer.css"
 
@@ -38,7 +37,7 @@ const Footer = props => {
                   <li>Company</li>
                   <li>Careers</li>
                   <li>Blog</li>
-                  <li><Link to="/help">Help</Link></li>
+                  <li>Help</li>
                   <li>Contact</li>
                 </ul>
               </div>
@@ -48,7 +47,7 @@ const Footer = props => {
                   <input type="text" className="form-control input-lg"/>
                   <i className="fa fa-search"></i>
                     <span className="input-group-btn">
-                        <Link to="/results" className="btn bg-blue color-white" type="button">Search</Link>
+                        <button className="btn bg-blue color-white" type="button">Search</button>
                     </span>
                 </div>
               </div>

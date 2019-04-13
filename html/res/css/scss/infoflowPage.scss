@@ -1,65 +1,74 @@
 /** infoflowPage start **/
 	.header_section
 	{
-		margin-bottom: 0;
+		margin-bottom: 0 !important;
 	}
 	.infoflowPage
 	{
-		.cartPart
+		.nav_flow.row
+		{
+			margin: 0;
+		    background-color: #f3f3f3;
+			ul
+			{
+				list-style: none;
+				display: flex;
+				//centering child tags with display flex
+				justify-content: center;
+				line-height: 24px;
+				padding: 20px 0;
+				text-align: center;
+				font-size: 15px;
+				
+				li
+				{
+					color: #7f7f7f;
+					.step_num
+					{
+						border-radius: 25px !important;
+						padding: 4px 10px;
+						color: #ffffff;
+						background-color: #7f7f7f;
+						margin-right: 10px;
+					}
+				}
+				li:first-child
+				{
+					.step_num
+					{
+						padding: 4px 12px;
+					}
+				}
+				.active, .actived
+				{
+					color: #fe4a49;
+					.step_num
+					{
+						background-color: #fe4a49;
+					}
+				}
+				.fa
+				{
+					font-size: 15px;
+					color: #7f7f7f;
+					margin: 0 17px;
+				}
+			}
+		}
+		.cartPart, .post_checkout2, .upload_files
 		{
 			.row
 			{
 				margin: 0px;
 			}
-			.nav_flow.row
-			{
-				margin: 0;
-			    background-color: #f3f3f3;
-				ul
-				{
-					list-style: none;
-					display: flex;
-					line-height: 24px;
-					padding: 20px 0;
-					width: fit-content;
-    				margin: 0 auto;
-					text-align: center;
-					font-size: 15px;
-					li
-					{
-						color: #7f7f7f;
-						.step_num
-						{
-							border-radius: 25px;
-							padding: 4px 10px;
-							color: #ffffff;
-							background-color: #7f7f7f;
-							margin-right: 10px;
-						}
-					}
-					.active
-					{
-						color: #fe4a49;
-						.step_num
-						{
-							background-color: #fe4a49;
-						}
-					}
-					.fa
-					{
-						font-size: 15px;
-						color: #7f7f7f;
-						margin: 0 17px;
-					}
-				}
-			}
+			
 			.cart_des
 			{
 				font-family: "Coves-Bold";
 				font-size: 32px;
 				line-height: 42px;
-				width: fit-content;
-				margin: 60px auto;
+				margin: 30px auto;
+				text-align: center;
 			}
 			.table_camp
 			{
@@ -103,14 +112,15 @@
 				.checkout
 				{
 					margin: 0 auto;
-					width: fit-content;
+					text-align: center;
+					margin: 60px auto 70px;
 					a
 					{
 						text-align: center;
 					    text-decoration: none;
 					    font-size: 16px;
 					    line-height: 100px;
-					    padding: 20px 45px;
+					    padding: 0 45px;
 					    background: #ffd766;
 					    border-radius: 5px;
 				        color: #000c20;
@@ -126,6 +136,251 @@
 				    text-align: center;
 				}
 			}
+		}
+		.checkout
+		{
+			.active
+			{
+				color: #ffbc00;
+				.step_num
+				{
+					background-color: #ffbc00;
+				}
+			}
+			.chk_info
+			{
+				margin: 4% 10%;
+				.title
+				{
+					font-size: 28px;
+					line-height: 48px;
+				}
+				.brand
+				{
+					margin-top: 30px;
+					margin-bottom: 15px;
+					margin-left: 5px;
+					img
+					{
+						margin: 0 10px;
+					}
+				}
+				.input_info
+				{
+					font-size: 14px;
+					line-height: 24px;
+					input
+					{
+						width: 100%;
+						border-radius: 5px;
+						// border: 0.5px #d7d7d7;
+						border: 0.5px solid;
+						height: 40px;
+						margin-bottom: 15px;
+					}
+				}
+				.paypal
+				{
+					margin-top: 30px;
+				}
+				.summary
+				{
+					border-left: 0.5px solid;
+					border-right: 0.5px solid;
+					border-radius: 5px;
+					div
+					{
+						margin: 10px 0;
+						height: auto;
+					}
+					font-size: 14px;
+					.col-md-6
+					{
+						padding: 0 !important;
+					}
+
+					.smy_title
+					{
+						font-size: 20px;
+					}
+					.site_info
+					{
+						.col-md-2, 
+						.col-md-9 
+						{
+							padding: 0 !important;
+						}
+						img
+						{
+							float: left;
+							margin: 15px 10px 0 0;
+						}
+						.info_detail
+						{
+							margin: 15px auto;
+						}
+					}
+					.sub_value, .fee_value, .total_value
+					{
+						text-align: right;
+					}
+					.confirm 
+					{
+						text-align: center;
+						a
+						{
+							text-decoration: none;
+							padding: 10px 30px;
+							background-color: #ffd766;
+							border-radius: 5px;
+						}
+					}
+				}
+			}
+		}
+		.post_checkout2, .upload_files
+		{
+			.row.done
+			{
+				.title
+				{
+					font-family: "Coves-Bold";
+					font-size: 32px;
+					line-height: 48px;
+					margin: 70px auto 40px;
+					text-align: center;
+				}
+				.content
+				{
+					width: 50%;
+					text-align: center;
+					margin: 0 auto;
+				}
+				.pro_line
+				{
+					position: relative;
+					margin: 50px auto;
+					.pro_line_pos
+					{
+						i
+						{
+							font-size: 16px;
+							background: #fff;
+							color: #fff;
+							width: 25px;
+							height: 25px;
+							text-align: center;
+							padding-top: 6px;
+							border: 1px solid #ffd96f;
+							border-radius: 25px;
+						}
+						div
+						{
+							font-family: "Thasadith-Bold";
+							font-size: 14px;
+							line-height: 24px;
+							text-align: center;
+						}
+						.passed
+						{
+							background: #2ab7c9;
+							border: none;
+						}
+					}
+					.line
+					{
+						width: 65%;
+						height: 2px;
+						color: red;
+						border: 1px solid #ddd;
+						background: #b2c7d4;
+						margin: 30px auto;
+						position: absolute;
+						top: -17px;
+						right: 249px;
+						z-index: -4;
+					}
+				}
+			}
+		}
+		.upload_files
+		{
+			.nav_flow
+			{
+				.checkout
+				{
+					color: #ffbc00;
+					span
+					{
+						background: #ffbc00 !important;
+					}
+				}
+				.upload
+				{
+					color: #2ab7c9;
+					span
+					{
+						background: #2ab7c9 !important;
+					}
+				}
+			}
+			.dropzone.dz-clickable 
+			{
+			    cursor: pointer;
+			}
+			.dropzone-file-area
+			{
+
+			}
+			.upload_form
+			{
+				width: 570px;
+				// height: 250px;
+				border: 1px solid #d3d3d3;
+				border-radius: 10px !important;
+				margin: 0 auto;
+				.send_msg
+				{
+					margin: 5px 40px;
+					
+					span
+					{
+						border-right: 1px solid #858585;
+						margin-left: 10px;
+						padding-right: 20px;
+					}
+					.fa-times
+					{
+						font-size: 16px;
+					}
+					.fa-angle-down
+					{
+						float: right;
+						margin-top: 6px;
+					}
+				}
+				.note_txt
+				{
+					border-top: 1px solid #d3d3d3;
+					padding-left: 40px;
+    				padding-top: 20px;
+				}
+				.dropzone-file-area
+				{
+					border: none;
+				}
+				.upload_submit
+				{
+					padding: 10px 0 10px 40px;
+					background: #f1f6f9;
+
+				}
+				// a
+				// {
+				// 	float: right;
+				// }
+			}
+			
 		}
 	}
 /** infoflowPage end **/

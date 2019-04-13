@@ -8,18 +8,13 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import { increment, decrement } from "../store/reducers/stepCounter";
-import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
 
 import "../res/css/layout.min.css"
 import "../res/css/BuyerLanding.css"
 
 class BuyerLanding extends React.Component{
-
-  state={'headerType': "buyer"}
-
   constructor(props) {
     super(props);
-    props.changeHeaderType( this.state.headerType )
   }
 
   componentDidMount(){
@@ -31,7 +26,29 @@ class BuyerLanding extends React.Component{
       <div className="buyer_landing">
         <div className="page-container">
           <div className="page-content">
-            <BuyerSidebar />
+            <div className="page-sidebar">
+              <div className="userinfo">
+                <img src={require("../res/img/userinfo_img.png")} />
+                <h3>Michaela Seyra</h3>
+                <h5>@michaela_Syr</h5>
+              </div>
+              <div className="selector">
+                <ul className="page-sidebar-menu">
+                  <li className="nav-item">
+                    <a> <img className="nav-icon" src={require("../res/img/person.png")} /> Profile Page</a>
+                  </li>
+                  <li className="nav-item">
+                    <a> <img className="nav-icon" src={require("../res/img/saved.png")} />Saved</a>
+                  </li>
+                  <li className="nav-item">
+                    <a> <img className="nav-icon" src={require("../res/img/champaigns.png")} />Campaigns</a>
+                  </li>
+                  <li className="nav-item last">
+                    <a> <img className="nav-icon" src={require("../res/img/messages.png")} />Messages</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
             <div className="page-main">
               <div className="page-main-header">
                 <span className="headline-first">
