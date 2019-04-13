@@ -2,6 +2,7 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { increment, decrement } from "../store/reducers/stepCounter";
+import { Link } from "react-router-dom";
 
 import "../res/css/infoflowPage.css"
 
@@ -124,7 +125,7 @@ class Cart extends React.Component{
 						</div>
 						<div className="proceed_chk">
 							<div className="checkout">
-								<a href="#" className="btn btn-mid bg-yellow color-dark">Proceed to Checkout</a>
+								<Link to='/checkout' className="btn btn-mid bg-yellow color-dark">Proceed to Checkout</Link>
 							</div>
 							<div className="note">
 								Note: You are not charged until Adza approves your media 

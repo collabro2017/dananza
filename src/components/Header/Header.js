@@ -36,6 +36,13 @@ class Header extends React.Component{
   }
 
   componentWillReceiveProps( nextProps ){
+
+    window.jQuery = $;
+    window.$ = $;
+    global.jQuery = $;
+    
+    const bootstrap = require('bootstrap');
+
     this.setState({headerType: nextProps.type})
   }
 
