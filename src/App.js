@@ -16,6 +16,8 @@ import EmptyLayout from "./layouts/EmptyLayout";
 import Home from "./containers/Home";
 import Setting from "./containers/Setting";
 import Signin from "./containers/Signin";
+
+import SignUp from "./containers/SignUp";
 import Cart from "./containers/Cart";
 import Checkout from "./containers/Checkout";
 import UploadFiles from "./containers/UploadFiles";
@@ -85,6 +87,7 @@ class App extends Component {
                 <DashboardRoute path="/dashboard" component={Home} />
                 <DashboardRoute path="/setting" component={Setting} />
 
+                <DashboardRoute exact path="/signup" component={SignUp} />
                 <DashboardRoute exact path="/about" component={About} />
                 <DashboardRoute exact path="/help" component={Help} />
                 <DashboardRoute exact path="/cart" component={Cart} />
