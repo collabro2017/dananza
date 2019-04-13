@@ -28,35 +28,35 @@ class SellerPage extends React.Component{
   render(){
     return (
   <div className="search_page full_container">
-    <div class="page-navbar">
-      <div class="page-navbar-content">
-        <div class="btn-group" data-toggle="buttons">
-          <label class="btn btn-default">
-            <input type="checkbox" class="toggle"/>
+    <div className="page-navbar">
+      <div className="page-navbar-content">
+        <div className="btn-group" data-toggle="buttons">
+          <label className="btn btn-default">
+            <input type="checkbox" className="toggle"/>
             Facebook
           </label>
-          <label class="btn btn-default">
-            <input type="checkbox" class="toggle"/>
+          <label className="btn btn-default">
+            <input type="checkbox" className="toggle"/>
             Instagram
           </label>
-          <label class="btn btn-default">
-            <input type="checkbox" class="toggle"/>
+          <label className="btn btn-default">
+            <input type="checkbox" className="toggle"/>
             Twitter
           </label>
-          <label class="btn btn-default">
-            <input type="checkbox" class="toggle"/>
+          <label className="btn btn-default">
+            <input type="checkbox" className="toggle"/>
             LinkedIn
           </label>
-          <label class="btn btn-default">
-            <input type="checkbox" class="toggle"/>
+          <label className="btn btn-default">
+            <input type="checkbox" className="toggle"/>
             YouTube
           </label>
-          <label class="btn btn-default">
-            <input type="checkbox" class="toggle"/>
+          <label className="btn btn-default">
+            <input type="checkbox" className="toggle"/>
             Blog
           </label>
-          <label class="btn btn-default">
-            <input type="checkbox" class="toggle"/>
+          <label className="btn btn-default">
+            <input type="checkbox" className="toggle"/>
             Podcasts
           </label>
         </div>
