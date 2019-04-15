@@ -96,7 +96,7 @@ class Header extends React.Component{
                     <Link to="/seller_page">Adza Page</Link>
                   </li>
                   <li>
-                    <Link to="/seller_campaigns">Campaign</Link>
+                    <Link to="/seller_dashboard">Campaign</Link>
                   </li>
                   <li>
                     <Link to="/seller_messages">Messages</Link>
@@ -197,7 +197,7 @@ class Header extends React.Component{
                     <Link to="/about">About</Link>
                   </li>
                   <li>
-                    <Link to="/">Sign Up</Link>
+                    <Link to="/signup">Sign Up</Link>
                   </li>
                   <li>
                     <Link to="/buyer_landing">Log In</Link>
@@ -214,7 +214,7 @@ class Header extends React.Component{
                   <Link to="/about">About</Link>
                 </li>
                 <li>
-                  <Link to="/">Sign Up</Link>
+                  <Link to="/signup">Sign Up</Link>
                 </li>
                 <li>
                   <Link to="/buyer_landing">Log In</Link>
@@ -246,7 +246,7 @@ class Header extends React.Component{
                               <Link to="/about">About</Link>
                           </li>
                           <li>
-                              <Link to="/">Sign Up</Link>
+                              <Link to="/signup">Sign Up</Link>
                           </li>
                           <li>
                               <Link to="/buyer_landing">Log In</Link>

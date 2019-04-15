@@ -17,7 +17,7 @@ const drawerWidth = 240;
 const BuyerSidebar = props => {
   const { open, classes } = props;
   return (
-    <div className="page-sidebar">
+    <div className="page-sidebar buyer-sidebar">
         <div className="section target-tree">
           <div className="image">
             <img src={require("../../res/img/userinfo_img.png")} />

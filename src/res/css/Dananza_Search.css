@@ -30,8 +30,8 @@
 }
 .search_page .page-container .page-bar {
   width: 100%;
-  border-bottom: 1px solid #dadada;
-  padding-bottom: 5px;
+/*  border-bottom: 1px solid #dadada;
+*/  padding-bottom: 5px;
   padding-top: 5px;
 }
 .search_page .sort-by {

@@ -22,8 +22,8 @@
 }
 .page-result .title{
 	font-size: 32px;
-	margin: 30px auto;
-	font-weight: bold;
+/*	margin: 30px auto;
+*/	font-weight: bold;
 	font-family: Coves-Bold;
 	border-bottom: 1px solid #89b9d3;
 	width: 100%;
@@ -77,7 +77,7 @@
 	border: unset;
 	font-weight: bold;
 }
-.btn-yellow{
+.seller_calendar .btn-yellow{
 	background-color: #ffd766;
 	border-radius: 5px !important;
 	border: unset;

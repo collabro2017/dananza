@@ -22,13 +22,13 @@ class SellerCalendar extends React.Component{
 
   render(){
     return (
-    	<div className="dashboard_seller">
+    	<div className="dashboard_seller seller_calendar">
 	    	<div className="page-content">
 				<SellerSidebar />
 				<div className="page-result">
           <div class="col-sm-12">
           <label class="subtitle">
-            Overview Analytics
+            Today, April 13, 2019
           </label>
         </div>
         <div class="page-result-content">
