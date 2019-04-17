@@ -98,6 +98,8 @@ button {
   font-family: "Thasadith-Bold";
   border-radius: 5px !important;
   font-size: 18px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 .btn-small{
   line-height: 40px !important;

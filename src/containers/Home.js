@@ -6,6 +6,7 @@ import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 
 import { increment, decrement } from "../store/reducers/stepCounter";
 
@@ -41,9 +42,14 @@ class Home extends React.Component{
                 <div className="finding_best_ad ">Find The Best Space To Place Your Ad</div>
                 <div className="finding_ad_select">I want to advertise on
                   <select>
+                    <option>Facebook</option>
+                    <option>Instagram</option>
+                    <option>YouTube</option>
+                    <option>LinkedIn</option>
+                    <option>Twitter</option>
+                    <option>Pinterest</option>
                     <option>Blogs</option>
-                    <option>Sites</option>
-                    <option>Advertisings</option>
+                    <option>Podcasts</option>
                   </select>
                 </div>
                 <div className="finding_ad_input">
@@ -56,7 +62,6 @@ class Home extends React.Component{
               </div>
               <div className="col-sm-6 col-md-6 pull-right">
                 <img src={require("../res/img/heroimage.png")}/>
-
               </div>
             </div>
             <div className="row what_adza">
@@ -114,7 +119,7 @@ class Home extends React.Component{
               <div className="bg_img col-sm-12">
                 <img src={require("../res/img/ad_camp.png")}/>
                 <div>
-                  <button className="btn btn-mid bg-yellow">Start Ad Campaign</button>
+                  <Link to="/cart" className="btn btn-mid bg-yellow">Start Ad Campaign</Link>
                 </div>
               </div>
             </div>
@@ -170,8 +175,8 @@ class Home extends React.Component{
             <div className="row customer">
               <div className="info_title">Your Customers are Waiting For You</div>
               <div className="customer_link">
-                <a href="#" className="btn btn-large creat_act color-white bg-blue">Creat Account</a>
-                <a href="#" className="btn btn-large become_adza color-dark bg-yellow">Become An Adza</a>
+                <a href="#" className="btn btn-large creat_act color-white bg-blue">Create Account</a>
+                <Link to="/signup" className="btn btn-large become_adza color-dark bg-yellow">Become An Adza</Link>
               </div>
             </div>
           </div>
