@@ -1,27 +1,10 @@
-.seller_analytics.page-content{
-	width: 100%;
-	font-family: 'Thasadith-Regular';
-	font-weight: 900 !important;
-	border-top: 1px solid #dadada;
-	position: relative;
-}
 .seller_analytics .right{
 	float: right;
 }
-.seller_analytics .page-result-wrapper{
-	background-color: #deebf2;
-	margin-left: 330px;
-	position: relative;
-}
-.seller_analytics .page-result{
-	width: 698px;
-	margin: 0px auto;
-	position: relative;
-	padding-bottom: 40px;
-}
 .seller_analytics .page-result .title{
 	font-size: 32px;
-	margin: 30px auto;
+	margin-top: 30px;
+	margin-bottom: 15px;
 	font-weight: bold;
 	font-family: Coves-Bold;
 	border-bottom: 1px solid #89b9d3;
@@ -33,9 +16,15 @@
 	margin-top: 15px;
 	color: black;
 }
+.seller_analytics .page-result .title .btn-export img{
+	vertical-align: top;
+}
 .seller_analytics .page-result .subtitle{
 	font-size: 24px;
 	margin: 15px auto;
+	padding-bottom: 3px;
+	padding-left: 15px;
+	padding-right: 15px;
 	width: 100%;
 	border-bottom: 1px solid #89b9d3;
 	font-weight: bold;
@@ -75,7 +64,8 @@
 }
 .seller_analytics .page-result-content .dial{
 	text-align: center;
-	margin-bottom: 85px;
+	margin-top: 15px;
+	margin-bottom: 55px;
 }
 .seller_analytics .page-result-content .dial .knob{
 	position: relative;
@@ -84,14 +74,23 @@
     background: white;
     border-radius: 50% !important;
 }
+.seller_analytics .page-result-content .knobedit{
+	position: absolute;
+    left: 33px;
+    top: 35px;
+}
+.seller_analytics .page-result-content .fa-rate {
+	color: #fac917;
+    font-size: 14px;
+    margin-left: -24px;
+    vertical-align: text-top;
+}
 .seller_analytics .page-result-content .dial input{
 	font-family: 'Thasadith-Bold' !important;
-	position: absolute;
 	border: none;
-    left: 33px;
     background: none;
-    top: 35px;
     font-size: 20px;
+    width: 55px;
 }
 .seller_analytics .page-result-content .dial h6{
 	font-size: 16px;
@@ -144,40 +143,55 @@
 	color: #01091c;
 }
 /* HJ Custom CSS*/
-.seller_analytics .fa-rate {
-	color: #fac917;
-    position: absolute;
-    top: 42px;
-    right: 63px;
-    font-size: 14px;
-}
 .seller_analytics .page-result-content-info {
 	height: 35px !important;
 	margin-top: 15px;
+	margin-bottom: 5px;
+}
+.seller_analytics .page-result-content-info .info-label {
+	margin-left: 7px;
+	margin-right: 20px;
+	font-family: 'Thasadith-Bold';
+	font-size: 16px;
+}
+.seller_analytics .page-result-content-info img {
+	vertical-align: text-top;
 }
 .seller_analytics .margin-left-36{
 	margin-left: 36px;
 }
 .seller_analytics .instagram {
-	height: 56px !important;
 	background-color: white;
 	padding: 16px;
 	margin-bottom: 80px;
+	font-family: 'Thasadith-Bold';
+	display: block;
 }
-.seller_analytics .info-label {
-	margin-left: 7px;
+
+.seller_analytics .instagram .instagram-ico{
+	display: inline;
+	padding-left: 0;
 }
+.seller_analytics .instagram .instagram-part{
+	float: right;
+}
+
 .seller_analytics .part {
 	margin-left: 17px;
 }
 .seller_analytics .part a {
 	color: black !important;
 }
+.seller_analytics .part i{
+	font-size: 16px;
+}
+
 .seller_analytics .star-info {
 	color: lightgrey;
 }
 .seller_analytics .progbar-title {
 	color: black;
+	font-size: 16px;
 }
 .seller_analytics .progbar-custom {
     border-radius: 11px !important;
@@ -208,9 +222,21 @@
 .seller_analytics .mb-36 {
 	margin-bottom: 36px;
 }
-.seller_analytics .enagement-info {
-	padding-left: 85px !important;
+.seller_analytics .page-result-content .enagement-info {
+	padding-top: 10px;
+	padding-bottom: 20px;
+	padding-left: 15% !important;
+	padding-right: 15% !important;
 }
+.seller_analytics .enagement-info .number{
+	font-size: 24px;
+	font-family: 'Thasadith-Bold';
+}
+.seller_analytics .enagement-info .comment{
+	font-size: 16px;
+	font-family: 'Thasadith-Regular';
+}
+
 .seller_analytics .enagement-dial {
 	width: 330px !important;
 	padding-right: 0;
@@ -220,6 +246,7 @@
 }
 .seller_analytics .enagement-process {
 	padding-left: 0px;
+	font-family: 'Thasadith-Bold';
 }
 .seller_analytics .enagement-progress {
 	background-color: #ffd766;
@@ -237,6 +264,7 @@
 .seller_analytics .complete-profile{
 	width: 100%;
 	display: inline-block;
+	padding-bottom: 10px;
 }
 /* mobile */
 @media(min-width: 1230px){
@@ -249,5 +277,32 @@
 	}
 }
 @media(max-width: 768px){
+	.seller_analytics .page-result-content .row{
+		display: block !important;
+	}
+	.seller_analytics .col-sm-3{
+		width: -webkit-fill-available;
+	}
+	.seller_analytics .col-sm-4{
+		width: -webkit-fill-available;
+		text-align: center;
+	}
+	.seller_analytics .col-sm-12{
+		width: -webkit-fill-available;
+	}
+	.seller_analytics .enagement-dial{
+		width: 100% !important;
+		display: flex !important;
+		justify-content: space-between !important;
+	}
+	.seller_analytics .instagram{
+		text-align: center;
+	}
+	.seller_analytics .instagram .instagram-ico{
+		display: block;
+	}
+	.seller_analytics .instagram .instagram-part{
+		float: unset;
+	}
 }
 /*# sourceMappingURL=header.css.map */

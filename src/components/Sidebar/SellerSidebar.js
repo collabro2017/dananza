@@ -87,32 +87,32 @@ const SellerSidebar = props => {
             <div className="btn-group" data-toggle="buttons" id="pages">
               <Link to="/seller_orders">
                 <label className={navitem=="orders"?"btn btn-default active":"btn btn-default"}>
-                  <i className="fa fa-shopping-cart"></i>
-                    <input type="radio" className="toggle"/> Orders
+                  <img src={require('../../res/img/sidebar_cart.png')}/>
+                  <input type="radio" className="toggle"/> Orders
                 </label>
               </Link>
               <Link to="/seller_analytics">
                 <label className={navitem=="analytics"?"btn btn-default active":"btn btn-default"}>
-                  <i className="fa fa-bar-chart"></i>
-                    <input type="radio" className="toggle"/> Analytics
+                  <img src={require('../../res/img/sidebar_graph.png')}/>
+                  <input type="radio" className="toggle"/> Analytics
                 </label>
               </Link>
               <Link to="/seller_calendar">
                 <label className={navitem=="calendar"?"btn btn-default active":"btn btn-default"}>
-                  <i className="fa fa-calendar"></i>
-                    <input type="radio" className="toggle"/> Calendar
+                  <img src={require('../../res/img/sidebar_calendar.png')}/>
+                  <input type="radio" className="toggle"/> Calendar
                 </label>
               </Link>
               <Link to="/seller_dashboard">
                 <label className={navitem=="sellers_page"?"btn btn-default active":"btn btn-default"}>
-                  <i className="fa fa-user"></i>
-                    <input type="radio" className="toggle"/> Seller's Page
+                  <img src={require('../../res/img/sidebar_user.png')}/>
+                  <input type="radio" className="toggle"/> Seller's Page
                 </label>
               </Link>
               <Link to="/seller_messages">
                 <label className={navitem=="message"?"btn btn-default active":"btn btn-default"}>
-                  <i className="fa fa-comment-o"></i>
-                    <input type="radio" className="toggle"/> Messages
+                  <img src={require('../../res/img/messages.png')}/>
+                  <input type="radio" className="toggle"/> Messages
                 </label>
               </Link>
           </div>

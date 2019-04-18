@@ -32,8 +32,8 @@ class SellerAnalytics extends React.Component{
                 <label className="title">
                   Overview Analytics
                   <a className="right btn-export">
-                    Export
-                    <i className="fa fa-download"></i>
+                    Export&nbsp;&nbsp;
+                    <img src={require('../res/img/export.png')}/>
                   </a>
                 </label>
               </div>
@@ -53,13 +53,14 @@ class SellerAnalytics extends React.Component{
                     <Knob
                       value={99}
                       fgColor={'#2ab7c9'}
+                      bgColor={'#ffffff'}
                       className="knob"
                       displayprevious="true"
                       width="100"
                       height="100"
                       thickness={0.12}
                       displayInput={false}
-                      displayCustom={()=>(<input value={'99%'}/>)}
+                      displayCustom={()=>(<div class='knobedit'><input value={'99%'}/></div>)}
                     />              
                     <h6>Order Completed</h6>
                   </div>
@@ -67,13 +68,14 @@ class SellerAnalytics extends React.Component{
                     <Knob
                       value={75}
                       fgColor={'#2ab7c9'}
+                      bgColor={'#ffffff'}
                       className="knob"
                       displayprevious="true"
                       width="100"
                       height="100"
                       thickness={0.12}
                       displayInput={false}
-                      displayCustom={()=>(<input value={'75%'}/>)}
+                      displayCustom={()=>(<div class='knobedit'><input value={'75%'}/></div>)}
                     />
                     <h6>Response Rate</h6>
                   </div>
@@ -81,13 +83,14 @@ class SellerAnalytics extends React.Component{
                     <Knob
                       value={98}
                       fgColor={'#2ab7c9'}
+                      bgColor={'#ffffff'}
                       className="knob"
                       displayprevious="true"
                       width="100"
                       height="100"
                       thickness={0.12}
                       displayInput={false}
-                      displayCustom={()=>(<input value={'98%'}/>)}
+                      displayCustom={()=>(<div class='knobedit'><input value={'98%'}/></div>)}
                     />
                     <h6>Delivered on Time</h6>
                   </div>
@@ -96,97 +99,100 @@ class SellerAnalytics extends React.Component{
                       value={5.0}
                       max={5.0}
                       fgColor={'#2ab7c9'}
+                      bgColor={'#ffffff'}
                       className="knob"
                       displayprevious="true"
                       width="100"
                       height="100"
                       thickness={0.12}
                       displayInput={false}
-                      displayCustom={()=>(<input value={'5.0'}/>)}
+                      displayCustom={()=>(<div class='knobedit'><input value={'5.0'}/><i className='fa fa-star fa-rate'></i></div>)}
                     />
-                    <i className="fa fa-star fa-rate"></i>
                     <h6>Rating</h6>
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-12">
-                    <label className="subtitle">
-                      Most Popular Package
-                    </label>
-                  </div>
+                  <label className="subtitle">
+                    Most Popular Package
+                  </label>
                 </div>
                 <div className="row d-block">
                   <div className="col-sm-12 page-result-content-info">
-                    <i className="fa fa-shopping-cart"></i>
+                    <img src={require('../res/img/sidebar_cart.png')}/>
                     <span className="info-label">90 orders</span>
-                    <i className="fa fa-eye margin-left-36"></i>
+                    <img src={require('../res/img/eye.png')}/>
                     <span className="info-label">230 views</span>
                   </div>
                   <div className="col-sm-12">
-                    <div className="instagram d-flex">
-                      <span className="col-sm-4 instagram-ico padding-left-0">
+                    <div className="instagram">
+                      <div className="instagram-ico">
                         <img src={require("../res/img/instagram_sq.png")} />
+                        &nbsp;&nbsp; 
                         <span className="info-label">Instagram Story</span>
-                      </span>
-                      <span className="col-sm-8 instagram-part d-flex">
+                      </div>
+                      <div className="instagram-part">
                         <span className="part">
-                          <i className="fa fa-usd"></i>
+                          <img src={require('../res/img/dollar.png')}/>
                           <span className="info-label">100</span>
                         </span>
                         <span className="part">
-                          <i className="fa fa-user"></i>
-                          <span className="info-label">60K</span>
+                          <img src={require('../res/img/user.png')}/>
+                          &nbsp;&nbsp;
+                          <span className="info-label">60k+</span>
                         </span>
                         <span className="part">
                           <i className="fa fa-star color-yellow"></i>
-                          <span className="star-info info-label">5.0(17)</span>
+                          &nbsp; 
+                          <span className="star-info info-label"> 5.0(17)</span>
                         </span>
                         <span className="part">
-                          <a href="#">View Package
-                          <i className="fa fa-long-arrow-right info-label"></i></a>
+                          <a href="#">
+                            View Package
+                            &nbsp;
+                            <i className="fa fa-long-arrow-right info-label"></i>
+                          </a>
                         </span>
-                      </span>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-12">
-                    <label className="subtitle">
-                      Engagement
-                    </label>
-                  </div>
+                  <label className="subtitle">
+                    Engagement
+                  </label>
                 </div>
                 <div className="row d-flex enagement-info">
-                  <div className="col-md-4">
-                    <h2 className="d-block f-24">130</h2>
-                    <div className="f-16 darkgrey mb-36">Reviews</div>
+                  <div className="col-sm-4">
+                    <div className="number">130</div>
+                    <div className="comment">Reviews</div>
                   </div>
-                  <div className="col-md-4">
-                    <h2 className="d-block f-24">0</h2>
-                    <div className="f-16 darkgrey mb-36">Negative</div>
+                  <div className="col-sm-4">
+                    <div className="number">0</div>
+                    <div className="comment">Negative</div>
                   </div>
-                  <div className="col-md-4">
-                    <h2 className="d-block f-24">70</h2>
-                    <div className="f-16 darkgrey mb-36">Not Rated</div>
+                  <div className="col-sm-4">
+                    <div className="number">70</div>
+                    <div className="comment">Not Rated</div>
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-md-5 enagement-dial">
+                  <div className="col-sm-5 enagement-dial">
                     <div className="col-sm-6">
                       <div className="dial">
                         <Knob
                           value={130}
                           max={200}
                           fgColor={'#2ab7c9'}
+                          bgColor={'#ffffff'}
                           className="knob"
                           displayprevious="true"
                           width="100"
                           height="100"
                           thickness={0.12}
                           displayInput={false}
-                          displayCustom={()=>(<input value={'130'}/>)}
+                          displayCustom={()=>(<div class='knobedit'><input value={'130'}/></div>)}
                         />
-                        <h5>Positive Reviews</h5>
+                        <h6>Positive Reviews</h6>
                       </div>
                     </div>
                     <div className="col-sm-6">
@@ -202,14 +208,14 @@ class SellerAnalytics extends React.Component{
                           height="100"
                           thickness={0.12}
                           displayInput={false}
-                          displayCustom={()=>(<input value={'4%'}/>)}
+                          displayCustom={()=>(<div class='knobedit'><input value={'4%'}/></div>)}
                         />
-                        <h5>Order Canceled</h5>
+                        <h6>Order Canceled</h6>
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-7 enagement-process">
-                    <span className="progbar-title">Profile Completeness</span>
+                  <div className="col-sm-7 enagement-process">
+                    <div className="progbar-title">Profile Completeness</div>
                     <div className="progress progbar-custom">
                         <div className="progress-bar progress-bar-warning enagement-progress" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style={{'width': '85%'}}>
                         </div>
@@ -217,7 +223,7 @@ class SellerAnalytics extends React.Component{
                     </div>
                     <div className="complete-profile">
                       <a className="more-button f-14">
-                        Complete Profile <i className="fa fa-long-arrow-right info-label"></i>
+                        Complete Profile &nbsp; <i className="fa fa-long-arrow-right info-label"></i>
                       </a>
                      </div>
                     <div className="progbar-title">Responsive Rate</div>

@@ -144,8 +144,6 @@
 }
 .search_page .noUi-ltblue .noUi-connect {
   background-color: #2ab7c9;
-  position: absolute;
-  height: 5px;
 }
 .search_page #gender .noUi-base {
   background: linear-gradient(to right, #2ab7c9 40%, #ff99cc 50%);
@@ -188,11 +186,6 @@
   position: relative;
   margin-top: 15px;
 }
-.search_page .datetime div.react-datepicker-wrapper, .search_page .datetime div.react-datepicker-wrapper div{
-  width: 100%;
-  z-index: 2;
-  background: transparent;
-}
 .search_page .datetime input {
   padding-top: 8px;
   padding-bottom: 10px;
@@ -202,7 +195,6 @@
   border-radius: 5px !important;
   border: 1px solid #dadada;
   text-align: unset !important;
-  background: transparent;
 }
 .search_page .datetime img {
   position: absolute;
@@ -410,7 +402,6 @@
   line-height: 1.44;
   padding-left: 12px;
   border-radius: 4px !important;
-  background-color: rgba(0, 0, 0, 0.05);
 }
 .search_page .page-bar #select-relevance:hover{
   background-color: rgba(0, 0, 0, 0.05);
@@ -529,30 +520,3 @@
 }
 
 /*# sourceMappingURL=../Dananza_Search.css.map */
-
-.search_page .my-css-class{
-  background-color: #f0f0f0;
-}
-
-.search_page .my-css-class > div{
-  padding: 20px 0;
-}
-
-.search_page .my-css-class input{
-  margin: 0 10px;
-}
-
-.theme_tag__25f{
-    border-radius: 8px !important;
-    background-color: #ffd766;
-    padding-left: 8px;
-    padding-right: 7px;
-    font-family: "Thasadith-Bold";
-    font-size: 11px;
-    height: 16px;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
-    margin-right: 6px;
-    display: inline-table;
-}

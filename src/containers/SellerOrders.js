@@ -57,12 +57,12 @@ class SellerOrders extends React.Component{
                       <div className="content-header">
                         <span className="header-left">
                           <img src={require("../res/img/ad_campaign.png")} />
-                          <span> Ad Campaign</span>
-                          <a> axel92</a>
+                          <span>Ad Campaign</span>
+                          <a>axel92</a>
                         </span>
                         <span className="header-right">
                           <span className="price">$300</span>
-                          <i className="fa fa-comment-o"></i>
+                          <img src={require("../res/img/message.png")} />
                           Message
                         </span>
                       </div>
@@ -70,11 +70,12 @@ class SellerOrders extends React.Component{
                         <div className="order-timeline">
                           <div className="step first active">
                             <div className="step-button">
-                              <a className="circle">
-                                <i className="fa fa-check"></i>
-                              </a>
                               <hr className="left" />
                               <hr className="right" />
+                              <a className="circle">
+                                <img src={require('../res/img/check.png')}/>
+                              </a>
+                              
                             </div>
                             <div className="step-label">Order Date</div>
                             <div className="step-label">03/11</div>
@@ -82,7 +83,7 @@ class SellerOrders extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -93,7 +94,7 @@ class SellerOrders extends React.Component{
                           <div className="step">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -103,7 +104,7 @@ class SellerOrders extends React.Component{
                           <div className="step">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -113,7 +114,7 @@ class SellerOrders extends React.Component{
                           <div className="step last">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -137,12 +138,12 @@ class SellerOrders extends React.Component{
                       <div className="content-header">
                         <span className="header-left">
                           <img src={require("../res/img/instagram_sq.png")} />
-                          <span> Instagram Story for</span>
-                          <a> jane_123</a>
+                          <span>Instagram Story for</span>
+                          <a>jane_123</a>
                         </span>
                         <span className="header-right">
                           <span className="price">$100</span>
-                          <i className="fa fa-comment-o"></i>
+                          <img src={require("../res/img/message.png")} />
                           Message
                         </span>
                       </div>
@@ -151,7 +152,7 @@ class SellerOrders extends React.Component{
                           <div className="step first active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -162,7 +163,7 @@ class SellerOrders extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -173,7 +174,7 @@ class SellerOrders extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -184,7 +185,7 @@ class SellerOrders extends React.Component{
                           <div className="step">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -194,7 +195,7 @@ class SellerOrders extends React.Component{
                           <div className="step last">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -218,12 +219,12 @@ class SellerOrders extends React.Component{
                       <div className="content-header">
                         <span className="header-left">
                           <img src={require("../res/img/twitter_sq.png")} />
-                          <span> Twitter Ad for </span>
-                          <a> sollen_dior </a>
+                          <span>Twitter Ad for </span>
+                          <a>sollen_dior </a>
                         </span>
                         <span className="header-right">
                           <span className="price">$65</span>
-                          <i className="fa fa-comment-o"></i>
+                          <img src={require("../res/img/message.png")} />
                           Message
                         </span>
                       </div>
@@ -232,7 +233,7 @@ class SellerOrders extends React.Component{
                           <div className="step first active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -243,7 +244,7 @@ class SellerOrders extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -254,7 +255,7 @@ class SellerOrders extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -264,7 +265,7 @@ class SellerOrders extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -274,7 +275,7 @@ class SellerOrders extends React.Component{
                           <div className="step last active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -297,12 +298,12 @@ class SellerOrders extends React.Component{
                       <div className="content-header">
                         <span className="header-left">
                           <img src={require("../res/img/instagram_sq.png")} />
-                          <span> Instagram Ad for </span>
-                          <a> beastyboyy</a>
+                          <span>Instagram Ad for </span>
+                          <a>beastyboyy</a>
                         </span>
                         <span className="header-right">
                           <span className="price">$100</span>
-                          <i className="fa fa-comment-o"></i>
+                          <img src={require("../res/img/message.png")} />
                           Message
                         </span>
                       </div>
@@ -311,7 +312,7 @@ class SellerOrders extends React.Component{
                           <div className="step first active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -322,7 +323,7 @@ class SellerOrders extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -333,7 +334,7 @@ class SellerOrders extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -343,7 +344,7 @@ class SellerOrders extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -353,7 +354,7 @@ class SellerOrders extends React.Component{
                           <div className="step last active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -376,12 +377,12 @@ class SellerOrders extends React.Component{
                       <div className="content-header">
                         <span className="header-left">
                           <img src={require("../res/img/ad_campaign.png")} />
-                          <span> Ad Campaign for </span>
-                          <a> martin_values</a>
+                          <span>Ad Campaign for </span>
+                          <a>martin_values</a>
                         </span>
                         <span className="header-right">
                           <span className="price">$400</span>
-                          <i className="fa fa-comment-o"></i>
+                          <img src={require("../res/img/message.png")} />
                           Message
                         </span>
                       </div>
@@ -390,7 +391,7 @@ class SellerOrders extends React.Component{
                           <div className="step first active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -401,7 +402,7 @@ class SellerOrders extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -412,7 +413,7 @@ class SellerOrders extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -422,7 +423,7 @@ class SellerOrders extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -432,7 +433,7 @@ class SellerOrders extends React.Component{
                           <div className="step last active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -455,12 +456,12 @@ class SellerOrders extends React.Component{
                       <div className="content-header">
                         <span className="header-left">
                           <img src={require("../res/img/instagram_sq.png")} />
-                          <span> Instagram Ad for </span>
-                          <a> marie_condo</a>
+                          <span>Instagram Ad for </span>
+                          <a>marie_condo</a>
                         </span>
                         <span className="header-right">
                           <span className="price">$100</span>
-                          <i className="fa fa-comment-o"></i>
+                          <img src={require("../res/img/message.png")} />
                           Message
                         </span>
                       </div>
@@ -469,7 +470,7 @@ class SellerOrders extends React.Component{
                           <div className="step first active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -480,7 +481,7 @@ class SellerOrders extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -491,7 +492,7 @@ class SellerOrders extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -501,7 +502,7 @@ class SellerOrders extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -511,7 +512,7 @@ class SellerOrders extends React.Component{
                           <div className="step last active">
                             <div className="step-button">
                               <a className="circle">
-                                <i className="fa fa-check"></i>
+                                <img src={require('../res/img/check.png')}/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>

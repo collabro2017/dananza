@@ -13,10 +13,12 @@
 	margin-left: 330px;
 	position: relative;
 }
-.seller_message .page-result{
+.seller_message .page-result-wrapper .page-result{
 	width: 100%;
 	position: relative;
 	display: -webkit-box;
+	padding: 0;
+	margin: 0;
 }
 .seller_message .page-panel{
 	width: 35%;

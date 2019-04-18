@@ -43,25 +43,27 @@ class SellerCalendar extends React.Component{
                       <div className="user-profile">
                         <img src={require("../res/img/user1.png")} />
                       </div>
-                      <div>
-                        <div className="username"><b>johndeaux</b></div>
+                      <div className="content">
+                        <div className="username">johndeaux</div>
                         <div className="detail">
-                          <img src={require("../res/img/instagram_sq.png")} />
-                          <div><b>Instagram Story</b></div>
+                          <div>
+                            <img src={require("../res/img/instagram_sq.png")} />
+                            <span>Instagram Story</span>
+                          </div>
                           <div className="date">
-                            <b>Date:&nbsp</b>
+                            <span>Date:&nbsp;&nbsp;</span>
                             <span className="darkgrey">March 18, 2018, 8:00 AM</span>
                           </div>
                         </div>
                         <div className="row actions">
                           <div className="col-sm-6">
-                            <button className="btn-yellow">
+                            <button className="btn btn-yellow">
                               <img src={require("../res/img/message.png")} />
                               Message Buyer
                             </button>
                           </div>
                           <div className="col-sm-6">
-                            <button className="btn-yellow">
+                            <button className="btn btn-yellow">
                               <img src={require("../res/img/view.png")} />
                               View Order
                             </button>
@@ -75,7 +77,8 @@ class SellerCalendar extends React.Component{
                   <div className="col-sm-12">
                     <button className="btn btn-default trans-select">
                       2 More...
-                      <div className="caret">
+                      <div>
+                        <img src={require("../res/img/portlet-collapse-icon.png")}/>
                       </div>
                     </button>
                   </div>
