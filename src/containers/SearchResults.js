@@ -22,7 +22,8 @@ import Nouislider from 'react-nouislider';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import Autocomplete from '@celebryts/react-autocomplete-tags';
+import ReactTags from "react-tag-autocomplete";
+
 
 import "../res/bootstrap-select/css/bootstrap-select.min.css"
 import "../res/css/global.css"
@@ -45,20 +46,16 @@ class SearchResults extends React.Component{
   		'age_start': 0,
   		'age_end': 60,
   		'startDate': '',
-		'suggestions': [
-	        {
-	          label: 'Apple',
-	          value: '1'
-	        },
-	        {
-	          label: 'Banana',
-	          value: '2'
-	        },
-	        {
-	          label: 'Mango',
-	          value: 'X'
-	        }
-      	]
+		tags: [
+	        { id: 1, name: "Apples" },
+	        { id: 2, name: "Pears" }
+		],
+		suggestions: [
+			{ id: 3, name: "Bananas" },
+			{ id: 4, name: "Mangos" },
+			{ id: 5, name: "Lemons" },
+			{ id: 6, name: "Apricots" }
+		]
   }
 
   constructor(props) {
@@ -99,9 +96,20 @@ class SearchResults extends React.Component{
     });
   };
 
-  onChangeAudience(value){
-  	console.log('Value received from onChange: ' + value)
-  };
+
+
+  handleDelete (i) {
+    const tags = this.state.tags.slice(0)
+    tags.splice(i, 1)
+    this.setState({ tags })
+  }
+ 
+  handleAddition (tag) {
+    const tags = [].concat(this.state.tags, tag)
+    this.setState({ tags })
+  }
+
+
 
   componentDidMount(){
     document.title = "Search Results"
@@ -307,29 +315,16 @@ class SearchResults extends React.Component{
 							<div className="content">
 								<div className="features">
 									<div className="sub-title"> Interests </div>
-									<input className="danaza-input-full" type="text" name="interests" placeholder="Type Audience Interests"/>
+									<ReactTags
+										classNames="dananza-audience"
+										placeholder="Type Audience Interests"
+										inputAttributes={{ maxLength: 20 }}
+										allowNew={true}
+									    tags={this.state.tags}
+									    suggestions={this.state.suggestions}
+									    handleDelete={this.handleDelete.bind(this)}
+									    handleAddition={this.handleAddition.bind(this)} />
 
-									<Autocomplete
-										suggestions={this.state.suggestions}
-										onChange={this.onChangeAudience}
-										limitTags={5}
-										placeholderText="Type Audience Interests"
-									/>
-
-									<div className="results">
-										<div className="item">
-											<span>Food</span>
-											<a className="fa fa-remove"></a>
-										</div>
-										<div className="item">
-											<span>Events</span>
-											<a className="fa fa-remove"></a>
-										</div>
-										<div className="item">
-											<span>Restaurants</span>
-											<a className="fa fa-remove"></a>
-										</div>
-									</div>
 								</div>
 								<div className="features">
 									<div className="sub-title"> Location </div>

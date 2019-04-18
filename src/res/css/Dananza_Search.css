@@ -529,20 +529,15 @@
 }
 
 /*# sourceMappingURL=../Dananza_Search.css.map */
-
-.search_page .my-css-class{
-  background-color: #f0f0f0;
+.react-tags{
+    position: relative;
+    padding-bottom: 25px;
 }
-
-.search_page .my-css-class > div{
-  padding: 20px 0;
+.react-tags__selected{
+  position: absolute;
+  bottom: 0;
 }
-
-.search_page .my-css-class input{
-  margin: 0 10px;
-}
-
-.theme_tag__25f{
+.react-tags__selected button{
     border-radius: 8px !important;
     background-color: #ffd766;
     padding-left: 8px;
@@ -555,4 +550,19 @@
     width: fit-content;
     margin-right: 6px;
     display: inline-table;
+}
+.react-tags__selected button:after{
+  content: "✖";
+  margin-left:5px;
+  color: #000;
+  font-weight: 300;
+  font-family: Arial, sans-serif;
+}
+.react-tags input{
+    font-family: "Thasadith-Bold";
+    height: 40px;
+    width: 100% !important;
+    border-radius: 5px !important;
+    border: 1px solid #dadada;
+    padding-left: 12px;
 }
