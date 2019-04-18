@@ -51,36 +51,34 @@ class BuyerLanding extends React.Component{
                   <div className="panel-body">
                     <div className="mt-element-step">
                       <div className="row step-line">
-                        <div className="col-md-1">
-                        </div>
-                        <div className="col-md-2 mt-step-col first done">
+                        <div className="mt-step-col first done">
                             <div className="mt-step-number bg-green"><img src={require("../res/img/check.png")}/></div>
                             <div className="mt-step-title "><span>Order Date</span></div>
                             <div className="mt-step-content "><span>03/11</span></div>
                         </div>
-                        <div className="col-md-2 mt-step-col done">
+                        <div className="mt-step-col done">
                             <div className="mt-step-number bg-green"><img src={require("../res/img/check.png")}/></div>
                             <div className="mt-step-title "><span>Media Uploaded</span></div>
                             <div className="mt-step-content "><span>03/11</span></div>
                         </div>
-                        <div className="col-md-2 mt-step-col done">
+                        <div className="mt-step-col done">
                             <div className="mt-step-number bg-green"><img src={require("../res/img/check.png")}/></div>
                             <div className="mt-step-title "><span>Order Accepted</span></div>
                             <div className="mt-step-content "><span>03/12</span></div>
                         </div>
-                        <div className="col-md-2 mt-step-col">
+                        <div className="mt-step-col">
                             <div className="mt-step-number bg-white">&nbsp;</div>
                             <div className="mt-step-title "><span>Ad Laundched</span></div>
                         </div>
-                        <div className="col-md-2 mt-step-col last">
+                        <div className="mt-step-col last">
                             <div className="mt-step-number bg-white">&nbsp;</div>
                             <div className="mt-step-title "><span>Approve</span></div>
                             <div className="mt-step-content "><span>Your Ad</span></div>
                         </div>
                       </div>
                     </div>
-                    <div className="message-table">
-                      <table className="table table-condensed">
+                    <div className="message-table table-responsive">
+                      <table className="table">
                         <thead>
                           <tr style={{ 'backgroundColor': '#f1f6f9'}}>
                             <th><span className="left">adza</span></th>

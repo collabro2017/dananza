@@ -60,7 +60,15 @@
 				width: 100%;
 				height: 48px; }
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .input-icon i{
-				margin-top: 16px; }
+				margin-top: 16px;
+				color: #4b4b4b; }
+			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .input-icon img{
+				color: #ccc;
+			    position: absolute;
+			    margin: 16px 2px 4px 10px;
+			    z-index: 3;
+			    text-align: center;
+			    left: 0;}	
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .input-icon .drag-file{
 				background: unset;
 				border: 3px dashed; }
@@ -90,10 +98,10 @@
 				.dashboard_seller .sellers_page .formcontrol .controlcontent .feature-slider .age-result{
 					margin-top: 13px;
 					color:#4b4b4b; }
-				.dashboard_seller .sellers_page .formcontrol .controlcontent .feature-slider #gender{
+				.dashboard_seller .sellers_page .formcontrol .controlcontent .feature-slider #seller_page_gender{
 					padding-right: 0px;
 					padding-left: 0px; }
-					.dashboard_seller .sellers_page .formcontrol .controlcontent .feature-slider #gender .noUi-base{
+					.dashboard_seller .sellers_page .formcontrol .controlcontent .feature-slider #seller_page_gender .noUi-base{
 						background: linear-gradient(to right,#2ab7c9 40%, #ff99cc 50%); }
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .no-padding-left{
 				padding-left: 0px; }
@@ -106,7 +114,7 @@
 			color: #4b4b4b;
 			margin-bottom: 15px;
 			display: block !important; }
-			.dashboard_seller .sellers_page .page-result .channel-list .channel .channel-show img{
+			.dashboard_seller .sellers_page .page-result .channel-list .channel .channel-show .icon{
 				width: 25px;
 				height: 25px; }
 			.dashboard_seller .sellers_page .page-result .channel-list .channel .channel-show .fa-user{
@@ -115,7 +123,6 @@
 			.dashboard_seller .sellers_page .page-result .channel-list .channel .channel-show .toolbox{
 				float: right; }
 				.dashboard_seller .sellers_page .page-result .channel-list .channel .channel-show .toolbox a{
-					font-size: 23px;
 					color: black;
 					margin-left: 15px;
 					color: #4b4b4b; }
@@ -214,7 +221,7 @@
 				margin-bottom: 25px;
 				padding-bottom: 14px;
 				border-bottom: 1px solid #dadada; }
-				.dashboard_seller .sellers_page .ad_listings .ad-list-show .ad_list_head img {
+				.dashboard_seller .sellers_page .ad_listings .ad-list-show .ad_list_head .icon {
 					width: 23px;
 					height: 23px;
 					margin-right: 10px;
@@ -229,7 +236,6 @@
 					float: right; }
 				.dashboard_seller .sellers_page .ad_listings .ad-list-show .ad_list_head .ad_toolbox a{
 					color: #4b4b4b;
-					font-size: 20px;
 					margin-left: 17px; }
 			.dashboard_seller .sellers_page .ad_listings .ad_list_content {
 				display: flex; }
@@ -242,6 +248,9 @@
 					font-size: 14px;
 					margin-top: 15px; }
 /***********************/
+	.dashboard_seller .btn{
+		border-radius: 0px !important;
+	}
 	.dashboard_seller .sellers_page .page-result .btn-radius {
 		border-radius: 5px !important;
 		}

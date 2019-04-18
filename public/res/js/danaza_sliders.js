@@ -1,4 +1,4 @@
-var ComponentsNoUiSliders = function() {
+var ComponentsNoUiSliders1 = function() {
     var reach = function() {
         var html5Slider = document.getElementById('reach');
         if( html5Slider !== null){
@@ -62,5 +62,5 @@ var ComponentsNoUiSliders = function() {
 }();
 
 jQuery(document).ready(function() {    
-   ComponentsNoUiSliders.init(); 
+   ComponentsNoUiSliders1.init(); 
 });

@@ -38,7 +38,7 @@ class BuyerSaved extends React.Component{
 							</span>
 							<span className="headline-second pull-right">
 								<i className="fa fa-search input"></i>
-		                    	<input type="text" className="form-control search-input" placeholder="Search..." value="Search for saved Adza"/>
+		                    	<input type="text" className="form-control search-input" placeholder="Search for saved Adza"/>
 							</span>
 						</div>
 						<hr className="divider-line" />

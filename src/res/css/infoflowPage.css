@@ -22,7 +22,7 @@
         background-color: #7f7f7f;
         margin-right: 10px; }
     .infoflowPage .nav_flow.row ul li:first-child .step_num {
-      padding: 4px 12px; }
+      padding: 4px 11px; }
     .infoflowPage .nav_flow.row ul .active, .infoflowPage .nav_flow.row ul .actived {
       color: #fe4a49; }
       .infoflowPage .nav_flow.row ul .active .step_num, .infoflowPage .nav_flow.row ul .actived .step_num {
@@ -46,6 +46,8 @@
     background: #f1f6f9; }
   .infoflowPage .cartPart .table_camp .table > tbody > tr > td, .infoflowPage .post_checkout2 .table_camp .table > tbody > tr > td, .infoflowPage .upload_files .table_camp .table > tbody > tr > td {
     vertical-align: middle !important; }
+  .infoflowPage .cartPart .table_camp .table tbody tr td img, .infoflowPage .post_checkout2 .table_camp .table tbody tr td img, .infoflowPage .upload_files .table_camp .table tbody tr td img {
+    margin-right: 10px; }
   .infoflowPage .cartPart .table_camp button, .infoflowPage .post_checkout2 .table_camp button, .infoflowPage .upload_files .table_camp button {
     padding: 0;
     background-color: #ffffff;
@@ -77,13 +79,13 @@
   font-family: "Thasadith-BoldItalic";
   line-height: 24px;
   font-size: 14px;
-  width: 30%;
+  width: 33%;
   margin: 40px auto 60px;
   text-align: center; }
 .infoflowPage .checkout .active {
-  color: #ffbc00; }
+  color: #ffbc00 !important; }
   .infoflowPage .checkout .active .step_num {
-    background-color: #ffbc00; }
+    background-color: #ffbc00 !important; }
 .infoflowPage .checkout .chk_info {
   margin: 4% 10%; }
   .infoflowPage .checkout .chk_info .title {
@@ -107,9 +109,8 @@
   .infoflowPage .checkout .chk_info .paypal {
     margin-top: 30px; }
   .infoflowPage .checkout .chk_info .summary {
-    border-left: 0.5px solid;
-    border-right: 0.5px solid;
-    border-radius: 5px;
+    border: 0.5px solid;
+    border-radius: 5px !important;
     font-size: 14px; }
     .infoflowPage .checkout .chk_info .summary div {
       margin: 10px 0;
@@ -129,7 +130,8 @@
     .infoflowPage .checkout .chk_info .summary .sub_value, .infoflowPage .checkout .chk_info .summary .fee_value, .infoflowPage .checkout .chk_info .summary .total_value {
       text-align: right; }
     .infoflowPage .checkout .chk_info .summary .confirm {
-      text-align: center; }
+      text-align: center;
+      margin: 330px 0 30px; }
       .infoflowPage .checkout .chk_info .summary .confirm a {
         text-decoration: none;
         padding: 10px 30px;
@@ -212,6 +214,13 @@
   .infoflowPage .upload_files .upload_form .upload_submit {
     padding: 10px 0 10px 40px;
     background: #f1f6f9; }
+.infoflowPage .cartPart .note {
+  border: none; }
+.infoflowPage .post_checkout2 .row.done .content {
+  width: 37%; }
+.infoflowPage .post_checkout2 .proceed_chk .checkout a {
+  padding: 13px 45px;
+  border-radius: 5px !important; }
 
 /** infoflowPage end **/
 

@@ -28,7 +28,7 @@ class BuyerProfile extends React.Component{
 
   render(){
     return (
-      <div className="buyer_landing buyer_profile dashboard_seller">
+      <div className="buyer_landing buyer_profile">
         <div className="page-container">
            <div className="page-content">
               <BuyerSidebar />

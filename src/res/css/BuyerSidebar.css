@@ -5,6 +5,11 @@
 	margin-right: -100%;
 	padding-left: 0px;
 }
+.buyer-sidebar.page-sidebar [data-toggle=buttons].btn-group .btn input[type=radio]{
+	position: absolute;
+    clip: rect(0,0,0,0);
+    pointer-events: none;
+}
 .buyer-sidebar.page-sidebar .split{
 	margin-bottom: 24px;
 	padding-bottom: 20px;

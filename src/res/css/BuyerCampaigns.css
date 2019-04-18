@@ -87,7 +87,7 @@
 }
 .buyer_campaign .disabled {
   pointer-events: none;
-  opacity: 0.buyer_campaign .5;
+  opacity: 0.5;
 }
 .buyer_campaign .panel {
   display: inline-table;
@@ -150,6 +150,10 @@
 }
 .buyer_campaign .mt-element-step .step-line .mt-step-number {
     /*margin: auto auto 22px !important;*/
+}
+.buyer_campaign .mt-element-step .row {
+  margin-left: -40px !important;
+  margin-top: 0px !important;
 }
 .buyer_campaign .mt-step-col {
   width:20%;

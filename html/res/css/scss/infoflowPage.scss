@@ -36,7 +36,7 @@
 				{
 					.step_num
 					{
-						padding: 4px 12px;
+						padding: 4px 11px;
 					}
 				}
 				.active, .actived
@@ -81,6 +81,10 @@
 				.table>tbody>tr>td
 				{
 					vertical-align: middle !important;
+				}
+				.table tbody tr td img
+				{
+					margin-right: 10px;
 				}
 				button
 				{
@@ -131,7 +135,7 @@
 					font-family: "Thasadith-BoldItalic";
 					line-height: 24px;
 				    font-size: 14px;
-				    width: 30%;
+				    width: 33%;
 				    margin: 40px auto 60px;
 				    text-align: center;
 				}
@@ -141,10 +145,10 @@
 		{
 			.active
 			{
-				color: #ffbc00;
+				color: #ffbc00 !important;
 				.step_num
 				{
-					background-color: #ffbc00;
+					background-color: #ffbc00 !important;
 				}
 			}
 			.chk_info
@@ -185,9 +189,8 @@
 				}
 				.summary
 				{
-					border-left: 0.5px solid;
-					border-right: 0.5px solid;
-					border-radius: 5px;
+					border: 0.5px solid;
+					border-radius: 5px !important;
 					div
 					{
 						margin: 10px 0;
@@ -227,6 +230,7 @@
 					.confirm 
 					{
 						text-align: center;
+						margin: 330px 0 30px;
 						a
 						{
 							text-decoration: none;
@@ -381,6 +385,22 @@
 				// }
 			}
 			
+		}
+		.cartPart 
+		{
+			.note
+			{
+				border: none;
+			}
+		}
+		.post_checkout2 .row.done .content
+		{
+			width: 37%;
+		}
+		.post_checkout2 .proceed_chk .checkout a
+		{
+			padding: 13px 45px;
+			border-radius: 5px !important;
 		}
 	}
 /** infoflowPage end **/

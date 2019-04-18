@@ -74,5 +74,29 @@
       color: #000c20 !important;
       text-decoration: none; } }
 
+ul.seller {
+  display: none;
+  min-width: 250px !important;
+  transform: translate3d(-140px, 65px, 0px) !important; }
+  ul.seller .menu_icon {
+    float: right; }
+  ul.seller .other_act_img {
+    display: flex; }
+    ul.seller .other_act_img .other_links {
+      padding-right: 0px;
+      padding-left: 2px;
+      margin-right: 0 !important; }
+    ul.seller .other_act_img .other_links:first-child {
+      margin-right: 0 !important;
+      margin-left: 10px !important; }
+    ul.seller .other_act_img .more {
+      padding: 10px; }
+  ul.seller li {
+    margin: 0 !important;
+    padding: 0 !important; }
+
+.header_search .nav_menu ul.seller {
+  display: none; }
+
 /* header end */
 
