@@ -48,7 +48,9 @@ class Header extends React.Component{
 
   componentDidMount() {
     this.setState({headerType: this.props.type});
+  };
 
+  componentDidUpdate(){
     $('.mobile_navbar_toggler').on('click', function() 
     {
       console.log( "clicked" );
@@ -209,6 +211,16 @@ class Header extends React.Component{
               </div>
             </div>   
             <div className="nav_mobile_menu" style={{display:'none'}}>
+              <div className="nav_bar">
+                <div className="logo">
+                  <Link to="/"><img src={logoUrl}/></Link>
+                </div>
+                <div className="nav_menu justify-content-end">
+                  <button id="navbar_toggler" className="navbar_toggler_open mobile_navbar_toggler" type="button">
+                    <span className="navbar_toggler_icon"></span>
+                  </button>
+                </div>
+              </div>
               <ul className="nav_mobile_list">
                 <li>
                   <Link to="/about">About</Link>
