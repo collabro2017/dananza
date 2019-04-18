@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import {withRouter} from "react-router-dom";
 
 import "../../res/bootstrap/css/bootstrap.min.css"
 import "../../res/font-awesome/css/font-awesome.min.css"
@@ -11,7 +12,21 @@ import "../../res/css/layout.min.css"
 import "../../res/css/Signup.css"
 import "../../res/css/login.min.css";
 
-const Signup = props => {
+import $ from "jquery";
+
+class Signup extends React.Component{
+
+    constructor(props) {
+      super(props);
+      this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(){
+      this.props.history.push("/buyer_landing");
+      $('.modal-backdrop').remove();
+    }
+
+    render(){
   return (
       <div className="modal-dialog modal-dialog-custom">
         <div className="modal-content modal-content-custom">
@@ -21,15 +36,15 @@ const Signup = props => {
           <div className="modal-body">
             <Link>
               <div className="facebook-part col-md-12">
-                <button className="facebook position-relative" type="button" data-dismiss="modal">
+                <button className="facebook position-relative" type="button" data-dismiss="modal" onclick={this.handleClick}>
                     <i className="fa fa-facebook-square facebook-custom"></i>
                     <span>Sign Up with Facebook</span>
                 </button>
               </div>
             </Link>
-            <Link to="/signup">
+            <Link>
               <div className="google-part col-md-12">
-                <button className="google position-relative" type="button" data-dismiss="modal">
+                <button className="google position-relative" type="button" data-dismiss="modal" onclick={this.handleClick}>
                   <i className="fa fa-google"></i>
                   <span>Sign Up with Google</span>
                 </button>
@@ -40,9 +55,9 @@ const Signup = props => {
               <span className="or">or</span>
               <span className="thin-line col-md-5"></span>
             </div>
-            <Link to="/signup">
+            <Link>
               <div className="email-part col-md-12">
-                  <button className="email position-relative" type="button" data-dismiss="modal">
+                  <button className="email position-relative" type="button" data-dismiss="modal" onclick={this.handleClick}>
                       <i className="fa fa-envelope-o email-custom"></i>
                       <span>Sign Up By Email</span>
                   </button>
@@ -56,7 +71,7 @@ const Signup = props => {
           </div>
         </div>
       </div>
-  );
+  )}
 };
 
-export default Signup;
+export default withRouter(Signup);
