@@ -531,11 +531,11 @@
 /*# sourceMappingURL=../Dananza_Search.css.map */
 .react-tags{
     position: relative;
-    padding-bottom: 25px;
+    padding-bottom: 45px;
 }
 .react-tags__selected{
   position: absolute;
-  bottom: 0;
+  top: 45px;
 }
 .react-tags__selected button{
     border-radius: 8px !important;
@@ -565,4 +565,16 @@
     border-radius: 5px !important;
     border: 1px solid #dadada;
     padding-left: 12px;
+}
+.react-tags__suggestions{
+    position: absolute;
+    border:1px solid #CCCCCC;
+    width:100%;
+}
+.react-tags__suggestions ul li{
+  list-style: none;
+  padding:5px;
+  background: white;
+  border:1px solid #eeeeee;
+  width: 100%;
 }

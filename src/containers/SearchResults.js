@@ -47,14 +47,16 @@ class SearchResults extends React.Component{
   		'age_end': 60,
   		'startDate': '',
 		tags: [
-	        { id: 1, name: "Apples" },
-	        { id: 2, name: "Pears" }
+	        { name: "Apples" },
+	        { name: "Pears" }
 		],
 		suggestions: [
-			{ id: 3, name: "Bananas" },
-			{ id: 4, name: "Mangos" },
-			{ id: 5, name: "Lemons" },
-			{ id: 6, name: "Apricots" }
+			{ name: "Bananas" },
+			{ name: "Mangos" },
+			{ name: "Lemons" },
+			{ name: "Lemonfffffas" },
+			{ name: "Lemonfefes" },
+			{ name: "Apricots"}
 		]
   }
 
@@ -106,7 +108,11 @@ class SearchResults extends React.Component{
  
   handleAddition (tag) {
     const tags = [].concat(this.state.tags, tag)
-    this.setState({ tags })
+    if( tags.length > 5 )
+    	return;
+    
+    if( !this.state.tags.some(item => tag.name === item.name ))
+    	this.setState({ tags: [...this.state.tags, tag]})
   }
 
 
@@ -318,7 +324,7 @@ class SearchResults extends React.Component{
 									<ReactTags
 										classNames="dananza-audience"
 										placeholder="Type Audience Interests"
-										inputAttributes={{ maxLength: 20 }}
+										inputAttributes={{ maxLength: 15 }}
 										allowNew={true}
 									    tags={this.state.tags}
 									    suggestions={this.state.suggestions}
