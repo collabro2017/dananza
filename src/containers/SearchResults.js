@@ -18,6 +18,12 @@ import { increment, decrement } from "../store/reducers/stepCounter";
 import 'icheck/skins/all.css';
 import {Checkbox, Radio} from 'react-icheck';
 
+import Nouislider from 'react-nouislider';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+import Autocomplete from '@celebryts/react-autocomplete-tags';
+
 import "../res/bootstrap-select/css/bootstrap-select.min.css"
 import "../res/css/global.css"
 import "../res/css/Dananza_Search.css"
@@ -32,22 +38,80 @@ class SearchResults extends React.Component{
 
   state={
   		'headerType': "seller",
-  		'relevance': 'relevance'}
+  		'relevance': 'relevance',
+  		'reach_start': 0,
+  		'reach_end': 100,
+  		'gender_percent' : 0,
+  		'age_start': 0,
+  		'age_end': 60,
+  		'startDate': '',
+		'suggestions': [
+	        {
+	          label: 'Apple',
+	          value: '1'
+	        },
+	        {
+	          label: 'Banana',
+	          value: '2'
+	        },
+	        {
+	          label: 'Mango',
+	          value: 'X'
+	        }
+      	]
+  }
 
   constructor(props) {
     super(props);
     props.changeHeaderType( this.state.headerType )
+
+    this.setState({
+      startDate: new Date()
+    });
+    this.onChangeStartDate = this.onChangeStartDate.bind(this);
   }
 
-  handleChange = event => {
+  onChangeRelevance = event => {
 	this.setState({ [event.target.name]: event.target.value });
+  };
+  
+  onReachSlide = (render, handle, value, un, percent) => {
+    this.setState({
+      'reach_start':value[0].toFixed(0), 
+      'reach_end':value[1].toFixed(0)
+    });
+  };
+  onAgeSlide = (render, handle, value, un, percent) => {
+    this.setState({
+      'age_start':value[0].toFixed(0), 
+      'age_end':value[1].toFixed(0)
+    });
+  };
+  onGenderSlide = (render, handle, value, un, percent) => {
+    this.setState({
+      'gender_percent':value[0].toFixed(0), 
+    });
+  };
+
+  onChangeStartDate(date) {
+    this.setState({
+      startDate: date
+    });
+  };
+
+  onChangeAudience(value){
+  	console.log('Value received from onChange: ' + value)
   };
 
   componentDidMount(){
     document.title = "Search Results"
-  }
+  };
 
   render(){
+  	const { reach_start, reach_end } = this.state;
+  	const { age_start, age_end } = this.state;
+  	const { gender_percent } = this.state;
+
     return (
     	<div className="search_page full_container">
 			<div className="page-navbar">
@@ -91,7 +155,7 @@ class SearchResults extends React.Component{
 						<FormControl>
 						  <Select
 						    value={this.state.relevance}
-						    onChange={this.handleChange}
+						    onChange={this.onChangeRelevance}
 						    inputProps={{
 						      name: 'relevance',
 						      id: 'relevance-simple',
@@ -104,13 +168,6 @@ class SearchResults extends React.Component{
 						    <MenuItem value={'relevance4'}>Relevance4</MenuItem>
 						  </Select>
 						</FormControl>
-						{/*<select value="Relevance" className="bs-select" data-width="120px">
-							<option>Relevance</option>
-							<option>Relevance1</option>
-							<option>Relevance2</option>
-							<option>Relevance3</option>
-							<option>Relevance4</option>
-						</select>*/}
 					</div>
 				</div>
 				<div className="page-content">
@@ -251,6 +308,14 @@ class SearchResults extends React.Component{
 								<div className="features">
 									<div className="sub-title"> Interests </div>
 									<input className="danaza-input-full" type="text" name="interests" placeholder="Type Audience Interests"/>
+
+									<Autocomplete
+										suggestions={this.state.suggestions}
+										onChange={this.onChangeAudience}
+										limitTags={5}
+										placeholderText="Type Audience Interests"
+									/>
+
 									<div className="results">
 										<div className="item">
 											<span>Food</span>
@@ -294,16 +359,27 @@ class SearchResults extends React.Component{
 								</div>
 								<div className="features">
 									<div className="sub-title"> Reach </div>
-									<div className="feature-slider">
-		                                <div id="reach" className="noUi-ltblue"></div>
-		                                <label className="dark-grey" id="reach_result"></label>
+									<div className="feature-slider noUi-ltblue" id="reach">
+
+									<Nouislider
+									    range={{min: 0, max: 100}}
+									    start={[ reach_start, reach_end]}
+									    connect
+									    onSlide={this.onReachSlide}
+									  />
+		                                <label className="dark-grey">{ reach_start } - { reach_end }k</label>
 		                            </div>
 								</div>
 								<div className="features">
 									<div className="sub-title"> Gender </div>
-									<div className="feature-slider">
-		                                <div id="gender" className="noUi-gradient"></div>
-		                                <div className="dark-grey" id="reach_result">
+									<div className="feature-slider noUi-ltblue" id="gender">
+		                                <Nouislider											
+										    range={{min: 0, max: 100}}
+										    start={[gender_percent]}
+										    connect
+										    onSlide={this.onGenderSlide}
+										  />
+		                                <div className="dark-grey">
 		                                	<label>Male</label>
 		                                	<label className="right">Female</label>
 		                                </div>
@@ -311,9 +387,14 @@ class SearchResults extends React.Component{
 								</div>
 								<div className="features">
 									<div className="sub-title"> Age Range </div>
-									<div className="feature-slider">
-		                                <div id="age" className="noUi-ltblue"></div>
-		                                <label className="dark-grey" id="age_result"></label>
+									<div className="feature-slider noUi-ltblue" id="age">
+										<Nouislider
+										    range={{min: 0, max: 60}}
+										    start={[age_start, age_end]}
+										    connect
+										    onSlide={this.onAgeSlide}
+										  />
+		                                <label className="dark-grey"> { age_start } - { age_end }</label>
 		                            </div>
 								</div>
 							</div>
@@ -324,12 +405,12 @@ class SearchResults extends React.Component{
 							<div className="content price-range">
 								<div className="price-form">
 									<div>$</div>
-									<input className="danaza-input-small" type="text" name="pricefrom"/>
+									<input className="danaza-input-small" type="number" name="pricefrom"/>
 								</div>
 								<label>to</label>
 								<div className="price-form">
 									<div>$</div>
-									<input className="danaza-input-small" type="text" name="priceto"/>
+									<input className="danaza-input-small" type="number" name="priceto"/>
 								</div>
 								<a className="btn">></a>
 							</div>
@@ -338,7 +419,13 @@ class SearchResults extends React.Component{
 						<div className="section">
 							<span className="title">Ad Launch Date</span>
 							<div className="content datetime">
-								<input className="btn btn-default" placeholder="Select Date/s" readOnly/>
+								<DatePicker
+									className="btn btn-default"
+							        selected={this.state.startDate}
+							        onChange={this.onChangeStartDate}
+							        placeholderText="Select Date/s"
+							        dateFormat="YYYY-MM-dd"
+							      />
 								<img src={require("../res/img/datetime.png")} />
 								<div className="bs-caret">
 									<i className="caret"></i>

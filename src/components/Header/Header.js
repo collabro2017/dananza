@@ -87,7 +87,7 @@ class Header extends React.Component{
                 <div className="input-icon">
                   <i className="fa fa-search input"></i>
                   <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" value=""/>
-                  <Link to="/results"><a href="#" className="btn green search-but">Search</a></Link>
+                  <Link to="/results" className="btn green search-but">Search</Link>
                 </div>
               </div>
               <div className="nav_menu justify-content-end">
