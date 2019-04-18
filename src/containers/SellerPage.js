@@ -13,6 +13,9 @@ import "../res/css/infoflowPage.css"
 import "../res/css/sellers.css"
 import $ from "jquery";
 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+
 class SellerPage extends React.Component{
 
   state={'headerType': "seller"}
@@ -144,7 +147,17 @@ class SellerPage extends React.Component{
         </div>
         <div className="sellers_content col-md-9">
           <div className="row slider">
-            <img src={require("../res/img/sellers_slider1.png")} />
+          <Carousel showThumbs={false}>
+                <div>
+                    <img src={require("../res/img/sellers_slider1.png")} />
+                </div>
+                <div>
+                    <img src={require("../res/img/sellers_slider1.png")} />
+                </div>
+                <div>
+                    <img src={require("../res/img/sellers_slider1.png")} />
+                </div>
+            </Carousel>
           </div>
           <div className="row listings">
             <div className="portlet-title">
