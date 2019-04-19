@@ -16,6 +16,7 @@
 
 .icheckbox_square-ltblue {
     background-position: 0 0;
+    margin-right: 10px;
 }
     .icheckbox_square-ltblue.hover {
         background-position: -16px 0;

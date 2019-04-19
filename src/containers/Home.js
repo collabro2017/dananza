@@ -8,6 +8,9 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+
 import { increment, decrement } from "../store/reducers/stepCounter";
 
 import "../res/css/homepage.css"
@@ -15,13 +18,18 @@ import "../res/css/Signup.css"
 
 class Home extends React.Component{
 
-  state={'headerType': "homepage"}
+  state={
+          'headerType': "homepage",
+          'advertise' : 'facebook'
+        }
 
   constructor(props) {
     super(props);
     props.changeHeaderType( this.state.headerType )
   }
-
+  onChangeAdvertise = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
   componentDidMount(){
     document.title = "Homepage"
   }
@@ -40,25 +48,31 @@ class Home extends React.Component{
             <div className="row heroblog">
               <div className="col-md-6 col-sm-6 mk_adv_smp color-title">
                 Making Advertising Simple
-                <div className="finding_best_ad ">Find The Best Space To Place Your Ad</div>
+                <div className="finding_best_ad color-title">Find The Best Space To Place Your Ad</div>
                 <div className="finding_ad_select">I want to advertise on
-                  <select>
-                    <option>Facebook</option>
-                    <option>Instagram</option>
-                    <option>YouTube</option>
-                    <option>LinkedIn</option>
-                    <option>Twitter</option>
-                    <option>Pinterest</option>
-                    <option>Blogs</option>
-                    <option>Podcasts</option>
-                  </select>
+                  <Select
+                    value={this.state.advertise}
+                    onChange={this.onChangeAdvertise}
+                    inputProps={{
+                      name: 'advertise',
+                      id: 'advertise-list',
+                    }}
+                  >
+                    <MenuItem value={'facebook'}>Facebook</MenuItem>
+                    <MenuItem value={'instagram'}>Instagram</MenuItem>
+                    <MenuItem value={'youTube'}>YouTube</MenuItem>
+                    <MenuItem value={'linkedIn'}>LinkedIn</MenuItem>
+                    <MenuItem value={'pinterest'}>Pinterest</MenuItem>
+                    <MenuItem value={'blogs'}>Blogs</MenuItem>
+                    <MenuItem value={'podcasts'}>Podcasts</MenuItem>
+                  </Select>                  
                 </div>
                 <div className="finding_ad_input">
                   related to
                   <input type="text" name="" placeholder="Type any keyword (maximum of 5 keywords)"/>
                 </div>
                 <div>
-                  <button className="btn bg-yellow color-dark btn-mid">Find Adzas</button>
+                  <Link to="results" className="btn bg-yellow color-dark btn-small">Find Adzas</Link>
                 </div>
               </div>
               <div className="col-sm-6 col-md-6 pull-right">
@@ -120,7 +134,7 @@ class Home extends React.Component{
               <div className="bg_img col-sm-12">
                 <img src={require("../res/img/ad_camp.png")}/>
                 <div>
-                  <Link to="/cart" className="btn btn-mid bg-yellow">Start Ad Campaign</Link>
+                  <Link to="/cart" className="btn btn-mid bg-yellow color-dark">Start Ad Campaign</Link>
                 </div>
               </div>
             </div>
@@ -176,7 +190,7 @@ class Home extends React.Component{
             <div className="row customer">
               <div className="info_title">Your Customers are Waiting For You</div>
               <div className="customer_link">
-                <a href="#" className="btn btn-large creat_act color-white bg-blue">Create Account</a>
+                <a href="#" className="btn btn-large creat_act color-white bg-blue" data-toggle="modal" data-target="#myModal">Create Account</a>
                 <Link to="/signup" className="btn btn-large become_adza color-dark bg-yellow">Become An Adza</Link>
               </div>
             </div>

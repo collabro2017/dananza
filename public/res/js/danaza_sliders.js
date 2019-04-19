@@ -52,9 +52,9 @@ var ComponentsNoUiSliders1 = function() {
     return {
         //main function to initiate the module
         init: function() {
-            gender();
-            reach();
-            age();
+            // gender();
+            // reach();
+            // age();
         }
 
     };
