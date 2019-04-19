@@ -19,9 +19,6 @@ import "../../res/css/header_search.css"
 import "../../res/css/layout.min.css"
 // import "../../res/css/drop_menu.css"
 
-import Signup from "../Signup";
-import Login from "../Login";
-
 import $ from "jquery";
 
 import logoUrl from '../../res/img/logo.png';
@@ -332,15 +329,10 @@ class Header extends React.Component{
                   </li>
                   <li>
                     <a data-toggle="modal" data-target="#myModal">Sign Up</a>
-                    <div id="myModal" className="modal fade modal-custom" role="dialog">
-                      <Signup />
-                    </div>
+                    
                   </li>
                   <li>
                     <a data-toggle="modal" data-target="#login">Log In</a>
-                    <div id="login" className="modal fade modal-custom" role="dialog">
-                      <Login />
-                    </div>
                   </li>
                   <li className="menu_last_li">
                     <Link to="/seller_dashboard" className="btn bg-yellow btn-small">Become an Adza</Link>
@@ -365,15 +357,10 @@ class Header extends React.Component{
                 </li>
                 <li>
                   <a data-toggle="modal" data-target="#myModal">Sign Up</a>
-                  <div id="myModal" className="modal fade modal-custom" role="dialog">
-                    <Signup />
-                  </div>
+                  
                 </li>
                 <li>
                   <a data-toggle="modal" data-target="#login">Log In</a>
-                  <div id="login" className="modal fade modal-custom" role="dialog">
-                    <Login />
-                  </div>
                 </li>
                 <li className="menu_last_li">
                     <Link to="/seller_dashboard" className="btn bg-yellow btn-small">Become an Adza</Link>
@@ -403,15 +390,10 @@ class Header extends React.Component{
                           </li>
                           <li>
                             <a data-toggle="modal" data-target="#myModal">Sign Up</a>
-                            <div id="myModal" className="modal fade modal-custom" role="dialog">
-                              <Signup />
-                            </div>
+                            
                           </li>
                           <li>
                             <a data-toggle="modal" data-target="#login">Log In</a>
-                            <div id="login" className="modal fade modal-custom" role="dialog">
-                              <Login />
-                            </div>
                           </li>
                           <li className="menu_last_li">
                               <Link to="/seller_dashboard" className="menu_adza">Become an Adza</Link>

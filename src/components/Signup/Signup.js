@@ -29,7 +29,7 @@ class Signup extends React.Component{
     }
     render(){
       return (
-        <div className="modal-dialog modal-dialog-custom">
+        <div className="modal-dialog AuthModal">
           <div className="modal-content modal-content-custom">
             <div className="modal-header modal-header-custom">
               <h4 className="modal-title">Join Dananza</h4>
@@ -66,8 +66,7 @@ class Signup extends React.Component{
               </Link>
               <div className="footer-line col-md-12">
                 <div className="footer-container col-md-12">
-                  <span className="label">Already a Member?
-                      <a className="signin" id="signin" data-toggle="modal" data-target="#login" data-dismiss="modal">Sign In</a>
+                  <span className="label">Already a Member? <a className="signin" id="signin" data-toggle="modal" data-target="#login" data-dismiss="modal"> Sign In</a>
                   </span>
                 </div>
               </div>

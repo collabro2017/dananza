@@ -30,41 +30,35 @@ class Login extends React.Component{
 
     render(){
       return (
-          <div className="modal-dialog modal-dialog-custom">
-            <div className="modal-content modal-content-custom">
-              <div className="modal-header modal-header-custom">
-                <h4 className="modal-title">Log In</h4>
+        <div className="modal-dialog AuthModal">
+          <div className="modal-content modal-content-custom">
+            <div className="modal-header modal-header-custom">
+              <h4 className="modal-title">Sign In</h4>
+            </div>
+            <div className="modal-body">
+              <div className="form-group col-md-12">
+                <input className="form-control form-control-solid placeholder-no-fix input-custom"
+                        type="text" autoComplete="off" placeholder="Username" name="username" />
               </div>
-              <div className="modal-body">
-                <form className="login-form" action="index.html" method="post" noValidate="novalidate">
-                    <div className="alert alert-danger display-hide">
-                        <button className="close" data-close="alert"></button>
-                        <span> Enter any username and password. </span>
-                    </div>
-                    <div className="form-group">
-                        <label className="control-label visible-ie8 visible-ie9 label-custom">Username</label>
-                        <input className="form-control form-control-solid placeholder-no-fix input-custom"
-                        type="text" autoComplete="off" placeholder="Username" name="username"></input>
-                    </div>
-                    <div className="form-group">
-                        <label className="control-label visible-ie8 visible-ie9 label-custom">Password</label>
-                        <input className="form-control form-control-solid placeholder-no-fix input-custom"
-                        type="password" autoComplete="off" placeholder="Password" name="password"></input>
-                    </div>
-                    <div className="form-actions form-actions-custom">
-                        <Link>
-                          <button type="submit" className="btn green uppercase" onClick={this.routeChange}>Login</button>
-                        </Link>
-                        <label className="rememberme check mt-checkbox mt-checkbox-outline">
-                            <input type="checkbox" name="remember" value="1" />Remember
-                            <span></span>
-                        </label>
-                        <a href="javascript:;" id="forget-password" className="forget-password">Forgot Password?</a>
-                    </div>
-                </form>
+              <div className="form-group col-md-12">
+                <input className="form-control form-control-solid placeholder-no-fix input-custom"
+                        type="text" autoComplete="off" placeholder="password" name="password" />
+              </div>
+              <div className="form-group col-md-12">
+                  <button className="btn bg-yellow full-width" type="button" data-dismiss="modal" onClick={this.routeChange}>
+                      Login
+                  </button>
+              </div>
+              <div className="footer-line col-md-12">
+                <div className="footer-container">
+                  <a className="signin pull-left" id="signin" data-toggle="modal" data-target="#myModal" data-dismiss="modal">Forgot password?</a>
+                  <a className="signin pull-right" id="signin" data-toggle="modal" data-target="#myModal" data-dismiss="modal">Sign Up</a>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+
       )}
 };
 
