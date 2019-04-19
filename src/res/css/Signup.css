@@ -26,7 +26,7 @@
     text-align: center;
     font-weight: bold;
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
 } 
@@ -34,6 +34,8 @@
 .modal-title {
     text-align: center;
     font-weight: bold;
+    font-family: "Coves-Bold";
+    font-size: 24px;
 }
 
 .modal-content-custom {
@@ -87,7 +89,7 @@
 }
 
 .google-part {
-    margin-bottom: 17px;
+    
 }
 
 .google > span {
@@ -131,6 +133,7 @@
 .border-line {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 18px;
 }
 
 .line-left {
@@ -154,10 +157,18 @@
 .footer-line {
     text-align: center;
     font-size: 16px;
+    line-height: 60px;
+    margin-bottom: 5px;
+    margin-top:20px;
+    font-family: "Thasadith-Bold";
 }
-
+.footer-container{
+    border-top:1px solid #dadada;
+}
 .signin {
-    color: #5fd9fb;
+    color: #5fd9fb !important;
+    font-size: 16px;
+    margin-left: 15px;
 }
 
 .label {
@@ -215,7 +226,10 @@
         margin-top: 10px;
         float: right;
 }
-
+.thin-line{
+    border-top:1px solid #dadada;
+    margin-top:20px;
+}
 .rememberme { 
     margin-top: 10px;
 }

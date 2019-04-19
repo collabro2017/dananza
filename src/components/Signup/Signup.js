@@ -65,9 +65,11 @@ class Signup extends React.Component{
                 </div>
               </Link>
               <div className="footer-line col-md-12">
+                <div className="footer-container col-md-12">
                   <span className="label">Already a Member?
                       <a className="signin" id="signin" data-toggle="modal" data-target="#login" data-dismiss="modal">Sign In</a>
-                  </span>    
+                  </span>
+                </div>
               </div>
             </div>
           </div>
