@@ -35,7 +35,7 @@ class BuyerProfile extends React.Component{
       <div className="buyer_landing buyer_profile">
         <div className="page-container">
            <div className="page-content">
-              <BuyerSidebar />
+              <BuyerSidebar navitem={"edit_profile"}/>
               <div className="page-main">
                 <div className="page-main-header">
                   <span className="headline-first">

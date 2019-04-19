@@ -30,7 +30,7 @@ class BuyerSaved extends React.Component{
     	<div className="buyer_saved">
 			<div className="page-container">
 				<div className="page-content">
-					<BuyerSidebar />
+					<BuyerSidebar navitem={"saved"}/>
 					<div className="page-main">
 						<div className="page-main-header">
 							<span className="headline-first">

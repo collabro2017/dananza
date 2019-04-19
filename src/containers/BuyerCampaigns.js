@@ -75,7 +75,7 @@ class BuyerCampaigns extends React.Component{
       <div className="buyer_landing buyer_campaign">
         <div className="page-container">
            <div className="page-content">
-              <BuyerSidebar />
+              <BuyerSidebar navitem={"campaigns"}/>
 
               <div className="page-main">
                 <div className="page-main-header">

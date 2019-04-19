@@ -44,6 +44,9 @@
     right: 10px;
     font-size: 14px;
 }
+.buyer-sidebar.page-sidebar .section .btn-group{
+	border-bottom: 0.5px solid #dadada;
+}
 .buyer-sidebar.page-sidebar .section .btn-group label{
 	font-size: 16px !important;
 	font-family: "Thasadith-Bold";
@@ -51,7 +54,10 @@
 	text-align: unset;
 	padding-top:17px;
 	padding-bottom: 17px;
-	border: 0.5px;
+    border-top: 0.5px solid #dadada;
+    border-right:0;
+    border-bottom:0;
+    border-radius: 0 !important;
 }
 .buyer-sidebar.page-sidebar .section .btn-group label i{
 	margin-left: 30px;
@@ -59,7 +65,6 @@
 	font-size: 16px;
 }
 .buyer-sidebar.page-sidebar .section .btn-group label.active{
-	border: 0px;
 	border-left: 5px solid #2ab7c9;
 	background-color: #f1f6f9 !important;
 	font-size:16px !important;

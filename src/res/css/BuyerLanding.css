@@ -1,8 +1,8 @@
 .buyer_landing .page-main {
-  width: 80%;
+  width: calc( 100vw - 345px);
   padding-top: 40px;
   background-color: #deebf2;
-  margin-left: 20%;
+  margin-left: 330px;
   padding-bottom: 60px;
 }
 .buyer_landing .page-content {
