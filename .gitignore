@@ -28,3 +28,4 @@ config.json
 
 *.css.map
 .sass-cache
+.env

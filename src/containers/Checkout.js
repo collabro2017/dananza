@@ -2,6 +2,10 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { increment, decrement } from "../store/reducers/stepCounter";
+import { Link } from "react-router-dom";
+
+import 'icheck/skins/all.css';
+import {Checkbox, Radio} from 'react-icheck';
 
 import "../res/css/infoflowPage.css"
 
@@ -21,9 +25,9 @@ class Checkout extends React.Component{
 				<div className="nav_flow row">
 					<ul className="">
 						<li className="cart actived">
-							<span className="step_num">1</span>
+							<Link to="/cart"><span className="step_num">1</span>
 							Cart Details
-							<i className="fa fa-chevron-right"></i>
+							<i className="fa fa-chevron-right"></i></Link>
 						</li>
 						<li className="checkout active">
 							<span className="step_num">2</span>
@@ -43,7 +47,12 @@ class Checkout extends React.Component{
 								Payment Options
 							</div>
 							<div className="brand">
-								<input type="radio" name="" />
+								<Radio
+								  name="payment_option"
+								  value="visa"
+								  radioClass="iradio_flat-blue"
+								  increaseArea="20%"
+								/>
 								<img src={require("../res/img/visa_brand.png")} />
 								<img src={require("../res/img/mastercard.png")}/>
 								<img src={require("../res/img/amex.png")}/>
@@ -70,7 +79,12 @@ class Checkout extends React.Component{
 						</div>
 						<div className="paypal">
 							<div className="brand">
-								<input type="radio" name="" />
+								<Radio
+								  name="payment_option"
+								  value="paypal"
+								  radioClass="iradio_flat-blue"
+								  increaseArea="20%"
+								/>
 								<img src={require("../res/img/paypal_brand.png")}/>
 							</div>
 						</div>
@@ -83,7 +97,7 @@ class Checkout extends React.Component{
 							</div>
 							<div className="info_detail col-md-9">
 								@themainmenu<br/>
-								X1 Instagram Story<br/>
+								<p>X1 Instagram Story</p>
 								$100
 							</div>
 						</div>
@@ -94,25 +108,25 @@ class Checkout extends React.Component{
 							</div>
 							<div className="info_detail col-md-9">
 								@themainmenu<br/>
-								X1 Blog Post<br/>
+								<p>X1 Blog Post</p>
 								$100
 							</div>
 						</div>
 						<div className="sub_total">
-							<div className="sub_title col-md-6">Subtotal</div>
-							<div className="sub_value col-md-6">$200</div>
+							<div className="sub_title col-md-6 amount_title">Subtotal</div>
+							<div className="sub_value col-md-6 value">$200</div>
 						</div>
 						<div className="other_fee">
-							<div className="fee_title col-md-6">Other Fees</div>
-							<div className="fee_value col-md-6">$3.50</div>
+							<div className="fee_title col-md-6 amount_title">Other Fees</div>
+							<div className="fee_value col-md-6 value">$3.50</div>
 						</div>
 						<div className="divider"></div>
 						<div className="total">
-							<div className="total_title col-md-6">Total</div>
-							<div className="total_value col-md-6">$203.50</div>
+							<div className="total_title col-md-6 amount_title">Total</div>
+							<div className="total_value col-md-6 value">$203.50</div>
 						</div>
 						<div className="confirm">
-							<a href="#">Confirm & Pay</a>
+							<Link className="btn btn-yellow btn-medium color-dark full-width" to="/uploadfiles">Confirm & Pay</Link>
 						</div>
 					</div>
 				</div>

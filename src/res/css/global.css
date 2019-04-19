@@ -30,6 +30,19 @@
   font-family: "Geomanist-Italic";
   src: url(../fonts/Geomanist-Italic.ttf) format("truetype"); }
 
+@font-face {
+  font-family: "Muli-Light";
+  src: url(../fonts/Muli-Light.ttf) format("truetype"); }
+@font-face {
+  font-family: "Muli-Regular";
+  src: url(../fonts/Muli-Regular.ttf) format("truetype"); }
+@font-face {
+  font-family: "Muli-Bold";
+  src: url(../fonts/Muli-Bold.ttf) format("truetype"); }
+@font-face {
+  font-family: "Muli-SemiBold";
+  src: url(../fonts/Muli-SemiBold.ttf) format("truetype"); }
+
 body {
   color: #4b4b4b !important;
   font-family: "Thasadith-Regular";
@@ -37,12 +50,12 @@ body {
 */  font-weight: 900; 
   background:white !important;
 }
-input, select, img, a{
+input, select, img, a, button, textarea{
   outline: none;
 }
 
 /* Spacing */
-.full_container{
+.full_container, .full-width{
   width: 100%;
 }
 .container{

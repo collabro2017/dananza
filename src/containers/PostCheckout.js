@@ -23,10 +23,10 @@ class PostCheckout extends React.Component{
 				<div className="post_checkout2">
 					<div className="row done">
 						<div className="title">You're All Done!</div>
-						<div className="content">If your Adza approves your ad, you can expect to see your ads posted on your selected schedule of dates. If not, your payment will be refunded back to your </div>
+						<div className="content">If your Adza approves your ad, you can expect to see your ads posted on your selected schedule of dates. If not, your payment will be refunded back to your account.</div>
 						<div className="pro_line">
-							<div className="col-md-1"></div>
-							<div className="pro_line_pos col-md-2">
+							<div className="col-sm-1"></div>
+							<div className="pro_line_pos col-sm-2">
 								<div>
 									<i className="fa fa-check passed"></i>
 								</div>
@@ -37,7 +37,7 @@ class PostCheckout extends React.Component{
 									<span> 03/11</span>
 								</div>
 							</div>
-							<div className="pro_line_pos col-md-2">
+							<div className="pro_line_pos col-sm-2">
 								<div>
 									<i className="fa fa-check passed"></i>
 								</div>
@@ -48,7 +48,7 @@ class PostCheckout extends React.Component{
 									<span> Uploaded</span>
 								</div>
 							</div>
-							<div className="pro_line_pos col-md-2">
+							<div className="pro_line_pos col-sm-2">
 								<div>
 									<i className="fa fa-check"></i>
 								</div>
@@ -59,7 +59,7 @@ class PostCheckout extends React.Component{
 									<span> Adza Approval</span>
 								</div>
 							</div>
-							<div className="pro_line_pos col-md-2">
+							<div className="pro_line_pos col-sm-2">
 								<div>
 									<i className="fa fa-check"></i>
 								</div>
@@ -70,7 +70,7 @@ class PostCheckout extends React.Component{
 									<span> Launched</span>
 								</div>
 							</div>
-							<div className="pro_line_pos col-md-2">
+							<div className="pro_line_pos col-sm-2">
 								<div>
 									<i className="fa fa-check"></i>
 								</div>
@@ -88,7 +88,7 @@ class PostCheckout extends React.Component{
 						<div className="cart_des">Order Summary</div>
 						<div className="table_camp">
 							<h3 className="text">
-								Ad Campagin 1 <i className="fa fa-pencil"></i>
+								Ad Campagin 1
 							</h3>
 							<table className="table table-striped table-hover">
 	                            <thead>
@@ -151,7 +151,7 @@ class PostCheckout extends React.Component{
 						</div>
 						<div className="proceed_chk">
 							<div className="checkout">
-								<Link to="/dashborad">Proceed to Dashboard</Link>
+								<Link to="/buyer_landing">Proceed to Dashboard</Link>
 							</div>
 							
 						</div>
