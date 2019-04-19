@@ -100,8 +100,13 @@
 }
 .AuthModal .position-relative > i {
   position: absolute;
-  left: 3px;
+  left: 6px;
   top: 11px;
+}
+.AuthModal .position-relative > img {
+  position: absolute;
+  left: 10px;
+  max-height: 22px;
 }
 .AuthModal .border-line {
   display: flex;

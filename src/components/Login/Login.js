@@ -11,9 +11,6 @@ import "../../res/css/header_search.css"
 import "../../res/css/layout.min.css"
 import "../../res/css/login.min.css";
 
-import $ from "jquery";
-
-
 class Login extends React.Component{
 
     constructor(props) {
@@ -23,9 +20,6 @@ class Login extends React.Component{
 
     routeChange(){
       this.props.history.push("/buyer_landing");
-    }
-    componentDidUpdate(){
-      $('.modal-backdrop').remove();
     }
 
     render(){
@@ -42,10 +36,10 @@ class Login extends React.Component{
               </div>
               <div className="form-group col-md-12">
                 <input className="form-control form-control-solid placeholder-no-fix input-custom"
-                        type="text" autoComplete="off" placeholder="password" name="password" />
+                        type="password" autoComplete="off" placeholder="password" name="password" />
               </div>
               <div className="form-group col-md-12">
-                  <button className="btn bg-yellow full-width" type="button" data-dismiss="modal" onClick={this.routeChange}>
+                  <button className="btn bg-yellow full-width btn-small" type="button" data-dismiss="modal" onClick={this.routeChange}>
                       Login
                   </button>
               </div>
