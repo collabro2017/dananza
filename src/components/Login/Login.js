@@ -23,6 +23,8 @@ class Login extends React.Component{
 
     routeChange(){
       this.props.history.push("/buyer_landing");
+    }
+    componentDidUpdate(){
       $('.modal-backdrop').remove();
     }
 
@@ -34,7 +36,7 @@ class Login extends React.Component{
                 <h4 className="modal-title">Log In</h4>
               </div>
               <div className="modal-body">
-                <form className="login-form" action="index.html" method="post" novalidate="novalidate">
+                <form className="login-form" action="index.html" method="post" noValidate="novalidate">
                     <div className="alert alert-danger display-hide">
                         <button className="close" data-close="alert"></button>
                         <span> Enter any username and password. </span>
@@ -42,12 +44,12 @@ class Login extends React.Component{
                     <div className="form-group">
                         <label className="control-label visible-ie8 visible-ie9 label-custom">Username</label>
                         <input className="form-control form-control-solid placeholder-no-fix input-custom"
-                        type="text" autocomplete="off" placeholder="Username" name="username"></input>
+                        type="text" autoComplete="off" placeholder="Username" name="username"></input>
                     </div>
                     <div className="form-group">
                         <label className="control-label visible-ie8 visible-ie9 label-custom">Password</label>
                         <input className="form-control form-control-solid placeholder-no-fix input-custom"
-                        type="password" autocomplete="off" placeholder="Password" name="password"></input>
+                        type="password" autoComplete="off" placeholder="Password" name="password"></input>
                     </div>
                     <div className="form-actions form-actions-custom">
                         <Link>
