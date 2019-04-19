@@ -168,9 +168,8 @@
 .buyer_landing .adzas .item .price a {
   position: absolute;
   color: #4b4b4b;
-  right: 0px;
+  right: 10px;
   font-size: 28px;
-  top: -12px;
 }
 .buyer_landing .price span.small {
   color: #4b4b4b;
