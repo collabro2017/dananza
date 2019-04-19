@@ -6,6 +6,7 @@ import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 
 import { increment, decrement } from "../store/reducers/stepCounter";
 import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
@@ -38,7 +39,7 @@ class BuyerLanding extends React.Component{
                   Latest Campaign
                 </span>
                 <span className="headline-second pull-right">
-                  See All Campaigns <i className="fa fa-long-arrow-right"></i>
+                  <Link to="/buyer_campaigns">See All Campaigns <i className="fa fa-long-arrow-right"></i></Link>
                 </span>
               </div>
               <hr className="divider-line" />
@@ -81,7 +82,7 @@ class BuyerLanding extends React.Component{
                       <table className="table">
                         <thead>
                           <tr style={{ 'backgroundColor': '#f1f6f9'}}>
-                            <th><span className="left">adza</span></th>
+                            <th><span className="left">Adza</span></th>
                             <th>Medium</th>
                             <th>Schedule Date</th>
                             <th>Amount</th>
@@ -114,7 +115,7 @@ class BuyerLanding extends React.Component{
                   Saved Adzas
                 </span>
                 <span className="headline-second pull-right">
-                  See All Saved Adzas <i className="fa fa-long-arrow-right"></i>
+                  <Link to="/buyer_saved">See All Saved Adzas <i className="fa fa-long-arrow-right"></i></Link>
                 </span>
               </div>
               <hr className="divider-line" />

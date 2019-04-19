@@ -234,13 +234,12 @@
 }
 .search_page .page-result {
   margin-left: 270px;
-  padding: 0px 10px;
   position: relative;
 }
 .search_page .page-result-header {
   width: 100%;
   position: relative;
-  padding: 0px 10px;
+  padding: 0 0 0 30px;
   font-size: 16px;
 }
 .search_page .page-result-header .search_keyword{
@@ -259,8 +258,12 @@
   width: 100%;
   margin: 0px;
 }
+.search_page .page-result-content.row > div{
+  padding-right: 0;
+  padding-left: 30px;
+}
 .search_page .page-result-content .item {
-  margin: 12px auto;
+  margin: 18px auto;
   width: 100%;
   border-radius: 10px !important;
   border: 1px solid #dadada;

@@ -144,6 +144,11 @@ button {
   font-size: 16px;
   width: 67%;
   line-height: 32px; }
+a{
+  color: #01091c;
+}
+a:hover{
+  text-decoration: none;}
 
 /*start buyer global styles*/
   /* headline styles*/
@@ -156,6 +161,10 @@ button {
     margin-top: 20px;
     font-size: 16px;
     font-family: "Thasadith-Regular";
+  }
+
+  .headline-second a i{
+    margin-left: 10px;
   }
 /* seller dashboard */
 .dashboard_seller .page-content {

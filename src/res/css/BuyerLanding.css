@@ -1,6 +1,6 @@
 .buyer_landing .page-main {
   width: 80%;
-  padding-top: 20px;
+  padding-top: 40px;
   background-color: #deebf2;
   margin-left: 20%;
   padding-bottom: 60px;
@@ -46,9 +46,7 @@
   margin-right: 130px;
 }
 .buyer_landing .page-main-content.row {
-  margin-left: 100px;
-  margin-right: 100px;
-  margin-top: 50px;
+  margin: 30px 130px 50px 100px;
 }
 .buyer_landing .portlet.light.bordered {
   border-radius: 10px !important;
@@ -57,6 +55,10 @@
   border-top: 1px solid #89b9d3;
   margin-left: 100px;
   margin-right: 130px;
+}
+.buyer_landing .panel-body{
+  padding-left:0;
+  padding-right:0;
 }
 .buyer_landing .panel {
   border-radius: 10px !important;
@@ -78,6 +80,10 @@
 .buyer_landing .message-table {
   margin-top: -160px;
 }
+.buyer_landing .message-table table th{
+  font-family: "Thasadith-Bold";
+  font-size: 18px;
+}
 .buyer_landing .message-table .end {
   border-bottom: 1px solid #e7ecf1;
   height: 73px;
@@ -88,15 +94,18 @@
 .buyer_landing .left {
   margin-left: 30px !important;
 }
+.buyer_landing img.left {
+  margin-right: 10px !important;
+}
 .buyer_landing .cancel {
   margin-left: 30px;
+  margin-bottom: 10px;
 }
 .buyer_landing .cancel a{
   color:#444;
 }
 .buyer_landing .adzas.row {
-  margin-left: 100px;
-  margin-right: 130px;
+  margin: 20px 115px 50px 85px;
 }
 .buyer_landing .adzas .item {
   margin: 12px auto;
@@ -106,6 +115,7 @@
   border: 1px solid #dadada;
   position: relative;
   background-color: white;
+  box-shadow: 0px 1px 14px 4px white;
 }
 .buyer_landing .adzas .item.active {
   border: 2px solid #2ab7c9;
@@ -124,10 +134,11 @@
   font-size: 1.36vw;
 }
 .buyer_landing .adzas .item .item-header .sites img {
-  margin-right: 2px;
+  margin-right: 4px;
 }
 .buyer_landing .adzas .item .reach span {
   font-family: "Thasadith-Bold";
+  font-size:18px;
 }
 .buyer_landing .adzas .item .reach i {
   color: #4b4b4b;
@@ -163,7 +174,7 @@
 }
 .buyer_landing .price span.small {
   color: #4b4b4b;
-  font-size: 11px;
+  font-size: 13px;
 }
 .buyer_landing .adzas .item .title {
   font-size: 16px;
