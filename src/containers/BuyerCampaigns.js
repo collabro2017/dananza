@@ -12,18 +12,26 @@ import { Link } from 'react-router-dom';
 import { increment, decrement } from "../store/reducers/stepCounter";
 import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
 
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+
 import "../res/css/Dananza_Search.css"
 import "../res/css/BuyerCampaigns.css"
 
 class BuyerCampaigns extends React.Component{
 
-  state={'headerType': "buyer"}
+  state={
+    'headerType': "buyer",
+    'campaign_status': 'All'
+  }
 
   constructor(props) {
     super(props);
     props.changeHeaderType( this.state.headerType )
   }
-
+  onChangeRelevance = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
   componentDidMount(){
     document.title = "Buyer Campaigns"
 
@@ -82,31 +90,23 @@ class BuyerCampaigns extends React.Component{
                   <span className="headline-first">
                     Campaigns
                   </span>
-                  <span className="headline-second pull-right">
-                    Campaign Status:&nbsp;&nbsp;&nbsp;
-                  
-                    <span className="dropdown dropdown-user">
-                        <a href="javascript:;" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            All Campaigns
-                            <i className="fa fa-angle-down"></i>
-                        </a>
-                        <ul className="dropdown-menu dropdown-menu-default">
-                            <li>
-                                <a href="page_user_profile_1.html">
-                                    All Campaigns </a>
-                            </li>
-                            <li>
-                                <a href="app_calendar.html">
-                                    Needs Your Approval </a>
-                            </li>
-                            <li>
-                                <a href="app_todo.html">
-                                    Completed Campaigns
-                                </a>
-                            </li>
-                        </ul>
-                    </span>
-                  </span>
+                  <div className="pull-right headline-second campaing_selector">
+                    Campaign Status: 
+                    <Select
+                      value={this.state.campaign_status}
+                      onChange={this.onChangeCampaign}
+                      inputProps={{
+                        name: 'campaign',
+                        id: 'campaign-selector',
+                      }}
+                    >
+                      <MenuItem value={'All'}>All Campaigns</MenuItem>
+                      <MenuItem value={'Status1'}>Status1</MenuItem>
+                      <MenuItem value={'Status2'}>Status2</MenuItem>
+                      <MenuItem value={'Status3'}>Status3</MenuItem>
+                      <MenuItem value={'Status4'}>Status4</MenuItem>
+                    </Select>
+                  </div>
                 </div>
                 <hr className="divider-line" />
                 <div className="third-title">Pending Campaigns</div>

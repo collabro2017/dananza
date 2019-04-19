@@ -45,6 +45,7 @@ class SearchResults extends React.Component{
   		'gender_percent' : 0,
   		'age_start': 0,
   		'age_end': 60,
+  		'searchText':'Social Media',
   		'startDate': '',
 		tags: [
 	        { name: "Apples" },
@@ -491,7 +492,7 @@ class SearchResults extends React.Component{
 					<div className="page-result">
 						<div className="page-result-header">
 							<li> <i className="fa fa-circle"></i> Sponsored </li>
-							<div style={{'display': 'inline-flex', float:'right'}}> 1-20 of 10718 results for <span className="search_keyword color-dark"> "social media" </span></div>
+							<div style={{'display': 'inline-flex', float:'right'}}> 1-20 of 10718 results for <span className="search_keyword color-dark"> "{this.state.searchText}" </span></div>
 						</div>
 						<div className="page-result-content row">
 							<div className="col-sm-6 col-md-3">

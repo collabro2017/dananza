@@ -7,6 +7,9 @@ import "../res/css/infoflowPage.css"
 import "../res/css/sellers.css"
 import $ from "jquery";
 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+
 class Sellers extends React.Component{
   constructor(props) {
     super(props);
@@ -18,6 +21,7 @@ class Sellers extends React.Component{
 
   render(){
     return (
+    	<div className="dashboard_seller">
 		<div className="sellers container">
 			<div className="row">
 				<div className="sidebar col-md-3">
@@ -100,7 +104,18 @@ class Sellers extends React.Component{
 				</div>
 				<div className="sellers_content col-md-9">
 					<div className="row slider">
-						<img src={require("../res/img/sellers_slider1.png")} />
+						{/*<img src={require("../res/img/sellers_slider1.png")} />*/}
+						<Carousel showThumbs={false}>
+			                <div>
+			                    <img src={require("../res/img/sellers_slider1.png")} />
+			                </div>
+			                <div>
+			                    <img src={require("../res/img/sellers_slider1.png")} />
+			                </div>
+			                <div>
+			                    <img src={require("../res/img/sellers_slider1.png")} />
+			                </div>
+			            </Carousel>
 					</div>
 					<div className="row listings">
 						<div className="portlet-title">
@@ -405,6 +420,7 @@ class Sellers extends React.Component{
 		            </div>
 				</div>
 			</div>
+		</div>
 		</div>
 	);
   }

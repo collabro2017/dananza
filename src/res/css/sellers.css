@@ -72,7 +72,9 @@
       font-size: 32px;
       line-height: 48px; }
     .sellers .sellers_content .row.slider {
-      text-align: center; }
+      text-align: center; 
+      width:60%;    
+      margin: 0 auto;}
     .sellers .sellers_content .row.listings {
       margin-top: 50px; }
       .sellers .sellers_content .row.listings .panel-title a img {

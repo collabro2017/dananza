@@ -167,12 +167,14 @@ a:hover{
     margin-left: 10px;
   }
 /* seller dashboard */
+.dashboard_seller{
+    border-top: 1px solid #dadada;
+}
 .dashboard_seller .page-content {
   width: 100%;
   font-family: 'Thasadith-Regular';
   font-weight: 900 !important;
   font-size: 14px;
-  border-top: 1px solid #dadada;
   position: relative;
   color: #000c20; }
 .dashboard_seller .page-result-wrapper {
