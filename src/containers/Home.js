@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { increment, decrement } from "../store/reducers/stepCounter";
 
 import "../res/css/homepage.css"
+import "../res/css/Signup.css"
 
 class Home extends React.Component{
 

@@ -2,6 +2,8 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { increment, decrement } from "../store/reducers/stepCounter";
+import { Link } from 'react-router-dom';
+
 
 import "../res/css/infoflowPage.css"
 
@@ -149,7 +151,7 @@ class PostCheckout extends React.Component{
 						</div>
 						<div className="proceed_chk">
 							<div className="checkout">
-								<a href="#" className="btn btn-mid bg-yellow color-dark">Proceed to Dashboard</a>
+								<Link to="/dashborad">Proceed to Dashboard</Link>
 							</div>
 							
 						</div>

@@ -67,13 +67,20 @@
 				{
 					margin-bottom: 17px;
 				}
-				.fa
+				.channel_img
 				{
 					margin-right: 10px;
 				}
 				.value, .social_icons
 				{
 					float: right;
+				}
+				.social_icons
+				{
+					img
+					{
+						margin-right: 5px;
+					}
 				}
 			}
 			.channels, .audience
@@ -94,6 +101,10 @@
 					font-family: "Thasadith-Bold";
 					font-size: 13px;
 					text-align: left;
+				}
+				.fa-user
+				{
+					margin-right: 10px;
 				}
 			}
 		}
@@ -117,6 +128,70 @@
 			.row.listings
 			{
 				margin-top: 50px;
+				.panel-title
+				{
+					a
+					{
+						img
+						{
+							margin-right: 10px;
+						}
+						span
+						{
+							float: right;
+							padding-top: 6px;
+							.fa
+							{
+								margin-left: 20px;
+							}
+						}
+					}
+				}
+				.header_posts
+				{
+					.fa
+					{
+						font-size: 16px;
+						margin-right: 10px;
+					}
+
+				}
+				.header_posts_value
+				{
+					.col-md-3
+					{
+						margin-top: 10px;
+					}
+				}
+				.body_content
+				{
+					.item
+					{
+						padding: 10px 30px;
+						
+						.fa
+						{
+							font-size: 20px;
+						}
+						.col-md-4
+						{
+							font-family: "Thasadith-Bold";
+							font-size: 14px;
+							background: #f1f6f9;
+							padding: 10px 30px;
+							line-height: 2;
+							a
+							{
+								padding: 10px 30px;
+								background: #ffd766;
+							}
+						}
+						.story
+						{
+							margin-top: 20px;
+						}
+					}
+				}
 			}
 			.row.reviews
 			{
@@ -143,6 +218,10 @@
 						font-family: "Thasadith-Bold";
 						font-size: 16px;
 						line-height: 32px;
+						button
+						{
+							background: none;
+						}
 					}
 				}
 			}

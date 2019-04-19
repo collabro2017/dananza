@@ -108,6 +108,8 @@ class BuyerCampaigns extends React.Component{
                 </div>
                 <hr class="divider-line" />
                 <span class="third-title">Pending Campaigns</span>
+                <br/>
+                <br/>
                 <div class="main-slider">
                   <div class="slider-item">
                     <div class="panel-title">
@@ -145,7 +147,7 @@ class BuyerCampaigns extends React.Component{
                           </div>                            
                       </div>
                       <div class="message-table">
-                        <table class="table table-condensed">
+                        <table class="table">
                           <thead>
                             <tr style={{'backgroundColor': '#f1f6f9'}}>
                               <th><span class="left">adza</span></th>

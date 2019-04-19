@@ -16,7 +16,7 @@ const drawerWidth = 240;
 
 
 const SellerSidebar = props => {
-  const { open, classes } = props;
+  const { open, classes, navitem } = props;
   return (
         <div className="page-sidebar">
           <div className="section target-tree">
@@ -32,8 +32,11 @@ const SellerSidebar = props => {
                 displayprevious="true"
                 width="60"
                 height="60"
-                thickness={0.2}
+                thickness={0.12}
+                displayInput={false}
+                displayCustom={()=>(<input value={'44%'}/>)}
               />
+              <h6>Response Rate</h6>
             </div>
             <div className="dial">
               <Knob
@@ -43,8 +46,11 @@ const SellerSidebar = props => {
                 displayprevious="true"
                 width="60"
                 height="60"
-                thickness={0.2}
+                thickness={0.12}
+                displayInput={false}
+                displayCustom={()=>(<input value={'99%'}/>)}
               />
+              <h6>Order Completed</h6>
             </div>
             <div className="dial">
               <Knob
@@ -54,53 +60,59 @@ const SellerSidebar = props => {
                 displayprevious="true"
                 width="60"
                 height="60"
-                thickness={0.2}
+                thickness={0.12}
+                displayInput={false}
+                displayCustom={()=>(<input value={'98%'}/>)}
               />
+              <h6>Delivered on Time</h6>
             </div>
             <div className="dial">
               <Knob
                 max={5.0}
                 value={5.0}
                 fgColor={'#2ab7c9'}
-                className="rate"
+                className="knob"
                 displayprevious="true"
                 width="60"
                 height="60"
-                thickness={0.2}
+                thickness={0.12}
+                displayInput={false}
+                displayCustom={()=>(<input value={'5.0'}/>)}
               />
+              <h6>Rating</h6>
               <i className="fa fa-star"></i>
             </div>
           </div>
           <div className="section">
             <div className="btn-group" data-toggle="buttons" id="pages">
               <Link to="/seller_orders">
-                <label className="btn btn-default">
-                  <i className="fa fa-shopping-cart"></i>
-                    <input type="radio" className="toggle"/> Orders
+                <label className={navitem=="orders"?"btn btn-default active":"btn btn-default"}>
+                  <img src={require('../../res/img/sidebar_cart.png')}/>
+                  <input type="radio" className="toggle"/> Orders
                 </label>
               </Link>
               <Link to="/seller_analytics">
-                <label className="btn btn-default">
-                  <i className=" fa fa-bar-chart"></i>
-                    <input type="radio" className="toggle"/> Analytics
+                <label className={navitem=="analytics"?"btn btn-default active":"btn btn-default"}>
+                  <img src={require('../../res/img/sidebar_graph.png')}/>
+                  <input type="radio" className="toggle"/> Analytics
                 </label>
               </Link>
               <Link to="/seller_calendar">
-                <label className="btn btn-default">
-                  <i className="fa fa-calendar"></i>
-                    <input type="radio" className="toggle"/> Calendar
+                <label className={navitem=="calendar"?"btn btn-default active":"btn btn-default"}>
+                  <img src={require('../../res/img/sidebar_calendar.png')}/>
+                  <input type="radio" className="toggle"/> Calendar
                 </label>
               </Link>
-              <Link to="/seller_page">
-                <label className="btn btn-default">
-                  <i className="fa fa-user"></i>
-                    <input type="radio" className="toggle"/> Seller's Page
+              <Link to="/seller_dashboard">
+                <label className={navitem=="sellers_page"?"btn btn-default active":"btn btn-default"}>
+                  <img src={require('../../res/img/sidebar_user.png')}/>
+                  <input type="radio" className="toggle"/> Seller's Page
                 </label>
               </Link>
               <Link to="/seller_messages">
-                <label className="btn btn-default">
-                  <i className="fa fa-comment-o"></i>
-                    <input type="radio" className="toggle"/> Messages
+                <label className={navitem=="message"?"btn btn-default active":"btn btn-default"}>
+                  <img src={require('../../res/img/messages.png')}/>
+                  <input type="radio" className="toggle"/> Messages
                 </label>
               </Link>
           </div>

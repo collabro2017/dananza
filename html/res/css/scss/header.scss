@@ -93,6 +93,24 @@
 			text-decoration: none;
 		}
 	}
+	
+}
+ul.seller
+{
+	display: block !important;
+	min-width: 175px !important;
+	position: absolute;
+	transform: translate3d(-230px, 60px, 0px);
+	top: 0px;
+	left: 0px;
+	.other_act_img
+	{
+		display: flex;
+		.more
+		{
+			padding: 10px;
+		}
+	}
 }
 
 

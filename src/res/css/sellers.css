@@ -43,10 +43,12 @@
       border-bottom: 1px solid #dadada; }
       .sellers .sidebar .from_avg div, .sellers .sidebar .channels div {
         margin-bottom: 17px; }
-      .sellers .sidebar .from_avg .fa, .sellers .sidebar .channels .fa {
+      .sellers .sidebar .from_avg .channel_img, .sellers .sidebar .channels .channel_img {
         margin-right: 10px; }
       .sellers .sidebar .from_avg .value, .sellers .sidebar .from_avg .social_icons, .sellers .sidebar .channels .value, .sellers .sidebar .channels .social_icons {
         float: right; }
+      .sellers .sidebar .from_avg .social_icons img, .sellers .sidebar .channels .social_icons img {
+        margin-right: 5px; }
     .sellers .sidebar .channels, .sellers .sidebar .audience {
       padding: 20px 0; }
     .sellers .sidebar .audience {
@@ -59,6 +61,8 @@
         font-family: "Thasadith-Bold";
         font-size: 13px;
         text-align: left; }
+      .sellers .sidebar .audience .fa-user {
+        margin-right: 10px; }
   .sellers .sellers_content {
     padding: 30px; }
     .sellers .sellers_content .row {
@@ -71,6 +75,33 @@
       text-align: center; }
     .sellers .sellers_content .row.listings {
       margin-top: 50px; }
+      .sellers .sellers_content .row.listings .panel-title a img {
+        margin-right: 10px; }
+      .sellers .sellers_content .row.listings .panel-title a span {
+        float: right;
+        padding-top: 6px; }
+        .sellers .sellers_content .row.listings .panel-title a span .fa {
+          margin-left: 20px; }
+      .sellers .sellers_content .row.listings .header_posts .fa {
+        font-size: 16px;
+        margin-right: 10px; }
+      .sellers .sellers_content .row.listings .header_posts_value .col-md-3 {
+        margin-top: 10px; }
+      .sellers .sellers_content .row.listings .body_content .item {
+        padding: 10px 30px; }
+        .sellers .sellers_content .row.listings .body_content .item .fa {
+          font-size: 20px; }
+        .sellers .sellers_content .row.listings .body_content .item .col-md-4 {
+          font-family: "Thasadith-Bold";
+          font-size: 14px;
+          background: #f1f6f9;
+          padding: 10px 30px;
+          line-height: 2; }
+          .sellers .sellers_content .row.listings .body_content .item .col-md-4 a {
+            padding: 10px 30px;
+            background: #ffd766; }
+        .sellers .sellers_content .row.listings .body_content .item .story {
+          margin-top: 20px; }
     .sellers .sellers_content .row.reviews span {
       font-family: "Thasadith-Bold";
       font-size: 16.42px; }
@@ -85,5 +116,7 @@
       font-family: "Thasadith-Bold";
       font-size: 16px;
       line-height: 32px; }
+      .sellers .sellers_content .row.reviews .review_lists .seemore button {
+        background: none; }
 
 /*# sourceMappingURL=sellers.css.map */
