@@ -115,7 +115,7 @@ class App extends Component {
                 <DashboardRoute exact path="/buyer_messages" component={BuyerMessages} />
 
                 <DashboardRoute exact path="/blogView" component={BlogView} />
-                <DashboardRoute exact path="/blogHome" component={BlogHome} />
+                <DashboardRoute exact path="/blogs" component={BlogHome} />
 
                 <EmptyRoute component={NotFound} />
               </Switch>

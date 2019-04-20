@@ -39,7 +39,7 @@ const Footer = props => {
                 <ul>
                   <li>Company</li>
                   <li>Careers</li>
-                  <li>Blog</li>
+                  <li><Link to="/blogs">Blog</Link></li>
                   <li><Link to="/help">Help</Link></li>
                   <li>Contact</li>
                 </ul>

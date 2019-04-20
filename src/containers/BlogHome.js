@@ -173,15 +173,15 @@ class BlogHome extends React.Component{
             <div className="pagination">
               <a className="btn btn-default hidden" id="prev" hidden> &lt; </a>
               <div className="btn-group" data-toggle="buttons" id="pages">
-                  <label className="btn btn-trans active">
+                  <label className="btn btn-default active">
                       <input type="radio" className="toggle"/> 1 </label>
-                  <label className="btn btn-trans">
+                  <label className="btn btn-default">
                       <input type="radio" className="toggle"/> 2 </label>
-                  <label className="btn btn-trans">
+                  <label className="btn btn-default">
                       <input type="radio" className="toggle"/> 3 </label>
-                  <label className="btn btn-trans">
+                  <label className="btn btn-default">
                       <input type="radio" className="toggle"/> 4 </label>
-                  <label className="btn btn-trans">
+                  <label className="btn btn-default">
                       <input type="radio" className="toggle"/> 5 </label>
               </div>
               <a className="btn btn-default" id="next"> &gt; </a>
