@@ -24,6 +24,8 @@ import UploadFiles from "./containers/UploadFiles";
 import PostCheckout from "./containers/PostCheckout";
 import About from "./containers/About";
 import Help from "./containers/Help";
+import BlogView from "./containers/BlogView";
+import BlogHome from "./containers/BlogHome";
 
 import SearchResults from "./containers/SearchResults";
 import Seller from "./containers/Sellers";
@@ -111,6 +113,9 @@ class App extends Component {
                 <DashboardRoute exact path="/buyer_profile" component={BuyerProfile} />
                 <DashboardRoute exact path="/buyer_campaigns" component={BuyerCampaigns} />
                 <DashboardRoute exact path="/buyer_messages" component={BuyerMessages} />
+
+                <DashboardRoute exact path="/blogView" component={BlogView} />
+                <DashboardRoute exact path="/blogHome" component={BlogHome} />
 
                 <EmptyRoute component={NotFound} />
               </Switch>
