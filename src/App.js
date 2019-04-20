@@ -42,6 +42,8 @@ import BuyerProfile from "./containers/BuyerProfile";
 import BuyerCampaigns from "./containers/BuyerCampaigns";
 import BuyerMessages from "./containers/BuyerMessages";
 
+import NewOrder from "./containers/NewOrder";
+
 const NotFound = () => {
   return <div>NotFound</div>;
 };
@@ -116,6 +118,8 @@ class App extends Component {
 
                 <DashboardRoute exact path="/blogView" component={BlogView} />
                 <DashboardRoute exact path="/blogs" component={BlogHome} />
+
+                <DashboardRoute exact path="/new_order" component={NewOrder} />
 
                 <EmptyRoute component={NotFound} />
               </Switch>

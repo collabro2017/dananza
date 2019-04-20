@@ -1,0 +1,227 @@
+.order-dashboard .order-seller.page-content{
+	padding-left: 5.8%;
+	padding-right: 5.8%;
+	padding-top: 20px;
+	min-height: 1000px;
+	width: 100%;
+	font-family: 'Thasadith-Bold';
+	display: block;
+	background-color: #deebf2;
+}
+.order-dashboard .page-content .message{
+	display: flex;
+	width: 100%;
+	position: relative;
+	margin-bottom: 30px;
+	margin-top: 30px; }
+	.order-dashboard .page-content .message .sender{
+		width: 12.25%;
+		position: relative; }
+		.order-dashboard .page-content .message .sender .wrapper{
+			position: absolute;
+			bottom: -10px;
+			right: 0; }
+			.order-dashboard .page-content .message .sender .wrapper img{
+				width: 33%;
+				margin-right: 7%; }
+	.order-dashboard .page-content .message .message-wrapper{
+		width: 71.5%;
+	}
+	.order-dashboard .page-content .message .message-content{
+		max-width: 100% }
+		.order-dashboard .page-content .message .message-content .date{
+			font-family: 'Thasadith-Regular';
+			font-size: 12px;
+			color: #4b4b4b;
+		}
+		.order-dashboard .page-content .message.issue .message-box{
+			display: inline-flex !important;
+		}
+		.order-dashboard .page-content .message .message-content .issue{
+			width: 29%;
+			background-color: #dff0d8;
+			border-radius: 10px !important;
+			padding: 5px;
+			display: inline-flex;
+			float: right;
+		}
+		.order-dashboard .page-content .message .message-content .message-box{
+			font-size: 14px;
+			font-family: 'Thasadith-Bold';
+			padding: 10px;
+			background-color: white;
+			border-radius: 10px !important;
+			background: #d7d7d7;
+			width: fit-content;
+			position: relative; }
+			.order-dashboard .page-content .message .message-content .message-box .arrow_send{
+			    display: block;
+			    position: absolute;
+			    top: 100%;
+			    left: 0;
+			}
+			.order-dashboard .page-content .message .message-content .message-box .arrow_receive{
+			    display: block;
+			    position: absolute;
+			    top: 100%;
+			    right: 0;
+			}
+			.order-dashboard .page-content .message .message-content .message-box .link{
+			    margin-top: 12px;
+    			margin-left: 12px; }
+			.order-dashboard .page-content .message .message-content .message-box .link img{
+				margin-right: 5px;
+			}
+			.order-dashboard .page-content .message .message-content .message-box .attachment{
+			    padding-left: 5px;
+			}
+			.order-dashboard .page-content .message .message-content .message-box .action{
+		        width: fit-content;
+		        height: fit-content;
+				display: flex;
+			}
+			.order-dashboard .page-content .message .message-content .message-box .btn{
+				font-family: 'MyriadPro-Bold';
+				font-size: 14px;
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+			.order-dashboard .page-content .message .message-content .message-box .btn i{
+				margin-left: 2px;
+			}
+			.order-dashboard .page-content .message .message-content .message-box .btn-reject{
+				min-width: 93px;
+				padding: 5px 10px;
+				background: #d9534f;
+				color: white;
+			}
+			.order-dashboard .page-content .message .message-content .message-box .btn-accept{
+				min-width: 93px;
+				padding: 5px 10px;
+				background: #5cb85c;
+				color: white;
+			}
+			.order-dashboard .page-content .message .message-content .message-box .btn-launch{
+				min-width: 93px;
+				padding: 5px 10px;
+				background: #5dd475;
+				color: #4b4b4b;
+			}
+			.order-dashboard .page-content .message .message-content .message-box .state-accepted{
+				min-width: 93px;
+				padding: 5px 10px;
+				background: #eedf21;
+				color: #4b4b4b;
+				cursor: inherit;
+			}
+			.order-dashboard .page-content .message .message-content .message-box .state-launched{
+				min-width: 93px;
+				padding: 5px 10px;
+				background: #f7ef90;
+				color: #4b4b4b;
+				cursor: inherit;
+			}
+			.order-dashboard .page-content .message .message-content .message-box .state-approved{
+				min-width: 93px;
+				padding: 5px 10px;
+				background: #81d4fa;
+				color: #4b4b4b;
+				cursor: inherit;
+			}
+			.order-dashboard .page-content .message .message-content .message-box .state-rejected{
+				min-width: 93px;
+				padding: 5px 10px;
+				background: #e58787;
+				color: #4b4b4b;
+				cursor: inherit;
+			}
+			.order-dashboard .page-content .message .message-content .message-box .state-awaiting{
+				min-width: 93px;
+				padding: 20px 10px;
+				background: #cdeefd;
+				color: #4b4b4b;
+				cursor: inherit;
+			}
+	.order-dashboard .page-content .message.send .arrow_receive{
+		display: none !important;
+	}
+	.order-dashboard .page-content .message.receive .arrow_send{
+		display: none !important;
+	}
+	.order-dashboard .page-content .message.receive .sender .wrapper{
+		left: 0;
+		text-align: right;
+		right: unset;
+	}
+	.order-dashboard .page-content .message.receive .message-box{
+		float: right;
+	}
+	.order-dashboard .page-content .message.action.receive .message-box{
+		width: 100%;
+	}
+	.order-dashboard .page-content .message.action.send .message-box{
+		max-width: 70%;
+		display: flex;
+	}
+	.order-dashboard .page-content .message.rating .message-box{
+		max-width: 50%;
+	}
+	.order-dashboard .page-content .message.rating .message-box i{
+		font-size: 20px;
+	}
+	.order-dashboard .page-content .message.receive.rating .message-box{
+		text-align: right;
+	}
+	.order-dashboard .page-content .message.receive.rating .message-box .para{
+		float: right !important;
+	}
+	.order-dashboard .page-content .message.receive .message-box .action{
+		float: right;
+	}
+	.order-dashboard .page-content .message.receive .message-content .message-box .para,
+	.order-dashboard .page-content .message.receive .message-content .message-box .link{
+		float: left; }
+	.order-dashboard .page-content .message.receive .message-content .date{
+		text-align: right;
+	}
+	
+	.order-dashboard .page-content .result{
+		font-family: 'Thasadith-Regular';
+		font-size: 16px;
+		width: 300px;
+		margin: 32px auto;
+		padding: 15px;
+		background: #dff0d8;
+		color: #3c763d;
+		border: 1px solid #d6e9c6;
+		border-radius: 5px !important;
+	}
+	.order-dashboard .page-content .result .price{
+		font-family: 'MyriadPro-bold';
+	}
+
+	.order-dashboard .page-content .feedback{
+		width: 100%;
+		margin: 0 auto;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		font-family: 'Thasadith-Bold';
+		font-size: 20px;
+		text-align: center;
+	}
+	.order-dashboard .page-content .feedback textarea{
+		margin-top: 30px;
+		margin-bottom: 30px;
+		resize: unset;
+		width: 320px;
+		height: 140px;
+	}
+	.order-dashboard .page-content .feedback .btn-submit{
+		padding-left: 3px 10px;
+		color: white;
+		background: #d9534f;
+		width: 140px;
+		margin: 0 auto;
+		font-family: "Thasadith-Regular";
+		font-size: 14px;
+	}

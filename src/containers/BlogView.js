@@ -22,7 +22,7 @@ class BlogView extends React.Component{
   }
 
   componentDidMount(){
-    document.title = "Blog Homepage"
+    document.title = "Blog Detail"
   }
 
   render(){
