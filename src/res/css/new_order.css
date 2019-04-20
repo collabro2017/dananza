@@ -8,6 +8,24 @@
 	display: block;
 	background-color: #deebf2;
 }
+.order-dashboard .page-content .page-header .title{
+    font-size: 32px;
+    margin-top: 20px;
+    font-weight: bold;
+    font-family: Coves-Bold;
+    width: 94%;
+    margin:0 3%;
+    border-bottom: 1px solid #89b9d3;}
+
+.order-dashboard .page-content .page-header .subtitle{
+    font-size: 18px;
+    padding-top: 12px;
+    font-weight: bold;
+    font-family: Thasadith-Regular;
+    width: 94%;
+    margin:0 3%;
+}
+
 .order-dashboard .page-content .message{
 	display: flex;
 	width: 100%;
@@ -48,7 +66,7 @@
 		.order-dashboard .page-content .message .message-content .message-box{
 			font-size: 14px;
 			font-family: 'Thasadith-Bold';
-			padding: 10px;
+			padding: 15px;
 			background-color: white;
 			border-radius: 10px !important;
 			background: #d7d7d7;
@@ -67,13 +85,14 @@
 			    right: 0;
 			}
 			.order-dashboard .page-content .message .message-content .message-box .link{
-			    margin-top: 12px;
+			    margin-top: 8px;
     			margin-left: 12px; }
 			.order-dashboard .page-content .message .message-content .message-box .link img{
 				margin-right: 5px;
 			}
 			.order-dashboard .page-content .message .message-content .message-box .attachment{
 			    padding-left: 5px;
+			    padding-top: 10px;
 			}
 			.order-dashboard .page-content .message .message-content .message-box .action{
 		        width: fit-content;
@@ -169,6 +188,9 @@
 	.order-dashboard .page-content .message.rating .message-box i{
 		font-size: 20px;
 	}
+/*	.order-dashboard .page-content .message.rating .message-box i.fa-star{
+		color: #fac917;
+	}*/
 	.order-dashboard .page-content .message.receive.rating .message-box{
 		text-align: right;
 	}
@@ -178,6 +200,10 @@
 	.order-dashboard .page-content .message.receive .message-box .action{
 		float: right;
 	}
+	.order-dashboard .page-content .message .para{
+		margin: 10px;
+	}
+
 	.order-dashboard .page-content .message.receive .message-content .message-box .para,
 	.order-dashboard .page-content .message.receive .message-content .message-box .link{
 		float: left; }

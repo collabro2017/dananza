@@ -29,368 +29,372 @@ class NewOrder extends React.Component{
   render(){
     return (
       <div className="order-dashboard">
-        <div class="page-content order-seller">
-          <div class="message send">
-            <div class="sender">
-              <div class="wrapper">
-                <img class="avatar" src={require("../res/img/user1.png")}/>
-                <span class="username">user123</span>
+        <div className="page-content order-seller">
+          <div className="page-header">
+            <label className="title">Ad Campaign 1</label>
+            <div className="subtitle">Instagram Story from <Link to="seller_page">@seller123</Link></div>
+          </div>
+          <div className="message send">
+            <div className="sender">
+              <div className="wrapper">
+                <img className="avatar" src={require("../res/img/user1.png")}/>
+                <span className="username">user123</span>
               </div>
             </div>
-            <div class="message-wrapper">
-              <div class="message-content">
-                <div class="date">
+            <div className="message-wrapper">
+              <div className="message-content">
+                <div className="date">
                   10:16 April, 2019
                 </div>
-                <div class="message-box">
-                  <img class="arrow_send" src={require("../res/img/arrow_send.png")}/>
-                  <img class="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
-                  <div class="para">
+                <div className="message-box">
+                  <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
+                  <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
+                  <div className="para">
                     Order Placed: Instagram Story $50
                   </div>
-                  <div class="para">
+                  <div className="para">
                     Post Date: April 14, 2019
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="message send">
-            <div class="sender">
-              <div class="wrapper">
-                <img class="avatar" src={require("../res/img/user1.png")}/>
-                <span class="username">user123</span>
+          <div className="message send">
+            <div className="sender">
+              <div className="wrapper">
+                <img className="avatar" src={require("../res/img/user1.png")}/>
+                <span className="username">user123</span>
               </div>
             </div>
-            <div class="message-wrapper">
-              <div class="message-content">
-                <div class="date">
+            <div className="message-wrapper">
+              <div className="message-content">
+                <div className="date">
                   10:16 April, 2019
                 </div>
-                <div class="message-box">
-                  <img class="arrow_send" src={require("../res/img/arrow_send.png")}/>
-                  <img class="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
-                  <div class="para">
+                <div className="message-box">
+                  <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
+                  <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
+                  <div className="para">
                     Please use the following caption on the post: "Memorial Day Sale! 25% off the whole store at www.shop.com when using referral code MEM25". Use the image attached below please.
                   </div>
-                  <div class="attachment">
+                  <div className="attachment">
                     <img src={require("../res/img/item2.png")}/>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="message receive action">
-            <div class="sender"></div>
-            <div class="message-wrapper">
-              <div class="message-content">
-                <div class="date">
+          <div className="message receive action">
+            <div className="sender"></div>
+            <div className="message-wrapper">
+              <div className="message-content">
+                <div className="date">
                 </div>
-                <div class="message-box">
-                  <img class="arrow_send" src={require("../res/img/arrow_send.png")}/>
-                  <img class="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
-                  <div class="para">
+                <div className="message-box">
+                  <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
+                  <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
+                  <div className="para">
                     Send your message with your response
                   </div>
-                  <div class="action">
-                    <button class="btn btn-accept">
+                  <div className="action">
+                    <button className="btn btn-accept">
                       Accept
                     </button>
-                    <button class="btn btn-reject">
+                    <button className="btn btn-reject">
                       Reject
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="sender">
-              <div class="wrapper">
-                <img class="avatar" src={require("../res/img/user1.png")}/>
-                <span class="username">user123</span>
+            <div className="sender">
+              <div className="wrapper">
+                <img className="avatar" src={require("../res/img/user1.png")}/>
+                <span className="username">user123</span>
               </div>
             </div>
           </div>
-          <div class="message receive action">
-            <div class="sender"></div>
-            <div class="message-wrapper">
-              <div class="message-content">
-                <div class="date">
+          <div className="message receive action">
+            <div className="sender"></div>
+            <div className="message-wrapper">
+              <div className="message-content">
+                <div className="date">
                   10:16 April, 2019
                 </div>
-                <div class="message-box">
-                  <img class="arrow_send" src={require("../res/img/arrow_send.png")}/>
-                  <img class="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
-                  <div class="para">
+                <div className="message-box">
+                  <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
+                  <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
+                  <div className="para">
                     Everything looks great! I will post as soon as I get the item.
                   </div>
-                  <div class="action">
-                    <label class="btn state-accepted">
+                  <div className="action">
+                    <label className="btn state-accepted">
                       Accepted
-                      <i class="fa fa-thumbs-up"></i>
+                      <i className="fa fa-thumbs-up"></i>
                     </label>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="sender">
-              <div class="wrapper">
-                <img class="avatar" src={require("../res/img/user1.png")}/>
-                <span class="username">user123</span>
+            <div className="sender">
+              <div className="wrapper">
+                <img className="avatar" src={require("../res/img/user1.png")}/>
+                <span className="username">user123</span>
               </div>
             </div>
           </div>
-          <div class="message receive action">
-            <div class="sender"></div>
-            <div class="message-wrapper">
-              <div class="message-content">
-                <div class="date">
+          <div className="message receive action">
+            <div className="sender"></div>
+            <div className="message-wrapper">
+              <div className="message-content">
+                <div className="date">
                 </div>
-                <div class="message-box">
-                  <img class="arrow_send" src={require("../res/img/arrow_send.png")}/>
-                  <img class="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
-                  <div class="link">
+                <div className="message-box">
+                  <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
+                  <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
+                  <div className="link">
                     <img src={require("../res/img/link.png")}/>
                     Include link to post
                   </div>
-                  <div class="action">
-                    <label class="btn btn-launch">
+                  <div className="action">
+                    <label className="btn btn-launch">
                       Mark Ad as Launched
                     </label>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="sender">
-              <div class="wrapper">
-                <img class="avatar" src={require("../res/img/user1.png")}/>
-                <span class="username">user123</span>
+            <div className="sender">
+              <div className="wrapper">
+                <img className="avatar" src={require("../res/img/user1.png")}/>
+                <span className="username">user123</span>
               </div>
             </div>
           </div>
-          <div class="message receive action">
-            <div class="sender"></div>
-            <div class="message-wrapper">
-              <div class="message-content">
-                <div class="date">
+          <div className="message receive action">
+            <div className="sender"></div>
+            <div className="message-wrapper">
+              <div className="message-content">
+                <div className="date">
                 </div>
-                <div class="message-box">
-                  <img class="arrow_send" src={require("../res/img/arrow_send.png")}/>
-                  <img class="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
-                  <div class="link">
+                <div className="message-box">
+                  <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
+                  <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
+                  <div className="link">
                     <img src={require("../res/img/link.png")}/>
                     <a>Instagram.com/post_id31030101</a>
                   </div>
-                  <div class="action">
-                    <label class="btn state-launched">
+                  <div className="action">
+                    <label className="btn state-launched">
                       Ad Launched
-                      <i class="fa fa-rocket"></i>
+                      <i className="fa fa-rocket"></i>
                     </label>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="sender">
-              <div class="wrapper">
-                <img class="avatar" src={require("../res/img/user1.png")}/>
-                <span class="username">user123</span>
+            <div className="sender">
+              <div className="wrapper">
+                <img className="avatar" src={require("../res/img/user1.png")}/>
+                <span className="username">user123</span>
               </div>
             </div>
           </div>
-          <div class="message send action">
-            <div class="sender">
-              <div class="wrapper">
-                <img class="avatar" src={require("../res/img/user1.png")}/>
-                <span class="username">user123</span>
+          <div className="message send action">
+            <div className="sender">
+              <div className="wrapper">
+                <img className="avatar" src={require("../res/img/user1.png")}/>
+                <span className="username">user123</span>
               </div>
             </div>
-            <div class="message-wrapper">
-              <div class="message-content">
-                <div class="date">
+            <div className="message-wrapper">
+              <div className="message-content">
+                <div className="date">
                   Pending
                 </div>
-                <div class="message-box">
-                  <img class="arrow_send" src={require("../res/img/arrow_send.png")}/>
-                  <img class="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
-                  <div class="action">
-                    <label class="btn state-awaiting">
+                <div className="message-box">
+                  <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
+                  <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
+                  <div className="action">
+                    <label className="btn state-awaiting">
                       Awaiting Buyer Approval
                     </label>
                   </div>
-                  <div class="para">
+                  <div className="para">
                     Please use the following caption on the post: "Memorial Day Sale! 25% off the whole store.
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="message send action">
-            <div class="sender">
-              <div class="wrapper">
-                <img class="avatar" src={require("../res/img/user1.png")}/>
-                <span class="username">user123</span>
+          <div className="message send action">
+            <div className="sender">
+              <div className="wrapper">
+                <img className="avatar" src={require("../res/img/user1.png")}/>
+                <span className="username">user123</span>
               </div>
             </div>
-            <div class="message-wrapper">
-              <div class="message-content">
-                <div class="date">
+            <div className="message-wrapper">
+              <div className="message-content">
+                <div className="date">
                   7:05 April 14, 2019
                 </div>
-                <div class="message-box">
-                  <img class="arrow_send" src={require("../res/img/arrow_send.png")}/>
-                  <img class="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
-                  <div class="action">
-                    <label class="btn state-approved">
+                <div className="message-box">
+                  <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
+                  <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
+                  <div className="action">
+                    <label className="btn state-approved">
                       Buyer Approved
-                      <i class="fa fa-smile-o"></i>
+                      <i className="fa fa-smile-o"></i>
                     </label>
                   </div>
-                  <div class="para">
+                  <div className="para">
                     Buyer's feedback will be visible after you leave feedback
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="message send action issue">
-            <div class="sender">
-              <div class="wrapper">
-                <img class="avatar" src={require("../res/img/user1.png")}/>
-                <span class="username">user123</span>
+          <div className="message send action issue">
+            <div className="sender">
+              <div className="wrapper">
+                <img className="avatar" src={require("../res/img/user1.png")}/>
+                <span className="username">user123</span>
               </div>
             </div>
-            <div class="message-wrapper">
-              <div class="message-content">
-                <div class="date">
+            <div className="message-wrapper">
+              <div className="message-content">
+                <div className="date">
                   7:05 April 14, 2019
                 </div>
-                <div class="message-box">
-                  <img class="arrow_send" src={require("../res/img/arrow_send.png")}/>
-                  <img class="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
-                  <div class="action">
-                    <label class="btn state-rejected">
+                <div className="message-box">
+                  <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
+                  <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
+                  <div className="action">
+                    <label className="btn state-rejected">
                       Buyer Rejected
-                      <i class="fa fa-frown-o"></i>
+                      <i className="fa fa-frown-o"></i>
                     </label>
                   </div>
-                  <div class="para">
+                  <div className="para">
                     That wasn't the image I wanted you to use! Please delete the post and do it correctly.
                   </div>
                 </div>
-                <div class="issue">
+                <div className="issue">
                   Issues?
                   If you that wasn't the image I wanted you to use, Please delete the post and do it correctly?
                 </div>
               </div>
             </div>
           </div>
-          <div class="message receive action">
-            <div class="sender"></div>
-            <div class="message-wrapper">
-              <div class="message-content">
-                <div class="date">
+          <div className="message receive action">
+            <div className="sender"></div>
+            <div className="message-wrapper">
+              <div className="message-content">
+                <div className="date">
                 </div>
-                <div class="message-box">
-                  <img class="arrow_send" src={require("../res/img/arrow_send.png")}/>
-                  <img class="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
-                  <div class="link">
+                <div className="message-box">
+                  <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
+                  <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
+                  <div className="link">
                     <img src={require("../res/img/link.png")}/>
                     Include link to post
                   </div>
-                  <div class="action">
-                    <label class="btn btn-launch">
+                  <div className="action">
+                    <label className="btn btn-launch">
                       Mark Ad as Relaunched
                     </label>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="sender">
-              <div class="wrapper">
-                <img class="avatar" src={require("../res/img/user1.png")}/>
-                <span class="username">user123</span>
+            <div className="sender">
+              <div className="wrapper">
+                <img className="avatar" src={require("../res/img/user1.png")}/>
+                <span className="username">user123</span>
               </div>
             </div>
           </div>
-          <div class="message send rating">
-            <div class="sender">
-              <div class="wrapper">
-                <img class="avatar" src={require("../res/img/user1.png")}/>
-                <span class="username">user123</span>
+          <div className="message send rating">
+            <div className="sender">
+              <div className="wrapper">
+                <img className="avatar" src={require("../res/img/user1.png")}/>
+                <span className="username">user123</span>
               </div>
             </div>
-            <div class="message-wrapper">
-              <div class="message-content">
-                <div class="date">
+            <div className="message-wrapper">
+              <div className="message-content">
+                <div className="date">
                   10:16 April, 2019
                 </div>
-                <div class="message-box">
-                  <img class="arrow_send" src={require("../res/img/arrow_send.png")}/>
-                  <img class="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
-                  <div class="para">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
+                <div className="message-box">
+                  <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
+                  <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
+                  <div className="para">
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
                   </div>
-                  <div class="para">
+                  <div className="para">
                     Seller 123 made a great post for me. They were helpful, quick, and smooth. Will be buying more ads in future from them.
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="message receive rating">
-            <div class="sender"></div>
-            <div class="message-wrapper">
-              <div class="message-content">
-                <div class="date">
+          <div className="message receive rating">
+            <div className="sender"></div>
+            <div className="message-wrapper">
+              <div className="message-content">
+                <div className="date">
                   10:16 April, 2019
                 </div>
-                <div class="message-box">
-                  <img class="arrow_send" src={require("../res/img/arrow_send.png")}/>
-                  <img class="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
-                  <div class="para">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
+                <div className="message-box">
+                  <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
+                  <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
+                  <div className="para">
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
+                    <i className="fa fa-star"></i>
                   </div>
-                  <div class="para">
+                  <div className="para">
                     Seller 123 made a great post for me. They were helpful, quick, and smooth. Will be buying more ads in future from them.
                   </div>
                 </div>
               </div>
             </div>
-            <div class="sender">
-              <div class="wrapper">
-                <img class="avatar" src={require("../res/img/user1.png")}/>
-                <span class="username">user123</span>
+            <div className="sender">
+              <div className="wrapper">
+                <img className="avatar" src={require("../res/img/user1.png")}/>
+                <span className="username">user123</span>
               </div>
             </div>
           </div>
 
-          <div class="result">
-            <span class="price"> $50</span>
+          <div className="result">
+            <span className="price"> $50</span>
             has been added to your account
           </div>
-          <div class="feedback">
+          <div className="feedback">
             <div>
               Rate Buyer
             </div>
             <div>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
+              <i className="fa fa-star"></i>
+              <i className="fa fa-star-o"></i>
+              <i className="fa fa-star-o"></i>
+              <i className="fa fa-star-o"></i>
+              <i className="fa fa-star-o"></i>
             </div>
             <div>
               <textarea></textarea>
             </div>
             <div>
-              <button class="btn btn-submit"> Submit Feedback</button>
+              <button className="btn btn-submit"> Submit Feedback</button>
             </div>
           </div>
         </div>
