@@ -1,15 +1,25 @@
 import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
+import Nouislider from 'react-nouislider';
 
 import { increment, decrement } from "../store/reducers/stepCounter";
 import SellerSidebar from "../components/Sidebar/SellerSidebar";
 
 import "../res/css/Seller_Dashboard_Sellers_Page.css"
 
+import "../res/icheck/skins/ltblue.css"
+import "../res/css/nouislider.css"
+
 class SellerDashboard extends React.Component{
 
-  state={'headerType': "seller"}
+  state={'headerType': "seller",
+ 		'age_start': 0,
+  		'age_end': 60,
+  		'male_percent' : 0,
+  		'female_percent' : 100
+  }
 
   constructor(props) {
     super(props);
@@ -19,8 +29,26 @@ class SellerDashboard extends React.Component{
   componentDidMount(){
     document.title = "Seller Dashboard"
   }
+  onAgeSlide = (render, handle, value, un, percent) => {
+    this.setState({
+      'age_start':value[0].toFixed(0), 
+      'age_end':value[1].toFixed(0)
+    });
+  }
+  
+  onGenderSlide = (render, handle, value, un, percent) => {
+  	const male_percent = value[0].toFixed(0);
+  	const female_percent = 100 - male_percent;
+    this.setState({
+      'male_percent': male_percent, 
+      'female_percent': female_percent
+    });
+  }
 
   render(){
+  	const { age_start, age_end } = this.state;
+  	const { male_percent, female_percent } = this.state;
+
     return (
     	<div className="dashboard_seller">
 	    	<div className="page-content sellers_page">
@@ -94,21 +122,37 @@ class SellerDashboard extends React.Component{
 								</label>
 								<div className="col-sm-10 controlcontent block">
 									<div className="sub-control"><b>Age Range</b></div>
-									<div className="feature-slider">
-			                            <div id="seller_page_age" className="noUi-ltblue"></div>
-			                            <label className="age-result" id="age_result"></label>
+									<div className="feature-slider noUi-ltblue">
+
+									<Nouislider
+									    range={{min: 0, max: 60}}
+									    start={[age_start, age_end]}
+									    connect
+									    onSlide={this.onAgeSlide}
+									  />
+
+			                            <label className="age-result" id="age_result">
+			                            { age_start } - { age_end }yrs Old</label>
 			                        </div>
 
 			                        <div className="sub-control"><b>Gender Distribution</b></div>
-									<div className="feature-slider">
+									<div className="feature-slider" id="gender">
 										<label className="col-sm-1 no-padding-left">
 											Male
-											<div id="male">0%</div>
+											<div id="male">{male_percent}%</div>
 										</label>
-			                            <div id="seller_page_gender" className="col-sm-10"></div>
+										<div id="seller_page_gender" className="col-sm-10">
+											<Nouislider											
+											    range={{min: 0, max: 100}}
+											    start={[male_percent]}
+											    connect
+											    onSlide={this.onGenderSlide}
+											  />
+										</div>
+
 			                            <label className="col-sm-1">
 			                            	Female
-			                            	<div id="female">0%</div>
+			                            	<div id="female">{female_percent}%</div>
 			                        	</label>
 			                        </div>
 
@@ -286,7 +330,7 @@ class SellerDashboard extends React.Component{
 									</div>
 									<label>Details (300 characters)</label>
 									<div>
-										<textarea className="form-control radius-formcontrol detail-textarea" maxlength="300">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut</textarea>
+										<textarea className="form-control radius-formcontrol detail-textarea" maxLength="300" defaultValue='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut'></textarea>
 										<i className="fa fa-commenting-o control-icon"></i>
 									</div>
 									<div className="action">
@@ -350,7 +394,7 @@ class SellerDashboard extends React.Component{
 						</div>
 						<div className="action_group">
 							<button className="btn btn-blue left"><img src={require("../res/img/eye_white.png")}/> Preview</button>
-							<button className="btn btn-yellow right"><img src={require("../res/img/check_black.png")}/> Save</button>
+							<Link to="/seller_page" className="btn btn-yellow right"><img src={require("../res/img/check_black.png")}/> Save</Link>
 						</div>
 					</div>
 				</div>

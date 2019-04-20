@@ -38,6 +38,7 @@
 }
 .seller_calendar .upcoming-box .content{
 	width: 100%;
+	padding:10px;
 }
 .seller_calendar .upcoming-box .username{
 	font-size: 20px;
@@ -63,6 +64,10 @@
 .seller_calendar .upcoming-box .actions{
 	margin-left: -15px !important;
 }
+.seller_calendar .upcoming-box .actions img{
+	margin-right: 15px;
+}
+
 .seller_calendar .trans-select{
 	background: unset;
 	border: unset;

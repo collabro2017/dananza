@@ -24,6 +24,7 @@
 	margin: 0;
 	position: relative;
 	border: 1px solid #dadada;
+	border-top:0;
 }
 .seller_message .page-panel .user-search{
 	width: 100%;

@@ -47,7 +47,7 @@ class SellerOrders extends React.Component{
                       <MenuItem value={'order4'}>Order4</MenuItem>
                     </Select>
                   </FormControl>
-                  <a className="add-channel">+ Add Another Channel</a>
+                  <a className="add-channel">+ Add Order</a>
                 </div>
                 <div className="page-result-content">
                   <label className="subtitle">Needs Your Approval</label>

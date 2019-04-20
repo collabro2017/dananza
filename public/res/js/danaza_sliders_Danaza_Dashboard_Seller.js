@@ -40,8 +40,8 @@ var ComponentsNoUiSliders2 = function() {
     return {
         //main function to initiate the module
         init: function() {
-            gender();
-            age();
+            // gender();
+            // age();
         }
 
     };

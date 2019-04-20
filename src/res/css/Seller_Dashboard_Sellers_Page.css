@@ -28,6 +28,9 @@
 		.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent{
 			padding-left: 32px;
 			display: inline-flex; }
+			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent > div{
+				/*margin-bottom: 20px;*/
+			}
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .right-control{
 				padding-left: 80px;
 				top: 30px; }
@@ -36,6 +39,7 @@
 				height: 120px; }
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent textarea{
 				resize: none;
+				padding-top: 20px;
 				height: 120px; }
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .input-icon{
 				width: 100%;
@@ -55,6 +59,7 @@
 			    left: 0;}	
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .input-icon .drag-file{
 				background: unset;
+				border-color: #b3c3cb !important;
 				border: 3px dashed; }
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .images .item{
 				position: relative;
@@ -73,7 +78,7 @@
 			    background-color: white;
 			    border-radius: 100px !important; }
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .sub-control{
-				margin-top: 20px; }
+				padding: 20px 0 10px; clear:both;}
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .feature-slider{
 				width: 100%;
 				margin-top: 18px;
@@ -123,6 +128,9 @@
 			margin-bottom: 58px;
 			margin-top: 0;
 			display: inline-block; }
+		.dashboard_seller .sellers_page .page-result .dropdown-edit>.action i{
+			margin-right:10px;
+		}
 			.dashboard_seller .sellers_page .page-result .dropdown-edit.packed>.action{
 				margin-top: 0px;
 				margin-bottom: 9px; }
@@ -252,6 +260,15 @@
 	.dashboard_seller .sellers_page .page-result .btn-cancel{
 		float: left;
 		width: 168px; }
+.dashboard_seller .noUi-ltblue .noUi-connect {
+  background-color: #2ab7c9;
+  position: absolute;
+  height: 5px;
+}
+.dashboard_seller #gender .noUi-base {
+  background: linear-gradient(to right, #2ab7c9 40%, #ff99cc 50%);
+  /* Standard syntax */
+}
 /***********************/
 /* mobile */
 @media(min-width: 1230px){

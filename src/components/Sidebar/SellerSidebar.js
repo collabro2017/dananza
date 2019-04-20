@@ -30,8 +30,8 @@ const SellerSidebar = props => {
                 fgColor={'#2ab7c9'}
                 className="knob"
                 displayprevious="true"
-                width="60"
-                height="60"
+                width={60}
+                height={60}
                 thickness={0.12}
                 displayInput={false}
                 displayCustom={()=>(<input value={'44%'}/>)}
@@ -44,8 +44,8 @@ const SellerSidebar = props => {
                 fgColor={'#2ab7c9'}
                 className="knob"
                 displayprevious="true"
-                width="60"
-                height="60"
+                width={60}
+                height={60}
                 thickness={0.12}
                 displayInput={false}
                 displayCustom={()=>(<input value={'99%'}/>)}
@@ -58,8 +58,8 @@ const SellerSidebar = props => {
                 fgColor={'#2ab7c9'}
                 className="knob"
                 displayprevious="true"
-                width="60"
-                height="60"
+                width={60}
+                height={60}
                 thickness={0.12}
                 displayInput={false}
                 displayCustom={()=>(<input value={'98%'}/>)}
@@ -73,8 +73,8 @@ const SellerSidebar = props => {
                 fgColor={'#2ab7c9'}
                 className="knob"
                 displayprevious="true"
-                width="60"
-                height="60"
+                width={60}
+                height={60}
                 thickness={0.12}
                 displayInput={false}
                 displayCustom={()=>(<input value={'5.0'}/>)}
