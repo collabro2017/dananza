@@ -22,7 +22,7 @@
         background-color: #7f7f7f;
         margin-right: 10px; }
     .infoflowPage .nav_flow.row ul li:first-child .step_num {
-      padding: 4px 12px; }
+      padding: 4px 11px; }
     .infoflowPage .nav_flow.row ul .active, .infoflowPage .nav_flow.row ul .actived {
       color: #fe4a49; }
       .infoflowPage .nav_flow.row ul .active .step_num, .infoflowPage .nav_flow.row ul .actived .step_num {

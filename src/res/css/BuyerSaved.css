@@ -1,8 +1,8 @@
 .buyer_saved .page-main {
-  width: 80%;
-  padding-top: 20px;
+  width: calc( 100vw - 345px);
+  padding-top: 40px;
   background-color: #deebf2;
-  margin-left: 20%;
+  margin-left: 330px;
   padding-bottom: 60px;
 }
 .buyer_saved .page-content {
@@ -118,20 +118,20 @@
   margin-left: 30px;
 }
 .buyer_saved .adzas.row {
-  margin-left: 100px;
-  margin-right: 130px;
+  margin: 20px 115px 50px 85px;
 }
 .buyer_saved .adzas .item {
-  margin: 12px auto;
+  margin: 18px auto;
   width: 100%;
   padding-top: 180%;
   border-radius: 10px !important;
   border: 1px solid #dadada;
   position: relative;
   background-color: white;
+  box-shadow: 0px 1px 9px 3px #dddddd;
 }
 .buyer_saved .adzas .item.active {
-  border: 2px solid #2ab7c9;
+  /*border: 2px solid #2ab7c9;*/
 }
 .buyer_saved .adzas .item .item-header {
   padding: 4.8% 12px 2.8% 12px;
@@ -147,10 +147,11 @@
   font-size: 1.36vw;
 }
 .buyer_saved .adzas .item .item-header .sites img {
-  margin-right: 2px;
+  margin-right: 4px;
 }
 .buyer_saved .adzas .item .reach span {
   font-family: "Thasadith-Bold";
+  font-size: 18px;
 }
 .buyer_saved .adzas .item .reach i {
   color: #4b4b4b;
@@ -180,13 +181,12 @@
 .buyer_saved .adzas .item .price a {
   position: absolute;
   color: #4b4b4b;
-  right: 0px;
+  right: 10px;
   font-size: 28px;
-  top: -12px;
 }
 .buyer_saved .price span.small {
   color: #4b4b4b;
-  font-size: 11px;
+  font-size: 13px;
 }
 .buyer_saved .adzas .item .title {
   font-size: 16px;

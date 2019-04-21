@@ -46,7 +46,7 @@ class Cart extends React.Component{
 						<div className="cart_des">You're a Few Clicks Away from Ad-ing to Your Business</div>
 						<div className="table_camp">
 							<h3 className="text">
-								Ad Campagin 1 <i className="fa fa-pencil"></i>
+								Ad Campagin 1 <button><i className="fa fa-pencil"></i></button>
 							</h3>
 							<table className="table table-striped table-hover">
 	                            <thead>
@@ -63,10 +63,10 @@ class Cart extends React.Component{
 	                                <tr>
 	                                    <td>
 	                                    	<img src={require("../res/img/instagram_sq.png")} />
-	                                    	@themainmenu 
+	                                    	<Link className="color-dark" to='/seller_page'>@themainmenu</Link>
 	                                    </td>
 	                                    <td> Instagram Story </td>
-	                                    <td> 03/10/2019 </td>
+	                                    <td className="add_date"> 03/10/2019 </td>
 	                                    <td className="qty"> 
 	                                    	<div className="qty_value">1</div> 
 	                                    	<div className="ctrl_value">
@@ -88,10 +88,10 @@ class Cart extends React.Component{
 	                                <tr>
 	                                    <td>
 	                                    	<img src={require("../res/img/blog_sq.png")} />
-	                                    	@themainmenu 
+	                                    	<Link className="color-dark" to='/seller_page'>@themainmenu</Link>
 	                                    </td>
 	                                    <td> Blog Post </td>
-	                                    <td> 03/10/2019 </td>
+	                                    <td className="add_date"> 03/10/2019 </td>
 	                                    <td className="qty"> 
 	                                    	<div className="qty_value">1</div> 
 	                                    	<div className="ctrl_value">
@@ -115,7 +115,7 @@ class Cart extends React.Component{
 	                                    <td> </td>
 	                                    <td> </td>
 	                                    <td className="total"> 
-											Total                                    	
+											Subtotal                                    	
 	                                    </td>
 	                                    <td className="total_value"> $200 </td>
 	                                    <td></td>

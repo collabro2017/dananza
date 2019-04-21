@@ -15,7 +15,7 @@ const drawerWidth = 240;
 
 
 const BuyerSidebar = props => {
-  const { open, classes } = props;
+  const { open, classes, navitem } = props;
   return (
     <div className="page-sidebar buyer-sidebar">
         <div className="section target-tree">
@@ -28,25 +28,25 @@ const BuyerSidebar = props => {
         <div className="section">
           <div className="btn-group" data-toggle="buttons" id="pages">
             <Link to="/buyer_profile">
-              <label className="btn btn-default active">
+               <label className={navitem=="edit_profile"?"btn btn-default active":"btn btn-default"}>
                 <img className="nav-icon" src={require("../../res/img/person.png")} />
                   <input type="radio" className="toggle" /> Profile Page
               </label>
             </Link>
             <Link to="/buyer_saved">
-              <label className="btn btn-default">
+               <label className={navitem=="saved"?"btn btn-default active":"btn btn-default"}>
                 <img className="nav-icon" src={require("../../res/img/saved.png")} />
                   <input type="radio" className="toggle" /> Saved
               </label>
             </Link>  
             <Link to="/buyer_campaigns">   
-              <label className="btn btn-default">
+               <label className={navitem=="campaigns"?"btn btn-default active":"btn btn-default"}>
                 <img className="nav-icon" src={require("../../res/img/campaigns.png")} />
                   <input type="radio" className="toggle" /> Campaigns
               </label>
             </Link>  
             <Link to="/buyer_messages">
-              <label className="btn btn-default">
+               <label className={navitem=="messages"?"btn btn-default active":"btn btn-default"}>
                 <img className="nav-icon" src={require("../../res/img/messages.png")} />
                   <input type="radio" className="toggle" /> Messages
               </label>

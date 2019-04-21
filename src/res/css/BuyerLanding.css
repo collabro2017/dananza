@@ -1,8 +1,8 @@
 .buyer_landing .page-main {
-  width: 80%;
-  padding-top: 20px;
+  width: calc( 100vw - 345px);
+  padding-top: 40px;
   background-color: #deebf2;
-  margin-left: 20%;
+  margin-left: 330px;
   padding-bottom: 60px;
 }
 .buyer_landing .page-content {
@@ -11,43 +11,6 @@
 .buyer_landing .logo {
   width: 40% !important;
 }
-/*.buyer_landing .top-menu {
-  margin: 0;
-  padding: 0;
-  float: right;
-  width: 60%;
-  position: relative;
-}
-.buyer_landing .dropdown-user {
-  margin-top: -10px;
-  margin-bottom: -10px;
-}
-.buyer_landing .nav > li > a {
-  padding: 10px 20px;
-  font-size: 16px;
-  color: #000c20;
-  text-decoration: none !important;
-}
-.dropdown-user ul>li>a img {
-  float:right !important;
-}
-.buyer_landing .message-badge {
-  padding: 0px 7px;
-  text-shadow: none !important;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 11px;
-  font-weight: 300;
-  margin-left: -29px;
-  margin-bottom: 6px !important;
-  border-radius: 8px !important;
-  width: 13px;
-  height: 13px;
-  background-color: #2ab7c9;
-}
-.buyer_landing .nav > li > a:focus, .buyer_landing .nav > li > a:hover {
-  background-color: white;
-}*/
 .buyer_landing .page_sidebar {
   width: 20% !important;
   position: relative;
@@ -83,9 +46,7 @@
   margin-right: 130px;
 }
 .buyer_landing .page-main-content.row {
-  margin-left: 100px;
-  margin-right: 100px;
-  margin-top: 50px;
+  margin: 30px 130px 50px 100px;
 }
 .buyer_landing .portlet.light.bordered {
   border-radius: 10px !important;
@@ -94,6 +55,10 @@
   border-top: 1px solid #89b9d3;
   margin-left: 100px;
   margin-right: 130px;
+}
+.buyer_landing .panel-body{
+  padding-left:0;
+  padding-right:0;
 }
 .buyer_landing .panel {
   border-radius: 10px !important;
@@ -113,7 +78,11 @@
   float:right;
 }
 .buyer_landing .message-table {
-  margin-top: -110px;
+  margin-top: -160px;
+}
+.buyer_landing .message-table table th{
+  font-family: "Thasadith-Bold";
+  font-size: 18px;
 }
 .buyer_landing .message-table .end {
   border-bottom: 1px solid #e7ecf1;
@@ -125,13 +94,18 @@
 .buyer_landing .left {
   margin-left: 30px !important;
 }
+.buyer_landing img.left {
+  margin-right: 10px !important;
+}
 .buyer_landing .cancel {
   margin-left: 30px;
-  font-color:#444;
+  margin-bottom: 10px;
+}
+.buyer_landing .cancel a{
+  color:#444;
 }
 .buyer_landing .adzas.row {
-  margin-left: 100px;
-  margin-right: 130px;
+  margin: 20px 115px 50px 85px;
 }
 .buyer_landing .adzas .item {
   margin: 12px auto;
@@ -141,6 +115,7 @@
   border: 1px solid #dadada;
   position: relative;
   background-color: white;
+  box-shadow: 0px 1px 14px 4px white;
 }
 .buyer_landing .adzas .item.active {
   border: 2px solid #2ab7c9;
@@ -159,10 +134,11 @@
   font-size: 1.36vw;
 }
 .buyer_landing .adzas .item .item-header .sites img {
-  margin-right: 2px;
+  margin-right: 4px;
 }
 .buyer_landing .adzas .item .reach span {
   font-family: "Thasadith-Bold";
+  font-size:18px;
 }
 .buyer_landing .adzas .item .reach i {
   color: #4b4b4b;
@@ -192,13 +168,12 @@
 .buyer_landing .adzas .item .price a {
   position: absolute;
   color: #4b4b4b;
-  right: 0px;
+  right: 10px;
   font-size: 28px;
-  top: -12px;
 }
 .buyer_landing .price span.small {
   color: #4b4b4b;
-  font-size: 11px;
+  font-size: 13px;
 }
 .buyer_landing .adzas .item .title {
   font-size: 16px;
@@ -349,6 +324,10 @@
   color: white !important;
   margin-left: -6px;
 }
+.buyer_landing .mt-element-step .row {
+  margin-left: -30px !important;
+  margin-top: -30px !important;
+}
 .buyer_landing .mt-element-step .step-line .done .mt-step-number {
   font-size: 8px !important;
   border-radius: 51%!important;
@@ -361,6 +340,10 @@
   height: 30px !important;
   width: 30px !important;
   text-align: center;
+}
+.buyer_landing .mt-step-col {
+    width: 20%;
+    float: left;
 }
 .buyer_landing .mt-element-step .step-line .mt-step-number {
   font-size: 8px !important;
@@ -375,7 +358,15 @@
   width: 30px !important;
   text-align: center;
 }
-.buyer_landing ..bg-green {
+.buyer_landing .mt-element-step .step-line .mt-step-number.bg-white{
+  box-shadow: 0px 0px 20px 15px #ffecb7;
+}
+.buyer_landing .mt-element-step .step-line .mt-step-content span, .buyer_landing .mt-element-step .step-line .mt-step-title span {
+    color: #333 !important;
+    font-family: "Thasadith-Bold";
+    font-size: 10px;
+}
+.buyer_landing .bg-green {
   color: #2ab7c9!important;
 }
 .buyer_landing .mt-element-step .step-line .mt-step-number .fa-check {

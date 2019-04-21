@@ -1,7 +1,9 @@
 /** infoflowPage start **/
 .header_section {
   margin-bottom: 0 !important; }
-
+.infoflowPage{
+  border-top: 1px solid #dadada;
+}
 .infoflowPage .nav_flow.row {
   margin: 0;
   background-color: #f3f3f3; }
@@ -10,20 +12,21 @@
     display: flex;
     justify-content: center;
     line-height: 24px;
-    padding: 20px 0;
+    padding: 20px 0 10px;
     text-align: center;
     font-size: 15px; }
     .infoflowPage .nav_flow.row ul li {
+      font-family: "Geomanist-Regular";
       color: #7f7f7f; }
       .infoflowPage .nav_flow.row ul li .step_num {
-        border-radius: 25px !important;
+        border-radius: 50% !important;
         padding: 4px 10px;
         color: #ffffff;
         background-color: #7f7f7f;
         margin-right: 10px; }
     .infoflowPage .nav_flow.row ul li:first-child .step_num {
-      padding: 4px 12px; }
-    .infoflowPage .nav_flow.row ul .active, .infoflowPage .nav_flow.row ul .actived {
+      padding: 4px 11px; }
+    .infoflowPage .nav_flow.row ul .active, .infoflowPage .nav_flow.row ul .actived a{
       color: #fe4a49; }
       .infoflowPage .nav_flow.row ul .active .step_num, .infoflowPage .nav_flow.row ul .actived .step_num {
         background-color: #fe4a49; }
@@ -37,15 +40,35 @@
   font-family: "Coves-Bold";
   font-size: 32px;
   line-height: 42px;
-  margin: 30px auto;
+  margin: 40px auto;
   text-align: center; }
 .infoflowPage .cartPart .table_camp, .infoflowPage .post_checkout2 .table_camp, .infoflowPage .upload_files .table_camp {
   width: 55%;
   margin: 0 auto; }
+  .infoflowPage .cartPart .table_camp .text{
+    padding-bottom: 20px;
+    font-family: "Thasadith-Bold";
+  }
+  .infoflowPage .cartPart .table_camp .text button{
+    font-size: 22px;
+  }
+  .infoflowPage .cartPart .table_camp .table{
+    font-family: "Thasadith-Bold";
+  }
+  .infoflowPage .table_camp .table th, 
+  .infoflowPage .table_camp .table td{
+    padding: 15px;
+    border-bottom: 1px solid #e7ecf1;
+  }
+  .infoflowPage .cartPart .table_camp .table .add_date{
+    cursor: pointer;
+  }
   .infoflowPage .cartPart .table_camp .table thead tr, .infoflowPage .post_checkout2 .table_camp .table thead tr, .infoflowPage .upload_files .table_camp .table thead tr {
     background: #f1f6f9; }
   .infoflowPage .cartPart .table_camp .table > tbody > tr > td, .infoflowPage .post_checkout2 .table_camp .table > tbody > tr > td, .infoflowPage .upload_files .table_camp .table > tbody > tr > td {
     vertical-align: middle !important; }
+  .infoflowPage .cartPart .table_camp .table tbody tr td img, .infoflowPage .post_checkout2 .table_camp .table tbody tr td img, .infoflowPage .upload_files .table_camp .table tbody tr td img {
+    margin-right: 10px; }
   .infoflowPage .cartPart .table_camp button, .infoflowPage .post_checkout2 .table_camp button, .infoflowPage .upload_files .table_camp button {
     padding: 0;
     background-color: #ffffff;
@@ -77,14 +100,15 @@
   font-family: "Thasadith-BoldItalic";
   line-height: 24px;
   font-size: 14px;
-  width: 30%;
+  width: 33%;
   margin: 40px auto 60px;
   text-align: center; }
 .infoflowPage .checkout .active {
-  color: #ffbc00; }
+  color: #ffbc00 !important; }
   .infoflowPage .checkout .active .step_num {
-    background-color: #ffbc00; }
+    background-color: #ffbc00 !important; }
 .infoflowPage .checkout .chk_info {
+  font-family: "Muli-Light";
   margin: 4% 10%; }
   .infoflowPage .checkout .chk_info .title {
     font-size: 28px;
@@ -100,23 +124,27 @@
     line-height: 24px; }
     .infoflowPage .checkout .chk_info .input_info input {
       width: 100%;
-      border-radius: 5px;
-      border: 0.5px solid;
+      border-radius: 5px !important;
+      padding: 5px 10px;
+      border: 0.5px solid #d7d7d7;
       height: 40px;
       margin-bottom: 15px; }
   .infoflowPage .checkout .chk_info .paypal {
     margin-top: 30px; }
   .infoflowPage .checkout .chk_info .summary {
-    border-left: 0.5px solid;
-    border-right: 0.5px solid;
-    border-radius: 5px;
-    font-size: 14px; }
+    border: 0.5px solid;
+    padding: 20px 30px;
+    font-family: "Muli-Regular";
+    border-radius: 5px !important;
+    font-size: 16px; }
     .infoflowPage .checkout .chk_info .summary div {
       margin: 10px 0;
-      height: auto; }
+      height: auto; 
+      overflow: hidden; }
     .infoflowPage .checkout .chk_info .summary .col-md-6 {
       padding: 0 !important; }
     .infoflowPage .checkout .chk_info .summary .smy_title {
+      font-family: Muli-Bold;
       font-size: 20px; }
     .infoflowPage .checkout .chk_info .summary .site_info .col-md-2,
     .infoflowPage .checkout .chk_info .summary .site_info .col-md-9 {
@@ -124,17 +152,33 @@
     .infoflowPage .checkout .chk_info .summary .site_info img {
       float: left;
       margin: 15px 10px 0 0; }
+    .infoflowPage .checkout .chk_info .summary .site_info p{
+      margin: 8px 0;
+      font-family: "Muli-Light";
+      font-size: 14px;
+    }
     .infoflowPage .checkout .chk_info .summary .site_info .info_detail {
       margin: 15px auto; }
     .infoflowPage .checkout .chk_info .summary .sub_value, .infoflowPage .checkout .chk_info .summary .fee_value, .infoflowPage .checkout .chk_info .summary .total_value {
       text-align: right; }
     .infoflowPage .checkout .chk_info .summary .confirm {
-      text-align: center; }
+      text-align: center;
+      margin: 50px 0 30px; }
       .infoflowPage .checkout .chk_info .summary .confirm a {
         text-decoration: none;
         padding: 10px 30px;
+        font-family: "Muli-Bold";
         background-color: #ffd766;
         border-radius: 5px; }
+    .infoflowPage .checkout .chk_info .summary .divider{
+      border-bottom: 1px solid #dadada;
+    }
+    .infoflowPage .checkout .chk_info .summary .amount_title{
+      font-family: "Muli-Light";
+    }
+    .infoflowPage .checkout .chk_info .summary .value{
+      font-family: "Muli-Bold";
+    }
 .infoflowPage .post_checkout2 .row.done .title, .infoflowPage .upload_files .row.done .title {
   font-family: "Coves-Bold";
   font-size: 32px;
@@ -147,7 +191,15 @@
   margin: 0 auto; }
 .infoflowPage .post_checkout2 .row.done .pro_line, .infoflowPage .upload_files .row.done .pro_line {
   position: relative;
-  margin: 50px auto; }
+  margin: 50px auto; 
+  overflow: hidden;
+  }
+  .infoflowPage .post_checkout2 .row.done .pro_line .pro_line_pos,
+  .infoflowPage .upload_files .row.done .pro_line .pro_line_pos{
+    padding-bottom: 60px;
+    border-bottom: 1px solid #d7d7d7;
+  }
+
   .infoflowPage .post_checkout2 .row.done .pro_line .pro_line_pos i, .infoflowPage .upload_files .row.done .pro_line .pro_line_pos i {
     font-size: 16px;
     background: #fff;
@@ -167,7 +219,7 @@
     background: #2ab7c9;
     border: none; }
   .infoflowPage .post_checkout2 .row.done .pro_line .line, .infoflowPage .upload_files .row.done .pro_line .line {
-    width: 65%;
+    width: 68%;
     height: 2px;
     color: red;
     border: 1px solid #ddd;
@@ -175,9 +227,12 @@
     margin: 30px auto;
     position: absolute;
     top: -17px;
-    right: 249px;
+    right: 16%;
     z-index: -4; }
-.infoflowPage .upload_files .nav_flow .checkout {
+.infoflowPage .upload_files .nav_flow li{
+  font-family: "Geomanist-Regular"
+}
+.infoflowPage .upload_files .nav_flow .checkout a{
   color: #ffbc00; }
   .infoflowPage .upload_files .nav_flow .checkout span {
     background: #ffbc00 !important; }
@@ -188,14 +243,22 @@
 .infoflowPage .upload_files .dropzone.dz-clickable {
   cursor: pointer; }
 .infoflowPage .upload_files .upload_form {
-  width: 570px;
+  width: 620px;
   border: 1px solid #d3d3d3;
   border-radius: 10px !important;
   margin: 0 auto; }
+.infoflowPage .upload_files .upload_form textarea{
+  border: 0px;
+  width: 100%;
+  padding: 25px;
+}
   .infoflowPage .upload_files .upload_form .send_msg {
-    margin: 5px 40px; }
+    margin: 5px 25px; }
+    .infoflowPage .upload_files .upload_form .send_msg input{
+      border: 0px;
+      height:30px;
+    }
     .infoflowPage .upload_files .upload_form .send_msg span {
-      border-right: 1px solid #858585;
       margin-left: 10px;
       padding-right: 20px; }
     .infoflowPage .upload_files .upload_form .send_msg .fa-times {
@@ -206,13 +269,53 @@
   .infoflowPage .upload_files .upload_form .note_txt {
     border-top: 1px solid #d3d3d3;
     padding-left: 40px;
-    padding-top: 20px; }
+    }
   .infoflowPage .upload_files .upload_form .dropzone-file-area {
     border: none; }
   .infoflowPage .upload_files .upload_form .upload_submit {
-    padding: 10px 0 10px 40px;
-    background: #f1f6f9; }
+    padding: 0px 0 0px 40px;
+    background: #f1f6f9; 
+    line-height: 40px;
+    overflow: hidden;}
+    .infoflowPage .upload_files .upload_form .upload_submit button{
+      float: right;
+      right:0;
+    }
+.infoflowPage .cartPart .note {
+  border: none; }
+.infoflowPage .post_checkout2 .row.done .content {
+  width: 37%; 
+  font-size: 16px;}
+.infoflowPage .post_checkout2 .proceed_chk .checkout a {
+  padding: 13px 45px;
+  border-radius: 5px !important; }
 
 /** infoflowPage end **/
 
+@media (max-width: 767px) {
+  .infoflowPage .post_checkout2 .row.done .pro_line .line, .infoflowPage .upload_files .row.done .pro_line .line{
+    display: none;
+  }
+  .infoflowPage .post_checkout2 .row.done .pro_line .pro_line_pos, .infoflowPage .upload_files .row.done .pro_line .pro_line_pos
+  {
+    border: 0;
+  }
+  .infoflowPage .cartPart .table_camp, 
+  .infoflowPage .post_checkout2 .table_camp, 
+  .infoflowPage .upload_files .table_camp,
+  .infoflowPage .upload_files .upload_form{
+    width: 80%;
+  }
+  .infoflowPage .post_checkout2 .row.done .content,
+  .infoflowPage .cartPart .proceed_chk .note, 
+  .infoflowPage .post_checkout2 .proceed_chk .note, 
+  .infoflowPage .upload_files .proceed_chk .note,
+  .infoflowPage .cartPart .cart_des, .infoflowPage .post_checkout2 .cart_des, .infoflowPage .upload_files .cart_des{    
+    width: 60%;
+  }
+
+  .infoflowPage .checkout .chk_info .summary{
+    margin-top: 80px;
+  }
+}
 /*# sourceMappingURL=infoflowPage.css.map */

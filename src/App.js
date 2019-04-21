@@ -24,8 +24,11 @@ import UploadFiles from "./containers/UploadFiles";
 import PostCheckout from "./containers/PostCheckout";
 import About from "./containers/About";
 import Help from "./containers/Help";
+import BlogView from "./containers/BlogView";
+import BlogHome from "./containers/BlogHome";
 
 import SearchResults from "./containers/SearchResults";
+// import Seller from "./containers/Sellers";
 import SellerDashboard from "./containers/SellerDashboard";
 import SellerOrders from "./containers/SellerOrders";
 import SellerAnalytics from "./containers/SellerAnalytics";
@@ -38,6 +41,8 @@ import BuyerSaved from "./containers/BuyerSaved";
 import BuyerProfile from "./containers/BuyerProfile";
 import BuyerCampaigns from "./containers/BuyerCampaigns";
 import BuyerMessages from "./containers/BuyerMessages";
+
+import NewOrder from "./containers/NewOrder";
 
 const NotFound = () => {
   return <div>NotFound</div>;
@@ -109,6 +114,11 @@ class App extends Component {
                 <DashboardRoute exact path="/buyer_profile" component={BuyerProfile} />
                 <DashboardRoute exact path="/buyer_campaigns" component={BuyerCampaigns} />
                 <DashboardRoute exact path="/buyer_messages" component={BuyerMessages} />
+
+                <DashboardRoute exact path="/blogView" component={BlogView} />
+                <DashboardRoute exact path="/blogs" component={BlogHome} />
+
+                <DashboardRoute exact path="/new_order" component={NewOrder} />
 
                 <EmptyRoute component={NotFound} />
               </Switch>

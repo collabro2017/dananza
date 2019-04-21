@@ -30,8 +30,8 @@
 }
 .search_page .page-container .page-bar {
   width: 100%;
-/*  border-bottom: 1px solid #dadada;
-*/  padding-bottom: 5px;
+  border-bottom: 1px solid #dadada;
+  padding-bottom: 5px;
   padding-top: 5px;
 }
 .search_page .sort-by {
@@ -51,7 +51,6 @@
 }
 .search_page .page-content {
   width: 100%;
-  padding-top: 20px;
 }
 .search_page .page-sidebar {
   width: 270px;
@@ -144,6 +143,8 @@
 }
 .search_page .noUi-ltblue .noUi-connect {
   background-color: #2ab7c9;
+  position: absolute;
+  height: 5px;
 }
 .search_page #gender .noUi-base {
   background: linear-gradient(to right, #2ab7c9 40%, #ff99cc 50%);
@@ -163,7 +164,7 @@
   text-align: center;
   color: #4b4b4b;
 }
-.search_page .price-range a {
+.search_page .price-range .btn {
   width: 55px;
   height: 40px;
   font-family: "Thasadith-Bold";
@@ -171,6 +172,7 @@
   background-color: #ffd766;
   float: right;
   font-size: 16px;
+  padding:0;
 }
 .search_page .price-form {
   display: -webkit-inline-box;
@@ -186,6 +188,11 @@
   position: relative;
   margin-top: 15px;
 }
+.search_page .datetime div.react-datepicker-wrapper, .search_page .datetime div.react-datepicker-wrapper div{
+  width: 100%;
+  z-index: 2;
+  background: transparent;
+}
 .search_page .datetime input {
   padding-top: 8px;
   padding-bottom: 10px;
@@ -195,6 +202,7 @@
   border-radius: 5px !important;
   border: 1px solid #dadada;
   text-align: unset !important;
+  background: transparent;
 }
 .search_page .datetime img {
   position: absolute;
@@ -226,13 +234,16 @@
 }
 .search_page .page-result {
   margin-left: 270px;
-  padding: 0px 10px;
   position: relative;
 }
 .search_page .page-result-header {
   width: 100%;
   position: relative;
-  padding: 0px 10px;
+  padding: 0 0 0 30px;
+  font-size: 16px;
+}
+.search_page .page-result-header .search_keyword{
+  font-family: "Thasadith-Bold";
 }
 .search_page .page-result-header li {
   color: #2ab7c9;
@@ -247,31 +258,32 @@
   width: 100%;
   margin: 0px;
 }
+.search_page .page-result-content.row > div{
+  padding-right: 0;
+  padding-left: 30px;
+}
 .search_page .page-result-content .item {
-  margin: 12px auto;
+  margin: 18px auto;
   width: 100%;
-  padding-top: 180%;
   border-radius: 10px !important;
   border: 1px solid #dadada;
   position: relative;
+  box-shadow: 0px 1px 9px 3px #dddddd;
 }
 .search_page .page-result-content .item.active {
   border: 2px solid #2ab7c9;
 }
 .search_page .page-result-content .item .item-header {
-  padding: 4.8% 12px 2.8% 12px;
-  position: absolute;
+  padding: 15px;
   top: 0;
   width: 100%;
 }
 .search_page .page-result-content .item .item-footer {
-  padding: 3.99% 12px;
-  top: 72%;
-  position: absolute;
+  padding: 3.99% 20px;
   width: 100%;
 }
 .search_page .page-result-content .item .item-header .sites img {
-  margin-right: 2px;
+  margin-right: 4px;
 }
 .search_page .page-result-content .item .reach span {
   font-family: "Thasadith-Bold";
@@ -306,7 +318,7 @@
   color: #4b4b4b;
   right: 0px;
   font-size: 28px;
-  top: -12px;
+  line-height: 0.5;
 }
 .search_page .price span.small {
   color: #4b4b4b;
@@ -320,9 +332,7 @@
 .search_page .page-result-content .item .item-image {
   border-top: 1px solid #cebcad;
   border-bottom: 1px solid #cebcad;
-  position: absolute;
   width: 100%;
-  top: 24%;
 }
 .search_page .page-result-content .item .item-image img {
   width: 100%;
@@ -335,7 +345,7 @@
   border: none;
   margin-right: 6px;
 }
-.search_page .page-result-content .item .types {
+.search_page .page-result-content .item .keywords {
   display: flex;
   overflow: hidden;
   position: relative;
@@ -378,12 +388,14 @@
 .search_page .pagination {
   padding: 70px;
   font-family: "Thasadith-Bold";
+  text-align: center;
 }
 .search_page .pagination .btn {
   border-radius: 5px !important;
   width: 43px;
   height: 40px;
   margin-right: 10px;
+  padding: 7px;
 }
 .search_page .pagination label {
   border: none;
@@ -423,20 +435,20 @@
 
 @media (min-width: 1230px) {
   .search_page .page-result-content .item .title {
-    font-size: 1.6vw;
+    font-size: 1.4vw;
   }
   .search_page .page-result-content .item .sites img {
     width: 1vw;
   }
-  .search_page .page-result-content .item .types a {
-    font-size: 1.1vw;
+  .search_page .page-result-content .item .keywords a {
+    font-size: 0.9vw;
   }
   .search_page .page-result-content .item .item-footer {
-    font-size: 1.6vw;
+    font-size: 1.2vw;
   }
   .search_page .price span.small {
     color: #4b4b4b;
-    font-size: 1.3vw;
+    font-size: 1vw;
   }
   .search_page .page-result-content .item .price a {
     font-size: 2.8vw;
@@ -456,7 +468,7 @@
   .search_page .page-result-content .item .sites img {
     width: 1vw;
   }
-  .search_page .page-result-content .item .types a {
+  .search_page .page-result-content .item .keywords a {
     font-size: 1vw;
   }
   .search_page .page-result-content .item .item-footer {
@@ -477,7 +489,7 @@
   .search_page .page-result-content .item .sites img {
     width: 1.5vw;
   }
-  .search_page .page-result-content .item .types a {
+  .search_page .page-result-content .item .keywords a {
     font-size: 1.5vw;
   }
   .search_page .page-result-content .item .item-footer {
@@ -504,7 +516,7 @@
   .search_page .page-result-content .item .sites img {
     width: 30px;
   }
-  .search_page .page-result-content .item .types a {
+  .search_page .page-result-content .item .keywords a {
     font-size: 28px;
   }
   .search_page .page-result-content .item .item-footer {
@@ -520,3 +532,52 @@
 }
 
 /*# sourceMappingURL=../Dananza_Search.css.map */
+.react-tags{
+    position: relative;
+    padding-bottom: 45px;
+}
+.react-tags__selected{
+  position: absolute;
+  top: 45px;
+}
+.react-tags__selected button{
+    border-radius: 8px !important;
+    background-color: #ffd766;
+    padding-left: 8px;
+    padding-right: 7px;
+    font-family: "Thasadith-Bold";
+    font-size: 11px;
+    height: 16px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-right: 6px;
+    display: inline-table;
+}
+.react-tags__selected button:after{
+  content: "✖";
+  margin-left:5px;
+  color: #000;
+  font-weight: 300;
+  font-family: Arial, sans-serif;
+}
+.react-tags input{
+    font-family: "Thasadith-Bold";
+    height: 40px;
+    width: 100% !important;
+    border-radius: 5px !important;
+    border: 1px solid #dadada;
+    padding-left: 12px;
+}
+.react-tags__suggestions{
+    position: absolute;
+    border:1px solid #CCCCCC;
+    width:100%;
+}
+.react-tags__suggestions ul li{
+  list-style: none;
+  padding:5px;
+  background: white;
+  border:1px solid #eeeeee;
+  width: 100%;
+}

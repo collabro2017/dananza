@@ -30,7 +30,7 @@ class BuyerMessages extends React.Component{
     	<div className="buyer_landing buyer_campaign buyer_messages">
         <div className="page-container">
           <div className="page-content">
-            <BuyerSidebar />
+            <BuyerSidebar navitem={"messages"}/>
 
             <div class="page-main message-main">
               <div class="page-panel">

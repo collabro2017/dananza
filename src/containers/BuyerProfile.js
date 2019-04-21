@@ -6,9 +6,13 @@ import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 
 import { increment, decrement } from "../store/reducers/stepCounter";
 import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
+import 'icheck/skins/all.css';
+import {Checkbox, Radio} from 'react-icheck';
+import "../res/icheck/skins/ltblue.css"
 
 // import "../res/css/Dananza_Search.css"
 import "../res/css/BuyerProfile.css"
@@ -28,17 +32,17 @@ class BuyerProfile extends React.Component{
 
   render(){
     return (
-      <div className="buyer_landing buyer_profile dashboard_seller">
+      <div className="buyer_landing buyer_profile">
         <div className="page-container">
            <div className="page-content">
-              <BuyerSidebar />
+              <BuyerSidebar navitem={"edit_profile"}/>
               <div className="page-main">
                 <div className="page-main-header">
                   <span className="headline-first">
                     Edit Your Profile Page
                   </span>
                   <span className="headline-second pull-right">
-                    View Profile Page <i className="fa fa-long-arrow-right"></i>
+                    <Link to="/buyer_profile">View Profile Page <i className="fa fa-long-arrow-right"></i></Link>
                   </span>
                 </div>
                 <hr className="divider-line" />
@@ -49,12 +53,12 @@ class BuyerProfile extends React.Component{
                       <label className="col-md-2 controllabel"> Profile photo</label>
                       <div className="col-md-10 controlcontent">
                         <img src={require("../res/img/userinfo_img.png")} />
-                        <div className="right-control col-md-8">
+                        <div className="col-md-offset-1 col-md-7">
                           <a className="btn dark btn-outline btn-radius">
                             <i className="fa fa-file-image-o"></i>
                             <b>Choose Photo</b>
                           </a>
-                          <div>This photo is your identity in Dananza.</div>
+                          <div className="description">This photo is your identity in Dananza.</div>
                         </div>
                       </div>
                     </div>
@@ -76,23 +80,46 @@ class BuyerProfile extends React.Component{
                       <div className="col-md-10 controlcontent">
                         <div className="mt-radio-list">
                           <label className="mt-radio mt-radio-outline">
-                            <input type="radio" name="optionsRadios" id="optionsRadios22" value="option1" checked=""/> Business Owner
-                            <span></span>
+                            <Radio
+                              name="payment_option"
+                              value="Business"
+                              radioClass="iradio_flat-blue"
+                              increaseArea="20%"
+                            />  Business Owner
                           </label>
                           <label className="mt-radio mt-radio-outline">
-                            <input type="radio" name="optionsRadios" id="optionsRadios23" value="option2" checked=""/> Freelancer
-                            <span></span>
+                            <Radio
+                              name="payment_option"
+                              value="Freelancer"
+                              radioClass="iradio_flat-blue"
+                              increaseArea="20%"
+                            /> Freelancer
                           </label>
                           <label className="mt-radio mt-radio-outline">
-                            <input type="radio" name="optionsRadios" id="optionsRadios23" value="option2" checked=""/> Employee
-                            <span></span>
+                            <Radio
+                              name="payment_option"
+                              value="Employee"
+                              radioClass="iradio_flat-blue"
+                              increaseArea="20%"
+                            /> Employee
                           </label>
                           <label className="mt-radio mt-radio-outline">
-                            <input type="radio" name="optionsRadios" id="optionsRadios23" value="option2" checked=""/> Agency
-                            <span></span>
+                            <Radio
+                              name="payment_option"
+                              value="Agency"
+                              radioClass="iradio_flat-blue"
+                              increaseArea="20%"
+                            /> Agency
                           </label>
-                          <p>Which industry does the workplace/business belong to?</p>
                         </div>
+                      </div>
+                    </div>
+                    <div className="formcontrol row">
+                      <label className="col-md-2 controllabel">
+                        
+                      </label>
+                      <div className="col-md-10 controlcontent">
+                        <p>Which industry does the workplace/business belong to?</p>
                       </div>
                     </div>
                     <div className="formcontrol row">
@@ -110,7 +137,7 @@ class BuyerProfile extends React.Component{
                       <div className="col-md-10 controlcontent">
                         <div className="input-icon">
                           <img src={require("../res/img/minami.png")} className="placeholder-img"/>
-                          <input type="text" className="form-control btn-radius" placeholder="ex: Ad Agency"/>
+                          <input type="text" className="form-control btn-radius" placeholder="Miami, Florida"/>
                         </div>
                       </div>
                     </div>

@@ -2,6 +2,8 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { increment, decrement } from "../store/reducers/stepCounter";
+import { Link } from 'react-router-dom';
+
 
 import "../res/css/infoflowPage.css"
 
@@ -21,10 +23,10 @@ class PostCheckout extends React.Component{
 				<div className="post_checkout2">
 					<div className="row done">
 						<div className="title">You're All Done!</div>
-						<div className="content">If your Adza approves your ad, you can expect to see your ads posted on your selected schedule of dates. If not, your payment will be refunded back to your </div>
+						<div className="content">If your Adza approves your ad, you can expect to see your ads posted on your selected schedule of dates. If not, your payment will be refunded back to your account.</div>
 						<div className="pro_line">
-							<div className="col-md-1"></div>
-							<div className="pro_line_pos col-md-2">
+							<div className="col-sm-1"></div>
+							<div className="pro_line_pos col-sm-2">
 								<div>
 									<i className="fa fa-check passed"></i>
 								</div>
@@ -35,7 +37,7 @@ class PostCheckout extends React.Component{
 									<span> 03/11</span>
 								</div>
 							</div>
-							<div className="pro_line_pos col-md-2">
+							<div className="pro_line_pos col-sm-2">
 								<div>
 									<i className="fa fa-check passed"></i>
 								</div>
@@ -46,7 +48,7 @@ class PostCheckout extends React.Component{
 									<span> Uploaded</span>
 								</div>
 							</div>
-							<div className="pro_line_pos col-md-2">
+							<div className="pro_line_pos col-sm-2">
 								<div>
 									<i className="fa fa-check"></i>
 								</div>
@@ -57,7 +59,7 @@ class PostCheckout extends React.Component{
 									<span> Adza Approval</span>
 								</div>
 							</div>
-							<div className="pro_line_pos col-md-2">
+							<div className="pro_line_pos col-sm-2">
 								<div>
 									<i className="fa fa-check"></i>
 								</div>
@@ -68,7 +70,7 @@ class PostCheckout extends React.Component{
 									<span> Launched</span>
 								</div>
 							</div>
-							<div className="pro_line_pos col-md-2">
+							<div className="pro_line_pos col-sm-2">
 								<div>
 									<i className="fa fa-check"></i>
 								</div>
@@ -86,7 +88,7 @@ class PostCheckout extends React.Component{
 						<div className="cart_des">Order Summary</div>
 						<div className="table_camp">
 							<h3 className="text">
-								Ad Campagin 1 <i className="fa fa-pencil"></i>
+								Ad Campagin 1
 							</h3>
 							<table className="table table-striped table-hover">
 	                            <thead>
@@ -139,7 +141,7 @@ class PostCheckout extends React.Component{
 	                                    <td> </td>
 	                                    <td> </td>
 	                                    <td className="total"> 
-											Total                                    	
+											Subtotal                                    	
 	                                    </td>
 	                                    <td className="total_value"> $200 </td>
 	                                    <td></td>
@@ -149,7 +151,7 @@ class PostCheckout extends React.Component{
 						</div>
 						<div className="proceed_chk">
 							<div className="checkout">
-								<a href="#" className="btn btn-mid bg-yellow color-dark">Proceed to Dashboard</a>
+								<Link to="/buyer_landing">Proceed to Dashboard</Link>
 							</div>
 							
 						</div>

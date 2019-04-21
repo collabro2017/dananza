@@ -43,14 +43,19 @@
       border-bottom: 1px solid #dadada; }
       .sellers .sidebar .from_avg div, .sellers .sidebar .channels div {
         margin-bottom: 17px; }
-      .sellers .sidebar .from_avg .fa, .sellers .sidebar .channels .fa {
+      .sellers .sidebar .from_avg .channel_img, .sellers .sidebar .channels .channel_img {
         margin-right: 10px; }
       .sellers .sidebar .from_avg .value, .sellers .sidebar .from_avg .social_icons, .sellers .sidebar .channels .value, .sellers .sidebar .channels .social_icons {
         float: right; }
+      .sellers .sidebar .from_avg .social_icons img, .sellers .sidebar .channels .social_icons img {
+        margin-right: 5px; }
     .sellers .sidebar .channels, .sellers .sidebar .audience {
       padding: 20px 0; }
     .sellers .sidebar .audience {
       text-align: center; }
+      .sellers .sidebar .audience .info.row{
+        margin-top:15px;
+      }
       .sellers .sidebar .audience .felid {
         font-family: "Coves-Bold";
         font-size: 16px;
@@ -59,6 +64,8 @@
         font-family: "Thasadith-Bold";
         font-size: 13px;
         text-align: left; }
+      .sellers .sidebar .audience .fa-user {
+        margin-right: 10px; }
   .sellers .sellers_content {
     padding: 30px; }
     .sellers .sellers_content .row {
@@ -66,16 +73,52 @@
     .sellers .sellers_content .caption {
       font-family: "Coves-Bold";
       font-size: 32px;
+      margin-top:30px;
+      margin-bottom:20px;
       line-height: 48px; }
     .sellers .sellers_content .row.slider {
-      text-align: center; }
+      text-align: center; 
+      width:60%;    
+      margin: 0 auto;}
     .sellers .sellers_content .row.listings {
       margin-top: 50px; }
+      .sellers .sellers_content .row.listings .panel-title a img {
+        margin-right: 10px; }
+      .sellers .sellers_content .row.listings .panel-title a span {
+        float: right;
+        padding-top: 6px; }
+        .sellers .sellers_content .row.listings .panel-title a span .fa {
+          margin-left: 20px; }
+      .sellers .sellers_content .row.listings .header_posts .fa {
+        font-size: 16px;
+        margin-right: 10px; }
+      .sellers .sellers_content .row.listings .header_posts_value .col-sm-3 {
+        margin-top: 10px;  
+        font-size: 14px; 
+        font-family:"Muli-Bold";}
+      .sellers .sellers_content .row.listings .body_content .item {
+        padding: 10px 0px; }
+        .sellers .sellers_content .row.listings .body_content .item .fa {
+          font-size: 20px; }
+        .sellers .sellers_content .row.listings .body_content .item .col-sm-4 {
+          font-family: "Thasadith-Bold";
+          font-size: 14px;
+          background: #f1f6f9;
+          padding: 10px 30px;
+          line-height: 2; }
+          .sellers .sellers_content .row.listings .body_content .item .col-sm-4 a {
+            padding: 10px 30px;
+            background: #ffd766; }
+        .sellers .sellers_content .row.listings .body_content .item .story {
+          margin-top: 10px; }
     .sellers .sellers_content .row.reviews span {
       font-family: "Thasadith-Bold";
       font-size: 16.42px; }
+    .sellers .sellers_content .row.reviews .review_lists img{
+      margin-right:10px;
+    }
     .sellers .sellers_content .row.reviews .review_lists i {
-      margin: 20px 0px 20px 30px; }
+      margin: 20px 5px 20px 30px; }
     .sellers .sellers_content .row.reviews .review_lists .content {
       border-bottom: 1px solid #dadada;
       /* margin-bottom: 20px; */
@@ -85,5 +128,24 @@
       font-family: "Thasadith-Bold";
       font-size: 16px;
       line-height: 32px; }
-
+      .sellers .sellers_content .row.reviews .review_lists .seemore button {
+        background: none; }
+.sellers .sellers_content .row.listings .panel-group .panel{
+  border-width: 0px 0px 1px 0px;
+}
+.sellers .sellers_content .row.listings .panel-default>.panel-heading{
+  background: transparent;
+  height:50px;
+}
+.sellers .sellers_content .row.listings .accordion .panel .panel-title .accordion-toggle{
+  padding-left:0;
+  padding-right:0;
+}
+.sellers .sellers_content .row.listings .panel-default .body_header{
+  padding-top: 10px;
+  overflow: hidden;
+}
+.sellers .sellers_content .mark_star{
+  margin-left:20px;
+}
 /*# sourceMappingURL=sellers.css.map */

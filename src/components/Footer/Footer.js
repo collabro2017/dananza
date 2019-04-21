@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import Signup from "../Signup";
+import Login from "../Login";
 
 import "../../res/css/footer.css"
 
@@ -37,7 +39,7 @@ const Footer = props => {
                 <ul>
                   <li>Company</li>
                   <li>Careers</li>
-                  <li>Blog</li>
+                  <li><Link to="/blogs">Blog</Link></li>
                   <li><Link to="/help">Help</Link></li>
                   <li>Contact</li>
                 </ul>
@@ -76,6 +78,14 @@ const Footer = props => {
             </ul>
           </div>
         </div>
+
+        <div id="myModal" className="modal fade modal-custom" role="dialog">
+          <Signup />
+        </div>
+        <div id="login" className="modal fade modal-custom" role="dialog">
+          <Login />
+        </div>
+
       </div>
   );
 };

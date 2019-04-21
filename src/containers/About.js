@@ -6,6 +6,7 @@ import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 
 import { increment, decrement } from "../store/reducers/stepCounter";
 
@@ -53,7 +54,7 @@ class About extends React.Component{
                         <div className="info_title color-white">Find the Best Space to Place Your Ad in Dananza</div>
                     </div>
                     <div className="col-md-5 col-sm-5 text-center">
-                        <button className="btn bg-yellow btn-mid">Start Ad Campaign</button>
+                        <Link to="/cart" className="btn bg-yellow btn-mid color-dark">Start Ad Campaign</Link>
                     </div>
                 </div>
             </div>

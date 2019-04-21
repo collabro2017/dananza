@@ -30,6 +30,7 @@
 	margin: 0;
 	position: relative;
 	border: 1px solid #dadada;
+	border-top:0;
 }
 .buyer_messages .page-panel .user-search{
 	width: 100%;
@@ -68,6 +69,7 @@
 	border-bottom: 1px solid #89b9d3;
 	background-color: #f1f6f9;
 	display: -webkit-inline-box;
+	border-radius: 0 !important;
 }
 .buyer_messages .page-panel .btn-group label.active{
 	border-right: 5px solid #2ab7c9;

@@ -17,6 +17,14 @@ import { increment, decrement } from "../store/reducers/stepCounter";
 
 import 'icheck/skins/all.css';
 import {Checkbox, Radio} from 'react-icheck';
+import EnhancedSwitch from 'react-icheck/lib/EnhancedSwitch'
+
+import Nouislider from 'react-nouislider';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+import ReactTags from "react-tag-autocomplete";
+
 
 import "../res/bootstrap-select/css/bootstrap-select.min.css"
 import "../res/css/global.css"
@@ -32,22 +40,109 @@ class SearchResults extends React.Component{
 
   state={
   		'headerType': "seller",
-  		'relevance': 'relevance'}
+  		'relevance': 'relevance',
+  		'reach_start': 0,
+  		'reach_end': 100,
+  		'gender_percent' : 0,
+  		'age_start': 0,
+  		'age_end': 60,
+  		'searchText':'Social Media',
+  		'startDate': null,
+		tags: [
+	        { name: "Apples" },
+	        { name: "Pears" }
+		],
+		suggestions: [
+			{ name: "Bananas" },
+			{ name: "Mangos" },
+			{ name: "Lemons" },
+			{ name: "Lemonfffffas" },
+			{ name: "Lemonfefes" },
+			{ name: "Apricots"}
+		],
+		'locations' : []
+  }
 
   constructor(props) {
     super(props);
     props.changeHeaderType( this.state.headerType )
+
+    this.onChangeStartDate = this.onChangeStartDate.bind(this);
   }
 
-  handleChange = event => {
+  onChangeRelevance = event => {
 	this.setState({ [event.target.name]: event.target.value });
   };
+  
+  onReachSlide = (render, handle, value, un, percent) => {
+    this.setState({
+      'reach_start':value[0].toFixed(0), 
+      'reach_end':value[1].toFixed(0)
+    });
+  };
+  onAgeSlide = (render, handle, value, un, percent) => {
+    this.setState({
+      'age_start':value[0].toFixed(0), 
+      'age_end':value[1].toFixed(0)
+    });
+  };
+  onGenderSlide = (render, handle, value, un, percent) => {
+    this.setState({
+      'gender_percent':value[0].toFixed(0), 
+    });
+  };
+
+  onChangeStartDate(date) {
+    this.setState({
+      startDate: date
+    });
+  };
+
+
+
+  handleKeywordDelete (i) {
+    const tags = this.state.tags.slice(0)
+    tags.splice(i, 1)
+    this.setState({ tags })
+  }
+ 
+  handleKeywordAddition (tag) {
+    const tags = [].concat(this.state.tags, tag)
+    if( tags.length > 5 )
+    	return;
+    
+    if( !this.state.tags.some(item => tag.name === item.name ))
+    	this.setState({ tags: [...this.state.tags, tag]})
+  }
+
+  handleLocationDelete (i) {
+    const locations = this.state.locations.slice(0)
+    locations.splice(i, 1)
+    this.setState({ locations })
+  }
+ 
+  handleLocationAddition (location) {
+    const locations = [].concat(this.state.locations, location)
+    if( locations.length > 5 )
+    	return;
+    
+    if( !this.state.locations.some(item => location.name === item.name ))
+    	this.setState({ locations: [...this.state.locations, location]})
+  }
 
   componentDidMount(){
     document.title = "Search Results"
-  }
+
+    this.setState({
+      startDate: new Date()
+    });
+  };
 
   render(){
+  	const { reach_start, reach_end } = this.state;
+  	const { age_start, age_end } = this.state;
+  	const { gender_percent } = this.state;
+
     return (
     	<div className="search_page full_container">
 			<div className="page-navbar">
@@ -91,7 +186,7 @@ class SearchResults extends React.Component{
 						<FormControl>
 						  <Select
 						    value={this.state.relevance}
-						    onChange={this.handleChange}
+						    onChange={this.onChangeRelevance}
 						    inputProps={{
 						      name: 'relevance',
 						      id: 'relevance-simple',
@@ -104,13 +199,6 @@ class SearchResults extends React.Component{
 						    <MenuItem value={'relevance4'}>Relevance4</MenuItem>
 						  </Select>
 						</FormControl>
-						{/*<select value="Relevance" className="bs-select" data-width="120px">
-							<option>Relevance</option>
-							<option>Relevance1</option>
-							<option>Relevance2</option>
-							<option>Relevance3</option>
-							<option>Relevance4</option>
-						</select>*/}
 					</div>
 				</div>
 				<div className="page-content">
@@ -196,7 +284,7 @@ class SearchResults extends React.Component{
 											<Checkbox
 											  checkboxClass="icheckbox_square-ltblue"
 											  increaseArea="40%"
-											  label="Websites"
+											  label="Blogs"
 											  className="icheck"
 											/>
 										</div>
@@ -211,36 +299,6 @@ class SearchResults extends React.Component{
 											/>
 										</div>
 									</li>
-									<li>
-										<div className="nav-link">
-											<Checkbox
-											  checkboxClass="icheckbox_square-ltblue"
-											  increaseArea="40%"
-											  label="Print"
-											  className="icheck"
-											/>
-										</div>
-									</li>
-									<li>
-										<div className="nav-link">
-											<Checkbox
-											  checkboxClass="icheckbox_square-ltblue"
-											  increaseArea="40%"
-											  label="Sponsorships"
-											  className="icheck"
-											/>
-										</div>
-									</li>
-									<li>
-										<div className="nav-link">
-											<Checkbox
-											  checkboxClass="icheckbox_square-ltblue"
-											  increaseArea="40%"
-											  label="Billboards"
-											  className="icheck"
-											/>
-										</div>
-									</li>
 								</ul>
 							</div>
 						</div>
@@ -250,60 +308,50 @@ class SearchResults extends React.Component{
 							<div className="content">
 								<div className="features">
 									<div className="sub-title"> Interests </div>
-									<input className="danaza-input-full" type="text" name="interests" placeholder="Type Audience Interests"/>
-									<div className="results">
-										<div className="item">
-											<span>Food</span>
-											<a className="fa fa-remove"></a>
-										</div>
-										<div className="item">
-											<span>Events</span>
-											<a className="fa fa-remove"></a>
-										</div>
-										<div className="item">
-											<span>Restaurants</span>
-											<a className="fa fa-remove"></a>
-										</div>
-									</div>
+									<ReactTags
+										placeholder="Type Audience Interests"
+										inputAttributes={{ maxLength: 15 }}
+										allowNew={true}
+									    tags={this.state.tags}
+									    suggestions={this.state.suggestions}
+									    handleDelete={this.handleKeywordDelete.bind(this)}
+									    handleAddition={this.handleKeywordAddition.bind(this)} />
+
 								</div>
 								<div className="features">
 									<div className="sub-title"> Location </div>
-									<input className="danaza-input-full" type="text" name="location" placeholder="Enter City, State, or Zip Code|"/>
-									<div className="results">
-										<div className="item">
-											<span>San Diego</span>
-											<a className="fa fa-remove"></a>
-										</div>
-										<div className="item">
-											<span>Palm Springs</span>
-											<a className="fa fa-remove"></a>
-										</div>
-										<div className="item">
-											<span>Malibu</span>
-											<a className="fa fa-remove"></a>
-										</div>
-										<div className="item">
-											<span>Los Angeles</span>
-											<a className="fa fa-remove"></a>
-										</div>
-										<div className="item">
-											<span>Pacedena</span>
-											<a className="fa fa-remove"></a>
-										</div>
-									</div>
+									<ReactTags
+										placeholder="Enter City, State, or Zip Code"
+										inputAttributes={{ maxLength: 15 }}
+										allowNew={true}
+									    tags={this.state.locations}
+									    handleDelete={this.handleLocationDelete.bind(this)}
+									    handleAddition={this.handleLocationAddition.bind(this)} />
+
 								</div>
 								<div className="features">
-									<div className="sub-title"> Reach </div>
-									<div className="feature-slider">
-		                                <div id="reach" className="noUi-ltblue"></div>
-		                                <label className="dark-grey" id="reach_result"></label>
+									<div className="sub-title"> Minimum Reach </div>
+									<div className="feature-slider noUi-ltblue" id="reach">
+
+									<Nouislider
+									    range={{min: 0, max: 100}}
+									    start={[ reach_start, reach_end]}
+									    connect
+									    onSlide={this.onReachSlide}
+									  />
+		                                <label className="dark-grey">{ reach_start } - { reach_end }k</label>
 		                            </div>
 								</div>
 								<div className="features">
 									<div className="sub-title"> Gender </div>
-									<div className="feature-slider">
-		                                <div id="gender" className="noUi-gradient"></div>
-		                                <div className="dark-grey" id="reach_result">
+									<div className="feature-slider noUi-ltblue" id="gender">
+		                                <Nouislider											
+										    range={{min: 0, max: 100}}
+										    start={[gender_percent]}
+										    connect
+										    onSlide={this.onGenderSlide}
+										  />
+		                                <div className="dark-grey">
 		                                	<label>Male</label>
 		                                	<label className="right">Female</label>
 		                                </div>
@@ -311,9 +359,14 @@ class SearchResults extends React.Component{
 								</div>
 								<div className="features">
 									<div className="sub-title"> Age Range </div>
-									<div className="feature-slider">
-		                                <div id="age" className="noUi-ltblue"></div>
-		                                <label className="dark-grey" id="age_result"></label>
+									<div className="feature-slider noUi-ltblue" id="age">
+										<Nouislider
+										    range={{min: 0, max: 60}}
+										    start={[age_start, age_end]}
+										    connect
+										    onSlide={this.onAgeSlide}
+										  />
+		                                <label className="dark-grey"> { age_start } - { age_end }</label>
 		                            </div>
 								</div>
 							</div>
@@ -324,21 +377,27 @@ class SearchResults extends React.Component{
 							<div className="content price-range">
 								<div className="price-form">
 									<div>$</div>
-									<input className="danaza-input-small" type="text" name="pricefrom"/>
+									<input className="danaza-input-small" type="number" name="pricefrom"/>
 								</div>
 								<label>to</label>
 								<div className="price-form">
 									<div>$</div>
-									<input className="danaza-input-small" type="text" name="priceto"/>
+									<input className="danaza-input-small" type="number" name="priceto"/>
 								</div>
-								<a className="btn">></a>
+								<button className="btn">></button>
 							</div>
 						</div>
 						<div className="split"></div>
 						<div className="section">
 							<span className="title">Ad Launch Date</span>
 							<div className="content datetime">
-								<input className="btn btn-default" placeholder="Select Date/s" readOnly/>
+								<DatePicker
+									className="btn btn-default"
+							        selected={this.state.startDate}
+							        onChange={this.onChangeStartDate}
+							        placeholderText="Select Date/s"
+							        dateFormat="YYYY-MM-dd"
+							      />
 								<img src={require("../res/img/datetime.png")} />
 								<div className="bs-caret">
 									<i className="caret"></i>
@@ -401,7 +460,7 @@ class SearchResults extends React.Component{
 					<div className="page-result">
 						<div className="page-result-header">
 							<li> <i className="fa fa-circle"></i> Sponsored </li>
-							<div style={{'display': 'inline-flex', float:'right'}}> 1-20 of 10718 results for <b>"social media"</b></div>
+							<div style={{'display': 'inline-flex', float:'right'}}> 1-20 of 10718 results for <span className="search_keyword color-dark"> "{this.state.searchText}" </span></div>
 						</div>
 						<div className="page-result-content row">
 							<div className="col-sm-6 col-md-3">
@@ -415,7 +474,7 @@ class SearchResults extends React.Component{
 											<img src={require("../res/img/facebook.png")} />
 											<img src={require("../res/img/youtube.png")} />
 										</div>
-										<div className="types">
+										<div className="keywords">
 											<a className="btn btn-default btn-type btn-food">Food</a>
 											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
 											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
@@ -451,17 +510,95 @@ class SearchResults extends React.Component{
 										<div className="sites">
 											<img src={require("../res/img/instagram.png")} />
 											<img src={require("../res/img/facebook.png")} />
+											<img src={require("../res/img/twitter.png")} />
 											<img src={require("../res/img/youtube.png")} />
 										</div>
-										<div className="types">
-											<a className="btn btn-default btn-type btn-food">Food</a>
+										<div className="keywords">
+											<a className="btn btn-default btn-type btn-restaurant">Restaurant</a>
 											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
 											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
 											<div className="hide-end"></div>
 										</div>
 									</div>
 									<div className="item-image">
-										<img src={require("../res/img/item1.png")}/>
+										<img src={require("../res/img/item2.png")}/>
+									</div>
+									<div className="item-footer">
+										<div className="reach">
+											<i className="fa fa-user"></i>
+											<span> 60k+</span> 
+										</div>
+										<div className="rating">
+											<i className="fa fa-star"></i>
+											<span> 5.0(17)</span> 
+										</div>
+										<div className="price">
+											<span className="small"> Starting at </span>
+											<span className="value"> $100 </span>
+											<a>+</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="col-sm-6 col-md-3">
+								<div className="item active">
+									<div className="item-header">
+										<div className="title">
+											@themiamimenu
+										</div>
+										<div className="sites">
+											<img src={require("../res/img/instagram.png")} />
+											<img src={require("../res/img/twitter.png")} />
+											<img src={require("../res/img/youtube.png")} />
+										</div>
+										<div className="keywords">
+											<a className="btn btn-default btn-type btn-food">Food</a>
+											<a className="btn btn-default btn-type btn-miami">Miami</a>
+											<a className="btn btn-default btn-type btn-website">Website</a>
+											<div className="hide-end"></div>
+										</div>
+									</div>
+									<div className="item-image">
+										<img src={require("../res/img/item4.png")}/>
+									</div>
+									<div className="item-footer">
+										<div className="reach">
+											<i className="fa fa-user"></i>
+											<span> 60k+</span> 
+										</div>
+										<div className="rating">
+											<i className="fa fa-star"></i>
+											<span> 5.0(17)</span> 
+										</div>
+										<div className="price">
+											<span className="small"> Starting at </span>
+											<span className="value"> $100 </span>
+											<a>+</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="col-sm-6 col-md-3">
+								<div className="item active">
+									<div className="item-header">
+										<div className="title">
+											@themiamimenu
+										</div>
+										<div className="sites">
+											<img src={require("../res/img/instagram.png")} />
+											<img src={require("../res/img/facebook.png")} />
+											<img src={require("../res/img/youtube.png")} />
+											<img src={require("../res/img/www.png")} />
+										</div>
+										<div className="keywords">
+											<a className="btn btn-default btn-type btn-technology">Technology</a>
+											<a className="btn btn-default btn-type btn-sports">Sports</a>
+											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
+											<div className="hide-end"></div>
+										</div>
+									</div>
+									<div className="item-image">
+										<img src={require("../res/img/item3.png")}/>
 									</div>
 									<div className="item-footer">
 										<div className="reach">
@@ -491,7 +628,121 @@ class SearchResults extends React.Component{
 											<img src={require("../res/img/facebook.png")} />
 											<img src={require("../res/img/youtube.png")} />
 										</div>
-										<div className="types">
+										<div className="keywords">
+											<a className="btn btn-default btn-type btn-food">Food</a>
+											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
+											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
+											<div className="hide-end"></div>
+										</div>
+									</div>
+									<div className="item-image">
+										<img src={require("../res/img/item3.png")}/>
+									</div>
+									<div className="item-footer">
+										<div className="reach">
+											<i className="fa fa-user"></i>
+											<span> 60k+</span> 
+										</div>
+										<div className="rating">
+											<i className="fa fa-star"></i>
+											<span> 5.0(17)</span> 
+										</div>
+										<div className="price">
+											<span className="small"> Starting at </span>
+											<span className="value"> $100 </span>
+											<a>+</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="col-sm-6 col-md-3">
+								<div className="item">
+									<div className="item-header">
+										<div className="title">
+											@themiamimenu
+										</div>
+										<div className="sites">
+											<img src={require("../res/img/instagram.png")} />
+											<img src={require("../res/img/facebook.png")} />
+											<img src={require("../res/img/youtube.png")} />
+										</div>
+										<div className="keywords">
+											<a className="btn btn-default btn-type btn-food">Food</a>
+											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
+											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
+											<div className="hide-end"></div>
+										</div>
+									</div>
+									<div className="item-image">
+										<img src={require("../res/img/item5.png")}/>
+									</div>
+									<div className="item-footer">
+										<div className="reach">
+											<i className="fa fa-user"></i>
+											<span> 60k+</span> 
+										</div>
+										<div className="rating">
+											<i className="fa fa-star"></i>
+											<span> 5.0(17)</span> 
+										</div>
+										<div className="price">
+											<span className="small"> Starting at </span>
+											<span className="value"> $100 </span>
+											<a>+</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="col-sm-6 col-md-3">
+								<div className="item">
+									<div className="item-header">
+										<div className="title">
+											@themiamimenu
+										</div>
+										<div className="sites">
+											<img src={require("../res/img/instagram.png")} />
+											<img src={require("../res/img/facebook.png")} />
+											<img src={require("../res/img/youtube.png")} />
+										</div>
+										<div className="keywords">
+											<a className="btn btn-default btn-type btn-food">Food</a>
+											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
+											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
+											<div className="hide-end"></div>
+										</div>
+									</div>
+									<div className="item-image">
+										<img src={require("../res/img/item2.png")}/>
+									</div>
+									<div className="item-footer">
+										<div className="reach">
+											<i className="fa fa-user"></i>
+											<span> 60k+</span> 
+										</div>
+										<div className="rating">
+											<i className="fa fa-star"></i>
+											<span> 5.0(17)</span> 
+										</div>
+										<div className="price">
+											<span className="small"> Starting at </span>
+											<span className="value"> $100 </span>
+											<a>+</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="col-sm-6 col-md-3">
+								<div className="item">
+									<div className="item-header">
+										<div className="title">
+											@themiamimenu
+										</div>
+										<div className="sites">
+											<img src={require("../res/img/instagram.png")} />
+											<img src={require("../res/img/facebook.png")} />
+											<img src={require("../res/img/youtube.png")} />
+										</div>
+										<div className="keywords">
 											<a className="btn btn-default btn-type btn-food">Food</a>
 											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
 											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
@@ -519,7 +770,7 @@ class SearchResults extends React.Component{
 								</div>
 							</div>
 							<div className="col-sm-6 col-md-3">
-								<div className="item active">
+								<div className="item">
 									<div className="item-header">
 										<div className="title">
 											@themiamimenu
@@ -529,7 +780,7 @@ class SearchResults extends React.Component{
 											<img src={require("../res/img/facebook.png")} />
 											<img src={require("../res/img/youtube.png")} />
 										</div>
-										<div className="types">
+										<div className="keywords">
 											<a className="btn btn-default btn-type btn-food">Food</a>
 											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
 											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
@@ -537,197 +788,7 @@ class SearchResults extends React.Component{
 										</div>
 									</div>
 									<div className="item-image">
-										<img src={require("../res/img/item1.png")}/>
-									</div>
-									<div className="item-footer">
-										<div className="reach">
-											<i className="fa fa-user"></i>
-											<span> 60k+</span> 
-										</div>
-										<div className="rating">
-											<i className="fa fa-star"></i>
-											<span> 5.0(17)</span> 
-										</div>
-										<div className="price">
-											<span className="small"> Starting at </span>
-											<span className="value"> $100 </span>
-											<a>+</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="col-sm-6 col-md-3">
-								<div className="item active">
-									<div className="item-header">
-										<div className="title">
-											@themiamimenu
-										</div>
-										<div className="sites">
-											<img src={require("../res/img/instagram.png")} />
-											<img src={require("../res/img/facebook.png")} />
-											<img src={require("../res/img/youtube.png")} />
-										</div>
-										<div className="types">
-											<a className="btn btn-default btn-type btn-food">Food</a>
-											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
-											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
-											<div className="hide-end"></div>
-										</div>
-									</div>
-									<div className="item-image">
-										<img src={require("../res/img/item1.png")}/>
-									</div>
-									<div className="item-footer">
-										<div className="reach">
-											<i className="fa fa-user"></i>
-											<span> 60k+</span> 
-										</div>
-										<div className="rating">
-											<i className="fa fa-star"></i>
-											<span> 5.0(17)</span> 
-										</div>
-										<div className="price">
-											<span className="small"> Starting at </span>
-											<span className="value"> $100 </span>
-											<a>+</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="col-sm-6 col-md-3">
-								<div className="item active">
-									<div className="item-header">
-										<div className="title">
-											@themiamimenu
-										</div>
-										<div className="sites">
-											<img src={require("../res/img/instagram.png")} />
-											<img src={require("../res/img/facebook.png")} />
-											<img src={require("../res/img/youtube.png")} />
-										</div>
-										<div className="types">
-											<a className="btn btn-default btn-type btn-food">Food</a>
-											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
-											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
-											<div className="hide-end"></div>
-										</div>
-									</div>
-									<div className="item-image">
-										<img src={require("../res/img/item1.png")}/>
-									</div>
-									<div className="item-footer">
-										<div className="reach">
-											<i className="fa fa-user"></i>
-											<span> 60k+</span> 
-										</div>
-										<div className="rating">
-											<i className="fa fa-star"></i>
-											<span> 5.0(17)</span> 
-										</div>
-										<div className="price">
-											<span className="small"> Starting at </span>
-											<span className="value"> $100 </span>
-											<a>+</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="col-sm-6 col-md-3">
-								<div className="item active">
-									<div className="item-header">
-										<div className="title">
-											@themiamimenu
-										</div>
-										<div className="sites">
-											<img src={require("../res/img/instagram.png")} />
-											<img src={require("../res/img/facebook.png")} />
-											<img src={require("../res/img/youtube.png")} />
-										</div>
-										<div className="types">
-											<a className="btn btn-default btn-type btn-food">Food</a>
-											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
-											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
-											<div className="hide-end"></div>
-										</div>
-									</div>
-									<div className="item-image">
-										<img src={require("../res/img/item1.png")}/>
-									</div>
-									<div className="item-footer">
-										<div className="reach">
-											<i className="fa fa-user"></i>
-											<span> 60k+</span> 
-										</div>
-										<div className="rating">
-											<i className="fa fa-star"></i>
-											<span> 5.0(17)</span> 
-										</div>
-										<div className="price">
-											<span className="small"> Starting at </span>
-											<span className="value"> $100 </span>
-											<a>+</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="col-sm-6 col-md-3">
-								<div className="item active">
-									<div className="item-header">
-										<div className="title">
-											@themiamimenu
-										</div>
-										<div className="sites">
-											<img src={require("../res/img/instagram.png")} />
-											<img src={require("../res/img/facebook.png")} />
-											<img src={require("../res/img/youtube.png")} />
-										</div>
-										<div className="types">
-											<a className="btn btn-default btn-type btn-food">Food</a>
-											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
-											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
-											<div className="hide-end"></div>
-										</div>
-									</div>
-									<div className="item-image">
-										<img src={require("../res/img/item1.png")}/>
-									</div>
-									<div className="item-footer">
-										<div className="reach">
-											<i className="fa fa-user"></i>
-											<span> 60k+</span> 
-										</div>
-										<div className="rating">
-											<i className="fa fa-star"></i>
-											<span> 5.0(17)</span> 
-										</div>
-										<div className="price">
-											<span className="small"> Starting at </span>
-											<span className="value"> $100 </span>
-											<a>+</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="col-sm-6 col-md-3">
-								<div className="item active">
-									<div className="item-header">
-										<div className="title">
-											@themiamimenu
-										</div>
-										<div className="sites">
-											<img src={require("../res/img/instagram.png")} />
-											<img src={require("../res/img/facebook.png")} />
-											<img src={require("../res/img/youtube.png")} />
-										</div>
-										<div className="types">
-											<a className="btn btn-default btn-type btn-food">Food</a>
-											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
-											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
-											<div className="hide-end"></div>
-										</div>
-									</div>
-									<div className="item-image">
-										<img src={require("../res/img/item1.png")}/>
+										<img src={require("../res/img/item4.png")}/>
 									</div>
 									<div className="item-footer">
 										<div className="reach">

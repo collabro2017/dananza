@@ -24,28 +24,35 @@
   font-weight: 900;
   padding-left: 140px;
 }
-.homepage_section .row.heroblog .mk_adv_smp div {
+.homepage_section .row.heroblog .mk_adv_smp > div {
   font-family: "Thasadith-Bold";
   font-size: 22px;
-  font-weight: 900;
+  font-weight: 300;
   margin-top: 35px;
 }
-.homepage_section .row.heroblog .mk_adv_smp div.finding_best_ad{
+.homepage_section .row.heroblog .mk_adv_smp > div a.btn{
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.homepage_section .row.heroblog .mk_adv_smp > div.finding_best_ad{
   font-family: "Thasadith-Regular";
 }
-.homepage_section .row.heroblog .mk_adv_smp div select, .homepage_section .row.heroblog .mk_adv_smp div input {
+.homepage_section .row.heroblog .mk_adv_smp > div select, .homepage_section .row.heroblog .mk_adv_smp div input {
   border-radius: 20px !important;
   border:1px solid #f3f3f3;
   width: 50%;
   height: 50px;
   padding: 20px;
   background: #f3f3f3;
+  margin-left:10px;
 }
-.homepage_section .row.heroblog .mk_adv_smp div input {
+.homepage_section .row.heroblog .mk_adv_smp > div input {
   width: 70%;
   border: none;
+  background: white;
+  border:1px solid #d7d7d7;
 }
-.homepage_section .row.heroblog .mk_adv_smp div input::placeholder {
+.homepage_section .row.heroblog .mk_adv_smp > div input::placeholder {
   font-size: 16px;
   color: #4b4b4b;
   vertical-align: middle;
@@ -244,6 +251,9 @@
   .homepage_section .row.what_adza .info_content {
     width: 100%;
   }
+  .homepage_section .row.heroblog .mk_adv_smp > div input{
+    margin:0 auto;
+  }
 }
 @media (max-width: 768px) {
   .homepage_section .heroblog img {
@@ -266,3 +276,38 @@
 }
 
 /*# sourceMappingURL=homepage.css.map */
+
+.homepage_section .finding_ad_select > div{
+  margin-left: 10px;
+  width: 50%;
+  height: 50px;
+  padding: 20px;
+}
+.homepage_section .finding_ad_select #select-advertise{
+  font-size: 18px;
+  font-family: "Thasadith-Bold";
+  line-height: 1.64;
+  padding-left: 25px;
+  border-radius: 20px !important;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.homepage_section .finding_ad_select #select-advertise:hover{
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.homepage_section .finding_ad_select #select-advertise svg{
+  right: 15px;
+}
+.homepage_section .finding_ad_select div:before, 
+.homepage_section .finding_ad_select div:after, 
+.homepage_section .finding_ad_select div:hover:before{
+  border:0px !important;
+}
+#menu-advertise ul{
+  padding-top:0px !important;
+  padding-bottom:0px !important;
+}
+#menu-advertise li{
+  padding: 8px 16px !important;
+  font-size: 16px;
+  font-family: "Thasadith-Bold";
+}

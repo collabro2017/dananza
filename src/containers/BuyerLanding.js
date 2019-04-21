@@ -6,6 +6,7 @@ import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 
 import { increment, decrement } from "../store/reducers/stepCounter";
 import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
@@ -38,7 +39,7 @@ class BuyerLanding extends React.Component{
                   Latest Campaign
                 </span>
                 <span className="headline-second pull-right">
-                  See All Campaigns <i className="fa fa-long-arrow-right"></i>
+                  <Link to="/buyer_campaigns">See All Campaigns <i className="fa fa-long-arrow-right"></i></Link>
                 </span>
               </div>
               <hr className="divider-line" />
@@ -46,44 +47,42 @@ class BuyerLanding extends React.Component{
                 <div className="panel">
                   <div className="panel-title">
                     <span className="first">Ad Campaign 1</span>
-                    <span className="second"><img src={require("../res/img/messages.png")}/>Message</span>
+                    <span className="second"><Link to="/buyer_messages"><img src={require("../res/img/messages.png")}/> Message</Link></span>
                   </div>
                   <div className="panel-body">
                     <div className="mt-element-step">
                       <div className="row step-line">
-                        <div className="col-md-1">
-                        </div>
-                        <div className="col-md-2 mt-step-col first done">
+                        <div className="mt-step-col first done">
                             <div className="mt-step-number bg-green"><img src={require("../res/img/check.png")}/></div>
                             <div className="mt-step-title "><span>Order Date</span></div>
                             <div className="mt-step-content "><span>03/11</span></div>
                         </div>
-                        <div className="col-md-2 mt-step-col done">
+                        <div className="mt-step-col done">
                             <div className="mt-step-number bg-green"><img src={require("../res/img/check.png")}/></div>
                             <div className="mt-step-title "><span>Media Uploaded</span></div>
                             <div className="mt-step-content "><span>03/11</span></div>
                         </div>
-                        <div className="col-md-2 mt-step-col done">
+                        <div className="mt-step-col done">
                             <div className="mt-step-number bg-green"><img src={require("../res/img/check.png")}/></div>
                             <div className="mt-step-title "><span>Order Accepted</span></div>
                             <div className="mt-step-content "><span>03/12</span></div>
                         </div>
-                        <div className="col-md-2 mt-step-col">
+                        <div className="mt-step-col">
                             <div className="mt-step-number bg-white">&nbsp;</div>
                             <div className="mt-step-title "><span>Ad Laundched</span></div>
                         </div>
-                        <div className="col-md-2 mt-step-col last">
+                        <div className="mt-step-col last">
                             <div className="mt-step-number bg-white">&nbsp;</div>
                             <div className="mt-step-title "><span>Approve</span></div>
                             <div className="mt-step-content "><span>Your Ad</span></div>
                         </div>
                       </div>
                     </div>
-                    <div className="message-table">
-                      <table className="table table-condensed">
+                    <div className="message-table table-responsive">
+                      <table className="table">
                         <thead>
                           <tr style={{ 'backgroundColor': '#f1f6f9'}}>
-                            <th><span className="left">adza</span></th>
+                            <th><span className="left">Adza</span></th>
                             <th>Medium</th>
                             <th>Schedule Date</th>
                             <th>Amount</th>
@@ -116,7 +115,7 @@ class BuyerLanding extends React.Component{
                   Saved Adzas
                 </span>
                 <span className="headline-second pull-right">
-                  See All Saved Adzas <i className="fa fa-long-arrow-right"></i>
+                  <Link to="/buyer_saved">See All Saved Adzas <i className="fa fa-long-arrow-right"></i></Link>
                 </span>
               </div>
               <hr className="divider-line" />
@@ -125,7 +124,7 @@ class BuyerLanding extends React.Component{
                   <div className="item active">
                     <div className="item-header">
                       <div className="title">
-                        @themiamimenu
+                        <Link to="/seller_page">@themiamimenu</Link>
                       </div>
                       <div className="sites">
                         <img src={require("../res/img/instagram.png")}/>
@@ -162,7 +161,7 @@ class BuyerLanding extends React.Component{
                   <div className="item active">
                     <div className="item-header">
                       <div className="title">
-                        @themiamimenu
+                        <Link to="/seller_page">@themiamimenu</Link>
                       </div>
                       <div className="sites">
                         <img src={require("../res/img/instagram.png")}/>

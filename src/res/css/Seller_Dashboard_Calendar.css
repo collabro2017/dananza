@@ -1,81 +1,90 @@
-.profile_photo img{
-	width: 40px;
-	height: 40px;
-}
-.profile_photo{
-	padding-top: 0px !important;
-}
-.page-content{
-	width: 100%;
-	font-family: 'Thasadith-Regular';
-	font-weight: 900 !important;
-	border-top: 1px solid #dadada;
-	position: relative;
-}
-.right{
+.seller_calendar .right{
 	float: right;
 }
-.page-result-wrapper{
-	background-color: #deebf2;
-	margin-left: 330px;
-	position: relative;
-}
-.page-result .title{
+.seller_calendar .page-result .title{
 	font-size: 32px;
-/*	margin: 30px auto;
-*/	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 30px;
+	font-weight: bold;
 	font-family: Coves-Bold;
 	border-bottom: 1px solid #89b9d3;
 	width: 100%;
+	padding-bottom: 8px;
 }
-.page-result .subtitle{
+.seller_calendar .page-result .subtitle{
 	font-size: 24px;
 	margin: 15px auto;
 	width: 100%;
 	font-weight: bold;
 	font-family: Coves-Bold;
 }
-.page-result-content .row{
+.seller_calendar .page-result-content .row{
 	position: relative;
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
 	display: inline-flex;
 }
-.upcoming-box{
+.seller_calendar .upcoming-box{
 	padding: 15px;
 	background-color: white;
 	display: inline-flex;
 	width: 100%;
 }
-.upcoming-box .user-profile{
+.seller_calendar .upcoming-box .user-profile{
 	width: 56px;
 	height: 56px;
 	margin: 0px 15px;
 }
-.upcoming-box .username{
+.seller_calendar .upcoming-box .content{
+	width: 100%;
+	padding:10px;
+}
+.seller_calendar .upcoming-box .username{
 	font-size: 20px;
 	margin-bottom: 10px;
+	font-family: 'Thasadith-Bold';
 }
-.upcoming-box .detail{
+.seller_calendar .upcoming-box .detail{
 	display: inline-flex;
 	margin-bottom: 20px;
+	font-family: 'Thasadith-Bold';
 }
-.upcoming-box .detail .date{
+.seller_calendar .upcoming-box .detail .date{
 	margin-left: 48px;
 }
-.upcoming-box .detail img{
+.seller_calendar .upcoming-box .detail .date .darkgrey{
+	font-family: 'Thasadith-Regular';
+}
+.seller_calendar .upcoming-box .detail img{
 	margin-right: 8px;
 	width: 16px;
 	height: 16px;
 }
-.upcoming-box .actions{
+.seller_calendar .upcoming-box .actions{
 	margin-left: -15px !important;
 }
-.trans-select button{
+.seller_calendar .upcoming-box .actions img{
+	margin-right: 15px;
+}
+
+.seller_calendar .trans-select{
 	background: unset;
 	border: unset;
 	font-weight: bold;
+	padding-left: 0px;
+	padding-right: 0px;
+	font-size: 14px;
+	width: 90px;
+	color: #01091c;
+	display: flex;
+}
+.seller_calendar .trans-select>div{
+	margin-left: 15px;
+}
+.seller_calendar .trans-select>div>img{
+	width: 10px;
+
 }
 .seller_calendar .btn-yellow{
 	background-color: #ffd766;
@@ -84,52 +93,58 @@
 	padding-top: 10px;
 	padding-bottom: 10px;
 	width: 100%;
+	font-size: 14px;
+	padding-left: 0;
+	padding-right: 0;
 }
-.btn-yellow i{
+.seller_calendar .btn-yellow i{
 	padding-right: 15px;
 	font-size: 16px;
 }
-.btn-circle{
+.seller_calendar .btn-circle{
 	width: 24px;
 	height: 24px;
 	border-radius: 50% !important;
-	margin-right: 7px;
+	margin-right: 12px;
 	background: white;
 	border: unset;
-	box-shadow: 0px 0px 10px 5px #0000004d;
+	box-shadow: 0px 0px 10px 5px #dadada !important;
+	color: #dadada;
 	font-size: 20px;
-	vertical-align: inherit;
-	margin-bottom: 20px;
+	font-family: inherit;
+	vertical-align: text-top;
+	padding: 0;
+	margin-top: 4px;
 }
-
-.calendar-btn-group{
+.seller_calendar .calendar-btn-group{
 	float: right;
 	margin-top: 10px;
 }
-.calendar-btn-group .btn{
+.seller_calendar .calendar-btn-group .btn{
 	font-size: 15.4px;
 	background: unset;
 	border: unset;
 	font-weight: 100 !important;
-	font-family: Thasadith-Regular;
+	font-family: 'Thasadith-Regular';
 	padding-left: 0px !important;
 	padding-right: 0px !important;
 	margin-left: 12px;
 	margin-right: 12px;
 }
-.calendar-btn-group .btn.active{
+.seller_calendar .calendar-btn-group .btn.active{
 	font-size: 15.4px;
 	background: unset;
 	border-bottom: 3px solid #2ab7c9;
 	font-weight: bold !important;
 }
-.calendar{
+.seller_calendar .calendar{
 	background-color: white;
+    margin-bottom: 30px;
 }
-.calendar .row-week{
+.seller_calendar .calendar .row-week{
 	display: flex;
 }
-.calendar .col-week{
+.seller_calendar .calendar .col-week{
 	width: 14.29%;
 	text-align: right;
 	padding-top: 20px;
@@ -137,66 +152,84 @@
 	padding-right: 10px;
 	border-bottom: 1px solid #dadada;
 }
-.calendar .col-day{
-	width: 14.29%;
-	height: 88px;
-	text-align: right;
-	padding: 12px;
-	border: 1px solid #dadada;
+.seller_calendar .calendar .col-day{
+	position: relative;
+    width: 14.29%;
+    padding-bottom: 14.29%;
+    border: 1px solid #dadada;
 }
-.calendar .col-day .date{
+.seller_calendar .calendar .col-day .date{
+	position: absolute;
 	width: 25px;
 	height: 25px;
-	float: right;
-	text-align: right;
+	text-align: center;
+    right: 13%;
+    top: 11%;
 }
-.calendar .col-day .date.active{
+.seller_calendar .calendar .col-day .date.active{
 	border-radius: 50% !important;
 	background: #2ab7c9;
 	color: white;
-    padding-top: 3px;
-    margin-top: -3px;
-   	margin-right: -9px;
+    
     text-align: center;
 }
-.calendar .col-day .events{
+.seller_calendar .calendar .col-day .events{
+	position: absolute;
 	display: block;
-	float: left;
+    top: 30%;
+    padding-left: 10px;
 }
-.calendar .col-day .events img{
-	width: 17px;
-	height: 17px;
+.seller_calendar .calendar .col-day .events img{
+	width: 17.9%;
+	height: 17.9%;
+	margin-right: 4.2%;
 }
-.calendar .grey{
+.seller_calendar .calendar .grey{
 	color: #c4c4c4;
 }
-.calendar .back-grey{
+.seller_calendar .calendar .back-grey{
 	background-color: #f7f7f7;
 }
-.f-24{
+.seller_calendar .f-24{
 	font-size: 24px !important;
 }
-.f-16{
+.seller_calendar .f-16{
 	font-size: 16px !important;
 }
-.f-14{
+.seller_calendar .f-14{
 	font-size: 14px !important;
 }
-.darkgrey{
+.seller_calendar .darkgrey{
 	color: #4b4b4b;
 }
-
 /* mobile */
 @media(min-width: 1230px){
 }
 @media(max-width:1229px){
 }
 @media(max-width: 992px){
-	.page-result-wrapper{
+	.seller_calendar .page-result-wrapper{
 		margin: 0px;
 	}
 }
 @media(max-width: 768px){
+	.seller_calendar .page-result-content .row{
+		display: block;
+	}
+	.seller_calendar .col-sm-12{
+		width: 100%;
+	}
+	.seller_calendar .col-sm-6{
+		padding:0;
+		display: block;
+		width: 100%;
+	}
+	.seller_calendar .upcoming-box .detail{
+		display: block;
+	}
+	.seller_calendar .upcoming-box .detail>div{
+		width: 100%;
+		margin-left: 0 !important;
+	}
 }
-
 /*# sourceMappingURL=header.css.map */
