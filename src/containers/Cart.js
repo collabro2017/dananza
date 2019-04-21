@@ -63,7 +63,7 @@ class Cart extends React.Component{
 	                                <tr>
 	                                    <td>
 	                                    	<img src={require("../res/img/instagram_sq.png")} />
-	                                    	<Link className="color-dark" to='/sellers'>@themainmenu</Link>
+	                                    	<Link className="color-dark" to='/seller_page'>@themainmenu</Link>
 	                                    </td>
 	                                    <td> Instagram Story </td>
 	                                    <td className="add_date"> 03/10/2019 </td>
@@ -88,7 +88,7 @@ class Cart extends React.Component{
 	                                <tr>
 	                                    <td>
 	                                    	<img src={require("../res/img/blog_sq.png")} />
-	                                    	<Link className="color-dark" to='/sellers'>@themainmenu</Link>
+	                                    	<Link className="color-dark" to='/seller_page'>@themainmenu</Link>
 	                                    </td>
 	                                    <td> Blog Post </td>
 	                                    <td className="add_date"> 03/10/2019 </td>

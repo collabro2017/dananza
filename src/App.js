@@ -28,7 +28,7 @@ import BlogView from "./containers/BlogView";
 import BlogHome from "./containers/BlogHome";
 
 import SearchResults from "./containers/SearchResults";
-import Seller from "./containers/Sellers";
+// import Seller from "./containers/Sellers";
 import SellerDashboard from "./containers/SellerDashboard";
 import SellerOrders from "./containers/SellerOrders";
 import SellerAnalytics from "./containers/SellerAnalytics";
@@ -102,7 +102,6 @@ class App extends Component {
                 <DashboardRoute exact path="/" component={Home} />
 
                 <DashboardRoute exact path="/results" component={SearchResults} />
-                <DashboardRoute exact path="/sellers" component={Seller} />
                 <DashboardRoute exact path="/seller_dashboard" component={SellerDashboard} />
                 <DashboardRoute exact path="/seller_orders" component={SellerOrders} />
                 <DashboardRoute exact path="/seller_analytics" component={SellerAnalytics} />

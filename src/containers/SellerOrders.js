@@ -8,6 +8,7 @@ import Select from '@material-ui/core/Select';
 
 import { increment, decrement } from "../store/reducers/stepCounter";
 import SellerSidebar from "../components/Sidebar/SellerSidebar";
+import { Link } from 'react-router-dom';
 
 import "../res/css/Seller_Dashboard_Order.css"
 
@@ -47,7 +48,7 @@ class SellerOrders extends React.Component{
                       <MenuItem value={'order4'}>Order4</MenuItem>
                     </Select>
                   </FormControl>
-                  <a className="add-channel">+ Add Order</a>
+                  <Link to="/new_order" className="add-channel">+ Add Order</Link>
                 </div>
                 <div className="page-result-content">
                   <label className="subtitle">Needs Your Approval</label>
@@ -62,8 +63,7 @@ class SellerOrders extends React.Component{
                         </span>
                         <span className="header-right">
                           <span className="price">$300</span>
-                          <img src={require("../res/img/message.png")} />
-                          Message
+                          <Link to="/seller_messages"><img src={require("../res/img/message.png")} />Message</Link>
                         </span>
                       </div>
                       <div className="content-body">
@@ -124,10 +124,10 @@ class SellerOrders extends React.Component{
                         </div>
                       </div>
                       <div className="content-footer">
-                        <button className="btn btn-default btn-yellow btn-radius">
+                        <Link to="/new_order" className="btn btn-default btn-yellow btn-radius">
                           <img src={require("../res/img/review.png")} />
                           Review Media
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -143,8 +143,7 @@ class SellerOrders extends React.Component{
                         </span>
                         <span className="header-right">
                           <span className="price">$100</span>
-                          <img src={require("../res/img/message.png")} />
-                          Message
+                          <Link to="/seller_messages"><img src={require("../res/img/message.png")} />Message</Link>
                         </span>
                       </div>
                       <div className="content-body">
@@ -224,8 +223,7 @@ class SellerOrders extends React.Component{
                         </span>
                         <span className="header-right">
                           <span className="price">$65</span>
-                          <img src={require("../res/img/message.png")} />
-                          Message
+                          <Link to="/seller_messages"><img src={require("../res/img/message.png")} />Message</Link>
                         </span>
                       </div>
                       <div className="content-body">
@@ -303,8 +301,7 @@ class SellerOrders extends React.Component{
                         </span>
                         <span className="header-right">
                           <span className="price">$100</span>
-                          <img src={require("../res/img/message.png")} />
-                          Message
+                          <Link to="/seller_messages"><img src={require("../res/img/message.png")} />Message</Link>
                         </span>
                       </div>
                       <div className="content-body">
@@ -382,8 +379,7 @@ class SellerOrders extends React.Component{
                         </span>
                         <span className="header-right">
                           <span className="price">$400</span>
-                          <img src={require("../res/img/message.png")} />
-                          Message
+                          <Link to="/seller_messages"><img src={require("../res/img/message.png")} />Message</Link>
                         </span>
                       </div>
                       <div className="content-body">
@@ -461,8 +457,7 @@ class SellerOrders extends React.Component{
                         </span>
                         <span className="header-right">
                           <span className="price">$100</span>
-                          <img src={require("../res/img/message.png")} />
-                          Message
+                          <Link to="/seller_messages"><img src={require("../res/img/message.png")} />Message</Link>
                         </span>
                       </div>
                       <div className="content-body">

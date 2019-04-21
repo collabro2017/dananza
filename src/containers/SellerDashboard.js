@@ -66,7 +66,7 @@ class SellerDashboard extends React.Component{
 									<div className="right-control col-sm-8">
 										<a className="btn dark btn-outline btn-radius">
 											<i className="fa fa-file-image-o"></i>
-											<b> Choose Photo</b>
+											<b> Change Photo</b>
 										</a>
 										<div>This photo is your identity in Dananza.</div>
 									</div>
@@ -74,7 +74,7 @@ class SellerDashboard extends React.Component{
 							</div>
 							<div className="formcontrol row">
 								<label className="col-sm-2 controllabel">
-									Describe Your Company (100characters)
+									Describe Your Company (140 characters)
 								</label>
 								<div className="col-sm-10 controlcontent">
 									<textarea className="form-control btn-radius" placeholder="Official Account of Target Tree Miami"></textarea>
@@ -187,9 +187,6 @@ class SellerDashboard extends React.Component{
 									<b>60k+</b>
 									<div className="toolbox">
 										<a>
-											<img src={require("../res/img/pencil.png")}/>
-										</a>
-										<a>
 											<img src={require("../res/img/delete.png")}/>
 										</a>
 									</div>
@@ -244,9 +241,6 @@ class SellerDashboard extends React.Component{
 									<b>60k+</b>
 									<div className="toolbox">
 										<a>
-											<img src={require("../res/img/pencil.png")}/>
-										</a>
-										<a>
 											<img src={require("../res/img/delete.png")}/>
 										</a>
 									</div>
@@ -260,9 +254,6 @@ class SellerDashboard extends React.Component{
 									<i className="fa fa-user"></i>
 									<b>60k+</b>
 									<div className="toolbox">
-										<a>
-											<img src={require("../res/img/pencil.png")}/>
-										</a>
 										<a>
 											<img src={require("../res/img/delete.png")}/>
 										</a>

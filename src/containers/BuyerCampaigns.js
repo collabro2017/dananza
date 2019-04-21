@@ -174,7 +174,7 @@ class BuyerCampaigns extends React.Component{
                       </div>
                       <div className="cancel">
                         <a href="#"><img src={require("../res/img/remove.png")}/> Cancel Ad</a>
-                        <button className="btn btn-lg preview-media pull-right"><img src={require("../res/img/review.png")}/>Review Media</button>
+                        <Link to="/new_order" className="btn btn-lg preview-media pull-right"><img src={require("../res/img/review.png")}/>Review Post</Link>
                       </div>
                     </div>
                   </div>
@@ -241,7 +241,7 @@ class BuyerCampaigns extends React.Component{
                       </div>
                       <div className="cancel">
                         <a href="#"><img src={require("../res/img/remove.png")}/> Cancel Ad</a>
-                        <button className="btn btn-lg preview-media pull-right"><img src={require("../res/img/review.png")}/>Review Media</button>
+                        <Link to="/new_order" className="btn btn-lg preview-media pull-right"><img src={require("../res/img/review.png")}/>Review Post</Link>
                       </div>
                     </div>
                   </div>
@@ -308,7 +308,7 @@ class BuyerCampaigns extends React.Component{
                       </div>
                       <div className="cancel">
                         <a href="#"><img src={require("../res/img/remove.png")}/> Cancel Ad</a>
-                        <button className="btn btn-lg preview-media pull-right"><img src={require("../res/img/review.png")}/>Review Media</button>
+                        <Link to="/new_order" className="btn btn-lg preview-media pull-right"><img src={require("../res/img/review.png")}/>Review Post</Link>
                       </div>
                     </div>
                   </div>
@@ -331,7 +331,7 @@ class BuyerCampaigns extends React.Component{
                           <img src={require("../res/img/twitter1.png")}/>
                           <span className="social-link">
                             Twitter Ad
-                            <Link to="/sellers">@themainmenu</Link>
+                            <Link to="/seller_page">@themainmenu</Link>
                           </span>
                           <span className="price pull-right">
                             <span className="price">$65</span>
@@ -385,7 +385,7 @@ class BuyerCampaigns extends React.Component{
                       <div className="header">
                         <img src={require("../res/img/instagram1.png")}/>
                         <span className="social-link">
-                          Instagram Post<Link to="/sellers">@beastyboyy</Link>
+                          Instagram Post<Link to="/seller_page">@beastyboyy</Link>
                         </span>
                         <span className="price pull-right">
                           <span className="price">$100</span>
@@ -439,7 +439,7 @@ class BuyerCampaigns extends React.Component{
                       <div className="header">
                         <img src={require("../res/img/twitter1.png")}/>
                         <span className="social-link">
-                          Ad Campaign <Link to="/sellers">@Target Tree</Link>
+                          Ad Campaign <Link to="/seller_page">@Target Tree</Link>
                         </span>
                         <span className="price pull-right">
                           <span className="price">$400</span>
@@ -493,7 +493,7 @@ class BuyerCampaigns extends React.Component{
                       <div className="header">
                         <img src={require("../res/img/instagram1.png")}/>
                         <span className="social-link">
-                          Instagram Ad <Link to="/sellers">@marie_condo</Link>
+                          Instagram Ad <Link to="/seller_page">@marie_condo</Link>
                         </span>
                         <span className="price pull-right">
                          <span className="price">$100</span>

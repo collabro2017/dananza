@@ -284,7 +284,7 @@ class SearchResults extends React.Component{
 											<Checkbox
 											  checkboxClass="icheckbox_square-ltblue"
 											  increaseArea="40%"
-											  label="Websites"
+											  label="Blogs"
 											  className="icheck"
 											/>
 										</div>
@@ -295,36 +295,6 @@ class SearchResults extends React.Component{
 											  checkboxClass="icheckbox_square-ltblue"
 											  increaseArea="40%"
 											  label="Podcasts"
-											  className="icheck"
-											/>
-										</div>
-									</li>
-									<li>
-										<div className="nav-link">
-											<Checkbox
-											  checkboxClass="icheckbox_square-ltblue"
-											  increaseArea="40%"
-											  label="Print"
-											  className="icheck"
-											/>
-										</div>
-									</li>
-									<li>
-										<div className="nav-link">
-											<Checkbox
-											  checkboxClass="icheckbox_square-ltblue"
-											  increaseArea="40%"
-											  label="Sponsorships"
-											  className="icheck"
-											/>
-										</div>
-									</li>
-									<li>
-										<div className="nav-link">
-											<Checkbox
-											  checkboxClass="icheckbox_square-ltblue"
-											  increaseArea="40%"
-											  label="Billboards"
 											  className="icheck"
 											/>
 										</div>
@@ -362,7 +332,7 @@ class SearchResults extends React.Component{
 
 								</div>
 								<div className="features">
-									<div className="sub-title"> Reach </div>
+									<div className="sub-title"> Minimum Reach </div>
 									<div className="feature-slider noUi-ltblue" id="reach">
 
 									<Nouislider

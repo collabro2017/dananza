@@ -106,7 +106,7 @@ const SellerSidebar = props => {
               <Link to="/seller_dashboard">
                 <label className={navitem=="sellers_page"?"btn btn-default active":"btn btn-default"}>
                   <img src={require('../../res/img/sidebar_user.png')}/>
-                  <input type="radio" className="toggle"/> Seller's Page
+                  <input type="radio" className="toggle"/> Profile
                 </label>
               </Link>
               <Link to="/seller_messages">

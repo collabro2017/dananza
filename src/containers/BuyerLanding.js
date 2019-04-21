@@ -47,7 +47,7 @@ class BuyerLanding extends React.Component{
                 <div className="panel">
                   <div className="panel-title">
                     <span className="first">Ad Campaign 1</span>
-                    <span className="second"><img src={require("../res/img/messages.png")}/>Message</span>
+                    <span className="second"><Link to="/buyer_messages"><img src={require("../res/img/messages.png")}/> Message</Link></span>
                   </div>
                   <div className="panel-body">
                     <div className="mt-element-step">
@@ -124,7 +124,7 @@ class BuyerLanding extends React.Component{
                   <div className="item active">
                     <div className="item-header">
                       <div className="title">
-                        @themiamimenu
+                        <Link to="/seller_page">@themiamimenu</Link>
                       </div>
                       <div className="sites">
                         <img src={require("../res/img/instagram.png")}/>
@@ -161,7 +161,7 @@ class BuyerLanding extends React.Component{
                   <div className="item active">
                     <div className="item-header">
                       <div className="title">
-                        @themiamimenu
+                        <Link to="/seller_page">@themiamimenu</Link>
                       </div>
                       <div className="sites">
                         <img src={require("../res/img/instagram.png")}/>

@@ -141,7 +141,7 @@ class PostCheckout extends React.Component{
 	                                    <td> </td>
 	                                    <td> </td>
 	                                    <td className="total"> 
-											Total                                    	
+											Subtotal                                    	
 	                                    </td>
 	                                    <td className="total_value"> $200 </td>
 	                                    <td></td>

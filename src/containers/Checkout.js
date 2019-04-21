@@ -126,7 +126,7 @@ class Checkout extends React.Component{
 							<div className="total_value col-md-6 value">$203.50</div>
 						</div>
 						<div className="confirm">
-							<Link className="btn btn-yellow btn-medium color-dark full-width" to="/uploadfiles">Confirm & Pay</Link>
+							<Link className="btn btn-yellow btn-medium color-dark full-width" to="/uploadfiles">Authorize Payment</Link>
 						</div>
 					</div>
 				</div>

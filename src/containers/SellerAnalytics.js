@@ -62,7 +62,7 @@ class SellerAnalytics extends React.Component{
                       displayInput={false}
                       displayCustom={()=>(<div class='knobedit'><input value={'99%'}/></div>)}
                     />              
-                    <h6>Order Completed</h6>
+                    <h6>Order Accepted</h6>
                   </div>
                   <div className="dial col-sm-3">
                     <Knob
@@ -168,7 +168,7 @@ class SellerAnalytics extends React.Component{
                   </div>
                   <div className="col-sm-4">
                     <div className="number">0</div>
-                    <div className="comment">Negative</div>
+                    <div className="comment">Adds to Cart</div>
                   </div>
                   <div className="col-sm-4">
                     <div className="number">70</div>
@@ -180,8 +180,8 @@ class SellerAnalytics extends React.Component{
                     <div className="col-sm-6">
                       <div className="dial">
                         <Knob
-                          value={130}
-                          max={200}
+                          value={85}
+                          max={100}
                           fgColor={'#2ab7c9'}
                           bgColor={'#ffffff'}
                           className="knob"
@@ -190,15 +190,16 @@ class SellerAnalytics extends React.Component{
                           height="100"
                           thickness={0.12}
                           displayInput={false}
-                          displayCustom={()=>(<div class='knobedit'><input value={'130'}/></div>)}
+                          displayCustom={()=>(<div class='knobedit'><input value={'85%'}/></div>)}
                         />
-                        <h6>Positive Reviews</h6>
+                        <h6>Profile Interaction Rate</h6>
                       </div>
                     </div>
                     <div className="col-sm-6">
                       <div className="dial">
                         <Knob
-                          value={4}
+                          value={30}
+                          max={100}
                           fgColor={'#fac917'}
                           bgColor={'#2ab7c9'}
                           className="knob"
@@ -208,9 +209,9 @@ class SellerAnalytics extends React.Component{
                           height="100"
                           thickness={0.12}
                           displayInput={false}
-                          displayCustom={()=>(<div class='knobedit'><input value={'4%'}/></div>)}
+                          displayCustom={()=>(<div class='knobedit'><input value={'30%'}/></div>)}
                         />
-                        <h6>Order Canceled</h6>
+                        <h6>Convertion Rate</h6>
                       </div>
                     </div>
                   </div>
@@ -226,7 +227,7 @@ class SellerAnalytics extends React.Component{
                         Complete Profile &nbsp; <i className="fa fa-long-arrow-right info-label"></i>
                       </a>
                      </div>
-                    <div className="progbar-title">Responsive Rate</div>
+                    <div className="progbar-title">Repeat Buyer Rate</div>
                     <div className="progress progbar-custom">
 
                         <div className="progress-bar progress-bar-warning enagement-progress" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style={{'width': '75%'}}>
