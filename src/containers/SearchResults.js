@@ -17,6 +17,7 @@ import { increment, decrement } from "../store/reducers/stepCounter";
 
 import 'icheck/skins/all.css';
 import {Checkbox, Radio} from 'react-icheck';
+import EnhancedSwitch from 'react-icheck/lib/EnhancedSwitch'
 
 import Nouislider from 'react-nouislider';
 import DatePicker from "react-datepicker";
@@ -46,7 +47,7 @@ class SearchResults extends React.Component{
   		'age_start': 0,
   		'age_end': 60,
   		'searchText':'Social Media',
-  		'startDate': '',
+  		'startDate': null,
 		tags: [
 	        { name: "Apples" },
 	        { name: "Pears" }
@@ -66,9 +67,6 @@ class SearchResults extends React.Component{
     super(props);
     props.changeHeaderType( this.state.headerType )
 
-    this.setState({
-      startDate: new Date()
-    });
     this.onChangeStartDate = this.onChangeStartDate.bind(this);
   }
 
@@ -132,10 +130,12 @@ class SearchResults extends React.Component{
     	this.setState({ locations: [...this.state.locations, location]})
   }
 
-
-
   componentDidMount(){
     document.title = "Search Results"
+
+    this.setState({
+      startDate: new Date()
+    });
   };
 
   render(){
@@ -309,7 +309,6 @@ class SearchResults extends React.Component{
 								<div className="features">
 									<div className="sub-title"> Interests </div>
 									<ReactTags
-										classNames="dananza-audience"
 										placeholder="Type Audience Interests"
 										inputAttributes={{ maxLength: 15 }}
 										allowNew={true}
@@ -322,7 +321,6 @@ class SearchResults extends React.Component{
 								<div className="features">
 									<div className="sub-title"> Location </div>
 									<ReactTags
-										classNames="dananza-audience"
 										placeholder="Enter City, State, or Zip Code"
 										inputAttributes={{ maxLength: 15 }}
 										allowNew={true}

@@ -55,12 +55,14 @@
 	margin: 0px 15px;
 	padding: 30px;
 	text-align: center;
-	height: 135px;
 }
 .seller_analytics .whiteback h1{
 	font-size: 48px;
 	margin: 0px;
 	margin-bottom: 8px;
+}
+.seller_analytics .whiteback .bar-chart{
+	display: block;
 }
 .seller_analytics .page-result-content .dial{
 	text-align: center;

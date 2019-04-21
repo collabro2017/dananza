@@ -6,11 +6,16 @@ import { increment, decrement } from "../store/reducers/stepCounter";
 import SellerSidebar from "../components/Sidebar/SellerSidebar";
 import Knob from 'react-canvas-knob';
 
+import { BarChart } from 'react-charts-d3';
+
 import "../res/css/Seller_Dashboard_Analytics.css"
 
 class SellerAnalytics extends React.Component{
 
-  state={'headerType': "seller"}
+  state={
+    'headerType': "seller",
+    'chartData' : []
+  }
 
   constructor(props) {
     super(props);
@@ -19,9 +24,22 @@ class SellerAnalytics extends React.Component{
 
   componentDidMount(){
     document.title = "Seller Analytics"
+
   }
 
   render(){
+    const chartData = [
+      { key: 'Sales', 
+        values: [ 
+          { x: 'Feb 1~7', y: 600 }, 
+          { x: 'Feb 8~14', y: 900 },
+          { x: 'Feb 15~21', y: 400 },
+          { x: 'Feb 22~28', y: 1200 },
+        ] }
+    ];
+
+    const axisConfig = {showXAxis: true, showXAxisLabel: false, showYAxis : true, showYAxisLabel: false, xLabel:"", yLabel: ""};
+
     return (
     	<div className="dashboard_seller">
 	    	<div className="page-content seller_analytics">
@@ -245,7 +263,10 @@ class SellerAnalytics extends React.Component{
                 </div>
                 <div className="row">
                   <div className="col-sm-12 whiteback">
-                    <h1>GRAPH</h1>
+                    <BarChart 
+                      data={chartData} 
+                      axisConfig={axisConfig}
+                    />
                   </div>
                 </div>
               </div>
