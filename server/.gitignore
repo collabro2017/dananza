@@ -1,5 +1,2 @@
-logfile
-
 node_modules/
-
-.env
+.git/
