@@ -14,7 +14,7 @@ import "../res/css/Adza_Signup_Dananza.css"
 
 class SignUp extends React.Component{
 
-  state={'headerType': "homepage"}
+  state={'headerType': "homepage","preview":require("../res/img/image_dashboard_order.png")}
 
   constructor(props) {
     super(props);
@@ -23,10 +23,10 @@ class SignUp extends React.Component{
 
   componentDidMount(){
     document.title = "Adza SignUp"
-
-    function changeImage(src) {
-		$('.result-panel>img').attr("src","./res/img/image_dashboard_"+src+".png");
-	}
+  }
+  changeImage(src){
+  	var tmp = require("../res/img/image_dashboard_"+src+".png");
+  	this.setState({"preview":tmp});
   }
 
   render(){
@@ -35,10 +35,10 @@ class SignUp extends React.Component{
 		<div className="full_container">
 			<div className="row heroblog">
 				<div className="image">
-				<img src={require("../res/img/Heroimage1.png")}/>
-					<div className="col-sm-6 col-md-6">
+					<img src={require("../res/img/Heroimage1.png")}/>
+					<div className="col-sm-6">
 					</div>
-					<div className="col-md-6 col-sm-6 mk_adv_smp color-title">
+					<div className="col-sm-6 mk_adv_smp color-title">
 						Adzas Do It Better
 						<div className="finding_best_ad ">
 							Promote, sell, and manage ads across all your channels all without a monthly fee.
@@ -129,30 +129,30 @@ class SignUp extends React.Component{
 						Here’s a Little Preview
 					</label>
 					<div className="btn-group" data-toggle="buttons" id="pages">
-	                    <label className="btn btn-default active" onClick="changeImage('order')">
+	                    <label className="btn btn-default active" onClick={()=>{this.changeImage('order')}}>
 	                    	<i className="fa fa-shopping-cart"></i>
 	                        <input type="radio" className="toggle"/> Orders
 	                    </label>
-	                    <label className="btn btn-default" onClick="changeImage('analytics')">
+	                    <label className="btn btn-default" onClick={()=>{this.changeImage('analytics')}}>
 	                    	<i className=" fa fa-bar-chart"></i>
 	                        <input type="radio" className="toggle"/> Analytics
 	                    </label>
-	                    <label className="btn btn-default" onClick="changeImage('calendar')">
+	                    <label className="btn btn-default" onClick={()=>{this.changeImage('calendar')}}>
 	                    	<i className="fa fa-calendar"></i>
 	                        <input type="radio" className="toggle"/> Calendar
 	                    </label>
-	                    <label className="btn btn-default" onClick="changeImage('sellers_page')">
+	                    <label className="btn btn-default" onClick={()=>{this.changeImage('sellers_page')}}>
 	                    	<i className="fa fa-user"></i>
 	                        <input type="radio" className="toggle"/> Seller's Page
 	                    </label>
-	                    <label className="btn btn-default" onClick="changeImage('messages')">
+	                    <label className="btn btn-default" onClick={()=>{this.changeImage('messages')}}>
 	                    	<i className="fa fa-comment-o"></i>
 	                        <input type="radio" className="toggle"/> Messages
 	                    </label>
 	                </div>
 				</div>
 				<div className="result-panel">
-					<img src={require("../res/img/image_dashboard_order.png")}/>
+					<img src={this.state.preview}/>
 				</div>
 			</div>
 			<div className="row simple_convenient">

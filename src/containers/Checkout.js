@@ -5,17 +5,23 @@ import { increment, decrement } from "../store/reducers/stepCounter";
 import { Link } from "react-router-dom";
 
 import 'icheck/skins/all.css';
-import {Checkbox, Radio} from 'react-icheck';
+import {Checkbox, Radio, RadioGroup} from 'react-icheck';
 
 import "../res/css/infoflowPage.css"
 
 class Checkout extends React.Component{
+  state = {visa:true,paypal:false}
   constructor(props) {
     super(props);
   }
 
   componentDidMount(){
     document.title = "Checkout"
+  }
+  changePayment(index){
+  	var tmp = {visa:false, paypal:false};
+  	tmp[index] = true;
+  	this.setState({...tmp});
   }
 
   render(){
@@ -42,16 +48,18 @@ class Checkout extends React.Component{
 				</div>
 				<div className="chk_info row">
 					<div className="col-md-9 options">
+						<div className="title">
+							Payment Options
+						</div>
 						<div className="visa">
-							<div className="title">
-								Payment Options
-							</div>
 							<div className="brand">
 								<Radio
 								  name="payment_option"
 								  value="visa"
-								  radioClass="iradio_flat-blue"
+								  radioClass="iradio_minimal-red"
 								  increaseArea="20%"
+								  checked={this.state.visa}
+								  onChange={()=>{this.changePayment('visa');}}
 								/>
 								<img src={require("../res/img/visa_brand.png")} />
 								<img src={require("../res/img/mastercard.png")}/>
@@ -82,8 +90,10 @@ class Checkout extends React.Component{
 								<Radio
 								  name="payment_option"
 								  value="paypal"
-								  radioClass="iradio_flat-blue"
+								  radioClass="iradio_minimal-red"
 								  increaseArea="20%"
+								  checked={this.state.paypal}
+								  onChange={()=>{this.changePayment('paypal');}}
 								/>
 								<img src={require("../res/img/paypal_brand.png")}/>
 							</div>

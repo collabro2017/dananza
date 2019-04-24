@@ -3,16 +3,52 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { increment, decrement } from "../store/reducers/stepCounter";
 import { Link } from "react-router-dom";
+import ReactTags from "react-tag-autocomplete";
 
 import "../res/css/infoflowPage.css"
+import "../res/css/components/tag.css"
 
 class UploadFiles extends React.Component{
+  state = {
+  	receivers: [
+        { name: "user1" },
+        { name: "user" }
+	],
+	suggestions: [
+		{ name: "Bananas" },
+		{ name: "Mangos" },
+		{ name: "Lemons" },
+		{ name: "Lemonfffffas" },
+		{ name: "Lemonfefes" },
+		{ name: "Apricots"}
+	],
+  };
   constructor(props) {
     super(props);
   }
 
   componentDidMount(){
     document.title = "UploadFiles"
+  }
+
+  handleReceiversDelete (i) {
+    const receivers = this.state.receivers.slice(0)
+    receivers.splice(i, 1)
+    this.setState({ receivers })
+  }
+  TagComponent(props){
+  	return (
+  		<button type='button' className={props.classNames.selectedTag} title='Click to remove tag' onClick={props.onDelete}>
+  			<img src={require("../res/img/"+props.tag.name+".png")}/>
+		    <span className={props.classNames.selectedTagName}>{props.tag.name}</span>
+		</button>
+  	);
+  }
+  handleReceiversAddition (receiver) {
+    const receivers = [].concat(this.state.receivers, receiver)
+    
+    if( !this.state.receivers.some(item => receiver.name === item.name ))
+    	this.setState({ receivers: [...this.state.receivers, receiver]})
   }
 
   render(){
@@ -43,12 +79,19 @@ class UploadFiles extends React.Component{
 							<form action="" className="dropzone dropzone-file-area dz-clickable" id="my-dropzone">
 						<div className="upload_form">
 							<div className="send_msg">
-								To:<span>
-									<img src={require("../res/img/drop_menu_item1.png")}/>Target Tree
-									<i className="fa fa-times"></i>
-								</span>
-								<input type="text"/>
-								<i className="fa fa-angle-down"></i>
+								<span>To:</span>
+								<ReactTags
+									placeholder=""
+									inputAttributes={{ maxLength: 15}}
+									allowNew={true}
+									addOnBlur={true}
+								    tags={this.state.receivers}
+								    tagComponent={this.TagComponent}
+								    suggestions={this.state.suggestions}
+								    handleDelete={this.handleReceiversDelete.bind(this)}
+								    handleAddition={this.handleReceiversAddition.bind(this)}
+								    classNames = {{root:"inner-tag react-tags"}} />
+								<a><i className="fa fa-angle-down"></i></a>
 							</div>
 							<div className="note_txt"> </div>
 							<textarea rows={8} placeholder="Send a Message to your Adza"></textarea>

@@ -36,18 +36,10 @@
 }
 .search_page .sort-by {
   text-align: right;
-  font-size: 16px;
 }
 .search_page .sort-by .grey {
   color: #888;
   vertical-align: middle;
-}
-.search_page .page-bar .bs-select button {
-  border: none;
-}
-.search_page .page-bar .bs-select span {
-  font-size: 16px;
-  font-family: "Thasadith-Bold";
 }
 .search_page .page-content {
   width: 100%;
@@ -141,15 +133,6 @@
   margin-top: 13px;
   color: #4b4b4b;
 }
-.search_page .noUi-ltblue .noUi-connect {
-  background-color: #2ab7c9;
-  position: absolute;
-  height: 5px;
-}
-.search_page #gender .noUi-base {
-  background: linear-gradient(to right, #2ab7c9 40%, #ff99cc 50%);
-  /* Standard syntax */
-}
 .search_page .right {
   float: right;
 }
@@ -192,6 +175,10 @@
   width: 100%;
   z-index: 2;
   background: transparent;
+}
+.search_page .datetime .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name{
+  margin: 1.066rem;
+  font-size: 12px;
 }
 .search_page .datetime input {
   padding-top: 8px;
@@ -402,36 +389,6 @@
 }
 
 /* select style */
-.search_page .page-bar .sort-by > div{
-  position: relative;
-  vertical-align: middle;
-  margin-left: 10px;
-  border-radius: 4px;
-}
-.search_page .page-bar #select-relevance{
-  font-size: 16px;
-  font-family: "Thasadith-Bold";
-  line-height: 1.44;
-  padding-left: 12px;
-  border-radius: 4px !important;
-}
-.search_page .page-bar #select-relevance:hover{
-  background-color: rgba(0, 0, 0, 0.05);
-}
-.search_page .page-bar div:before, 
-.search_page .page-bar div:after, 
-.search_page .page-bar div:hover:before{
-  border:0px !important;
-}
-#menu-relevance ul{
-  padding-top:0px !important;
-  padding-bottom:0px !important;
-}
-#menu-relevance li{
-  padding: 8px 16px !important;
-  font-size: 16px;
-  font-family: "Thasadith-Bold";
-}
 
 @media (min-width: 1230px) {
   .search_page .page-result-content .item .title {
@@ -532,52 +489,3 @@
 }
 
 /*# sourceMappingURL=../Dananza_Search.css.map */
-.react-tags{
-    position: relative;
-    padding-bottom: 45px;
-}
-.react-tags__selected{
-  position: absolute;
-  top: 45px;
-}
-.react-tags__selected button{
-    border-radius: 8px !important;
-    background-color: #ffd766;
-    padding-left: 8px;
-    padding-right: 7px;
-    font-family: "Thasadith-Bold";
-    font-size: 11px;
-    height: 16px;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
-    margin-right: 6px;
-    display: inline-table;
-}
-.react-tags__selected button:after{
-  content: "✖";
-  margin-left:5px;
-  color: #000;
-  font-weight: 300;
-  font-family: Arial, sans-serif;
-}
-.react-tags input{
-    font-family: "Thasadith-Bold";
-    height: 40px;
-    width: 100% !important;
-    border-radius: 5px !important;
-    border: 1px solid #dadada;
-    padding-left: 12px;
-}
-.react-tags__suggestions{
-    position: absolute;
-    border:1px solid #CCCCCC;
-    width:100%;
-}
-.react-tags__suggestions ul li{
-  list-style: none;
-  padding:5px;
-  background: white;
-  border:1px solid #eeeeee;
-  width: 100%;
-}

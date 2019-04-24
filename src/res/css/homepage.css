@@ -190,21 +190,21 @@
 }
 .homepage_section .row.slider .slide .img_content {
   position: absolute;
-  top: 160px;
+  top: 23%;
   width: 34%;
   margin: 0 2% 0 50%;
 }
 .homepage_section .row.slider .slide .img_content .description {
   font-family: "Coves-Bold";
-  font-size: 32px;
+  font-size: 2.2vw;
   font-weight: 900;
-  margin-bottom: 40px;
+  margin-bottom: 2.3vw;
 }
 .homepage_section .row.slider .slide .img_content .auth {
   font-family: "Thasadith-Bold";
-  font-size: 18px;
+  font-size: 1.23vw;
   font-weight: 900;
-  margin-bottom: 20px;
+  margin-bottom: 1.1vw;
 }
 .homepage_section .row.slider .slide .slide_img {
   width: 100%;
@@ -276,6 +276,19 @@
 }
 
 /*# sourceMappingURL=homepage.css.map */
+
+.homepage_section .finding_ad_input .react-tags input{
+  width: 411px !important;
+  border: unset !important;
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+.homepage_section .finding_ad_input .react-tags{
+  display: inline-flex;
+}
+.homepage_section .finding_ad_input .react-tags .react-tags__selected{
+    top: 8px;
+    left: 26px;
+}
 
 .homepage_section .finding_ad_select > div{
   margin-left: 10px;

@@ -67,6 +67,7 @@
 .seller_message .page-panel .btn-group label.active{
 	border-right: 5px solid #2ab7c9;
 	background-color: #deebf2;
+	z-index: inherit !important;
 }
 .seller_message .page-panel .btn-group label img{
 	margin-left: 15px;

@@ -31,6 +31,7 @@ class Header extends React.Component{
   state = {
     headerType: "static"
   };
+  toggleflag = 0;
 
   constructor(props) {
     super(props);
@@ -51,34 +52,37 @@ class Header extends React.Component{
     this.setState({headerType: this.props.type});
   };
 
-  componentDidUpdate(){
-    $('.mobile_navbar_toggler').on('click', function() 
-    {
-      console.log( "clicked" );
-      if( !$('.nav_mobile_menu').hasClass('show') ) 
+  componentDidUpdate(prevProps,prevState,prevContext){
+    if(prevState.headerType != "seller" && prevState.headerType != "buyer"){
+      $('.header_search .mobile_navbar_toggler').on('click', function() 
       {
-        $('.nav_mobile_menu').addClass('show');
-        $('.mobile_navbar_toggler').removeClass('navbar_toggler_open');
-        $('.mobile_navbar_toggler').addClass('navbar_toggler_close');
-      }
-      else 
-      {
-        if( !$('.nav_mobile_menu').hasClass('show') ) 
+        if( $('.nav_mobile_menu').css('display') == 'none' ) 
         {
-          $('.nav_mobile_menu').addClass('show');
           $('.mobile_navbar_toggler').removeClass('navbar_toggler_open');
           $('.mobile_navbar_toggler').addClass('navbar_toggler_close');
         }
         else 
         {
-          $('.nav_mobile_menu').removeClass('show');
           $('.mobile_navbar_toggler').removeClass('navbar_toggler_close');
           $('.mobile_navbar_toggler').addClass('navbar_toggler_open');
         }
-        
         $('.nav_mobile_menu').slideToggle(200);
+      });
+    }
+    $('.header_section .mobile_navbar_toggler').on('click', function() 
+    {
+      if( $('.nav_mobile_menu').css('display') == 'none' ) 
+      {
+        $('.mobile_navbar_toggler').removeClass('navbar_toggler_open');
+        $('.mobile_navbar_toggler').addClass('navbar_toggler_close');
       }
-     });
+      else 
+      {
+        $('.mobile_navbar_toggler').removeClass('navbar_toggler_close');
+        $('.mobile_navbar_toggler').addClass('navbar_toggler_open');
+      }
+      $('.nav_mobile_menu').slideToggle(200);
+    });
   }
 
   /*
@@ -93,23 +97,23 @@ class Header extends React.Component{
     if( this.state.headerType == 'seller' ) // Seller Pages
     {
         return (
-          <div className="header_search">
+          <div className="header_search seller_header">
             <div className="nav_bar">
               <div className="logo">
                 <Link to="/"><img src={logoUrl}/></Link>
-                <div className="input-icon">
-                  <i className="fa fa-search input"></i>
-                  <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" value=""/>
-                  <Link to="/results"><a href="#" className="btn green search-but">Search</a></Link>
-                </div>
               </div>
-              <div className="nav_menu justify-content-end">
+              <div className="input-icon">
+                <i className="fa fa-search input"></i>
+                <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" value=""/>
+                <Link to="/results"><a href="#" className="btn green search-but">Search</a></Link>
+              </div>
+              <div className="nav_menu">
                 <ul className="nav_menu_list">
                   <li>
                     <Link to="/seller_page">Adza Page</Link>
                   </li>
                   <li>
-                    <Link to="/seller_dashboard">Campaign</Link>
+                    <Link to="/seller_orders">Campaign</Link>
                   </li>
                   <li>
                     <Link to="/seller_messages">Messages</Link>
@@ -125,25 +129,33 @@ class Header extends React.Component{
                     </a>
                     <ul className="dropdown-menu dropdown-menu-default seller ">
                         <li>
-                            <a href="#">
-                                My Profile 
-                            </a>
+                            <Link to="/seller_dashboard">
+                              <a href="#">
+                                  My Profile 
+                              </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#">
-                                My Dashboard 
-                            </a>
+                            <Link to="/seller_page">
+                              <a href="#">
+                                  My Dashboard 
+                              </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#">
-                                Account Settings
-                            </a>
+                            <Link to="/signup">
+                              <a href="#">
+                                  Account Settings
+                              </a>
+                            </Link>
                         </li>
                         <li class="divider"> </li>
                         <li>
-                            <a href="#">
-                                Login to Other Accounts<img  className="menu_icon" src={require("../../res/img/drop_menu_icon_user.png")}/>
-                            </a>
+                            <Link to="/">
+                              <a href="#">
+                                  Login to Other Accounts<img  className="menu_icon" src={require("../../res/img/drop_menu_icon_user.png")}/>
+                              </a>
+                            </Link>
                         </li>
                         <li class="other_act_img">
                             <a className="other_links" href="#">
@@ -164,19 +176,114 @@ class Header extends React.Component{
                             <div class="more">+2</div>
                         </li>
                         <li>
-                            <a href="#">
+                            <Link to="/buyer_landing">
+                              <a href="#">
+                                  Switch to Buyer <img src={require("../../res/img/drop_menu_icon_swt.png")}/>
+                              </a>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/help">
+                              <a href="#">
+                                  Help <img src={require("../../res/img/drop_menu_icon_help.png")}/>
+                              </a>
+                             </Link>
+                        </li>
+                        <li>
+                            <Link to="/">
+                              <a href="#">
+                                  Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}/>
+                              </a>
+                            </Link>
+                        </li>
+                    </ul>
+                  </li>
+                </ul>
+                <button id="navbar_toggler" className="navbar_toggler_open mobile_navbar_toggler" type="button">
+                  <span className="navbar_toggler_icon"></span>
+                </button>
+              </div>
+              <div className="nav_mobile_menu" style={{display:"none"}}>
+                <ul className="nav_mobile_list">
+                  <li>
+                    <div className="input-icon">
+                      <i className="fa fa-search input"></i>
+                      <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
+                      <Link to="/results"><button className="btn green search-but">Search</button></Link>
+                    </div>
+                  </li>
+                  <li>
+                    <Link to="/seller_page"><a>Adza Page</a></Link>
+                  </li>
+                  <li>
+                    <Link to="/seller_orders">Campaign</Link>
+                  </li>
+                  <li>
+                    <Link to="/seller_messages">Messages</Link>
+                  </li>
+                  <li className="dropdown dropdown-user">
+                    <a href="javascript:;" className="dropdown-toggle seller_toggle" 
+                        data-toggle="dropdown" 
+                        data-hover="dropdown" 
+                        data-close-others="false"
+                    >
+                      <img alt="" className="img-circle seller_toggle" src={require("../../res/img/drop_menu_profile.png")} />
+                      <i className="fa fa-angle-down"></i>
+                    </a>
+                    <ul className="dropdown-menu dropdown-menu-default seller ">
+                        <li>
+                            <Link to="/seller_dashboard">
+                                My Profile 
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/seller_page">
+                                My Dashboard 
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/signup">
+                                Account Settings
+                            </Link>
+                        </li>
+                        <li class="divider"> </li>
+                        <li>
+                            <Link to="/">
+                                Login to Other Accounts<img  className="menu_icon" src={require("../../res/img/drop_menu_icon_user.png")}/>
+                            </Link>
+                        </li>
+                        <li class="other_act_img">
+                            <a className="other_links" href="#">
+                             <img src={require("../../res/img/drop_menu_item1.png")}/>
+                            </a>
+                            <a className="other_links" href="#">
+                              <img src={require("../../res/img/drop_menu_item2.png")}/>                                
+                            </a>
+                            <a className="other_links" href="#">
+                              <img src={require("../../res/img/drop_menu_item3.png")}/>                                
+                            </a>
+                            <a className="other_links" href="#">
+                              <img src={require("../../res/img/drop_menu_item4.png")}/>
+                            </a>
+                            <a className="other_links" href="#">
+                              <img src={require("../../res/img/drop_menu_item5.png")}/>
+                            </a>
+                            <div class="more">+2</div>
+                        </li>
+                        <li>
+                            <Link to="/buyer_landing">
                                 Switch to Buyer <img src={require("../../res/img/drop_menu_icon_swt.png")}/>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#">
-                                Help <img src={require("../../res/img/drop_menu_icon_help.png")}/>
-                            </a>
+                            <Link to="/help">
+                                  Help <img src={require("../../res/img/drop_menu_icon_help.png")}/>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#">
-                                Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}/>
-                            </a>
+                            <Link to="/">
+                                  Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}/>
+                            </Link>
                         </li>
                     </ul>
                   </li>
@@ -190,18 +297,18 @@ class Header extends React.Component{
     else if( this.state.headerType == 'buyer' ) // Buyer Pages
     {
         return ( 
-          <div className="header_search">
+          <div className="header_search buyer_header">
             <div className="nav_bar">
               <div className="logo">
                 <Link to="/"><img src={logoUrl}/></Link>
-                <div className="input-icon">
-                  <i className="fa fa-search input"></i>
-                  <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
-                  <Link to="/results"><button className="btn green search-but">Search</button></Link>
-                </div>
               </div>
-              <div className="top-menu">
-                <ul className="nav navbar-nav pull-right">
+              <div className="input-icon">
+                <i className="fa fa-search input"></i>
+                <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
+                <Link to="/results"><button className="btn green search-but">Search</button></Link>
+              </div>
+              <div className="nav_menu">
+                <ul className="nav_menu_list">
                   <li>
                     <Link to="/buyer_saved">Saved</Link>
                   </li>
@@ -215,11 +322,15 @@ class Header extends React.Component{
                     <Link to="/cart"><i className="fa fa-shopping-cart"></i>Cart</Link>
                   </li>
                   <li className="dropdown dropdown-user">
-                    <a href="javascript:;" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                    <a href="javascript:;"
+                       className="dropdown-toggle"
+                       data-toggle="dropdown"
+                       data-hover="dropdown"
+                       data-close-others="false">
                         <img alt="" className="img-circle" src={require("../../res/img/logged_user.png")} />
                         <i className="fa fa-angle-down"></i>
                     </a>
-                    <ul className="dropdown-menu dropdown-menu-default">
+                    <ul className="dropdown-menu dropdown-menu-default seller">
                         <li>
                             <Link to="/buyer_profile">My Profile </Link>
                         </li>
@@ -232,7 +343,7 @@ class Header extends React.Component{
                         <li className="divider"> </li>
                         <li>
                             <Link to="/seller_dashboard">
-                                Switch to Buyer
+                                Switch to Seller
                                 <img src={require("../../res/img/switch.png")}/>
                             </Link>
                         </li>
@@ -251,12 +362,19 @@ class Header extends React.Component{
                     </ul>
                   </li>
                 </ul>
+                <button id="navbar_toggler" className="navbar_toggler_open mobile_navbar_toggler" type="button">
+                  <span className="navbar_toggler_icon"></span>
+                </button>
               </div>
-              <button id="navbar_toggler1" className="navbar_toggler_open mobile_navbar_toggler" type="button">
-                <span className="navbar_toggler_icon"></span>
-              </button>
               <div className="nav_mobile_menu" style={{display:'none'}}>
                 <ul className="nav_mobile_list">
+                  <li>
+                    <div className="input-icon">
+                      <i className="fa fa-search input"></i>
+                      <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
+                      <Link to="/results"><button className="btn green search-but">Search</button></Link>
+                    </div>
+                  </li>
                   <li>
                     <Link to="/buyer_saved">Saved</Link>
                   </li>
@@ -270,11 +388,15 @@ class Header extends React.Component{
                     <Link to="/cart"><i className="fa fa-shopping-cart"></i>Cart</Link>
                   </li>
                   <li className="dropdown dropdown-user">
-                    <a href="javascript:;" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                    <a href="javascript:;"
+                       className="dropdown-toggle"
+                       data-toggle="dropdown"
+                       data-hover="dropdown"
+                       data-close-others="false">
                         <img alt="" className="img-circle" src={require("../../res/img/logged_user.png")} />
                         <i className="fa fa-angle-down"></i>
                     </a>
-                    <ul className="dropdown-menu dropdown-menu-default">
+                    <ul className="dropdown-menu dropdown-menu-default seller">
                         <li>
                             <Link to="/buyer_profile">My Profile </Link>
                         </li>
@@ -287,7 +409,7 @@ class Header extends React.Component{
                         <li className="divider"> </li>
                         <li>
                             <Link to="/seller_dashboard">
-                                Switch to Buyer
+                                Switch to Seller
                                 <img src={require("../../res/img/switch.png")}/>
                             </Link>
                         </li>
@@ -319,7 +441,7 @@ class Header extends React.Component{
               <div className="logo">
                 <Link to="/"><img src={logoUrl}/></Link>
               </div>
-              <div className="nav_menu justify-content-end">
+              <div className="nav_menu">
                 <button id="navbar_toggler" className="navbar_toggler_open mobile_navbar_toggler" type="button">
                   <span className="navbar_toggler_icon"></span>
                 </button>
@@ -345,7 +467,7 @@ class Header extends React.Component{
                 <div className="logo">
                   <Link to="/"><img src={logoUrl}/></Link>
                 </div>
-                <div className="nav_menu justify-content-end">
+                <div className="nav_menu">
                   <button id="navbar_toggler" className="navbar_toggler_open mobile_navbar_toggler" type="button">
                     <span className="navbar_toggler_icon"></span>
                   </button>
@@ -377,13 +499,13 @@ class Header extends React.Component{
               <div className="nav_bar">
                   <div className="logo">
                       <Link to="/"><img src={logoUrl}/></Link>
-                      <div className="input-icon">
-                          <i className="fa fa-search input"></i>
-                          <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
-                          <Link to="/results" className="btn bg-blue search-but color-white">Search</Link>
-                      </div>
                   </div>
-                  <div className="nav_menu justify-content-end">
+                  <div className="input-icon">
+                      <i className="fa fa-search input"></i>
+                      <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
+                      <Link to="/results" className="btn bg-blue search-but color-white">Search</Link>
+                  </div>
+                  <div className="nav_menu">
                       <ul className="nav_menu_list">
                           <li>
                               <Link to="/about">About</Link>

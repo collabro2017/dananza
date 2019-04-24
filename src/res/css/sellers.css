@@ -149,3 +149,25 @@
   margin-left:20px;
 }
 /*# sourceMappingURL=sellers.css.map */
+
+.sellers .datetime i{
+  position: absolute;
+  left: 28px;
+  top: 17px;
+}
+.sellers .datetime .react-datepicker__input-container input{
+  background: #f1f6f9;
+  border: none;
+  font-size: 14px;
+  font-family: 'Thasadith-Bold';
+  padding: 5px 8px;
+}
+.sellers .datetime div.react-datepicker-wrapper, .search_page .datetime div.react-datepicker-wrapper div{
+  width: 100%;
+  z-index: 2;
+  background: transparent;
+}
+.sellers .datetime .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name{
+  margin: 1.066rem;
+  font-size: 12px;
+}
