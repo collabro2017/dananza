@@ -137,6 +137,8 @@ Table orders{
   id int [pk]
   buyer_id int
   campaign_id int
+  order_status varchar
+  order_date date
 }
 
 Table blogs{
