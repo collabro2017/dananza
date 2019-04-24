@@ -8,12 +8,12 @@ const User = require('../models').User;
 
 router.post('/signup', function(req, res) {
   console.log(req.body);
-  if (!req.body.username || !req.body.password) {
-    res.status(400).send({msg: 'Please pass username and password.'})
+  if (!req.body.email || !req.body.password) {
+    res.status(400).send({msg: 'Please pass email and password.'})
   } else {
     User
       .create({
-        username: req.body.username,
+        email: req.body.email,
         password: req.body.password
       })
       .then((user) => res.status(201).send(user))
@@ -28,7 +28,7 @@ router.post('/signin', function(req, res) {
   User
       .find({
         where: {
-          username: req.body.username
+          email: req.body.email
         }
       })
       .then((user) => {
