@@ -200,3 +200,38 @@
 .AuthModal .rememberme > span {
   margin-top: 10px;
 }
+
+.AuthModal .user-info{
+}
+.AuthModal .user-info .row{
+  padding:10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: -1px;
+  border: 1px solid #dadada;
+}
+.AuthModal .user-info .row>div.controllabel{
+  border-right: 1px solid #dadada;
+}
+.AuthModal .user-info .row input{
+  border-radius: 10px !important;
+  border: 1px solid #dadada;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.AuthModal .user-info .action{
+  padding: 5px;
+  padding-top: 15px;
+}
+.AuthModal .user-info .action .btn{
+  width: 40%;
+}
+.AuthModal .user-info .action .btn-submit{
+  background-color: #2ab7c9;
+  color: white;
+}
+.AuthModal .user-info .action .btn-cancel{
+  background-color: #ffd766;
+  color: black;
+  float: right;
+}

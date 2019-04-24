@@ -95,6 +95,9 @@
     display: block; }
   .header_search .nav_mobile_list li {
      }
+  .header_search .nav_mobile_list li a:hover{
+    background-color: #aaaaaa;
+  }
   .header_search .nav_mobile_menu {
     width: 100%;
     float: left;
@@ -214,21 +217,25 @@
   }
 
   .header_search .nav_bar .input-icon{
-    margin: 0;
-    padding: 30px 0 10px 0 !important;
+    padding: 30px 30px 10px 30px !important;
     width: 100%;
   }
   .header_search .nav_bar .input-icon>input{
-    width: 80%;
-    border-radius: 0px !important
+    width: 50%;
+    border: unset;
+    background: #ffffff88;
+  }
+  .header_search .nav_bar .input-icon>i{
+    left: 30px;
   }
   .header_search .nav_bar .input-icon>a{
-    width: 20%;
+    width: 30%;
     display: block;
   }
   .header_search .nav_bar .input-icon>a>button{
     width: 100%;
-    border-radius: 0px !important;
+    border: unset;
+    background: #ffd76688;
   }
 }
 

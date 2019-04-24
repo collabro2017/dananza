@@ -213,7 +213,7 @@ class Header extends React.Component{
                     </div>
                   </li>
                   <li>
-                    <Link to="/seller_page"><a>Adza Page</a></Link>
+                    <Link to="/seller_page">Adza Page</Link>
                   </li>
                   <li>
                     <Link to="/seller_orders">Campaign</Link>
@@ -521,7 +521,27 @@ class Header extends React.Component{
                               <Link to="/seller_dashboard" className="menu_adza">Become an Adza</Link>
                           </li>
                       </ul>
+                      <button id="navbar_toggler" className="navbar_toggler_open mobile_navbar_toggler" type="button">
+                        <span className="navbar_toggler_icon"></span>
+                      </button>
                   </div>
+                  <div className="nav_mobile_menu" style={{display:'none'}}>
+                <ul className="nav_mobile_list">
+                  <li>
+                      <Link to="/about">About</Link>
+                  </li>
+                  <li>
+                    <a data-toggle="modal" data-target="#myModal">Sign Up</a>
+                    
+                  </li>
+                  <li>
+                    <a data-toggle="modal" data-target="#login">Log In</a>
+                  </li>
+                  <li className="menu_last_li">
+                    <Link to="/seller_dashboard" className="btn bg-yellow btn-small">Become an Adza</Link>
+                  </li>
+                </ul>
+              </div>
               </div>
           </div>
         );
