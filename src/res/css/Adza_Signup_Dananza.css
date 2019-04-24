@@ -15,21 +15,21 @@
   margin: 0px;
 }
 .adza_signup_section .row.heroblog{
-	margin-bottom: 55.95%;
+	margin-bottom: calc((( 100vw)*0.57) + 70px);
 }
 .adza_signup_section .row.heroblog .mk_adv_smp {
   font-family: "Coves-Bold";
   font-size: 3.87vw/*5.57rem*/;
   font-weight: 900;
   padding-left: 10px;
-  padding-top: 22.47%;
+  padding-top: calc(( ( 100vw ) * 0.2247 ) + 78px);
 }
 .adza_signup_section .row.heroblog .mk_adv_smp div {
   font-family: "Thasadith-Bold";
   font-size: 1.61vw/*2.32rem*/;
   font-weight: 900;
   margin-top: 35px;
-  width: 70%
+  width: 70%;
 }
 .adza_signup_section .row.heroblog .mk_adv_smp div.finding_best_ad{
   font-family: "Thasadith-Regular";
@@ -41,6 +41,7 @@
 .adza_signup_section .row.heroblog img{
 	width: 100%;
 	position: absolute;
+	top: 91px;
 }
 .adza_signup_section .row.what_waiting {
   width: 47%;
@@ -157,6 +158,8 @@
 	text-align: unset;
 	padding-top:3.5%;
 	padding-bottom: 3.5%;
+	padding-left: 0;
+	padding-right: 0;
 	border:unset;
 	border-bottom: 0.5px solid #dadada;
 	border-radius: unset !important;
@@ -246,6 +249,39 @@
   }*/
 }
 @media (max-width: 768px) {
+  .adza_signup_section .heroblog .col-sm-6 {
+    width: 50% !important;
+    float: left;
+  }
+  .adza_signup_section .row.what_waiting{
+  	width: 70%;
+  }
+  .adza_signup_section .row .info_title{
+  	font-size: 3.5rem !important;
+  }
+  .adza_signup_section .row.preview{
+  	display: block !important;
+  }
+  .adza_signup_section .row.preview>div{
+  	width: 100% !important;
+  	margin-bottom: 10px;
+  }
+  .adza_signup_section .row.preview .btn-group label{
+  	font-size: 1.5rem !important;
+  }
+  .adza_signup_section .row.preview .btn-group label i{
+  	font-size: 1.5rem !important;
+  }
+  .adza_signup_section .row.simple_convenient{
+  	display: block !important;
+  }
+  .adza_signup_section .row.simple_convenient>div{
+  	width: 100% !important;
+  	margin-bottom: 10px;
+  }
+  .adza_signup_section .row.simple_convenient .contents-panel .sub-content{
+  	font-size: 1.5rem !important;
+  }
 /*  .adza_signup_section .heroblog img {
     margin-right: -34px !important;
     margin-top: 5% !important;

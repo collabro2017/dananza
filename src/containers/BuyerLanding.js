@@ -50,34 +50,60 @@ class BuyerLanding extends React.Component{
                     <span className="second"><Link to="/buyer_messages"><img src={require("../res/img/messages.png")}/> Message</Link></span>
                   </div>
                   <div className="panel-body">
-                    <div className="mt-element-step">
-                      <div className="row step-line">
-                        <div className="mt-step-col first done">
-                            <div className="mt-step-number bg-green"><img src={require("../res/img/check.png")}/></div>
-                            <div className="mt-step-title "><span>Order Date</span></div>
-                            <div className="mt-step-content "><span>03/11</span></div>
+                    <div className="campaign-timeline">
+                        <div className="step first active">
+                          <div className="step-button">
+                            <hr className="left" />
+                            <hr className="right" />
+                            <a className="circle">
+                              <img src={require('../res/img/check.png')}/>
+                            </a>
+                          </div>
+                          <div className="step-label">Order Date</div>
+                          <div className="step-label">03/11</div>
                         </div>
-                        <div className="mt-step-col done">
-                            <div className="mt-step-number bg-green"><img src={require("../res/img/check.png")}/></div>
-                            <div className="mt-step-title "><span>Media Uploaded</span></div>
-                            <div className="mt-step-content "><span>03/11</span></div>
+                        <div className="step active">
+                          <div className="step-button">
+                            <a className="circle">
+                              <img src={require('../res/img/check.png')}/>
+                            </a>
+                            <hr className="left" />
+                            <hr className="right" />
+                          </div>
+                          <div className="step-label">Media Uploaded</div>
+                          <div className="step-label">03/11</div>
                         </div>
-                        <div className="mt-step-col done">
-                            <div className="mt-step-number bg-green"><img src={require("../res/img/check.png")}/></div>
-                            <div className="mt-step-title "><span>Order Accepted</span></div>
-                            <div className="mt-step-content "><span>03/12</span></div>
+                        <div className="step">
+                          <div className="step-button">
+                            <a className="circle">
+                              <img src={require('../res/img/check.png')}/>
+                            </a>
+                            <hr className="left" />
+                            <hr className="right" />
+                          </div>
+                          <div className="step-label">Order Accepted</div>
                         </div>
-                        <div className="mt-step-col">
-                            <div className="mt-step-number bg-white">&nbsp;</div>
-                            <div className="mt-step-title "><span>Ad Laundched</span></div>
+                        <div className="step">
+                          <div className="step-button">
+                            <a className="circle">
+                              <img src={require('../res/img/check.png')}/>
+                            </a>
+                            <hr className="left" />
+                            <hr className="right" />
+                          </div>
+                          <div className="step-label">Ad Launched</div>
                         </div>
-                        <div className="mt-step-col last">
-                            <div className="mt-step-number bg-white">&nbsp;</div>
-                            <div className="mt-step-title "><span>Approve</span></div>
-                            <div className="mt-step-content "><span>Your Ad</span></div>
+                        <div className="step last">
+                          <div className="step-button">
+                            <a className="circle">
+                              <img src={require('../res/img/check.png')}/>
+                            </a>
+                            <hr className="left" />
+                            <hr className="right" />
+                          </div>
+                          <div className="step-label">Buyer Approved</div>
                         </div>
                       </div>
-                    </div>
                     <div className="message-table table-responsive">
                       <table className="table">
                         <thead>

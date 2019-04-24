@@ -42,7 +42,7 @@ class PostCheckout extends React.Component{
 									<i className="fa fa-check passed"></i>
 								</div>
 								<div>
-									<span> Mecia </span>
+									<span> Media </span>
 								</div>
 								<div>
 									<span> Uploaded</span>

@@ -11,7 +11,8 @@ import { Link } from 'react-router-dom';
 import { increment, decrement } from "../store/reducers/stepCounter";
 import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
 import 'icheck/skins/all.css';
-import {Checkbox, Radio} from 'react-icheck';
+import {Checkbox, Radio, RadioGroup} from 'react-icheck';
+
 import "../res/icheck/skins/ltblue.css"
 
 // import "../res/css/Dananza_Search.css"
@@ -79,38 +80,32 @@ class BuyerProfile extends React.Component{
                       </label>
                       <div className="col-md-10 controlcontent">
                         <div className="mt-radio-list">
-                          <label className="mt-radio mt-radio-outline">
-                            <Radio
-                              name="payment_option"
-                              value="Business"
-                              radioClass="iradio_flat-blue"
-                              increaseArea="20%"
-                            />  Business Owner
-                          </label>
-                          <label className="mt-radio mt-radio-outline">
-                            <Radio
-                              name="payment_option"
-                              value="Freelancer"
-                              radioClass="iradio_flat-blue"
-                              increaseArea="20%"
-                            /> Freelancer
-                          </label>
-                          <label className="mt-radio mt-radio-outline">
-                            <Radio
-                              name="payment_option"
-                              value="Employee"
-                              radioClass="iradio_flat-blue"
-                              increaseArea="20%"
-                            /> Employee
-                          </label>
-                          <label className="mt-radio mt-radio-outline">
-                            <Radio
-                              name="payment_option"
-                              value="Agency"
-                              radioClass="iradio_flat-blue"
-                              increaseArea="20%"
-                            /> Agency
-                          </label>
+                            <RadioGroup className="mt-radio-list" name="radio" value="Business Owner">
+                                <Radio
+                                  value="Business Owner"
+                                  radioClass="iradio_minimal-blue"
+                                  increaseArea="20%"
+                                  label="Business Owner"
+                                />
+                                <Radio
+                                  value="Freelancer"
+                                  radioClass="iradio_minimal-blue"
+                                  increaseArea="20%"
+                                  label="Freelancer"
+                                />
+                                <Radio
+                                  value="Employee"
+                                  radioClass="iradio_minimal-blue"
+                                  increaseArea="20%"
+                                  label="Employee"
+                                />
+                                <Radio
+                                  value="Agency"
+                                  radioClass="iradio_minimal-blue"
+                                  increaseArea="20%"
+                                  label="Agency"
+                                />
+                            </RadioGroup>
                         </div>
                       </div>
                     </div>

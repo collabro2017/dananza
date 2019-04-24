@@ -10,17 +10,28 @@ import { Link } from 'react-router-dom';
 
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import ReactTags from "react-tag-autocomplete";
 
 import { increment, decrement } from "../store/reducers/stepCounter";
 
 import "../res/css/homepage.css"
 import "../res/css/Signup.css"
+import "../res/css/components/tag.css"
 
 class Home extends React.Component{
 
   state={
           'headerType': "homepage",
-          'advertise' : 'facebook'
+          'advertise' : 'facebook',
+          'tags'       : [],
+          suggestions : [
+            { name: "Bananas" },
+            { name: "Mangos" },
+            { name: "Lemons" },
+            { name: "Lemonfffffas" },
+            { name: "Lemonfefes" },
+            { name: "Apricots"}
+          ]
         }
 
   constructor(props) {
@@ -32,6 +43,20 @@ class Home extends React.Component{
   };
   componentDidMount(){
     document.title = "Homepage"
+  }
+  handleKeywordDelete (i) {
+    const tags = this.state.tags.slice(0)
+    tags.splice(i, 1)
+    this.setState({ tags })
+  }
+ 
+  handleKeywordAddition (tag) {
+    const tags = [].concat(this.state.tags, tag)
+    if( tags.length > 5 )
+      return;
+    
+    if( !this.state.tags.some(item => tag.name === item.name ))
+      this.setState({ tags: [...this.state.tags, tag]})
   }
 
   render(){
@@ -69,7 +94,15 @@ class Home extends React.Component{
                 </div>
                 <div className="finding_ad_input">
                   related to
-                  <input type="text" name="" placeholder="Type any keyword (maximum of 5 keywords)"/>
+                  <ReactTags
+                    placeholder="Type any keyword (maximum of 5 keywords)"
+                    inputAttributes={{ maxLength: 15 }}
+                    allowNew={true}
+                    tags={this.state.tags}
+                    suggestions={this.state.suggestions}
+                    handleDelete={this.handleKeywordDelete.bind(this)}
+                    handleAddition={this.handleKeywordAddition.bind(this)}
+                    classNames = {{root:"inner-tag react-tags"}} />
                 </div>
                 <div>
                   <Link to="results" className="btn bg-yellow color-dark btn-small">Find Adzas</Link>

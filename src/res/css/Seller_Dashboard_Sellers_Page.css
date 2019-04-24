@@ -32,7 +32,8 @@
 				/*margin-bottom: 20px;*/
 			}
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .right-control{
-				padding-left: 80px;
+				padding-left: 14%;
+				padding-bottom: 20px;
 				top: 30px; }
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent img.profile{
 				width: 120px;
@@ -42,11 +43,14 @@
 				padding-top: 20px;
 				height: 120px; }
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .input-icon{
-				width: 100%;
-				height: 48px; }
+				width: 100%; }
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .input-icon input{
 				width: 100%;
+				padding-left: 33px;
 				height: 48px; }
+			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .input-icon .outer-tag .react-tags__selected{
+				top: 50px;
+			}
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .input-icon i{
 				margin-top: 16px;
 				color: #4b4b4b; }
@@ -81,17 +85,13 @@
 				padding: 20px 0 10px; clear:both;}
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .feature-slider{
 				width: 100%;
-				margin-top: 18px;
-				padding-right: 12px;
-				padding-left: 12px; }
+				margin-top: 18px; }
 				.dashboard_seller .sellers_page .formcontrol .controlcontent .feature-slider .age-result{
 					margin-top: 13px;
 					color:#4b4b4b; }
 				.dashboard_seller .sellers_page .formcontrol .controlcontent .feature-slider #seller_page_gender{
 					padding-right: 0px;
 					padding-left: 0px; }
-					.dashboard_seller .sellers_page .formcontrol .controlcontent .feature-slider #seller_page_gender .noUi-base{
-						background: linear-gradient(to right,#2ab7c9 40%, #ff99cc 50%); }
 			.dashboard_seller .sellers_page .page-result .formcontrol .controlcontent .no-padding-left{
 				padding-left: 0px; }
 	.dashboard_seller .sellers_page .page-result .channel-list {
@@ -105,7 +105,8 @@
 			display: block !important; }
 			.dashboard_seller .sellers_page .page-result .channel-list .channel .channel-show .icon{
 				width: 25px;
-				height: 25px; }
+				height: 25px;
+				margin-right: 10px; }
 			.dashboard_seller .sellers_page .page-result .channel-list .channel .channel-show .fa-user{
 				padding-left: 26px;
 				padding-right: 8px; }
@@ -148,7 +149,9 @@
 			.dashboard_seller .sellers_page .page-result .dropdown-edit .radius-formcontrol:focus{
 				background-color: #eef5f8;
 				border-color: #89b9d3; }
-		.dashboard_seller .sellers_page .page-result .dropdown-edit .radius-select button{
+		.dashboard_seller .sellers_page .page-result .dropdown-edit .material-select>div{
+			margin: 0;
+			padding: 0px !important;
 			border-radius: 5px !important;
 			border: 1px solid #d7d7d7;
 			background-color: white;
@@ -157,6 +160,10 @@
 			padding-left: 18px;
 			font-size: 16px;
 			font-weight: bold; }
+		.dashboard_seller .sellers_page .page-result .dropdown-edit .material-select #select-material{
+			padding: 10px 25px !important;
+			height: 27px;
+		}
 		.dashboard_seller .sellers_page .page-result .dropdown-edit .detail-textarea{
 			height: 100px;
 			resize: unset;
@@ -165,10 +172,6 @@
 			padding-right: 22px;
 			padding-bottom: 16px;
 			overflow: hidden; }
-		.dashboard_seller .sellers_page .page-result .dropdown-edit .control-img{
-			width: 24px;
-			height: 24px;
-			margin-right: 10px;	}
 		.dashboard_seller .sellers_page .page-result .dropdown-edit .control-icon{
 			position: absolute;
 			width: 16px;
@@ -260,15 +263,6 @@
 	.dashboard_seller .sellers_page .page-result .btn-cancel{
 		float: left;
 		width: 168px; }
-.dashboard_seller .noUi-ltblue .noUi-connect {
-  background-color: #2ab7c9;
-  position: absolute;
-  height: 5px;
-}
-.dashboard_seller #gender .noUi-base {
-  background: linear-gradient(to right, #2ab7c9 40%, #ff99cc 50%);
-  /* Standard syntax */
-}
 /***********************/
 /* mobile */
 @media(min-width: 1230px){
@@ -280,7 +274,40 @@
 		margin: 0px;
 	}
 }
-@media(max-width: 768px){
+@media(max-width: 769px){
+	.dashboard_seller .sellers_page .row{
+		display: block !important;
+	}
+	.dashboard_seller .sellers_page .col-sm-2.controllabel{
+		text-align: left !important;
+		width: 100%;
+	}
+	.dashboard_seller .sellers_page .col-sm-10.controlcontent{
+		width: 100% !important;
+	}
+	.dashboard_seller .sellers_page .feature-slider#gender{
+		display: inline-flex !important;
+	}
+	.dashboard_seller .sellers_page .col-sm-10{
+		display: block !important;
+		width: 81.33333%;
+		text-align: center;
+	}
+	.dashboard_seller .sellers_page .col-sm-1{
+		width: 8.33333%;
+	}
+	.dashboard_seller .sellers_page .col-sm-8{
+		width: 100%;
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
+	.dashboard_seller .sellers_page .col-sm-12{
+		width: 100%;
+	}
+	.dashboard_seller .sellers_page .page-result .action_group .btn{
+		float: unset !important;
+		width: 100%;
+	}
 }
 
 /*# sourceMappingURL=header.css.map */

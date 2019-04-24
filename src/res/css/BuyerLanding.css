@@ -42,19 +42,19 @@
 }
 
 .buyer_landing .page-main-header {
-  margin-left: 100px;
-  margin-right: 130px;
+  margin-left: 11.11%;
+  margin-right: 14.44%;
 }
 .buyer_landing .page-main-content.row {
-  margin: 30px 130px 50px 100px;
+  margin: 30px 14.44% 50px 11.11%;
 }
 .buyer_landing .portlet.light.bordered {
   border-radius: 10px !important;
 }
 .buyer_landing .divider-line {
   border-top: 1px solid #89b9d3;
-  margin-left: 100px;
-  margin-right: 130px;
+  margin-left: 11.11%;
+  margin-right: 14.44%;
 }
 .buyer_landing .panel-body{
   padding-left:0;
@@ -345,44 +345,81 @@
     width: 20%;
     float: left;
 }
-.buyer_landing .mt-element-step .step-line .mt-step-number {
-  font-size: 8px !important;
-  border-radius: 50%!important;
-  display: inline-block;
-  margin: auto auto 20px !important;
-  padding: 9px;
-  border: 2px solid #ffd766 !important;
+
+.buyer_landing .campaign-timeline{
+  display: -webkit-inline-box;
+  width: 100%;
+  margin-bottom: 34px;
+  margin-top: 24px;
+}
+.buyer_landing .campaign-timeline .step{
+  color: #4b4b4b;
+  font-size: 12px;
   position: relative;
-  z-index: 5;
-  height: 30px !important;
-  width: 30px !important;
-  text-align: center;
+  width: 20%;
+  font-family: 'Thasadith-Bold';
 }
-.buyer_landing .mt-element-step .step-line .mt-step-number.bg-white{
-  box-shadow: 0px 0px 20px 15px #ffecb7;
+.buyer_landing .campaign-timeline .step .step-button{
+  position: relative;
+  display: -webkit-box;
 }
-.buyer_landing .mt-element-step .step-line .mt-step-content span, .buyer_landing .mt-element-step .step-line .mt-step-title span {
-    color: #333 !important;
-    font-family: "Thasadith-Bold";
-    font-size: 10px;
-}
-.buyer_landing .bg-green {
-  color: #2ab7c9!important;
-}
-.buyer_landing .mt-element-step .step-line .mt-step-number .fa-check {
+.buyer_landing .campaign-timeline .step .circle{
   color: white;
+  border: 2px solid #ffd766;
+  background-color: white;
+  border-radius: 50% !important;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: unset;
+  text-align: center;
+  margin: 0px auto;
+  position: absolute;
+  display: block;
+  left: 40%;
+  top: 10%;
 }
-.buyer_landing .mt-element-step .step-line .done .mt-step-title:after, .buyer_landing .mt-element-step .step-line .done .mt-step-title:before {
-  background-color: #e5e5e5 !important;
+.buyer_landing .campaign-timeline .step .circle:hover{
+    box-shadow: 0px 0px 17px 5px #ffd766bd;
 }
-.buyer_landing .mt-element-step .step-line .mt-step-title {
-  font-size: 15px !important;
+.buyer_landing .campaign-timeline .step.active .circle{
+  background-color: #2ab7c9;
+  border-color: #2ab7c9;
+  position: absolute;
 }
-.buyer_landing .mt-element-step .step-line .done .mt-step-content span, .buyer_landing .mt-element-step .step-line .mt-step-title span {
-  color: #333 !important;
-  font-family: "Thasadith-Bold";
-  font-size:10px;
+.buyer_landing .campaign-timeline .step.active .circle:hover{
+  box-shadow: 0px 0px 17px 5px #2ab7c9bd;
 }
+.buyer_landing .campaign-timeline .step .circle img{
+  vertical-align: middle;
+}
+.buyer_landing .campaign-timeline .step .step-label{
+  text-align: center;
+  white-space: pre;
+  margin: 5px auto;
+}
+.buyer_landing .campaign-timeline .step hr.right{
+  border-width: 2px;
+  width: 50%;
+  border-color: #b2c7d4;
+  margin: 20px 0 !important;
+}
+.buyer_landing .campaign-timeline .step hr.left{
+  border-width: 2px;
+  width: 50%;
+  border-color: #b2c7d4;
+  margin: 20px 0 !important;
+}
+.buyer_landing .campaign-timeline .step.first hr.left{
+  border: unset;
+}
+.buyer_landing .campaign-timeline .step.last hr.right{
+  border: unset;
+}
+.buyer_landing .message-table {
+  margin-top: 0px;
+}
+
 .buyer_landing .item .types a {
     font-size: 1.1vw !important;
 }

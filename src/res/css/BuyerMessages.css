@@ -24,6 +24,7 @@
 	position: relative;
 	padding-top: 0;
 	display: flex;
+	padding-bottom: 0;
 }
 .buyer_messages .page-panel{
 	width: 35%;
@@ -74,6 +75,7 @@
 .buyer_messages .page-panel .btn-group label.active{
 	border-right: 5px solid #2ab7c9;
 	background-color: #deebf2;
+	z-index: inherit !important;
 }
 .buyer_messages .page-panel .btn-group label img{
 	margin-left: 15px;

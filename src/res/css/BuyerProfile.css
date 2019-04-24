@@ -4,14 +4,17 @@
 .buyer_profile .pd-bottom {
   padding-bottom: 75px;
 }
-.buyer_profile .controlcontent .mt-radio.mt-radio-outline {
+.buyer_profile .controlcontent .mt-radio-list>label {
+  display: block;
   font-family: "Thasadith-Bold" !important;
   font-size: 16px;
   padding-left:0;
+  margin-bottom: 15px;
 }
-.buyer_profile .controlcontent .mt-radio.mt-radio-outline > div{
-    margin-right: 10px;
+.buyer_profile .controlcontent .mt-radio-list>label>div {
+  margin-right: 10px;
 }
+
 .buyer_profile .btn-radius {
   border-radius: 5px !important;
 }

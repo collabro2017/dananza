@@ -3,7 +3,9 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { increment, decrement } from "../store/reducers/stepCounter";
 import { Link } from 'react-router-dom';
+import DatePicker from "react-datepicker";
 
+import "react-datepicker/dist/react-datepicker.css";
 import "../res/css/infoflowPage.css"
 import "../res/css/sellers.css"
 import $ from "jquery";
@@ -12,13 +14,25 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
 class Sellers extends React.Component{
+  state={"startDate":[],"headerType":"seller"};
+
   constructor(props) {
     super(props);
+    props.changeHeaderType( this.state.headerType );
+    this.onChangeStartDate = this.onChangeStartDate.bind(this);
   }
 
   componentDidMount(){
     document.title = "Sellers"
   }
+  onChangeStartDate(date,event,i) {
+    var temp = this.state.startDate.slice(0);
+    console.log(event);
+    temp[i] = date;
+    this.setState({
+      startDate: [...temp]
+    });
+  };
 
   render(){
     return (
@@ -181,8 +195,15 @@ class Sellers extends React.Component{
                                                  <img src={require("../res/img/themainmenu_1.png")} />
                                                  Instagram Story
                                                  </div>
-                                                 <div className="col-sm-4">
-                                                   <i className="fa fa-calendar"></i> Choose Post Date
+                                                 <div className="col-sm-4 datetime">
+                                                    <DatePicker
+                                                      className="btn btn-default"
+                                                      selected={this.state.startDate[0]}
+                                                      onChange={(date,event)=>{this.onChangeStartDate(date,event,0)}}
+                                                      placeholderText="Choose Post Date"
+                                                      dateFormat="YYYY-MM-dd"
+                                                    />
+                                                    <i className="fa fa-calendar"></i> 
                                                  </div>
                                                  <div className="col-sm-4">
                                                    <a href="#">$100 <i className="fa fa-cart-plus"></i></a>
@@ -193,9 +214,16 @@ class Sellers extends React.Component{
                                                <div className="col-sm-4">
                                                  <img src={require("../res/img/themainmenu_1.png")} /> Instagram Post
                                                </div>
-                                               <div className="col-sm-4">
-                                                 <i className="fa fa-calendar"></i> Choose Post Date
-                                               </div>
+                                               <div className="col-sm-4 datetime">
+                                                    <DatePicker
+                                                      className="btn btn-default"
+                                                      selected={this.state.startDate[1]}
+                                                      onChange={(date,event)=>{this.onChangeStartDate(date,event,1)}}
+                                                      placeholderText="Choose Post Date"
+                                                      dateFormat="YYYY-MM-dd"
+                                                    />
+                                                    <i className="fa fa-calendar"></i> 
+                                                 </div>
                                                <div className="col-sm-4">
                                                  <a href="#">$100 <i className="fa fa-cart-plus"></i></a>
                                                </div>
@@ -204,9 +232,16 @@ class Sellers extends React.Component{
                                                <div className="col-sm-4">
                                                  <img src={require("../res/img/themainmenu_1.png")} />Instagram Video
                                                </div>
-                                               <div className="col-sm-4">
-                                                 <i className="fa fa-calendar"></i> Choose Post Date
-                                               </div>
+                                               <div className="col-sm-4 datetime">
+                                                    <DatePicker
+                                                      className="btn btn-default"
+                                                      selected={this.state.startDate[2]}
+                                                      onChange={(date,event)=>{this.onChangeStartDate(date,event,2)}}
+                                                      placeholderText="Choose Post Date"
+                                                      dateFormat="YYYY-MM-dd"
+                                                    />
+                                                    <i className="fa fa-calendar"></i> 
+                                                 </div>
                                                <div className="col-sm-4">
                                                  <a href="#">$100 <i className="fa fa-cart-plus"></i></a>
                                                </div>
@@ -262,8 +297,15 @@ class Sellers extends React.Component{
                                                  <img src={require("../res/img/themainmenu_1.png")} />
                                                  Instagram Story
                                                  </div>
-                                                 <div className="col-sm-4">
-                                                   <i className="fa fa-calendar"></i> Choose Post Date
+                                                 <div className="col-sm-4 datetime">
+                                                    <DatePicker
+                                                      className="btn btn-default"
+                                                      selected={this.state.startDate[3]}
+                                                      onChange={(date,event)=>{this.onChangeStartDate(date,event,3)}}
+                                                      placeholderText="Choose Post Date"
+                                                      dateFormat="YYYY-MM-dd"
+                                                    />
+                                                    <i className="fa fa-calendar"></i> 
                                                  </div>
                                                  <div className="col-sm-4">
                                                    <a href="#">$100 <i className="fa fa-cart-plus"></i></a>
@@ -274,9 +316,16 @@ class Sellers extends React.Component{
                                                <div className="col-sm-4">
                                                  <img src={require("../res/img/themainmenu_1.png")} /> Instagram Post
                                                </div>
-                                               <div className="col-sm-4">
-                                                 <i className="fa fa-calendar"></i> Choose Post Date
-                                               </div>
+                                               <div className="col-sm-4 datetime">
+                                                    <DatePicker
+                                                      className="btn btn-default"
+                                                      selected={this.state.startDate[4]}
+                                                      onChange={(date,event)=>{this.onChangeStartDate(date,event,4)}}
+                                                      placeholderText="Choose Post Date"
+                                                      dateFormat="YYYY-MM-dd"
+                                                    />
+                                                    <i className="fa fa-calendar"></i> 
+                                                 </div>
                                                <div className="col-sm-4">
                                                  <a href="#">$100 <i className="fa fa-cart-plus"></i></a>
                                                </div>
@@ -285,9 +334,16 @@ class Sellers extends React.Component{
                                                <div className="col-sm-4">
                                                  <img src={require("../res/img/themainmenu_1.png")} />Instagram Video
                                                </div>
-                                               <div className="col-sm-4">
-                                                 <i className="fa fa-calendar"></i> Choose Post Date
-                                               </div>
+                                               <div className="col-sm-4 datetime">
+                                                    <DatePicker
+                                                      className="btn btn-default"
+                                                      selected={this.state.startDate[5]}
+                                                      onChange={(date,event)=>{this.onChangeStartDate(date,event,5)}}
+                                                      placeholderText="Choose Post Date"
+                                                      dateFormat="YYYY-MM-dd"
+                                                    />
+                                                    <i className="fa fa-calendar"></i> 
+                                                 </div>
                                                <div className="col-sm-4">
                                                  <a href="#">$100 <i className="fa fa-cart-plus"></i></a>
                                                </div>
@@ -343,8 +399,15 @@ class Sellers extends React.Component{
                                                  <img src={require("../res/img/themainmenu_1.png")} />
                                                  Instagram Story
                                                  </div>
-                                                 <div className="col-sm-4">
-                                                   <i className="fa fa-calendar"></i> Choose Post Date
+                                                 <div className="col-sm-4 datetime">
+                                                    <DatePicker
+                                                      className="btn btn-default"
+                                                      selected={this.state.startDate[6]}
+                                                      onChange={(date,event)=>{this.onChangeStartDate(date,event,6)}}
+                                                      placeholderText="Choose Post Date"
+                                                      dateFormat="YYYY-MM-dd"
+                                                    />
+                                                    <i className="fa fa-calendar"></i> 
                                                  </div>
                                                  <div className="col-sm-4">
                                                    <a href="#">$100 <i className="fa fa-cart-plus"></i></a>
@@ -355,9 +418,16 @@ class Sellers extends React.Component{
                                                <div className="col-sm-4">
                                                  <img src={require("../res/img/themainmenu_1.png")} /> Instagram Post
                                                </div>
-                                               <div className="col-sm-4">
-                                                 <i className="fa fa-calendar"></i> Choose Post Date
-                                               </div>
+                                               <div className="col-sm-4 datetime">
+                                                    <DatePicker
+                                                      className="btn btn-default"
+                                                      selected={this.state.startDate[7]}
+                                                      onChange={(date,event)=>{this.onChangeStartDate(date,event,7)}}
+                                                      placeholderText="Choose Post Date"
+                                                      dateFormat="YYYY-MM-dd"
+                                                    />
+                                                    <i className="fa fa-calendar"></i> 
+                                                 </div>
                                                <div className="col-sm-4">
                                                  <a href="#">$100 <i className="fa fa-cart-plus"></i></a>
                                                </div>
@@ -366,9 +436,16 @@ class Sellers extends React.Component{
                                                <div className="col-sm-4">
                                                  <img src={require("../res/img/themainmenu_1.png")} />Instagram Video
                                                </div>
-                                               <div className="col-sm-4">
-                                                 <i className="fa fa-calendar"></i> Choose Post Date
-                                               </div>
+                                               <div className="col-sm-4 datetime">
+                                                    <DatePicker
+                                                      className="btn btn-default"
+                                                      selected={this.state.startDate[8]}
+                                                      onChange={(date,event)=>{this.onChangeStartDate(date,event,8)}}
+                                                      placeholderText="Choose Post Date"
+                                                      dateFormat="YYYY-MM-dd"
+                                                    />
+                                                    <i className="fa fa-calendar"></i> 
+                                                 </div>
                                                <div className="col-sm-4">
                                                  <a href="#">$100 <i className="fa fa-cart-plus"></i></a>
                                                </div>

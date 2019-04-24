@@ -3,20 +3,41 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { increment, decrement } from "../store/reducers/stepCounter";
 import { Link } from "react-router-dom";
+import DatePicker from "react-datepicker";
 
 import "../res/css/infoflowPage.css"
 
 class Cart extends React.Component{
 
-  state={'headerType': "static"}
+  state={'headerType': "static","startDate":[],"qty":[1,1]}
 
   constructor(props) {
     super(props);
     props.changeHeaderType( this.state.headerType )
   }
 
+  onChangeStartDate(date,event,i) {
+    var temp = this.state.startDate.slice(0);
+    temp[i] = date;
+    this.setState({
+      startDate: [...temp]
+    });
+  };
   componentDidMount(){
     document.title = "Cart"
+    this.setState({
+      startDate: [new Date(),new Date()]
+    });
+  }
+  incQty(index){
+  	var tmp = this.state.qty;
+  	tmp[index] ++;
+  	this.setState({"qty":[...tmp]});
+  }
+  decQty(index){
+  	var tmp = this.state.qty;
+  	tmp[index] = tmp[index]>1?tmp[index]-1:tmp[index];
+  	this.setState({"qty":[...tmp]});
   }
 
   render(){
@@ -66,14 +87,22 @@ class Cart extends React.Component{
 	                                    	<Link className="color-dark" to='/seller_page'>@themainmenu</Link>
 	                                    </td>
 	                                    <td> Instagram Story </td>
-	                                    <td className="add_date"> 03/10/2019 </td>
+	                                    <td className="add_date">
+	                                    	<DatePicker
+                                              className="btn btn-default"
+                                              selected={this.state.startDate[0]}
+                                              onChange={(date,event)=>{this.onChangeStartDate(date,event,0)}}
+                                              placeholderText="Choose Post Date"
+                                              dateFormat="dd/MM/YYYY"
+                                            />
+	                                    </td>
 	                                    <td className="qty"> 
-	                                    	<div className="qty_value">1</div> 
+	                                    	<div className="qty_value">{this.state.qty[0]}</div> 
 	                                    	<div className="ctrl_value">
-	                                    		<button className="inc_value">
+	                                    		<button className="inc_value" onClick={()=>{this.incQty(0)}}>
 	                                    			<i className="fa fa-angle-up"></i>
 	                                    		</button>
-	                                    		<button className="dec_value">
+	                                    		<button className="dec_value" onClick={()=>{this.decQty(0)}}>
 	                                    			<i className="fa fa-angle-down"></i>
 	                                    		</button>
 	                                    	</div>
@@ -91,14 +120,22 @@ class Cart extends React.Component{
 	                                    	<Link className="color-dark" to='/seller_page'>@themainmenu</Link>
 	                                    </td>
 	                                    <td> Blog Post </td>
-	                                    <td className="add_date"> 03/10/2019 </td>
+	                                    <td className="add_date">
+	                                    	<DatePicker
+                                              className="btn btn-default"
+                                              selected={this.state.startDate[1]}
+                                              onChange={(date,event)=>{this.onChangeStartDate(date,event,1)}}
+                                              placeholderText="Choose Post Date"
+                                              dateFormat="dd/MM/YYYY"
+                                            />
+	                                    </td>
 	                                    <td className="qty"> 
-	                                    	<div className="qty_value">1</div> 
+	                                    	<div className="qty_value">{this.state.qty[1]}</div> 
 	                                    	<div className="ctrl_value">
-	                                    		<button className="inc_value">
+	                                    		<button className="inc_value" onClick={()=>{this.incQty(1)}}>
 	                                    			<i className="fa fa-angle-up"></i>
 	                                    		</button>
-	                                    		<button className="dec_value">
+	                                    		<button className="dec_value"  onClick={()=>{this.decQty(1)}}>
 	                                    			<i className="fa fa-angle-down"></i>
 	                                    		</button>
 	                                    	</div>

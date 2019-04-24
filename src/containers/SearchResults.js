@@ -31,6 +31,10 @@ import "../res/css/global.css"
 import "../res/css/Dananza_Search.css"
 import "../res/icheck/skins/ltblue.css"
 import "../res/css/nouislider.css"
+import "../res/css/components/tag.css"
+import "../res/css/components/slider.css"
+import "../res/css/components/select.css"
+
 
 const styles = theme => ({
   
@@ -71,7 +75,7 @@ class SearchResults extends React.Component{
   }
 
   onChangeRelevance = event => {
-	this.setState({ [event.target.name]: event.target.value });
+	this.setState({ ['relevance']: event.target.value });
   };
   
   onReachSlide = (render, handle, value, un, percent) => {
@@ -97,9 +101,6 @@ class SearchResults extends React.Component{
       startDate: date
     });
   };
-
-
-
   handleKeywordDelete (i) {
     const tags = this.state.tags.slice(0)
     tags.splice(i, 1)
@@ -181,15 +182,15 @@ class SearchResults extends React.Component{
 			</div>
 			<div className="page-container">
 				<div className="page-bar bg-white">
-					<div className="sort-by">
+					<div className="sort-by material-select">
 						<span className="grey">Sort by:</span>
 						<FormControl>
 						  <Select
 						    value={this.state.relevance}
 						    onChange={this.onChangeRelevance}
 						    inputProps={{
-						      name: 'relevance',
-						      id: 'relevance-simple',
+						      name: 'material',
+						      id: 'material-simple',
 						    }}
 						  >
 						    <MenuItem value={'relevance'}>Relevance</MenuItem>
@@ -315,8 +316,8 @@ class SearchResults extends React.Component{
 									    tags={this.state.tags}
 									    suggestions={this.state.suggestions}
 									    handleDelete={this.handleKeywordDelete.bind(this)}
-									    handleAddition={this.handleKeywordAddition.bind(this)} />
-
+									    handleAddition={this.handleKeywordAddition.bind(this)}
+									    classNames = {{root:"outer-tag react-tags"}} />
 								</div>
 								<div className="features">
 									<div className="sub-title"> Location </div>
@@ -326,8 +327,8 @@ class SearchResults extends React.Component{
 										allowNew={true}
 									    tags={this.state.locations}
 									    handleDelete={this.handleLocationDelete.bind(this)}
-									    handleAddition={this.handleLocationAddition.bind(this)} />
-
+									    handleAddition={this.handleLocationAddition.bind(this)}
+									    classNames = {{root:"outer-tag react-tags"}}/>
 								</div>
 								<div className="features">
 									<div className="sub-title"> Minimum Reach </div>

@@ -11,10 +11,10 @@ import SellerSidebar from "../components/Sidebar/SellerSidebar";
 import { Link } from 'react-router-dom';
 
 import "../res/css/Seller_Dashboard_Order.css"
-
+import "../res/css/components/select.css"
 class SellerOrders extends React.Component{
 
-  state={'headerType': "seller"}
+  state={'headerType': "seller","orderby":"all"}
 
   constructor(props) {
     super(props);
@@ -25,6 +25,10 @@ class SellerOrders extends React.Component{
     document.title = "Seller Orders"
   }
 
+  onChangeSelect = event => {
+    this.setState({ ['orderby']: event.target.value });
+  };
+
   render(){
     return (
     	<div className="dashboard_seller">
@@ -33,13 +37,14 @@ class SellerOrders extends React.Component{
             <div className="page-result-wrapper">
       				<div className="page-result">
                 <label className="title">Overview Analytics</label>
-                <div className="order-by">
+                <div className="order-by material-select">
                   <span className="grey">Order Status:</span>
                   <FormControl>
-                    <Select value={"all"} 
+                    <Select value={this.state.orderby}
+                        onChange={this.onChangeSelect}
                         inputProps={{
-                          name: 'orderby',
-                          id: 'orderby-simple',
+                          name: 'material',
+                          id: 'material-simple',
                         }}>
                       <MenuItem value={'all'}>All Orders</MenuItem>
                       <MenuItem value={'order1'}>Order1</MenuItem>
@@ -75,7 +80,6 @@ class SellerOrders extends React.Component{
                               <a className="circle">
                                 <img src={require('../res/img/check.png')}/>
                               </a>
-                              
                             </div>
                             <div className="step-label">Order Date</div>
                             <div className="step-label">03/11</div>
@@ -369,7 +373,7 @@ class SellerOrders extends React.Component{
                     </div>
                   </div>
                   <div className="order">
-                  <img src={require("../res/img/order5.png")} />
+                    <img src={require("../res/img/order5.png")} />
                     <div className="order-content">
                       <div className="content-header">
                         <span className="header-left">
