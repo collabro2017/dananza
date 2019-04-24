@@ -1,13 +1,13 @@
 Table users{
   id int [pk]
+  email varchar
+  business_name varchar
+  password varchar
   customer_id varchar unique
   profile_id varchar unique
   f_name varchar
   l_name varchar
-  email varchar
-  password varchar
   profile_avatar varchar
-  business_name varchar
 }
 
 Table buyer_profile{
@@ -34,6 +34,7 @@ Table saved_adza{
   buyer_id int
   adza_id int  
   listing_id int
+  save_time date
 }
 
 Table campaigns{
@@ -60,13 +61,12 @@ Table adza_profile{
   profile_description blob
   review_point float
   signup_date datetime
-  image_gallery varchar
+  image_gallery json
   audience_male_percent float
   audience_age_min int
   audience_age_max int
   audience_locations varchar
   audience_interests varchar
-  audience_interest varchar
   update_time datetime
 }
 
@@ -123,7 +123,7 @@ Table messages{
   buyer_id int
   adza_id int
   message_text varchar
-  message_time varchar
+  message_time date
   is_new tinyint
 }
 
@@ -135,6 +135,7 @@ Table carts{
 
 Table orders{
   id int [pk]
+  buyer_id int
   campaign_id int
 }
 

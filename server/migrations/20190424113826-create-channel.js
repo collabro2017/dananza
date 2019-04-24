@@ -1,23 +1,37 @@
 'use strict';
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.createTable('users', { id: Sequelize.INTEGER });
-    */
+    return queryInterface.createTable('Channels', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      adza_id: {
+        type: Sequelize.INTEGER
+      },
+      media_type: {
+        type: Sequelize.STRING
+      },
+      follows: {
+        type: Sequelize.INTEGER
+      },
+      username: {
+        type: Sequelize.STRING
+      },
+      linked_channel: {
+        type: Sequelize.STRING
+      },
+      add_time: {
+        type: Sequelize.DATE
+      },
+      active: {
+        type: Sequelize.BOOLEAN
+      }
+    });
   },
-
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.dropTable('users');
-    */
+    return queryInterface.dropTable('Channels');
   }
 };
