@@ -8,22 +8,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      blog_name: {
+      content: {
         type: Sequelize.STRING
       },
-      blog_desc: {
-        type: Sequelize.STRING
-      },
-      blog_thumb: {
-        type: Sequelize.FLOAT
-      },
-      createdAt: {
+      post_time: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      featured_image: {
+        type: Sequelize.STRING
+      },      
+      active: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.BOOLEAN
       }
     });
   },
