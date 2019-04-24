@@ -4,9 +4,11 @@ var bcrypt = require('bcrypt-nodejs');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    username: DataTypes.STRING,
+    email: DataTypes.STRING,
     password: DataTypes.STRING
-  }, {});
+  }, {
+    timestamp: false
+  });
   User.beforeSave((user, options) => {
     if (user.changed('password')) {
       user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);

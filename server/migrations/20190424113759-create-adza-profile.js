@@ -33,7 +33,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       audience_locations: {
-        type: Sequelize.STRING
+        type: Sequelize.JSON
       },
       audience_interests: {
         type: Sequelize.JSON
