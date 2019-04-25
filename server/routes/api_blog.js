@@ -2,8 +2,8 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const router = express.Router();
-require('../../config/passport')(passport);
-const Blog = require('../../models').Blog;
+require('../config/passport')(passport);
+const Blog = require('../models').Blog;
 
 // Get All Blogs
 router.get('/', function(req, res) {

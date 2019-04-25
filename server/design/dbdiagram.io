@@ -143,6 +143,7 @@ Table orders{
 
 Table blogs{
   id int [pk]
+  title varchar
   content varchar
   post_time datetime
   featured_image varchar

@@ -27,7 +27,7 @@ app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 
 // blog api
-app.use('/api/blog', require('./routes/blog'));
+app.use('/api/blog', require('./routes/api_blog'));
 
 
 // catch 404 and forward to error handler
