@@ -7,7 +7,7 @@ import {
   Redirect
 } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { MuiThemeProvider } from "@material-ui/core/styles";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 
 import MainLayout from "./layouts/MainLayout";
@@ -26,7 +26,6 @@ import BlogView from "./containers/BlogView";
 import BlogHome from "./containers/BlogHome";
 
 import SearchResults from "./containers/SearchResults";
-// import Seller from "./containers/Sellers";
 import SellerDashboard from "./containers/SellerDashboard";
 import SellerOrders from "./containers/SellerOrders";
 import SellerAnalytics from "./containers/SellerAnalytics";
@@ -72,6 +71,8 @@ const EmptyRoute = ({ component: Component, ...rest }) => {
   );
 };
 
+const theme = createMuiTheme();
+
 class App extends Component {
   state = {
     auth: false
@@ -81,7 +82,7 @@ class App extends Component {
     const { auth } = this.props;
 
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>
         <CssBaseline />
         <div>
           <Router>

@@ -1,4 +1,5 @@
 import { authHeader } from '../helpers';
+import { apiConfig } from '../config';
 
 export const userService = {
     login,
@@ -9,6 +10,18 @@ export const userService = {
     update,
     delete: _delete
 };
+
+const apiRoot = apiConfig.apiRoot;
+
+function register(user) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+    };
+
+    return fetch( apiRoot+`/signup`, requestOptions).then(handleResponse);
+}
 
 function login(username, password) {
     const requestOptions = {
@@ -50,16 +63,6 @@ function getById(id) {
     return fetch(`/users/${id}`, requestOptions).then(handleResponse);
 }
 
-function register(user) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    };
-
-    return fetch(`/users/register`, requestOptions).then(handleResponse);
-}
-
 function update(user) {
     const requestOptions = {
         method: 'PUT',
@@ -87,7 +90,7 @@ function handleResponse(response) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout();
-                location.reload(true);
+                window.location.reload(true);
             }
 
             const error = (data && data.message) || response.statusText;
