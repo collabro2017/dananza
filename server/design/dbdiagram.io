@@ -141,6 +141,14 @@ Table orders{
   order_date date
 }
 
+Table order_history{
+  id int [pk]
+  order_id int
+  order_comment varchar
+  order_status varchar
+  update_time date  
+}
+
 Table blogs{
   id int [pk]
   title varchar
