@@ -3,7 +3,7 @@
   Params: email, password
 /api/signup
   Method: POST
-  Params: email, password, password_confirm, 
+  Params: email, password, password_confirm, business_name, f_name, l_name
 /api/check_login
   Methos: POST
   Header: JWT token
@@ -52,7 +52,7 @@
 /api/buyer/saved/:id
   Method: DELETE
   Desc: remove save adza from list
-/api/buyer/saved/
+/api/buyer/saved
   Method: POST
   params: adza_id, listing_id
   Desc: save adza to list
@@ -158,3 +158,17 @@
 /api/order/:id/history
   Method: GET
   Desc: get order history by order id
+/api/order/:id/upload
+  Method: PUT
+  Desc: Upload AD Media
+
+/api/search
+  Method: GET
+  Params: queryStr, media_types, interests, locations, min_reach, gender, age_min, age_max, price_range, review_point, lunch_date
+  Desc: Searh
+/api/stats
+  Method: GET
+  Desc: get stats infos for Adza
+/api/notification
+  Method: GET
+  Desc: get new messages and cart item num etc.
