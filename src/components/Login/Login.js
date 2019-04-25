@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+import { userActions } from '../../store/actions';
 
 import "../../res/bootstrap/css/bootstrap.min.css"
 import "../../res/font-awesome/css/font-awesome.min.css"
@@ -16,13 +18,43 @@ class Login extends React.Component{
     constructor(props) {
       super(props);
       this.routeChange = this.routeChange.bind(this);
+
+      // reset login status
+      this.props.dispatch(userActions.logout());
+
+      this.state = {
+          email: '',
+          password: '',
+          submitted: false
+      };
+
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     routeChange(){
       this.props.history.push("/buyer_landing");
     }
 
+    handleChange(e) {
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+
+        this.setState({ submitted: true });
+        const { email, password } = this.state;
+        const { dispatch } = this.props;
+        if (email && password) {
+            dispatch(userActions.login(email, password));
+        }
+    }
+
     render(){
+      const { loggingIn } = this.props;
+      const { email, password, submitted } = this.state;
       return (
         <div className="modal-dialog AuthModal">
           <div className="modal-content modal-content-custom">
@@ -30,19 +62,19 @@ class Login extends React.Component{
               <h4 className="modal-title">Sign In</h4>
             </div>
             <div className="modal-body">
-              <div className="form-group col-md-12">
-                <input className="form-control form-control-solid placeholder-no-fix input-custom"
-                        type="text" autoComplete="off" placeholder="Username" name="username" />
-              </div>
-              <div className="form-group col-md-12">
-                <input className="form-control form-control-solid placeholder-no-fix input-custom"
-                        type="password" autoComplete="off" placeholder="password" name="password" />
-              </div>
-              <div className="form-group col-md-12">
-                  <button className="btn bg-yellow full-width btn-small" type="button" data-dismiss="modal" onClick={this.routeChange}>
-                      Login
-                  </button>
-              </div>
+              <form name="form" onSubmit={this.handleSubmit}>
+                <div className="form-group col-md-12">
+                  <input className="form-control form-control-solid placeholder-no-fix input-custom"
+                          type="text" autoComplete="off" placeholder="Email Address" name="email" value={email} onChange={this.handleChange} />
+                </div>
+                <div className="form-group col-md-12">
+                  <input className="form-control form-control-solid placeholder-no-fix input-custom"
+                          type="password" autoComplete="off" placeholder="Password" name="password" value={password} onChange={this.handleChange} />
+                </div>
+                <div className="form-group col-md-12">
+                    <button className="btn bg-yellow full-width btn-small">Login</button>
+                </div>
+              </form>
               <div className="footer-line col-md-12">
                 <div className="footer-container">
                   <a className="signin pull-left" id="signin" data-toggle="modal" data-target="#myModal" data-dismiss="modal">Forgot password?</a>
@@ -56,4 +88,13 @@ class Login extends React.Component{
       )}
 };
 
-export default withRouter(Login);
+function mapStateToProps(state) {
+    const { loggingIn } = state.authentication;
+    return {
+        loggingIn
+    };
+}
+
+export default connect(
+  mapStateToProps
+)(Login);

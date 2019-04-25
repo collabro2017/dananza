@@ -11,15 +11,15 @@ export const userActions = {
     delete: _delete
 };
 
-function login(username, password) {
+function login(email, password) {
     return dispatch => {
-        dispatch(request({ username }));
+        dispatch(request({ email }));
 
-        userService.login(username, password)
+        userService.login(email, password)
             .then(
                 user => { 
                     dispatch(success(user));
-                    history.push('/');
+                    history.push('/buyer_landing');
                 },
                 error => {
                     dispatch(failure(error));
@@ -46,7 +46,7 @@ function register(user) {
             .then(
                 user => { 
                     dispatch(success());
-                    history.push('/login');
+                    // history.push('/');
                     dispatch(alertActions.success('Registration successful'));
                 },
                 error => {

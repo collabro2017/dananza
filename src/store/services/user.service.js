@@ -20,22 +20,22 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch( apiRoot+`/signup`, requestOptions).then(handleResponse);
+    return fetch( apiRoot + `/signup`, requestOptions).then(handleResponse);
 }
 
-function login(username, password) {
+function login(email, password) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ email, password })
     };
 
-    return fetch(`/users/authenticate`, requestOptions)
+    return fetch( apiRoot + `/signin`, requestOptions)
         .then(handleResponse)
         .then(user => {
+            debugger;
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(user));
-
             return user;
         });
 }
