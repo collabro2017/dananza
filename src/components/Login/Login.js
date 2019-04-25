@@ -53,7 +53,7 @@ class Login extends React.Component{
     }
 
     render(){
-      const { loggingIn } = this.props;
+      const { loggingIn, alert } = this.props;
       const { email, password, submitted } = this.state;
       return (
         <div className="modal-dialog AuthModal">
@@ -63,16 +63,22 @@ class Login extends React.Component{
             </div>
             <div className="modal-body">
               <form name="form" onSubmit={this.handleSubmit}>
-                <div className="form-group col-md-12">
+                { alert != null ?
+                  <div className="form-group col-md-12 has-error">
+                    <p>{alert.message}</p>
+                  </div> 
+                  : null
+                }
+                <div className={"form-group col-md-12" + (submitted && !email ? ' has-error' : '')}>
                   <input className="form-control form-control-solid placeholder-no-fix input-custom"
                           type="text" autoComplete="off" placeholder="Email Address" name="email" value={email} onChange={this.handleChange} />
                 </div>
-                <div className="form-group col-md-12">
+                <div className={"form-group col-md-12" + (submitted && !password ? ' has-error' : '')}>
                   <input className="form-control form-control-solid placeholder-no-fix input-custom"
                           type="password" autoComplete="off" placeholder="Password" name="password" value={password} onChange={this.handleChange} />
                 </div>
-                <div className="form-group col-md-12">
-                    <button className="btn bg-yellow full-width btn-small">Login</button>
+                <div className={"form-group col-md-12" + (!password || !email ? ' has-error' : '')}>
+                    <button className="btn bg-yellow full-width btn-small" disabled={!password || !email}>Login</button>
                 </div>
               </form>
               <div className="footer-line col-md-12">
@@ -90,8 +96,11 @@ class Login extends React.Component{
 
 function mapStateToProps(state) {
     const { loggingIn } = state.authentication;
+    const { alert } = state;
+
     return {
-        loggingIn
+        loggingIn, 
+        alert
     };
 }
 

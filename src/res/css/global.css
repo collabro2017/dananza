@@ -150,6 +150,18 @@ a{
 a:hover{
   text-decoration: none;}
 
+
+.has-error input{
+  border:1px solid red !important;
+}
+.has-error .btn{
+  background: #d7d7d7 !important;
+}
+.has-error p{
+  color: red !important;
+  margin: 0;
+}
+
 /*start buyer global styles*/
   /* headline styles*/
   .headline-first {

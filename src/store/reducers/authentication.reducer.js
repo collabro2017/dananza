@@ -11,6 +11,7 @@ export function authentication(state = initialState, action) {
         user: action.user
       };
     case userConstants.LOGIN_SUCCESS:
+    debugger;
       return {
         loggedIn: true,
         user: action.user
