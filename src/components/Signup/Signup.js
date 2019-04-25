@@ -23,12 +23,12 @@ class Signup extends React.Component{
 
       this.state = {
           user: {
-              firstName: 'FName',
-              lastName: 'LName',
-              businessName: 'BName',
-              email: 'test@user.com',
-              password: '123456',
-              cfm_password: '123456'
+              firstName: '',
+              lastName: '',
+              businessName: '',
+              email: '',
+              password: '',
+              cfm_password: ''
           },
           submitted: false
       };
@@ -62,13 +62,12 @@ class Signup extends React.Component{
         const { user } = this.state;
         const { dispatch } = this.props;
         if (user.firstName && user.lastName && user.email && user.password && user.businessName && user.password === user.cfm_password ) {
-            delete user.cfm_password;
             dispatch(userActions.register(user));
         }
     }
 
     render(){
-      const { registering  } = this.props;
+      const { registering, alert } = this.props;
       const { user, submitted } = this.state;
 
       if(this.state.mode != "email"){
@@ -122,61 +121,44 @@ class Signup extends React.Component{
               </div>
               <div className="modal-body">
                 <form name="form" onSubmit={this.handleSubmit}>
-                  <div className="user-info">
-                    <div className="row">
-                      <div className="col-sm-6 controllabel">
-                          BusinessName
-                      </div>
-                      <div className="col-sm-6">
-                          <input type="text" name="businessName" value={user.businessName} onChange={this.handleChange}/>
-                      </div>
+                  { alert.message != null ?
+                    <div className="form-group col-md-12 has-error">
+                      <p>{alert.message}</p>
+                    </div> 
+                    : null
+                  }
+                    <div className={"form-group col-md-12" + (submitted && !user.businessName ? ' has-error' : '')}>
+                      <input type="text" placeholder="Business Name" name="businessName" value={user.businessName} onChange={this.handleChange}/>
                     </div>
-                    <div className="row">
-                      <div className="col-sm-6 controllabel">
-                          Email
-                      </div>
-                      <div className="col-sm-6">
-                          <input type="email" name="email" value={user.email} onChange={this.handleChange}/>
-                      </div>
+
+                    <div className={"form-group col-md-6" + (submitted && !user.firstName ? ' has-error' : '')}>
+                      <input type="text" placeholder="First Name" name="firstName" value={user.firstName} onChange={this.handleChange}/>
                     </div>
-                    <div className="row">
-                      <div className="col-sm-6 controllabel">
-                          FirstName
-                      </div>
-                      <div className="col-sm-6">
-                          <input type="text" name="firstName" value={user.firstName} onChange={this.handleChange}/>
-                      </div>
+                    <div className={"form-group col-md-6" + (submitted && !user.lastName ? ' has-error' : '')}>
+                      <input type="text" placeholder="Last Name" name="lastName" value={user.lastName} onChange={this.handleChange}/>
                     </div>
-                    <div className="row">
-                      <div className="col-sm-6 controllabel">
-                          LastName
-                      </div>
-                      <div className="col-sm-6">
-                          <input type="text" name="lastName" value={user.lastName} onChange={this.handleChange}/>
-                      </div>
+
+                    <div className={"form-group col-md-12" + (submitted && !user.email ? ' has-error' : '')}>
+                      <input type="email" placeholder="Enter your Email" name="email" value={user.email} onChange={this.handleChange}/>
                     </div>
-                    <div className="row">
-                      <div className="col-sm-6 controllabel">
-                          Enter New Password
-                      </div>
-                      <div className="col-sm-6">
-                          <input type="password" name="password" value={user.password} onChange={this.handleChange}/>
-                      </div>
+
+                    <div className={"form-group col-md-6" + (submitted && !user.password ? ' has-error' : '')}>
+                      <input type="password" placeholder="Your Password" name="password" value={user.password} onChange={this.handleChange}/>
                     </div>
-                    <div className="row">
-                      <div className="col-sm-6 controllabel">
-                          Confirm Your Password
-                      </div>
-                      <div className="col-sm-6">
-                          <input type="password" name="cfm_password" value={user.cfm_password} onChange={this.handleChange}/>
-                      </div>
+                    <div className={"form-group col-md-6" + (submitted && !user.cfm_password ? ' has-error' : '')}>
+                      <input type="password" placeholder="Confirm Password" name="cfm_password" value={user.cfm_password} onChange={this.handleChange}/>
                     </div>
-                    <div className="action">
-                      <button className="btn btn-submit">Submit</button>
-                      <button className="btn btn-cancel" onClick={()=>{this.changeModeMenu()}}>Back</button>
+
+                    <div className="action col-md-12">
+                      <button className="btn bg-yellow full-width btn-small" disabled={!user.password || !user.email || !user.firstName || !user.lastName || !user.businessName || user.password != user.cfm_password}>Join</button>
                     </div>
-                  </div>
                 </form>
+                <div className="footer-line col-md-12">
+                  <div className="footer-container col-md-12">
+                    <span className="label">Already a Member? <a className="signin" id="signin" data-toggle="modal" data-target="#login" data-dismiss="modal"> Sign In</a>
+                    </span>
+                  </div>
+                </div>              
               </div>
             </div>
           </div>
@@ -187,8 +169,11 @@ class Signup extends React.Component{
 
 function mapStateToProps(state) {
     const { registering } = state.registration;
+    const { alert } = state;
+
     return {
-        registering
+        registering,
+        alert
     };
 }
 

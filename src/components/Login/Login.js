@@ -63,7 +63,7 @@ class Login extends React.Component{
             </div>
             <div className="modal-body">
               <form name="form" onSubmit={this.handleSubmit}>
-                { alert != null ?
+                { alert.message != null ?
                   <div className="form-group col-md-12 has-error">
                     <p>{alert.message}</p>
                   </div> 

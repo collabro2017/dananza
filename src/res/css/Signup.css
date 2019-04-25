@@ -34,7 +34,7 @@
 }
 .AuthModal .modal-content-custom {
   border-radius: 9px !important;
-  width: 70%;
+  width: 80%;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -166,11 +166,13 @@
 .AuthModal .label-custom {
   font-weight: 400 !important;
 }
-.AuthModal .input-custom {
-  background-color: #dde3ec;
+.AuthModal input {
   height: 43px;
+  width: 100%;
   color: #8290a3;
   border: 1px solid #dde3ec;
+  padding: 10px;
+  border-radius: 4px !important
 }
 .AuthModal .form-actions-custom {
   display: flex;
