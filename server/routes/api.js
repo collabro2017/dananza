@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const router = express.Router();
 require('../config/passport')(passport);
-const Blog = require('../models').Blog;
 const User = require('../models').User;
 
 router.post('/signup', function(req, res) {
@@ -13,7 +12,10 @@ router.post('/signup', function(req, res) {
     User
       .create({
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        f_name: req.body.firstName,
+        l_name: req.body.lastName,
+        business_name: req.body.businessName
       })
       .then((user) => res.status(201).send(user))
       .catch((error) => {
