@@ -9,7 +9,6 @@ import { connect } from "react-redux";
 import $ from "jquery";
 import { Link } from 'react-router-dom';
 
-import { increment, decrement } from "../store/reducers/stepCounter";
 import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
 
 import MenuItem from '@material-ui/core/MenuItem';
@@ -878,15 +877,14 @@ class BuyerCampaigns extends React.Component{
 
 const mapStateToProps = state => {
   return {
-    stepCounter: state.stepCounter
+
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      increment: () => increment(),
-      decrement: () => decrement()
+
     },
     dispatch
   );

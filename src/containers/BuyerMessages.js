@@ -7,7 +7,6 @@ import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import { increment, decrement } from "../store/reducers/stepCounter";
 import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
 
 import "../res/css/BuyerMessages.css"
@@ -207,15 +206,12 @@ class BuyerMessages extends React.Component{
 
 const mapStateToProps = state => {
   return {
-    stepCounter: state.stepCounter
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      increment: () => increment(),
-      decrement: () => decrement()
     },
     dispatch
   );

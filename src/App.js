@@ -14,8 +14,6 @@ import MainLayout from "./layouts/MainLayout";
 import EmptyLayout from "./layouts/EmptyLayout";
 
 import Home from "./containers/Home";
-import Setting from "./containers/Setting";
-import Signin from "./containers/Signin";
 
 import SignUp from "./containers/SignUp";
 import Cart from "./containers/Cart";
@@ -90,7 +88,6 @@ class App extends Component {
               <Switch>
                 <Route path="/signin" render={() => <Redirect to="/" />} />
                 <DashboardRoute path="/dashboard" component={Home} />
-                <DashboardRoute path="/setting" component={Setting} />
 
                 <DashboardRoute exact path="/signup" component={SignUp} />
                 <DashboardRoute exact path="/about" component={About} />

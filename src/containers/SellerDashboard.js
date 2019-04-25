@@ -8,12 +8,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-import { increment, decrement } from "../store/reducers/stepCounter";
 import SellerSidebar from "../components/Sidebar/SellerSidebar";
 
-
 import "../res/css/Seller_Dashboard_Sellers_Page.css"
-
 import "../res/icheck/skins/ltblue.css"
 import "../res/css/nouislider.css"
 import "../res/css/components/tag.css"
@@ -630,15 +627,14 @@ class SellerDashboard extends React.Component{
 
 const mapStateToProps = state => {
   return {
-    stepCounter: state.stepCounter
+
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      increment: () => increment(),
-      decrement: () => decrement()
+
     },
     dispatch
   );

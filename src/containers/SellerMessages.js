@@ -2,7 +2,6 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import { increment, decrement } from "../store/reducers/stepCounter";
 import SellerSidebar from "../components/Sidebar/SellerSidebar";
 
 import "../res/css/Seller_Dashboard_Messages.css"
@@ -209,15 +208,14 @@ class SellerMessages extends React.Component{
 
 const mapStateToProps = state => {
   return {
-    stepCounter: state.stepCounter
+
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      increment: () => increment(),
-      decrement: () => decrement()
+
     },
     dispatch
   );

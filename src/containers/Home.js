@@ -12,7 +12,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import ReactTags from "react-tag-autocomplete";
 
-import { increment, decrement } from "../store/reducers/stepCounter";
 import { Carousel } from 'react-responsive-carousel';
 
 import "../res/css/homepage.css"
@@ -281,15 +280,14 @@ class Home extends React.Component{
 
 const mapStateToProps = state => {
   return {
-    stepCounter: state.stepCounter
+
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      increment: () => increment(),
-      decrement: () => decrement()
+
     },
     dispatch
   );

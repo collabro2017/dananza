@@ -8,7 +8,6 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import $ from "jquery";
-import { increment, decrement } from "../store/reducers/stepCounter";
 
 import "../res/css/Adza_Signup_Dananza.css"
 
@@ -188,15 +187,14 @@ class SignUp extends React.Component{
 
 const mapStateToProps = state => {
   return {
-    stepCounter: state.stepCounter
+
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      increment: () => increment(),
-      decrement: () => decrement()
+
     },
     dispatch
   );

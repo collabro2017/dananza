@@ -13,8 +13,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { withStyles } from '@material-ui/core/styles';
 
-import { increment, decrement } from "../store/reducers/stepCounter";
-
 import 'icheck/skins/all.css';
 import {Checkbox, Radio} from 'react-icheck';
 import EnhancedSwitch from 'react-icheck/lib/EnhancedSwitch'
@@ -847,15 +845,14 @@ class SearchResults extends React.Component{
 
 const mapStateToProps = state => {
   return {
-    stepCounter: state.stepCounter
+
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      increment: () => increment(),
-      decrement: () => decrement()
+
     },
     dispatch
   );

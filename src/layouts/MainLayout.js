@@ -7,7 +7,6 @@ import { bindActionCreators } from "redux";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
-import { logout } from "../store/reducers/authenticate";
 
 const drawerWidth = 240;
 
@@ -33,7 +32,6 @@ class MainLayout extends Component {
     return (
       <Fragment>
           <Header
-            logout={this.props.logout}
             type={this.state.headerType}
           />
           <main
@@ -53,7 +51,7 @@ class MainLayout extends Component {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      logout: () => logout()
+
     },
     dispatch
   );

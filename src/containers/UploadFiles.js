@@ -1,7 +1,6 @@
 import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { increment, decrement } from "../store/reducers/stepCounter";
 import { Link } from "react-router-dom";
 import ReactTags from "react-tag-autocomplete";
 
@@ -118,15 +117,14 @@ class UploadFiles extends React.Component{
 
 const mapStateToProps = state => {
   return {
-    stepCounter: state.stepCounter
+
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      increment: () => increment(),
-      decrement: () => decrement()
+
     },
     dispatch
   );
