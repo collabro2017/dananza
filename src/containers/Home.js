@@ -13,6 +13,7 @@ import Select from '@material-ui/core/Select';
 import ReactTags from "react-tag-autocomplete";
 
 import { increment, decrement } from "../store/reducers/stepCounter";
+import { Carousel } from 'react-responsive-carousel';
 
 import "../res/css/homepage.css"
 import "../res/css/Signup.css"
@@ -172,10 +173,15 @@ class Home extends React.Component{
               </div>
             </div>
             <div className="row rest">
-              <div className="col-md-6">
-                <div className="info_title">
-                  Rest Assured Your Advertising Meets Your Needs  
+              <div className="col-sm-12">
+                <div className="info_title col-sm-6">
+                  Rest Assured Your Advertising Meets Your Needs
                 </div>
+              </div>
+              <div className="col-sm-6 col-md-6 img">
+                <img src={require("../res/img/rest_bg.png")}/>
+              </div>
+              <div className="col-sm-6 col-md-6">
                 <div className="info_content">
                   <div className="info_content_title">
                     <i className="fa fa-check-circle"></i>
@@ -194,28 +200,68 @@ class Home extends React.Component{
                   <div>If anything goes wrong at any step in the process, we’re available 365 days a year to help make it right and ensure that advertising is simple.</div>
                 </div>  
               </div>
-              
-              <div className="col-md-6 col-sm-6 img">
-                <img src={require("../res/img/rest_bg.png")}/>
-              </div>
             </div>
             <div className="row slider">
               <div id="slideshow">
                   <div id="slidesContainer">
-                      <div className="slide">
-                        <img src={require("../res/img/test_slider1.png")} className="slide_img"/>
-                        <div className="img_content">
-                          <div className="description">
-                            “ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolor es et quas molestias! “
-                          </div>
-                          <div className="auth">
-                            John Doe, Founder
-                          </div>
-                          <div className="brand">
-                            <img src={require("../res/img/mock_data.png")}/>
+                      <Carousel showThumbs={false}>
+                        <div className="slide">
+                          <img src={require("../res/img/test_slider1.png")} className="slide_img"/>
+                          <div className="img_content">
+                            <div className="description">
+                              “ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolor es et quas molestias! “
+                            </div>
+                            <div className="auth">
+                              John Doe, Founder
+                            </div>
+                            <div className="brand">
+                              <img src={require("../res/img/mock_data.png")}/>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                        <div className="slide">
+                          <img src={require("../res/img/test_slider1.png")} className="slide_img"/>
+                          <div className="img_content">
+                            <div className="description">
+                              “ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolor es et quas molestias! “
+                            </div>
+                            <div className="auth">
+                              John Doe, Founder
+                            </div>
+                            <div className="brand">
+                              <img src={require("../res/img/mock_data.png")}/>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="slide">
+                          <img src={require("../res/img/test_slider1.png")} className="slide_img"/>
+                          <div className="img_content">
+                            <div className="description">
+                              “ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolor es et quas molestias! “
+                            </div>
+                            <div className="auth">
+                              John Doe, Founder
+                            </div>
+                            <div className="brand">
+                              <img src={require("../res/img/mock_data.png")}/>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="slide">
+                          <img src={require("../res/img/test_slider1.png")} className="slide_img"/>
+                          <div className="img_content">
+                            <div className="description">
+                              “ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolor es et quas molestias! “
+                            </div>
+                            <div className="auth">
+                              John Doe, Founder
+                            </div>
+                            <div className="brand">
+                              <img src={require("../res/img/mock_data.png")}/>
+                            </div>
+                          </div>
+                        </div>
+                      </Carousel>
                   </div>
                 </div>
             </div>
