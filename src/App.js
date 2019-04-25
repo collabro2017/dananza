@@ -78,10 +78,10 @@ class App extends Component {
   };
 
   render() {
-    const { settings, auth } = this.props;
+    const { auth } = this.props;
 
     return (
-      <MuiThemeProvider theme={settings.theme}>
+      <MuiThemeProvider>
         <CssBaseline />
         <div>
           <Router>

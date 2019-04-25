@@ -1,14 +1,15 @@
-import stepCounter from "./stepCounter";
-import settings from "./settings";
-import auth from "./authenticate";
-import { combineReducers } from "redux";
-import { reducer as formReducer } from "redux-form";
+import { combineReducers } from 'redux';
 
-const reducers = combineReducers({
-  stepCounter,
-  settings,
-  auth,
-  form: formReducer
+import { authentication } from './authentication.reducer';
+import { registration } from './registration.reducer';
+import { users } from './users.reducer';
+import { alert } from './alert.reducer';
+
+const rootReducer = combineReducers({
+  authentication,
+  registration,
+  users,
+  alert
 });
 
-export default reducers;
+export default rootReducer;
