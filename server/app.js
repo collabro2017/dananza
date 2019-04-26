@@ -29,6 +29,11 @@ app.use('/api', apiRouter);
 // blog api
 app.use('/api/blog', require('./routes/api_blog'));
 
+// account api
+app.use('/api/user', require('./routes/api_user'));
+
+// buyer api
+app.use('/api/buyer', require('./routes/api_buyer'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

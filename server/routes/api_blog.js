@@ -37,7 +37,7 @@ router.post('/', passport.authenticate('jwt', { session: false}), function(req, 
       .then((blog) => res.status(201).send(blog))
       .catch((error) => res.status(400).send(error));
   } else {
-    return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    return res.status(403).send({success: false, message: 'Unauthorized.'});
   }
 });
 
@@ -50,11 +50,11 @@ router.put('/:id', function(req, res) {
       .findByPk( blog_id )
       .then(function(blog) {
         blog.update({active: req.body.active});
-        res.status(201).send({success: true, msg: 'Updated.'});
+        res.status(201).send({success: true, message: 'Updated.'});
       })
       .catch((error) => res.status(400).send(error));
   } else {
-    return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    return res.status(403).send({success: false, message: 'Unauthorized.'});
   }
 });
 
@@ -63,7 +63,7 @@ router.delete('/:id', passport.authenticate('jwt', { session: false}), function(
   var blog_id = req.params.id;
   Blog
     .destroy( { where: { id: blog_id } } )
-    .then((blog) => res.status(200).send( {success: true, msg: 'Deleted.'} ))
+    .then((blog) => res.status(200).send( {success: true, message: 'Deleted.'} ))
     .catch((error) => { res.status(400).send(error); });
 });
 
