@@ -91,15 +91,20 @@
   Desc: remove listing from campaign
 
 
-/api/adza
+* /api/adza
   Method: GET
   Desc: Get self adza profile info
-/api/adza/:profile_id
+* /api/adza/:profile_id
   Method: GET
   Desc: Get specified adza info
-/api/adza/
-  Method: PUST
-  Params: profile, photo, profile_description, image_gallery, audience_male_percent,
+* /api/adza/
+  Method: POST
+  Params: profile_photo, profile_description, image_gallery, audience_male_percent,
+      audience_age_min, audience_age_max, audience_locations, audience_interests
+  Desc: Create adza profile
+* /api/adza/
+  Method: PUT
+  Params: profile_photo, profile_description, image_gallery, audience_male_percent,
       audience_age_min, audience_age_max, audience_locations, audience_interests
   Desc: Update adza profile
 
