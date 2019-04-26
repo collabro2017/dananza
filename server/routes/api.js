@@ -3,11 +3,13 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const router = express.Router();
 require('../config/passport')(passport);
+const msg = require('../config/msg');
+
 const User = require('../models').User;
 
 router.post('/signup', function(req, res) {
   if (!req.body.email || !req.body.password) {
-    res.status(400).send({message: 'Please pass email and password.'})
+    res.status(400).send({message: msg.requireLoginInput})
   } else {
     User
       .find({
@@ -32,7 +34,7 @@ router.post('/signup', function(req, res) {
             });
         }
         else{
-            res.status(400).send({success: false, message: 'Email already exists.'})
+            res.status(400).send({success: false, message: msg.authEmailExists})
         }
       })
       .catch((error) => res.status(400).send(error));    
@@ -49,7 +51,7 @@ router.post('/signin', function(req, res) {
       .then((user) => {
         if (!user) {
           return res.status(401).send({
-            message: 'Authentication failed. User not found.',
+            message: msg.authUserNotFound,
           });
         }
         user.comparePassword(req.body.password, (err, isMatch) => {
@@ -60,7 +62,7 @@ router.post('/signin', function(req, res) {
             })
             res.json({success: true, user_info:user, token: 'JWT ' + token});
           } else {
-            res.status(401).send({success: false, message: 'Authentication failed. Wrong password.'});
+            res.status(401).send({success: false, message: msg.authWrongPassword});
           }
         })
       })

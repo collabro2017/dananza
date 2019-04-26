@@ -26,27 +26,35 @@
 
 ** from here request header has JWT Token
 
-/api/user
+* /api/user
   Method: GET
   Desc: get Self userinfo 
-/api/user
+* /api/user
   Method: PUT
   Params: business_name, f_name, l_name, profile_avatar
   Desc: Update account setting
+* /api/user/change_pwd
+  Method: PUT
+  params: password
+  Desc: Change user password
 
-/api/buyer
+* /api/buyer
   Method: GET
   Desc: Get self buyer profile info
 /api/buyer/:profile_id
   Method: GET
   Desc: Get specified buyer info
-/api/buyer/
+*/api/buyer
+  Method: POST
+  Params: location, profession, profile_description
+  Desc: Create buyer profile
+*/api/buyer/
   Method: PUT
   Params: location, profession, profile_description
   Desc: Update buyer profile
 /api/buyer/social
   --- Not designed
-/api/buyer/saved
+~~~~/api/buyer/saved
   Method: GET
   Desc: Get saved adza list
 /api/buyer/saved/:id
