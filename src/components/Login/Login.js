@@ -127,5 +127,6 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedLoginPage = connect(mapStateToProps)(withRouter(Login));
-export { connectedLoginPage as Login };
+export default connect(
+  mapStateToProps
+)(withRouter(Login));
