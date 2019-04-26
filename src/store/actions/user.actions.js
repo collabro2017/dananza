@@ -1,7 +1,7 @@
 import { userConstants } from '../config';
 import { userService } from '../services';
 import { alertActions } from './';
-import { history } from '../helpers';
+//import { history } from '../helpers'
 
 export const userActions = {
     login,
@@ -19,7 +19,7 @@ function login(email, password) {
             .then(
                 user => { 
                     dispatch(success(user));
-                    history.push('/buyer_landing');
+                    // history.push('/buyer_landing');
                 },
                 error => {
                     dispatch(failure(error));
