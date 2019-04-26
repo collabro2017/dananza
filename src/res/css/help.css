@@ -53,6 +53,12 @@
   margin-right: 35px;
   cursor: hand;
 }
+.help_container .tab-bar > a.active {
+  padding-bottom: 9px;
+  border-bottom: 5px solid #2ab7c9;
+  color: #2ab7c9;
+  text-decoration: none;
+}
 .help_container .tab-bar > a:hover {
   padding-bottom: 9px;
   border-bottom: 5px solid #2ab7c9;

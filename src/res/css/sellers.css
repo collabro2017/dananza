@@ -132,6 +132,7 @@
         background: none; }
 .sellers .sellers_content .row.listings .panel-group .panel{
   border-width: 0px 0px 1px 0px;
+  overflow: hidden;
 }
 .sellers .sellers_content .row.listings .panel-default>.panel-heading{
   background: transparent;

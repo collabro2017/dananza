@@ -8,7 +8,97 @@ import "../res/css/Seller_Dashboard_Messages.css"
 
 class SellerMessages extends React.Component{
 
-  state={'headerType': "seller"}
+  state={'headerType': "seller",
+          users: [
+            {
+              username: "AdmamInTech",
+              recentmail: "HHHHHHHHHHHHHHHHHHHHHHHHHHHHH",
+              time: new Date(2019,3,26,17,33,15)
+            },
+            {
+              username: "David Json",
+              recentmail: "Good! Go on!",
+              time: new Date(2019,3,25,17,30,15)
+            },
+            {
+              username: "Okid rio",
+              recentmail: "Can you tell me how to get Linden Street?",
+              time: new Date(2019,3,24,17,50,15)
+            },
+            {
+              username: "Kyo",
+              recentmail: "My name is An Guk Chol. Can you help me?",
+              time: new Date(2019,2,25,16,50,15)
+            },
+            {
+              username: "Leonard",
+              recentmail: "I'm a photographer. Can you advertise my photo?",
+              time: new Date(2019,3,24,17,30,15)
+            },
+            {
+              username: "Yooser",
+              recentmail: "I wanna advertise my brands in Twitter.",
+              time: new Date(2019,3,16,16,30,15)
+            },
+            {
+              username: "David Jason",
+              recentmail: "Would you like to advertise your products with me?",
+              time: new Date(2019,0,26,17,30,15)
+            },
+            {
+              username: "Desmond Kal",
+              recentmail: "It's almost done. I will be sending it shortly.",
+              time: new Date(2018,4,26,16,30,15)
+            },
+            {
+              username: "Andres Iniesta",
+              recentmail: "All right. Thanks.:)",
+              time: new Date(2019,2,26,17,25,15)
+            },
+            {
+              username: "Lisa Strong",
+              recentmail: "You are most welcome! Sorry for delay.",
+              time: new Date(2019,3,26,16,30,2)
+            },
+            {
+              username: "Vennesa Bond",
+              recentmail: "No probs just take your time.",
+              time: new Date(2019,3,25,17,54,15)
+            }
+          ],
+          history: [
+            {
+              sender: "AdamInTech",
+              time: new Date(2019,3,26,9,47,30),
+              mail: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
+            },
+            {
+              sender: "AdamInTech",
+              time: new Date(2019,3,26,9,47,40),
+              mail: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+            },
+            {
+              sender: "AdamInTech",
+              time: new Date(2019,3,26,9,47,50),
+              mail: "Quis autem vel eum iure reprehenderit qui in ea voluptate"
+            },
+            {
+              sender: "AdamInTech",
+              time: new Date(2019,3,26,10,1,50),
+              mail: "At vero eos et accusamus et iusto odio dignissimos"
+            },
+            {
+              sender: "AnnaSay",
+              time: new Date(2019,3,26,1,6,50),
+              mail: "Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+            },
+            {
+              sender: "AnnaSay",
+              time: new Date(2019,3,26,1,6,55),
+              mail: "Quis autem vel eum iure reprehenderit qui in ea voluptate. At vero eos et accusamus sed quia consequuntur magni dolores"
+            }
+          ]
+        }
 
   constructor(props) {
     super(props);
@@ -17,6 +107,99 @@ class SellerMessages extends React.Component{
 
   componentDidMount(){
     document.title = "Seller Messages"
+  }
+
+  dealMail(str){
+    if (str.length > 15) {
+      return str.substr(0,15) + ' ...';
+    }
+    return str;
+  }
+  dealTime(time){
+    var now = new Date();
+    var diff = now - time;
+    var div = Math.floor(diff / 31536000000);
+    if (div) {
+      return div + " year(s) ago";
+    }
+    div = Math.floor(diff / 2678400000);
+    if (div) {
+      return div + " month(s) ago";
+    }
+    div = Math.floor(diff / 604800000);
+    if (div) {
+      return div + " week(s) ago";
+    }
+    div = Math.floor(diff / 86400000);
+    if (div) {
+      return div + " day(s) ago";
+    }
+    div = Math.floor(diff / 3600000);
+    if (div) {
+      return div + " hour(s) ago";
+    }
+    div = Math.floor(diff / 60000);
+    if (div) {
+      return div + " minute(s) ago";
+    }
+    return "Now";
+  }
+
+  showSender(prev,now){
+    if(prev.sender != now.sender){
+      return (
+        <div className="sender">
+          <img className="profile" src={require("../res/img/user1.png")} />
+          <span className="f-16"> {now.sender} </span>
+        </div>
+      );
+    }
+  }
+  showDate(prev,now){
+    var dif = now.time - prev.time;
+    if(prev.sender != now.sender || Math.floor(dif / 60000)){
+      var str = "";
+      if (now.time.getHours()>12) {
+        str = (now.time.getHours()-12)+":"+now.time.getMinutes()+" PM";
+      }
+      else if (now.time.getHours()<12) {
+        str = now.time.getHours()+":"+now.time.getMinutes()+" AM";
+      }
+      else{
+        str = now.time.getHours()+":"+now.time.getMinutes()+" PM";
+      }
+      return (
+        <div className="date">
+          {str}
+        </div>
+      );
+    }
+  }
+
+  showMail(item,index){
+    var prev = this.state.history[index-1];
+    if(index == 0)
+      prev = {
+              sender: "",
+              time: item.time,
+              mail: ""
+            };
+    return (
+      <div className="history">
+        {this.showSender(prev,item)}
+        <div className="history-content">
+          <div className="content-row">
+            <div className="text">
+              <div className="paragraph">
+                {item.mail}
+              </div>
+            </div>
+            {this.showDate(prev,item)}
+          </div>
+        </div>
+      </div>
+    );
+
   }
 
   render(){
@@ -32,87 +215,21 @@ class SellerMessages extends React.Component{
                   <i className="fa fa-search"></i>
                 </div>
                 <div className="btn-group" data-toggle="buttons" id="pages">
-                  <label className="btn active">
-                    <img src={require("../res/img/user1.png")} />
-                    <div className="detail">
-                      <div className="f-16"> AdamInTech</div>
-                      <div className="f-13 darkgrey"> Wonderful! When do you...</div>
-                      <div className="f-11 lightgrey"> 1 hour ago</div>
-                    </div>
-                    <input type="radio" className="toggle"/>
-                  </label>
-                  <label className="btn">
-                    <img src={require("../res/img/user1.png")} />
-                    <div className="detail">
-                      <div className="f-16"> AdamInTech</div>
-                      <div className="f-13 darkgrey"> Wonderful! When do you...</div>
-                      <div className="f-11 lightgrey"> 1 hour ago</div>
-                    </div>
-                    <input type="radio" className="toggle"/>
-                  </label>
-                  <label className="btn">
-                    <img src={require("../res/img/user1.png")} />
-                    <div className="detail">
-                      <div className="f-16"> AdamInTech</div>
-                      <div className="f-13 darkgrey"> Wonderful! When do you...</div>
-                      <div className="f-11 lightgrey"> 1 hour ago</div>
-                    </div>
-                    <input type="radio" className="toggle"/>
-                  </label>
-                  <label className="btn">
-                    <img src={require("../res/img/user1.png")} />
-                    <div className="detail">
-                      <div className="f-16"> AdamInTech</div>
-                      <div className="f-13 darkgrey"> Wonderful! When do you...</div>
-                      <div className="f-11 lightgrey"> 1 hour ago</div>
-                    </div>
-                    <input type="radio" className="toggle"/>
-                  </label>
-                  <label className="btn">
-                    <img src={require("../res/img/user1.png")} />
-                    <div className="detail">
-                      <div className="f-16"> AdamInTech</div>
-                      <div className="f-13 darkgrey"> Wonderful! When do you...</div>
-                      <div className="f-11 lightgrey"> 1 hour ago</div>
-                    </div>
-                    <input type="radio" className="toggle"/>
-                  </label>
-                  <label className="btn">
-                    <img src={require("../res/img/user1.png")} />
-                    <div className="detail">
-                      <div className="f-16"> AdamInTech</div>
-                      <div className="f-13 darkgrey"> Wonderful! When do you...</div>
-                      <div className="f-11 lightgrey"> 1 hour ago</div>
-                    </div>
-                    <input type="radio" className="toggle"/>
-                  </label>
-                  <label className="btn">
-                    <img src={require("../res/img/user1.png")} />
-                    <div className="detail">
-                      <div className="f-16"> AdamInTech</div>
-                      <div className="f-13 darkgrey"> Wonderful! When do you...</div>
-                      <div className="f-11 lightgrey"> 1 hour ago</div>
-                    </div>
-                    <input type="radio" className="toggle"/>
-                  </label>
-                  <label className="btn">
-                    <img src={require("../res/img/user1.png")} />
-                    <div className="detail">
-                      <div className="f-16"> AdamInTech</div>
-                      <div className="f-13 darkgrey"> Wonderful! When do you...</div>
-                      <div className="f-11 lightgrey"> 1 hour ago</div>
-                    </div>
-                    <input type="radio" className="toggle"/>
-                  </label>
-                  <label className="btn">
-                    <img src={require("../res/img/user1.png")} />
-                    <div className="detail">
-                      <div className="f-16"> AdamInTech</div>
-                      <div className="f-13 darkgrey"> Wonderful! When do you...</div>
-                      <div className="f-11 lightgrey"> 1 hour ago</div>
-                    </div>
-                    <input type="radio" className="toggle"/>
-                  </label>
+                  {
+                    this.state.users.map(
+                      (user,index)=>(
+                        <label className="btn">
+                          <img src={require("../res/img/user1.png")} />
+                          <div className="detail">
+                            <div className="f-16"> {user.username} </div>
+                            <div className="f-13 darkgrey"> {this.dealMail(user.recentmail)}</div>
+                            <div className="f-11 lightgrey"> {this.dealTime(user.time)} </div>
+                          </div>
+                          <input type="radio" className="toggle"/>
+                        </label>
+                      )
+                    )
+                  }
                 </div>
               </div>
               <div className="page-message">
@@ -130,61 +247,11 @@ class SellerMessages extends React.Component{
                   Friday, February 22, 2019
                 </div>
                 <div className="message-content">
-                  <div className="history">
-                    <div className="sender">
-                      <img className="profile" src={require("../res/img/user1.png")} />
-                      <span className="f-16"> AdamInTech </span>
-                    </div>
-                    <div className="history-content">
-                      <div className="content-row">
-                        <div className="text">
-                          <div className="paragraph">
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
-                          </div>
-                          <div className="paragraph">
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-                          </div>
-                          <div className="paragraph">
-                            Quis autem vel eum iure reprehenderit qui in ea voluptate
-                          </div>
-                        </div>
-                        <div className="date">
-                          9:47 AM
-                        </div>
-                      </div>
-                      <div className="content-row">
-                        <div className="text">
-                          <div className="paragraph">
-                            At vero eos et accusamus et iusto odio dignissimos
-                          </div>
-                        </div>
-                        <div className="date">
-                          10:01 AM
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="history">
-                    <div className="sender">
-                      <img className="profile" src={require("../res/img/user1.png")} />
-                      <span className="f-16"> AnnaSay </span>
-                    </div>
-                    <div className="history-content">
-                      <div className="content-row">
-                        <div className="text">
-                          <div className="paragraph">
-                            Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-                          </div>
-                          <div className="paragraph">
-                            Quis autem vel eum iure reprehenderit qui in ea voluptate. At vero eos et accusamus sed quia consequuntur magni dolores
-                          </div>
-                        </div>
-                        <div className="date">
-                          1:06 PM
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  {
+                    this.state.history.map(
+                      (item,index)=>(this.showMail(item,index))
+                    )
+                  }
                 </div>
                 <div className="send-message">
                   <i className="fa fa-paperclip lightgrey pin-icon"></i>

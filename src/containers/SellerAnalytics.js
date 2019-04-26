@@ -40,11 +40,11 @@ class SellerAnalytics extends React.Component{
     const axisConfig = {showXAxis: true, showXAxisLabel: false, showYAxis : true, showYAxisLabel: false, xLabel:"", yLabel: ""};
 
     return (
-    	<div className="dashboard_seller">
-	    	<div className="page-content seller_analytics">
-  				<SellerSidebar navitem={"analytics"}/>
+      <div className="dashboard_seller">
+        <div className="page-content seller_analytics">
+          <SellerSidebar navitem={"analytics"}/>
           <div className="page-result-wrapper">
-    				<div className="page-result">
+            <div className="page-result">
               <div className="col-sm-12">
                 <label className="title">
                   Overview Analytics
@@ -148,27 +148,27 @@ class SellerAnalytics extends React.Component{
                         <span className="info-label">Instagram Story</span>
                       </div>
                       <div className="instagram-part">
-                        <span className="part">
+                        <div className="part">
                           <img src={require('../res/img/dollar.png')}/>
                           <span className="info-label">100</span>
-                        </span>
-                        <span className="part">
+                        </div>
+                        <div className="part">
                           <img src={require('../res/img/user.png')}/>
                           &nbsp;&nbsp;
                           <span className="info-label">60k+</span>
-                        </span>
-                        <span className="part">
+                        </div>
+                        <div className="part">
                           <i className="fa fa-star color-yellow"></i>
                           &nbsp; 
                           <span className="star-info info-label"> 5.0(17)</span>
-                        </span>
-                        <span className="part">
+                        </div>
+                        <div className="part">
                           <a href="#">
                             View Package
                             &nbsp;
                             <i className="fa fa-long-arrow-right info-label"></i>
                           </a>
-                        </span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -269,10 +269,10 @@ class SellerAnalytics extends React.Component{
                   </div>
                 </div>
               </div>
-    				</div>
+            </div>
           </div>
-			  </div>
-		  </div>
+        </div>
+      </div>
     );
   }
 }

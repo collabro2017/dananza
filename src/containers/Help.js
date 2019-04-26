@@ -22,6 +22,15 @@ class Help extends React.Component{
     document.title = "Help & Support"
   }
 
+  changeMode(mode){
+      this.refs.customer.style.display = 'none';  
+      this.refs.adza.style.display = 'none';
+      this.refs[mode].style.display = 'block';
+      this.refs.customerbut.classList = ["f-color"];
+      this.refs.adzabut.classList = ["f-color"];
+      this.refs[mode+"but"].classList = ["f-color active"];
+  }
+
   render(){
     return (
       <div className="help_container">
@@ -39,12 +48,38 @@ class Help extends React.Component{
             </div>
             <div className="content full_container">
                 <div className="tab-bar text-center">
-                    <a className="f-color">I'm a Customer</a>
-                    <a className="f-color">I'm an Adza</a>
+                    <a className="f-color active" onClick={()=>{this.changeMode('customer');}} ref="customerbut">I'm a Customer</a>
+                    <a className="f-color" onClick={()=>{this.changeMode('adza')}} ref="adzabut">I'm an Adza</a>
                 </div>
                 <div className="content-body">
-                    <div className="article container">
-                        <div className="info_title">Recommended Articles</div>
+                    <div className="article container" ref="customer">
+                        <div className="info_title">Customer Articles</div>
+                        <div className="col-md-4 article-section">
+                            <ul>
+                                <li className="f-color">Dananza Payment Protection</li>
+                                <li className="f-color">Edit Billing Method</li>
+                                <li className="f-color">Request a Refund</li>
+                                <li className="f-color">Forgot Password or Security Questi...</li>
+                            </ul>
+                        </div>
+                        <div className="col-md-4 article-section">
+                            <ul>
+                                <li className="f-color">Ad Rejection</li>
+                                <li className="f-color">Deactivate Your Account</li>
+                                <li className="f-color">Ads Measurement of Success</li>
+                                <li className="f-color">Disable Messages</li>
+                            </ul>
+                        </div>
+                        <div className="col-md-4 article-section">
+                            <ul>
+                                <li className="f-color">Billing</li>
+                                <li className="f-color">Manage Your Campaign</li>
+                                <li className="f-color">Troubleshoot Messages</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="article container" ref="adza">
+                        <div className="info_title">Adza Articles</div>
                         <div className="col-md-4 article-section">
                             <ul>
                                 <li className="f-color">Dananza Payment Protection</li>

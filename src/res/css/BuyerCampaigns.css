@@ -97,6 +97,7 @@
   background-color: #fff;
   border: 1px solid transparent;
   margin-right: 30px;
+  transition: margin .6s ease;
 }
 .buyer_campaign .disabled {
   pointer-events: none;

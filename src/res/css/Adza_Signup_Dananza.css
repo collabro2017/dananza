@@ -2,10 +2,10 @@
     z-index: 9;
 }
 .adza_signup_section{
-	margin-top: -174px;
+  margin-top: -174px;
 }
 .adza_signup_section .full_container{
-	display: grid;
+  display: grid;
 }
 
 .adza_signup_section button {
@@ -15,7 +15,7 @@
   margin: 0px;
 }
 .adza_signup_section .row.heroblog{
-	margin-bottom: calc((( 100vw)*0.57) + 70px);
+  margin-bottom: calc((( 100vw)*0.57) + 70px);
 }
 .adza_signup_section .row.heroblog .mk_adv_smp {
   font-family: "Coves-Bold";
@@ -39,9 +39,9 @@
   position: absolute;
 }
 .adza_signup_section .row.heroblog img{
-	width: 100%;
-	position: absolute;
-	top: 91px;
+  width: 100%;
+  position: absolute;
+  top: 91px;
 }
 .adza_signup_section .row.what_waiting {
   width: 47%;
@@ -64,36 +64,36 @@
   padding-bottom: 40px;
 }
 .adza_signup_section .row.what_waiting .form-control{
-	border-radius: 5px !important;
-	border: 1px solid #d7d7d7;
-	height: 48px;
-	padding-left: 48px;
-	margin-bottom: 15px;
+  border-radius: 5px !important;
+  border: 1px solid #d7d7d7;
+  height: 48px;
+  padding-left: 48px;
+  margin-bottom: 15px;
 }
 .adza_signup_section .row.what_waiting .form-control:focus{
-	border: 1px solid #26a6b7;
-	box-shadow: inset 0 0 5px 2px #0000001a !important;
+  border: 1px solid #26a6b7;
+  box-shadow: inset 0 0 5px 2px #0000001a !important;
 }
 .adza_signup_section .row.what_waiting .show-icon{
-	color: #4b4b4b;
-	font-size: 18px;
-	position: absolute;
+  color: #4b4b4b;
+  font-size: 18px;
+  position: absolute;
     top: 18px;
     left: 34px;
 }
 
 .adza_signup_section .row.what_waiting .align-center{
-	text-align: center;
+  text-align: center;
 }
 .adza_signup_section .row.what_waiting .form-button{
-	font-family: "Thasadith-Bold";
-	font-size: 16px;
-	background: #ffd766;
-	margin-top: 30px;
-	width: 170px;
-	padding-top: 17px;
-	padding-bottom: 17px;
-	border-radius: 5px !important;
+  font-family: "Thasadith-Bold";
+  font-size: 16px;
+  background: #ffd766;
+  margin-top: 30px;
+  width: 170px;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  border-radius: 5px !important;
 }
 
 .adza_signup_section .row.how_works {
@@ -109,117 +109,117 @@
   padding-top: 45px;
 }
 .adza_signup_section .row.how_works .part{
-	text-align: center;
-	padding-left: 45px;
-	padding-right: 45px;
+  text-align: center;
+  padding-left: 45px;
+  padding-right: 45px;
 }
 .adza_signup_section .row.how_works .part img{
-	padding-top: 25px;
+  padding-top: 25px;
 }
 .adza_signup_section .row.how_works .part .sub-title{
-	font-size: 20px;
-	padding-top: 25px;
-	padding-bottom: 20px;
-	font-family: 'Thasadith-Bold';
+  font-size: 20px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  font-family: 'Thasadith-Bold';
 }
 .adza_signup_section .row.how_works .part .sub-content{
-	font-size: 16px;
-	font-family: 'Thasadith-Regular';
-	padding-bottom: 15px;
+  font-size: 16px;
+  font-family: 'Thasadith-Regular';
+  padding-bottom: 15px;
 }
 
 .adza_signup_section .row.preview {
-	padding:85px 105px;
-	display: flex;
-	justify-content: space-evenly;
+  padding:85px 105px;
+  display: flex;
+  justify-content: space-evenly;
 }
 .adza_signup_section .row.preview .select-panel{
-	width: 40%;
-	padding-left: 25px;
-	padding-right: 25px;
+  width: 40%;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 .adza_signup_section .row.preview .result-panel{
-	width: 60%;
-	padding-left: 25px;
-	padding-right: 25px;
+  width: 60%;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 .adza_signup_section .row.preview .info_title{
-	font-family: "Coves-Bold";
-	font-size: 2.9vw;
-	font-family: 900;
-	text-align: center;
-	padding-bottom: 30px;
-	padding-top: 30px;
+  font-family: "Coves-Bold";
+  font-size: 2.9vw;
+  font-family: 900;
+  text-align: center;
+  padding-bottom: 30px;
+  padding-top: 30px;
 }
 .adza_signup_section .row.preview .btn-group label{
-	font-size: 1.13vw !important;
-	font-weight: bold !important;
-	width: 100%;
-	text-align: unset;
-	padding-top:3.5%;
-	padding-bottom: 3.5%;
-	padding-left: 0;
-	padding-right: 0;
-	border:unset;
-	border-bottom: 0.5px solid #dadada;
-	border-radius: unset !important;
+  font-size: 1.13vw !important;
+  font-weight: bold !important;
+  width: 100%;
+  text-align: unset;
+  padding-top:3.5%;
+  padding-bottom: 3.5%;
+  padding-left: 0;
+  padding-right: 0;
+  border:unset;
+  border-bottom: 0.5px solid #dadada;
+  border-radius: unset !important;
 }
 .adza_signup_section .row.preview .btn-group label i{
-	margin-left: 30px;
-	margin-right: 10px;
-	font-size: 1.14vw;
+  margin-left: 30px;
+  margin-right: 10px;
+  font-size: 1.14vw;
 }
 .adza_signup_section .row.preview .btn-group label.active{
-	border: 0px;
-	border-left: 5px solid #2ab7c9;
-	border-bottom: unset;
-	background-color: #f1f6f9;
+  border: 0px;
+  border-left: 5px solid #2ab7c9;
+  border-bottom: unset;
+  background-color: #f1f6f9;
 }
 .adza_signup_section .row.preview img{
-	height: 100%;
-	width: 100%;
-	border-radius: 12px !important;
-	box-shadow: 0 0 5px 2px #0000001a !important;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px !important;
+  box-shadow: 0 0 5px 2px #0000001a !important;
 }
 
 .adza_signup_section .row.simple_convenient {
-	padding:85px 105px;
-	display: flex;
-	justify-content: space-evenly;
+  padding:85px 105px;
+  display: flex;
+  justify-content: space-evenly;
 }
 .adza_signup_section .row.simple_convenient .image-panel{
-	width: 40%;
-	padding-left: 25px;
+  width: 40%;
+  padding-left: 25px;
 }
 .adza_signup_section .row.simple_convenient .contents-panel{
-	width: 60%;
-	padding-left: 85px;
-	padding-right: 25px;
+  width: 60%;
+  padding-left: 85px;
+  padding-right: 25px;
 }
 .adza_signup_section .row.simple_convenient .contents-panel .info_title{
-	font-family: "Coves-Bold";
-	font-size: 36px;
-	font-family: 900;
-	text-align: center;
-	padding-top: 7.4%;
-	padding-bottom: 0px;
+  font-family: "Coves-Bold";
+  font-size: 36px;
+  font-family: 900;
+  text-align: center;
+  padding-top: 7.4%;
+  padding-bottom: 0px;
 }
 .adza_signup_section .row.simple_convenient .contents-panel .sub-title{
-	padding-top: 7.3%;
-	font-family: "Thasadith-Bold";
-	font-size: 20px;
+  padding-top: 7.3%;
+  font-family: "Thasadith-Bold";
+  font-size: 20px;
 }
 .adza_signup_section .row.simple_convenient .contents-panel .sub-content{
-	padding-top: 3.5%;
-	font-family: "Thasadith-Regular";
-	color: #4b4b4b;
-	font-size: 1.29vw;
+  padding-top: 3.5%;
+  font-family: "Thasadith-Regular";
+  color: #4b4b4b;
+  font-size: 1.29vw;
 }
 .adza_signup_section .row.simple_convenient .image-panel img{
-	width: 100%;
-	height: 100%;
-	border-radius: 12px !important;
-	box-shadow: 0 0 5px 2px #0000001a !important;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px !important;
+  box-shadow: 0 0 5px 2px #0000001a !important;
 }
 
 @media (max-width: 1200px) {
@@ -254,33 +254,33 @@
     float: left;
   }
   .adza_signup_section .row.what_waiting{
-  	width: 70%;
+    width: 70%;
   }
   .adza_signup_section .row .info_title{
-  	font-size: 3.5rem !important;
+    font-size: 3.5rem !important;
   }
   .adza_signup_section .row.preview{
-  	display: block !important;
+    display: block !important;
   }
   .adza_signup_section .row.preview>div{
-  	width: 100% !important;
-  	margin-bottom: 10px;
+    width: 100% !important;
+    margin-bottom: 10px;
   }
   .adza_signup_section .row.preview .btn-group label{
-  	font-size: 1.5rem !important;
+    font-size: 1.5rem !important;
   }
   .adza_signup_section .row.preview .btn-group label i{
-  	font-size: 1.5rem !important;
+    font-size: 1.5rem !important;
   }
   .adza_signup_section .row.simple_convenient{
-  	display: block !important;
+    display: block !important;
   }
   .adza_signup_section .row.simple_convenient>div{
-  	width: 100% !important;
-  	margin-bottom: 10px;
+    width: 100% !important;
+    margin-bottom: 10px;
   }
   .adza_signup_section .row.simple_convenient .contents-panel .sub-content{
-  	font-size: 1.5rem !important;
+    font-size: 1.5rem !important;
   }
 /*  .adza_signup_section .heroblog img {
     margin-right: -34px !important;

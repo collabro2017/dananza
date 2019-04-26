@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import { userActions } from '../../store/actions';
 
+import 'icheck/skins/all.css';
+import {Checkbox} from 'react-icheck';
+
 import "../../res/bootstrap/css/bootstrap.min.css"
 import "../../res/font-awesome/css/font-awesome.min.css"
 import "../../res/css/components.min.css"
@@ -13,6 +16,8 @@ import "../../res/css/header.css"
 import "../../res/css/header_search.css"
 import "../../res/css/layout.min.css"
 import "../../res/css/Signup.css"
+import "../../res/css/Confirm.css";
+
 import "../../res/css/login.min.css";
 
 class Signup extends React.Component{
@@ -114,7 +119,7 @@ class Signup extends React.Component{
       }
       else{
         return (
-          <div className="modal-dialog AuthModal">
+          <div className="modal-dialog email-signup">
             <div className="modal-content modal-content-custom">
               <div className="modal-header modal-header-custom">
                 <h4 className="modal-title">Join Dananza</h4>
@@ -122,42 +127,65 @@ class Signup extends React.Component{
               <div className="modal-body">
                 <form name="form" onSubmit={this.handleSubmit}>
                   { alert.message != null ?
-                    <div className="form-group col-md-12 has-error">
+                    <div className="col-md-12 has-error">
                       <p>{alert.message}</p>
                     </div> 
                     : null
                   }
-                    <div className={"form-group col-md-12" + (submitted && !user.businessName ? ' has-error' : '')}>
-                      <input type="text" placeholder="Business Name" name="businessName" value={user.businessName} onChange={this.handleChange}/>
+                    <div className={"col-md-12" + (submitted && !user.businessName ? ' has-error' : '')}>
+                      <input className="form-control" type="text" placeholder="Business Name" name="businessName" value={user.businessName} onChange={this.handleChange}/>
+                      <img className="show-icon" src={require('../../res/img/briefcase.png')}/>
                     </div>
 
-                    <div className={"form-group col-md-6" + (submitted && !user.firstName ? ' has-error' : '')}>
-                      <input type="text" placeholder="First Name" name="firstName" value={user.firstName} onChange={this.handleChange}/>
+                    <div className={"col-md-6" + (submitted && !user.firstName ? ' has-error' : '')}>
+                      <input className="form-control" type="text" placeholder="First Name" name="firstName" value={user.firstName} onChange={this.handleChange}/>
+                       <img className="show-icon" src={require('../../res/img/person_grey.png')}/>
                     </div>
-                    <div className={"form-group col-md-6" + (submitted && !user.lastName ? ' has-error' : '')}>
-                      <input type="text" placeholder="Last Name" name="lastName" value={user.lastName} onChange={this.handleChange}/>
-                    </div>
-
-                    <div className={"form-group col-md-12" + (submitted && !user.email ? ' has-error' : '')}>
-                      <input type="email" placeholder="Enter your Email" name="email" value={user.email} onChange={this.handleChange}/>
+                    <div className={"col-md-6" + (submitted && !user.lastName ? ' has-error' : '')}>
+                      <input className="form-control" type="text" placeholder="Last Name" name="lastName" value={user.lastName} onChange={this.handleChange}/>
+                      <img className="show-icon" src={require('../../res/img/person_grey.png')}/>
                     </div>
 
-                    <div className={"form-group col-md-6" + (submitted && !user.password ? ' has-error' : '')}>
-                      <input type="password" placeholder="Your Password" name="password" value={user.password} onChange={this.handleChange}/>
-                    </div>
-                    <div className={"form-group col-md-6" + (submitted && !user.cfm_password ? ' has-error' : '')}>
-                      <input type="password" placeholder="Confirm Password" name="cfm_password" value={user.cfm_password} onChange={this.handleChange}/>
+                    <div className={"col-md-12" + (submitted && !user.email ? ' has-error' : '')}>
+                      <input className="form-control" type="email" placeholder="Enter your Email" name="email" value={user.email} onChange={this.handleChange}/>
+                      <img className="show-icon" src={require('../../res/img/envelope.png')}/>
                     </div>
 
-                    <div className="action col-md-12">
-                      <button className="btn bg-yellow full-width btn-small" disabled={!user.password || !user.email || !user.firstName || !user.lastName || !user.businessName || user.password != user.cfm_password}>Join</button>
+                    <div className={"col-md-6" + (submitted && !user.password ? ' has-error' : '')}>
+                      <input className="form-control" type="password" placeholder="Your Password" name="password" value={user.password} onChange={this.handleChange}/>
+                      <img className="show-icon" src={require('../../res/img/key.png')}/>
+                    </div>
+                    <div className={"col-md-6" + (submitted && !user.cfm_password ? ' has-error' : '')}>
+                      <input className="form-control" type="password" placeholder="Confirm Password" name="cfm_password" value={user.cfm_password} onChange={this.handleChange}/>
+                      <img className="show-icon" src={require('../../res/img/key.png')}/>
+                    </div>
+
+                    <div className="align-center col-md-12">
+                      <button className="form-button" disabled={!user.password || !user.email || !user.firstName || !user.lastName || !user.businessName || user.password != user.cfm_password}>Join</button>
                     </div>
                 </form>
-                <div className="footer-line col-md-12">
-                  <div className="footer-container col-md-12">
-                    <span className="label">Already a Member? <a className="signin" id="signin" data-toggle="modal" data-target="#login" data-dismiss="modal"> Sign In</a>
-                    </span>
-                  </div>
+                <div className="agree">
+                  <Checkbox
+                    checkboxClass="icheckbox_square-ltblue"
+                    increaseArea="20%"
+                    label=""
+                    className="icheck"
+                  />
+                  <span>
+                    By signing up you, agree with Dananza’s&nbsp;
+                  </span>
+                  <Link>
+                    Terms & Conditions
+                  </Link>
+                </div>
+                <div className="footerline">
+                  <hr/>
+                </div>
+                <div className="footer">
+                  Already a Member?&nbsp;
+                  <a data-toggle="modal" data-target="#login" data-dismiss="modal">
+                    Sign In
+                  </a>
                 </div>              
               </div>
             </div>

@@ -552,7 +552,7 @@ class SellerDashboard extends React.Component{
 										</div>
 									</div>
 								</div>
-								<div id="collapse_adlist_1" className="dropdown-edit packed collapse" aria-expanded="false">
+								<div id="collapse_adlist_3" className="dropdown-edit packed collapse" aria-expanded="false">
 									<label>Choose Channel</label>
 									<div className="material-select media-type">
 										<FormControl>

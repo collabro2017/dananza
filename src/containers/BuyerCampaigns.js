@@ -34,9 +34,6 @@ class BuyerCampaigns extends React.Component{
   componentDidMount(){
     document.title = "Buyer Campaigns"
 
-    var itemLeft  = parseInt($(".slider-item").css('margin-left'));
-    var itemRight  = parseInt($(".slider-item").css('margin-right'));
-    var itemWidth   = parseInt($(".slider-item").css('width'));
     var index     = 1;
     var sliderItemCount = $(".slider-item").length;
 
@@ -48,7 +45,14 @@ class BuyerCampaigns extends React.Component{
       $(".indicator .previous").addClass('disabled');
     }
 
+    $(window).resize(function(){
+      if( $(".page-sidebar").css('display') == 'none' )
+        $(".slider-item:first").css('margin-left', 'calc(((( -100vw )*0.74445) - 15px)*'+(index-1)+')');
+      else
+        $(".slider-item:first").css('margin-left', 'calc(((( -100vw + 330px )*0.74445) - 15px)*'+(index-1)+')');
+    });
     $(".next").click(function () {
+      var itemWidth   = parseInt($(".slider-item").css('width'));
       if(sliderItemCount == index+1) {
         $(".indicator .next").addClass('disabled');
       }
@@ -57,12 +61,16 @@ class BuyerCampaigns extends React.Component{
       }
       $(".indicator .previous").removeClass('disabled');  
 
-      $(".slider-item:first").animate({'margin-left': itemLeft - itemWidth - itemRight + 'px'}, "slow");
-      itemLeft -= itemWidth + itemRight;
       index++;
+      if( $(".page-sidebar").css('display') == 'none' )
+        $(".slider-item:first").css('margin-left', 'calc(((( -100vw )*0.74445) - 15px)*'+(index-1)+')');
+      else
+        $(".slider-item:first").css('margin-left', 'calc(((( -100vw + 330px )*0.74445) - 15px)*'+(index-1)+')');
+
     });
 
     $(".previous").click(function () {
+      var itemWidth   = parseInt($(".slider-item").css('width'));
       if(index == 2) {
         $(".indicator .previous").addClass('disabled');
       }
@@ -70,10 +78,12 @@ class BuyerCampaigns extends React.Component{
         $(".indicator .previous").removeClass('disabled');  
       }
       $(".indicator .next").removeClass('disabled');  
-
-      $(".slider-item:first").animate({'margin-left': itemLeft + itemWidth + itemRight + 'px'}, "slow");
-      itemLeft += itemWidth + itemRight;
+    
       index--;
+      if( $(".page-sidebar").css('display') == 'none' )
+        $(".slider-item:first").css('margin-left', 'calc(((( -100vw )*0.74445) - 30px)*'+(index-1)+')');
+      else
+        $(".slider-item:first").css('margin-left', 'calc(((( -100vw + 330px )*0.74445) - 30px)*'+(index-1)+')');
     });
   }
 

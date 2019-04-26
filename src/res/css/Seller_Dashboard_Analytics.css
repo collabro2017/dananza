@@ -176,6 +176,8 @@
 }
 .seller_analytics .instagram .instagram-part{
 	float: right;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .seller_analytics .part {
@@ -305,6 +307,8 @@
 	}
 	.seller_analytics .instagram .instagram-part{
 		float: unset;
+		width: 100%;
+		justify-content: center;
 	}
 }
 /*# sourceMappingURL=header.css.map */

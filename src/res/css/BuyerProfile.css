@@ -38,6 +38,12 @@
 .buyer_profile .controlcontent .input-icon{
   width: 100%;
 }
+.buyer_profile .controlcontent .input-icon .form-control{
+  padding-left: 33px;
+}
+.buyer_profile .controlcontent.actions{
+  justify-content: flex-end;
+}
 .buyer_profile .placeholder-img {
   position: absolute;
   top: 14px;

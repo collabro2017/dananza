@@ -30,11 +30,11 @@ class SellerOrders extends React.Component{
 
   render(){
     return (
-    	<div className="dashboard_seller">
-	    	<div className="page-content seller_order">
-    				<SellerSidebar navitem={"orders"}/>
+      <div className="dashboard_seller">
+        <div className="page-content seller_order">
+            <SellerSidebar navitem={"orders"}/>
             <div className="page-result-wrapper">
-      				<div className="page-result">
+              <div className="page-result">
                 <label className="title">Overview Analytics</label>
                 <div className="order-by material-select">
                   <span className="grey">Order Status:</span>
@@ -555,9 +555,9 @@ class SellerOrders extends React.Component{
                 <a className="btn btn-default" id="next"> > </a>
               </div>
             </div>
-  			  </div>
-  			</div>
-  		</div>
+          </div>
+        </div>
+      </div>
     );
   }
 }

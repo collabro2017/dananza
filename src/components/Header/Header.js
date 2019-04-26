@@ -29,7 +29,7 @@ const styles = theme => ({
 
 class Header extends React.Component{
   state = {
-    headerType: "static"
+    headerType: ""
   };
   toggleflag = 0;
 
@@ -53,7 +53,7 @@ class Header extends React.Component{
   };
 
   componentDidUpdate(prevProps,prevState,prevContext){
-    if(prevState.headerType != "seller" && prevState.headerType != "buyer"){
+    if(prevState.headerType != "seller" && prevState.headerType != "buyer" && prevState.headerType != "static"){
       $('.header_search .mobile_navbar_toggler').on('click', function() 
       {
         if( $('.nav_mobile_menu').css('display') == 'none' ) 

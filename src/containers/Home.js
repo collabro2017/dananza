@@ -104,7 +104,7 @@ class Home extends React.Component{
                     handleAddition={this.handleKeywordAddition.bind(this)}
                     classNames = {{root:"inner-tag react-tags"}} />
                 </div>
-                <div>
+                <div className="action">
                   <Link to="results" className="btn bg-yellow color-dark btn-small">Find Adzas</Link>
                 </div>
               </div>
@@ -122,14 +122,14 @@ class Home extends React.Component{
               </div>
             </div>
             <div className="row tell_reach">
-              <div className="col-md-7 col-sm-5">
+              <div className="col-sm-7 col-lg-5 img">
+                <img src={require("../res/img/adza_reach.png")}/>
+              </div>
+              <div className="col-sm-5 col-lg-7 content">
                 <div className="info_title">
-                  <span className="you">You</span> Tell Us Wtho You Want to Reach <span className="we">We</span> Show You Where to Reach Them
+                  <span className="you">You</span> Tell Us Who You Want to Reach <span className="we">We</span> Show You Where to Reach Them
                 </div>
                 <div className="info_content">Dananza is an open marketplace that provides businesses with a simple solution to finding the best ad spaces to reach potential customers. Using filters such as interests, location, gender, and age, users can quickly find Adzas most likely to get them in front of their target audience.</div>
-              </div>
-              <div className="col-md-5 col-sm-7 img">
-                <img src={require("../res/img/adza_reach.png")}/>
               </div>
             </div>
             <div className="row build_ad bg-light">
@@ -204,7 +204,7 @@ class Home extends React.Component{
               <div id="slideshow">
                   <div id="slidesContainer">
                       <Carousel showThumbs={false}>
-                        <div className="slide">
+                        <div>
                           <img src={require("../res/img/test_slider1.png")} className="slide_img"/>
                           <div className="img_content">
                             <div className="description">
@@ -218,7 +218,7 @@ class Home extends React.Component{
                             </div>
                           </div>
                         </div>
-                        <div className="slide">
+                        <div>
                           <img src={require("../res/img/test_slider1.png")} className="slide_img"/>
                           <div className="img_content">
                             <div className="description">
@@ -232,21 +232,7 @@ class Home extends React.Component{
                             </div>
                           </div>
                         </div>
-                        <div className="slide">
-                          <img src={require("../res/img/test_slider1.png")} className="slide_img"/>
-                          <div className="img_content">
-                            <div className="description">
-                              “ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolor es et quas molestias! “
-                            </div>
-                            <div className="auth">
-                              John Doe, Founder
-                            </div>
-                            <div className="brand">
-                              <img src={require("../res/img/mock_data.png")}/>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="slide">
+                        <div>
                           <img src={require("../res/img/test_slider1.png")} className="slide_img"/>
                           <div className="img_content">
                             <div className="description">

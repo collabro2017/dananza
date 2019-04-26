@@ -116,8 +116,6 @@
 	padding-right: 15px;
 }
 .seller_message .page-message .message-content .history{
-	padding-top: 15px;
-	padding-bottom: 15px;
 	display: block;
 }
 .seller_message .history .profile{
@@ -128,6 +126,7 @@
 	text-align: center;
 }
 .seller_message .history .sender{
+	padding-top: 30px;
     width: 100%;
 }
 .seller_message .history .sender .f-16{
