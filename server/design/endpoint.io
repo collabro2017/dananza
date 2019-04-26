@@ -57,10 +57,10 @@
 ~~~~/api/buyer/saved
   Method: GET
   Desc: Get saved adza list
-/api/buyer/saved/:id
+~~~~/api/buyer/saved/:id
   Method: DELETE
   Desc: remove save adza from list
-/api/buyer/saved
+~~~~/api/buyer/saved
   Method: POST
   params: adza_id, listing_id
   Desc: save adza to list

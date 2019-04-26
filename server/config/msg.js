@@ -3,6 +3,13 @@ const msg = {
     'emailRequiredField': "'email' is a required field.",
     'emailIsEmail': "This is not a valid email address.",
     'passwordRequiredField': "'password' is a required field.",
+    'noResult': "No Result",
+
+    // Success messages
+    'loginSuccessful': "You've successfully logged in.",
+    'emailSent': "Your password recovery email was sent.",
+    'updatedSuccess':"Updated Successfully",
+    'deletedSuccess':"Deleted Successfully",
 
     // Auth
     'requireLoginInput': "Please pass email and password.",
@@ -10,9 +17,8 @@ const msg = {
     'authWrongPassword': "Authentication failed. Wrong password.",
     'authEmailExists':"Email already exists.",
 
-    // Success messages
-    'loginSuccessful': "You've successfully logged in.",
-    'emailSent': "Your password recovery email was sent."
+    // Buyer
+    'haveBuyerProfile':"Already you have buyer profile.",
 };
 
 module.exports = msg;

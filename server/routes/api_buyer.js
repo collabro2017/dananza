@@ -3,8 +3,11 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const router = express.Router();
 require('../config/passport')(passport);
+const msg = require('../config/msg');
+
 const User = require('../models').User;
 const Buyer_Profile = require('../models').Buyer_Profile;
+const Adza_Profile = require('../models').Adza_Profile;
 const Saved_Adza = require('../models').Saved_Adza;
 
 // Get Buyer info of Current User
@@ -38,7 +41,7 @@ router.post('/', passport.authenticate('jwt', {session: false}), function(req, r
 		if( created )
 			res.status(201).send(buyer_profile)
 		else
-			res.status(400).send({success: false, message: 'Already has buyer profile.'})
+			res.status(400).send({success: false, message: msg.haveBuyerProfile})
 	})
 	.catch((error) => res.status(400).send(error));
 });
@@ -57,7 +60,7 @@ router.put('/', passport.authenticate('jwt', {session: false}), function(req, re
 			profile_description: req.body.profile_description,
 			has_seller_acct: req.body.has_seller_acct
 		})
-		.then((profile)=>res.status(201).send({success: true, message: 'Updated.'}))
+		.then((profile)=>res.status(201).send({success: true, message: msg.updatedSuccess}))
 		.catch((error) => res.status(500).send(error));
 	})
 	.catch((error) => res.status(400).send(error));
@@ -65,17 +68,38 @@ router.put('/', passport.authenticate('jwt', {session: false}), function(req, re
 
 // Get Saved Adza
 router.get('/saved', passport.authenticate('jwt', {session: false}), function(req, res) {
-  	res.status(201).send({success: true, message: 'Router exists.'});
+	var auth_user = req.user;
+	var user_id = auth_user.id;
+
+	Buyer_Profile
+		.findOne({ where: {user_id: user_id} })
+		.then(function(profile) { 
+			var buyer_id = profile.id;
+			Saved_Adza.findAll( { where: {buyer_id: buyer_id} } )
+				.then( function( adzas ){
+					if( adzas.length )
+					{
+						res.status(201).send({success: true, adzas:adzas});
+					}
+					else
+						res.status(201).send({success: true, message: msg.noResult });
+				})
+		})
+		.catch((error) => res.status(500).send(error));
 });
 
 // save new adza to saved_adza list
 router.post('/saved', passport.authenticate('jwt', {session: false}), function(req, res) {
-  	res.status(201).send({success: true, message: 'Router exists.'});
+  	res.status(201).send({success: true, message: ' exists.'});
 });
 
 // remove adza from saved list
-router.post('/saved', passport.authenticate('jwt', {session: false}), function(req, res) {
-  	res.status(201).send({success: true, message: 'Router exists.'});
+router.delete('/saved/:id', passport.authenticate('jwt', {session: false}), function(req, res) {
+  	var saved_id = req.params.id;
+  	Saved_Adza
+	    .destroy( { where: { id: saved_id } } )
+	    .then((blog) => res.status(200).send( {success: true, message: 'Deleted.'} ))
+	    .catch((error) => { res.status(400).send(error); });
 });
 
 module.exports = router;
