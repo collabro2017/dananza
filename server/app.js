@@ -35,6 +35,39 @@ app.use('/api/user', require('./routes/api_user'));
 // buyer api
 app.use('/api/buyer', require('./routes/api_buyer'));
 
+// Campaign api
+app.use('/api/campaign', require('./routes/api_campaign'));
+
+// Adza api
+app.use('/api/adza', require('./routes/api_adza'));
+
+// channel api
+app.use('/api/channel', require('./routes/api_channel'));
+
+// listing api
+app.use('/api/listing', require('./routes/api_listing'));
+
+// review api
+app.use('/api/review', require('./routes/api_review'));
+
+// message api
+app.use('/api/message', require('./routes/api_message'));
+
+// cart api
+app.use('/api/cart', require('./routes/api_cart'));
+
+// order api
+app.use('/api/order', require('./routes/api_order'));
+
+// search api
+app.use('/api/search', require('./routes/api_search'));
+
+// stats api
+app.use('/api/stats', require('./routes/api_stats'));
+
+// notification api
+app.use('/api/notification', require('./routes/api_notification'));
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
