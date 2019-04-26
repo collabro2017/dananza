@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import { userActions } from '../../store/actions';
+import $ from 'jquery';
 
 import "../../res/bootstrap/css/bootstrap.min.css"
 import "../../res/font-awesome/css/font-awesome.min.css"
@@ -25,15 +26,21 @@ class Login extends React.Component{
       this.state = {
           email: '',
           password: '',
-          submitted: false
+          submitted: false,
+          redirected: false
       };
 
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    routeChange(){
-      this.props.history.push("/buyer_landing");
+    routeChange()
+    {
+      if(!this.state.redirected)
+      {
+        this.props.history.push("/buyer_landing");
+        this.setState({redirected: true});        
+      }
     }
 
     handleChange(e) {
@@ -47,13 +54,27 @@ class Login extends React.Component{
         this.setState({ submitted: true });
         const { email, password } = this.state;
         const { dispatch } = this.props;
+
         if (email && password) {
             dispatch(userActions.login(email, password));
         }
     }
 
+    componentDidUpdate()
+    {
+      const { loggedIn } = this.props;
+      
+      if(loggedIn)
+      {
+        this.routeChange();
+        $('#login').modal('hide');
+        $('.fade').click();
+
+      }
+    }
+
     render(){
-      const { loggingIn, alert } = this.props;
+      const { loggingIn, loggedIn, alert } = this.props;
       const { email, password, submitted } = this.state;
       return (
         <div className="modal-dialog AuthModal">
@@ -78,7 +99,8 @@ class Login extends React.Component{
                           type="password" autoComplete="off" placeholder="Password" name="password" value={password} onChange={this.handleChange} />
                 </div>
                 <div className={"form-group col-md-12" + (!password || !email ? ' has-error' : '')}>
-                    <button className="btn bg-yellow full-width btn-small" disabled={!password || !email}>Login</button>
+                    <button className="btn bg-yellow full-width btn-small " disabled={!password || !email}>Login</button>
+                    <button id="loginBtn" data-dismiss="modal" hidden></button>
                 </div>
               </form>
               <div className="footer-line col-md-12">
@@ -95,15 +117,15 @@ class Login extends React.Component{
 };
 
 function mapStateToProps(state) {
-    const { loggingIn } = state.authentication;
+    const { loggingIn, loggedIn } = state.authentication;
     const { alert } = state;
 
     return {
-        loggingIn, 
+        loggingIn,
+        loggedIn,
         alert
     };
 }
 
-export default connect(
-  mapStateToProps
-)(withRouter(Login));
+const connectedLoginPage = connect(mapStateToProps)(withRouter(Login));
+export { connectedLoginPage as Login };
