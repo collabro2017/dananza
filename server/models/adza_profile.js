@@ -16,5 +16,11 @@ module.exports = (sequelize, DataTypes) => {
   Adza_Profile.associate = function(models) {
     // associations can be defined here
   };
+  Adza_Profile.getAdzaFromUserID = function(user_id, callback){
+    return this.findOne({ where: {user_id: user_id} })
+        .then((profile) => { return callback(null, profile);})
+        .catch((error) => { return callback(error, null);});
+  };
+
   return Adza_Profile;
 };

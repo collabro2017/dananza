@@ -11,5 +11,11 @@ module.exports = (sequelize, DataTypes) => {
   Buyer_Profile.associate = function(models) {
     // associations can be defined here
   };
+
+  Buyer_Profile.getBuyerFromUserID = function(user_id, callback){
+    return this.findOne({ where: {user_id: user_id} })
+        .then((profile) => { return callback(null, profile);})
+        .catch((error) => { return callback(error, null);});
+  };
   return Buyer_Profile;
 };
