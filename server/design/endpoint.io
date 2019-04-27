@@ -122,17 +122,17 @@
 /api/listing
   Method:GET
   Desc: get all linked listings associated with Channel
-/api/listing
+* /api/listing
   Method: POST
   Params: channel_id, media_type, title, price, featured_photo, description
   Desc: add new listing depending on Channel
-/api/listing/:id
+* /api/listing/:id
   Method: GET
   Desc: get detailed info for listing
-/api/listing/:id
+* /api/listing/:id
   Method: PUT
   Desc: update listing info
-/api/listing/:id
+* /api/listing/:id
   Method: DELETE
   Desc: delete listing
 
@@ -145,6 +145,13 @@
 
 /api/message
   Method: get
+/api/message
+  Method: POST
+  Params: from, to, 
+  Desc: send new message
+/api/message/:id
+  Method: DELETE
+  Desc: Delete message
 
 /api/cart
   Method: GET
