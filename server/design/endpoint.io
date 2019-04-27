@@ -136,11 +136,10 @@
   Method: DELETE
   Desc: delete listing
 
-/api/review
+* /api/review/:adza_id
   Method: GET
-  Params: Adza_id
   Desc: get reviews for seleted Adza
-/api/review
+* /api/review
   Method: POST
   Params: adza_id, buyer_id( logged in actor ), review_point, review_description, review_date
 
