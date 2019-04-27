@@ -17,7 +17,8 @@ const msg = {
     'authWrongPassword': "Authentication failed. Wrong password.",
     'authEmailExists':"Email already exists.",
 
-    'haveProfile':"Already you have  profile.",
+    'haveProfile': "Already you have profile.",
+    'noOwner': "Forbidden. You're not owner",
 };
 
 module.exports = msg;

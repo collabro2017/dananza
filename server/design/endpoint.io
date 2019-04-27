@@ -108,14 +108,14 @@
       audience_age_min, audience_age_max, audience_locations, audience_interests
   Desc: Update adza profile
 
-/api/channel
+* /api/channel
   Method: GET
   Desc: get all channel lined to current adza
-/api/channel
+* /api/channel
   Method: POST
   Params: media_type, follows, username, linked_channel
   Desc: add new channel to Adza ( need to be synch with Social API )
-/api/channel/:id
+* /api/channel/:id
   Method: DELETE
   Desc: delete channel from Adza info
 
