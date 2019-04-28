@@ -37,7 +37,7 @@ router.post('/signup', function(req, res) {
             res.status(400).send({success: false, message: msg.authEmailExists})
         }
       })
-      .catch((error) => res.status(400).send(error));    
+      .catch((error) => res.status(400).send({success: false, message: error }));    
   }
 });
 
@@ -66,7 +66,7 @@ router.post('/signin', function(req, res) {
           }
         })
       })
-      .catch((error) => res.status(400).send(error));
+      .catch((error) => res.status(400).send({success: false, message: error }));
 });
 
 module.exports = router;

@@ -18,7 +18,7 @@ router.get('/', passport.authenticate('jwt', {session: false}), function(req, re
   Buyer_Profile
   	.findOne({ where: {user_id: user_id} })
   	.then((buyer_profile) => res.status(200).send(buyer_profile))
-  	.catch((error) => res.status(400).send(error));
+  	.catch((error) => res.status(400).send({success: false, message: error }));
 });
 
 // create buyer profile first time
@@ -43,7 +43,7 @@ router.post('/', passport.authenticate('jwt', {session: false}), function(req, r
 		else
 			res.status(400).send({success: false, message: msg.haveBuyerProfile})
 	})
-	.catch((error) => res.status(400).send(error));
+	.catch((error) => res.status(400).send({success: false, message: error }));
 });
 
 // Update Buyer profile
@@ -61,9 +61,9 @@ router.put('/', passport.authenticate('jwt', {session: false}), function(req, re
 			has_seller_acct: req.body.has_seller_acct
 		})
 		.then((profile)=>res.status(201).send({success: true, message: msg.updatedSuccess}))
-		.catch((error) => res.status(500).send(error));
+		.catch((error) => res.status(400).send({success: false, message: error }));
 	})
-	.catch((error) => res.status(400).send(error));
+	.catch((error) => res.status(400).send({success: false, message: error }));
 });
 
 // Get Saved Adza
@@ -85,7 +85,7 @@ router.get('/saved', passport.authenticate('jwt', {session: false}), function(re
 						res.status(201).send({success: true, message: msg.noResult });
 				})
 		})
-		.catch((error) => res.status(500).send(error));
+		.catch((error) => res.status(400).send({success: false, message: error }));
 });
 
 // save new adza to saved_adza list

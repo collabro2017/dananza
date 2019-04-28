@@ -19,7 +19,7 @@ router.get('/', passport.authenticate('jwt', {session: false}), function(req, re
   		if( profile ) res.status(200).send(profile) 
   		else res.status(200).send(msg.noResult);
 	})
-  	.catch((error) => res.status(400).send(error));
+  	.catch((error) => res.status(400).send({success: false, message: error }));
 });
 
 router.get('/:profile_id', passport.authenticate('jwt', {session: false}), function(req, res) {
@@ -31,7 +31,7 @@ router.get('/:profile_id', passport.authenticate('jwt', {session: false}), funct
   		if( profile ) res.status(200).send(profile) 
   		else res.status(200).send(msg.noResult);
 	})
-  	.catch((error) => res.status(400).send(error));
+  	.catch((error) => res.status(400).send({success: false, message: error }));
 });
 
 
@@ -54,14 +54,14 @@ router.post('/', passport.authenticate('jwt', {session: false}), function(req, r
 			Buyer_Profile
 			  	.findOne({ where: {user_id: user_id} })
 			  	.then((buyer_profile) => { buyer_profile.update({ has_seller_acct: true }) })
-			  	.catch((error) => res.status(400).send(error));
+			  	.catch((error) => res.status(400).send({success: false, message: error }));
 
 			res.status(201).send(profile)
 		}
 		else
 			res.status(400).send({success: false, message: msg.haveProfile})
 	})
-	.catch((error) => res.status(400).send(error));
+	.catch((error) => res.status(400).send({success: false, message: error }));
 });
 
 // Update Adza profile
@@ -85,7 +85,7 @@ router.put('/', passport.authenticate('jwt', {session: false}), function(req, re
 		.then((profile)=>res.status(201).send({success: true, message: msg.updatedSuccess}))
 		.catch((error) => res.status(500).send(error));
 	})
-	.catch((error) => res.status(400).send(error));
+	.catch((error) => res.status(400).send({success: false, message: error }));
 });
 
 

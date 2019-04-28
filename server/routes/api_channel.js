@@ -29,7 +29,7 @@ router.get('/', passport.authenticate('jwt', {session: false}), async function(r
 				return res.status(201).send({success: true, channels:channels});
 			}
 			else
-				return res.status(201).send({success: true, message: msg.noResult });		
+				return res.status(201).send({success: true, message: msg.noResult });
 		})
 		.catch((error) => res.status(500).send({success: false, message: error }))
 

@@ -25,7 +25,7 @@ router.put('/', passport.authenticate('jwt', { session: false}), function(req, r
         business_name: req.body.businessName
       })
       .then((user) => res.status(201).send(user))
-      .catch((error) => res.status(400).send(error));
+      .catch((error) => res.status(400).send({success: false, message: error }));
   } else {
     return res.status(403).send({success: false, message: 'Unauthorized.'});
   }
@@ -41,7 +41,7 @@ router.put('/change_pwd', passport.authenticate('jwt', { session: false}), funct
         password: req.body.password,
       })
       .then((user) => res.status(201).send({success: true, message: 'Updated.'}))
-      .catch((error) => res.status(400).send(error));
+      .catch((error) => res.status(400).send({success: false, message: error }));
   } else {
     return res.status(403).send({success: false, message: 'Unauthorized.'});
   }

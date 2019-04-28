@@ -35,7 +35,7 @@ router.post('/', passport.authenticate('jwt', { session: false}), function(req, 
         active: true
       })
       .then((blog) => res.status(201).send(blog))
-      .catch((error) => res.status(400).send(error));
+      .catch((error) => res.status(400).send({success: false, message: error }));
   } else {
     return res.status(403).send({success: false, message: 'Unauthorized.'});
   }
@@ -52,7 +52,7 @@ router.put('/:id', function(req, res) {
         blog.update({active: req.body.active});
         res.status(201).send({success: true, message: 'Updated.'});
       })
-      .catch((error) => res.status(400).send(error));
+      .catch((error) => res.status(400).send({success: false, message: error }));
   } else {
     return res.status(403).send({success: false, message: 'Unauthorized.'});
   }
