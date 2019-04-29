@@ -9,6 +9,9 @@ import PersonIcon from "@material-ui/icons/Person";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from "redux";
+import { userActions } from '../../store/actions';
 
 import "../../res/bootstrap/css/bootstrap.min.css"
 import "../../res/font-awesome/css/font-awesome.min.css"
@@ -35,6 +38,8 @@ class Header extends React.Component{
 
   constructor(props) {
     super(props);
+
+    this.validateToken = this.validateToken.bind(this);
   }
 
   componentWillReceiveProps( nextProps ){
@@ -46,6 +51,20 @@ class Header extends React.Component{
     const bootstrap = require('bootstrap');
 
     this.setState({headerType: nextProps.type})
+     
+    const { loggedIn, type } = nextProps;
+
+    if(loggedIn)
+    {
+      this.setState({ headerType: "buyer"});
+    }
+    else
+    {
+      this.setState({ headerType: "homepage"});
+    }
+    
+
+    this.validateToken(nextProps);
   }
 
   componentDidMount() {
@@ -83,6 +102,23 @@ class Header extends React.Component{
       }
       $('.nav_mobile_menu').slideToggle(200);
     });
+  }
+
+  logout()
+  {
+    this.props.dispatch(userActions.logout());
+  }
+
+  validateToken(nextProps)
+  {
+    console.log('href = ',window.location.href);
+
+    const { loggedIn, type } = nextProps;
+
+    if( !loggedIn || loggedIn == "undefined" )
+     {
+       // this.props.handleUrl();
+     }
   }
 
   /*
@@ -190,7 +226,7 @@ class Header extends React.Component{
                              </Link>
                         </li>
                         <li>
-                            <Link to="/">
+                            <Link to="/" onClick={ this.logout }>
                               <a href="#">
                                   Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}/>
                               </a>
@@ -281,7 +317,7 @@ class Header extends React.Component{
                             </Link>
                         </li>
                         <li>
-                            <Link to="/">
+                            <Link to="/" onClick={ this.logout }>
                                   Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}/>
                             </Link>
                         </li>
@@ -354,7 +390,7 @@ class Header extends React.Component{
                             </Link>
                         </li>
                         <li>
-                            <Link to="/">
+                            <Link to="/" onClick={ this.logout }>
                               logout
                                 <img src={require("../../res/img/logout.png")}/>
                             </Link>
@@ -551,10 +587,35 @@ class Header extends React.Component{
   render(){
     return (
       <div>
+        
         { this.renderSwitchHeader() }
       </div>
     );
   }
 };
 
-export default withStyles(styles)(Header);
+const mapStateToProps = state => {
+
+  const { loggedIn } = state.authentication;
+
+  return {
+    loggedIn
+  };
+};
+
+const mapDispatchToProps = dispatch =>
+{
+  return bindActionCreators(
+    {
+
+    },
+    dispatch
+  );
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(Header));
+
+// export default withStyles(styles)(Header);

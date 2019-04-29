@@ -3,6 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
 
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
@@ -23,12 +24,16 @@ class MainLayout extends Component {
     this.setState({headerType: headerType});
   };
 
+  handleUrl = () => {
+    this.props.history.push('./');
+  }
+
   render() {
     const { classes, children } = this.props;
     const childrenWithProps = React.Children.map(this.props.children, child =>
-      React.cloneElement(child, { changeHeaderType : this.handleHeader })
+      React.cloneElement(child, { changeHeaderType : this.handleHeader,  handleUrl : this.handleUrl })
     );
-
+    
     return (
       <Fragment>
           <Header
@@ -60,4 +65,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(withStyles(styles)(MainLayout));
+)(withRouter((withStyles(styles)(MainLayout))));

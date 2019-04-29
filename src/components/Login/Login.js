@@ -26,8 +26,7 @@ class Login extends React.Component{
       this.state = {
           email: '',
           password: '',
-          submitted: false,
-          redirected: false
+          submitted: false
       };
 
       this.handleChange = this.handleChange.bind(this);
@@ -36,11 +35,7 @@ class Login extends React.Component{
 
     routeChange()
     {
-      if(!this.state.redirected)
-      {
-        this.props.history.push("/buyer_landing");
-        this.setState({redirected: true});        
-      }
+      this.props.history.push("/buyer_landing");
     }
 
     handleChange(e) {
@@ -66,10 +61,12 @@ class Login extends React.Component{
       
       if(loggedIn)
       {
-        this.routeChange();
-        $('#login').modal('hide');
         $('.fade').click();
-
+        if(this.state.submitted)
+        {
+          this.routeChange();
+          this.setState({ submitted: false });
+        }
       }
     }
 
