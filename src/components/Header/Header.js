@@ -7,11 +7,11 @@ import MenuIcon from "@material-ui/icons/Menu";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import PersonIcon from "@material-ui/icons/Person";
 import Typography from "@material-ui/core/Typography";
-import { withStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import { userActions } from '../../store/actions';
+import { withRouter } from "react-router-dom";
 
 import "../../res/bootstrap/css/bootstrap.min.css"
 import "../../res/font-awesome/css/font-awesome.min.css"
@@ -25,10 +25,6 @@ import "../../res/css/layout.min.css"
 import $ from "jquery";
 
 import logoUrl from '../../res/img/logo.png';
-
-const styles = theme => ({
-  
-});
 
 class Header extends React.Component{
   state = {
@@ -111,14 +107,12 @@ class Header extends React.Component{
 
   validateToken(nextProps)
   {
-    console.log('href = ',window.location.href);
-
     const { loggedIn, type } = nextProps;
 
-    if( !loggedIn || loggedIn == "undefined" )
-     {
-       // this.props.handleUrl();
-     }
+    if( ( !loggedIn || loggedIn == "undefined" ) && ( window.location.pathname != '/'))
+    {
+      this.props.history.push('/');
+    }
   }
 
   /*
@@ -616,6 +610,6 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(Header));
+)(withRouter(Header));
 
-// export default withStyles(styles)(Header);
+
