@@ -181,7 +181,7 @@ class BuyerProfile extends React.Component{
                       <div className="col-md-10 controlcontent">
                         <div className="input-icon">
                           <ReactTags
-                            inputAttributes={{ maxLength: 15, class: "form-control btn-radius"}}
+                            inputAttributes={{ maxLength: 15, className: "form-control btn-radius"}}
                             placeholder="Miami, Florida"
                             allowNew={true}
                             addOnBlur={true}

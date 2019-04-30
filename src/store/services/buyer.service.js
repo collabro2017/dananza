@@ -19,7 +19,7 @@ function create ()
 function read ()
 {
 	const requestOptions = {
-        method: 'POST',
+        method: 'GET',
         headers: authHeader(),
     };
 
