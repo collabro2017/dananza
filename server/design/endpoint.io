@@ -1,7 +1,7 @@
-/api/signin
+* /api/signin
   method: POST
   Params: email, password
-/api/signup
+* /api/signup
   Method: POST
   Params: email, password, password_confirm, business_name, f_name, l_name
 /api/check_login
@@ -9,17 +9,17 @@
   Header: JWT token
   Params: nothing
 
-/api/blog
+* /api/blog
   Method: GET
-/api/blog
+* /api/blog
   Method: POST
   Params: title, content, featured_image
-/api/blog/:id
+* /api/blog/:id
   Method: GET
-/api/blog/:id
+* /api/blog/:id
   Method: PUT
   Params: active( true, false )
-/api/blog/:id
+* /api/blog/:id
   Method: delete
 
 
@@ -65,28 +65,28 @@
   params: adza_id, listing_id
   Desc: save adza to list
 
-/api/campaign
+* /api/campaign
   Method: GET
-  Desc: Get all campaigns
-/api/campaign
+  Desc: Get all campaigns for Buyer
+* /api/campaign
   Method: POST
-  Params: campaign_name, campaign_price, order_id
+  Params: campaign_name
   Desc: Create new Campaign
-/api/campaign/:id
+* /api/campaign/:id
   Method: PUT
-  Params: campaign_status
+  Params: campaign_status, campaign_price
   Desc: change campaign status
-/api/campaign/:id
+* /api/campaign/:id
   Method: DELETE
   Desc: Delete campaign
-/api/campaign/:id/listing
+* /api/campaign/:id/listing
   Method: GET
-  Desc: get campaign_list by ID
-/api/campaign/:id/add_listing
+  Desc: get listings by campaign ID
+* /api/campaign/:id/listing
   Method: POST
   Params: adza_id, listing_id
   Desc: insert listing to campaign  
-/api/campaign/:id/remove/:lid
+* /api/campaign/:id/remove/:lid
   Method: PUT
   Desc: remove listing from campaign
 
@@ -191,3 +191,5 @@
 /api/notification
   Method: GET
   Desc: get new messages and cart item num etc.
+
+

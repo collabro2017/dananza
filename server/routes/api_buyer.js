@@ -37,7 +37,7 @@ router.post('/', passport.authenticate('jwt', {session: false}), function(req, r
 			has_seller_acct: false,
 			signup_date: new Date()
 	}})
-	.then((buyer_profile, created) => {
+	.then( function(buyer_profile, created){
 		if( created )
 			res.status(201).send(buyer_profile)
 		else
