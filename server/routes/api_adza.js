@@ -49,7 +49,7 @@ router.post('/', passport.authenticate('jwt', {session: false}), function(req, r
 			update_time: new Date()
 
 	}})
-	.then((profile, created) => {
+	.then(function(profile, created){
 		if( profile ){
 			Buyer_Profile
 			  	.findOne({ where: {user_id: user_id} })
