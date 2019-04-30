@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     user_id: DataTypes.INTEGER,
     profile_photo: DataTypes.STRING,
     profile_description: DataTypes.STRING,
+    profile_location:DataTypes.STRING,
     signup_date: DataTypes.DATE,
     image_gallery: DataTypes.JSON,
     audience_male_percent: DataTypes.FLOAT,
