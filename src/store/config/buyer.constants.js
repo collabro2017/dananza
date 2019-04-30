@@ -1,0 +1,9 @@
+export const buyerConstants = {
+
+    CREATE: 'BUYER_PROFILE_CREATE',
+    READ:   'BUYER_PROFILE_READ',
+    UPDATE: 'BUYER_PROFILE_UPDATE',
+    DELETE: 'BUYER_PROFILE_DELETE',
+    ERROR:  'BUYER_INFO_FAILURE'
+
+};

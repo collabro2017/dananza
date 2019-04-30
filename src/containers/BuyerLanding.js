@@ -5,8 +5,10 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+import { buyerActions } from '../store/actions';
 
 import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
 
@@ -19,7 +21,9 @@ class BuyerLanding extends React.Component{
 
   constructor(props) {
     super(props);
-    props.changeHeaderType( this.state.headerType )
+    props.changeHeaderType( this.state.headerType );
+
+    this.props.dispatch(buyerActions.read());
   }
 
   componentDidMount(){
@@ -272,12 +276,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-
-    },
+  return {
     dispatch
-  );
+  }
 };
 
 export default connect(
