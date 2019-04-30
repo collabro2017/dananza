@@ -2,11 +2,13 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import Nouislider from 'react-nouislider';
 import ReactTags from "react-tag-autocomplete";
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { sellerActions } from '../store/actions';
 
 import SellerSidebar from "../components/Sidebar/SellerSidebar";
 
@@ -20,16 +22,7 @@ import "../res/css/components/select.css"
 class SellerDashboard extends React.Component{
 
   state={'headerType': "seller",
- 		'age_start': 0,
-  		'age_end': 60,
-  		'male_percent' : 0,
-  		'female_percent' : 100,
-  		'startDate': null,
-		tags: [
-	        { name: "Apples" },
-	        { name: "Pears" }
-		],
-		suggestions: [
+  		'suggestions': [
 			{ name: "Bananas" },
 			{ name: "Mangos" },
 			{ name: "Lemons" },
@@ -37,8 +30,17 @@ class SellerDashboard extends React.Component{
 			{ name: "Lemonfefes" },
 			{ name: "Apricots"}
 		],
-		'locations' : [],
-		'interests' : [],
+		userprofile: {
+			'profile_photo': 'user1',
+			'profile_description': "",
+			'profile_location': "",
+			'image_gallery':[],
+	 		'audience_age_min': 0,
+	  		'audience_age_max': 60,
+	  		'audience_male_percent' : 0,
+			'audience_locations' : [],
+			'audience_interests' : [],	
+		},
 		'mediaType' : 'Instagram',
 		'channel' : 'Instagram'
   }
@@ -52,59 +54,117 @@ class SellerDashboard extends React.Component{
     document.title = "Seller Dashboard"
   }
   onAgeSlide = (render, handle, value, un, percent) => {
+  	const {userprofile} = this.state;
     this.setState({
-      'age_start':value[0].toFixed(0), 
-      'age_end':value[1].toFixed(0)
-    });
+    	userprofile:{
+			...userprofile,
+			'audience_age_min':value[0].toFixed(0), 
+			'audience_age_max':value[1].toFixed(0)
+		}
+	});
   }
   
   onGenderSlide = (render, handle, value, un, percent) => {
-  	const male_percent = value[0].toFixed(0);
-  	const female_percent = 100 - male_percent;
+  	const audience_male_percent = value[0].toFixed(0);
+  	const {userprofile} = this.state;
     this.setState({
-      'male_percent': male_percent, 
-      'female_percent': female_percent
+    	userprofile:{
+    		...userprofile,
+    		audience_male_percent
+    	}
     });
   }
 
   onChangeMediatype = event => {
-	this.setState({ ['mediaType']: event.target.value });
-  };
-  onChangeChannel = event => {
-	this.setState({ ['channel']: event.target.value });
+  	const {userprofile} = this.state;
+    this.setState({
+   		mediaType: event.target.value
+    });
   };
 
+  onChangeChannel = event => {
+	const {userprofile} = this.state;
+    this.setState({
+		channel: event.target.value
+    });
+  };
+
+  onChangeEdit = (name,event) => {
+	const {userprofile} = this.state;
+    this.setState({
+    	userprofile:{
+    		...userprofile,
+    		[name]: event.target.value
+    	}
+    });
+  }
+
   handleLocationDelete (i) {
-    const locations = this.state.locations.slice(0)
-    locations.splice(i, 1)
-    this.setState({ locations })
+    const {userprofile} = this.state;
+    const audience_locations = userprofile.audience_locations.slice(0);
+    audience_locations.splice(i, 1)
+    this.setState({
+    	userprofile:{
+    		...userprofile,
+    		audience_locations
+    	}
+    });
   }
  
   handleLocationAddition (location) {
-    const locations = [].concat(this.state.locations, location)
-    if( locations.length > 5 )
+    const {userprofile} = this.state;
+    const audience_locations = [].concat(userprofile.audience_locations, location)
+
+    if( audience_locations.length > 5 )
     	return;
     
-    if( !this.state.locations.some(item => location.name === item.name ))
-    	this.setState({ locations: [...this.state.locations, location]})
+    if( !userprofile.audience_locations.some(item => location.name === item.name )){
+    	this.setState({
+	    	userprofile:{
+	    		...userprofile,
+	    		audience_locations
+	    	}
+	    });
+    }
   }
 
   handleInterestsDelete (i) {
-    const interests = this.state.interests.slice(0)
-    interests.splice(i, 1)
-    this.setState({ interests })
+    const {userprofile} = this.state;
+    const audience_interests = userprofile.audience_interests.slice(0)
+    audience_interests.splice(i, 1)
+    this.setState({
+    	userprofile:{
+    		...userprofile,
+    		audience_interests
+    	}
+    });
   }
  
-  handleInterestsAddition (location) {
-    const interests = [].concat(this.state.interests, location)
+  handleInterestsAddition (interest) {
+    const {userprofile} = this.state;
+    const audience_interests = [].concat(userprofile.audience_interests, interest)
     
-    if( !this.state.interests.some(item => location.name === item.name ))
-    	this.setState({ interests: [...this.state.interests, location]})
+    if( !userprofile.audience_interests.some(item => interest.name === item.name )){
+    	this.setState({
+	    	userprofile:{
+	    		...userprofile,
+	    		audience_interests
+	    	}
+	    });
+    }
+  }
+
+  handleSubmit () {
+  	const { userprofile } = this.state;
+  	const { dispatch } = this.props;
+  	dispatch(sellerActions.setProfile(userprofile));
   }
 
   render(){
-  	const { age_start, age_end } = this.state;
-  	const { male_percent, female_percent } = this.state;
+  	const { audience_age_min, audience_age_max, audience_male_percent, 
+  			audience_locations, audience_interests,
+  			profile_photo } = this.state.userprofile;
+  	const { suggestions,mediaType, channel } = this.state;
 
     return (
     	<div className="dashboard_seller">
@@ -119,7 +179,7 @@ class SellerDashboard extends React.Component{
 							<div className="formcontrol row">
 								<label className="col-sm-2 controllabel"> Profile photo</label>
 								<div className="col-sm-10 controlcontent">
-									<img className="profile" src={require("../res/img/profile_photo.png")}/>
+									<img className="profile" src={require("../res/img/"+profile_photo+".png")}/>
 									<div className="right-control col-sm-8">
 										<a className="btn dark btn-outline btn-radius">
 											<i className="fa fa-file-image-o"></i>
@@ -134,7 +194,8 @@ class SellerDashboard extends React.Component{
 									Describe Your Company (140 characters)
 								</label>
 								<div className="col-sm-10 controlcontent">
-									<textarea className="form-control btn-radius" placeholder="Official Account of Target Tree Miami"></textarea>
+									<textarea onChange={(event)=>{this.onChangeEdit("profile_description",event)}}
+										className="form-control btn-radius" placeholder="Official Account of Target Tree Miami"></textarea>
 								</div>
 							</div>
 							<div className="formcontrol row">
@@ -144,7 +205,8 @@ class SellerDashboard extends React.Component{
 								<div className="col-sm-10 controlcontent">
 									<div className="input-icon">
 					                    <img src={require('../res/img/minami.png')}/>
-					                    <input type="text" className="form-control btn-radius"/>
+					                    <input onChange={(event)=>{this.onChangeEdit("profile_location",event)}}
+					                    	type="text" className="form-control btn-radius"/>
 					                </div>
 								</div>
 							</div>
@@ -183,25 +245,25 @@ class SellerDashboard extends React.Component{
 
 										<Nouislider
 										    range={{min: 0, max: 60}}
-										    start={[age_start, age_end]}
+										    start={[audience_age_min, audience_age_max]}
 										    connect
 										    onSlide={this.onAgeSlide}
 										/>
 
 			                            <label className="age-result">
-			                            { age_start } - { age_end }yrs Old</label>
+			                            { audience_age_min } - { audience_age_max }yrs Old</label>
 			                        </div>
 
 			                        <div className="sub-control"><b>Gender Distribution</b></div>
 									<div className="feature-slider" id="gender">
 										<label className="col-sm-1 no-padding-left">
 											Male
-											<div id="male">{male_percent}%</div>
+											<div id="male">{audience_male_percent}%</div>
 										</label>
 										<div id="seller_page_gender" className="col-sm-10">
 											<Nouislider											
 											    range={{min: 0, max: 100}}
-											    start={[male_percent]}
+											    start={[audience_male_percent]}
 											    connect
 											    onSlide={this.onGenderSlide}
 											/>
@@ -209,7 +271,7 @@ class SellerDashboard extends React.Component{
 
 			                            <label className="col-sm-1">
 			                            	Female
-			                            	<div id="female">{female_percent}%</div>
+			                            	<div id="female">{100-audience_male_percent}%</div>
 			                        	</label>
 			                        </div>
 
@@ -222,15 +284,15 @@ class SellerDashboard extends React.Component{
 												inputAttributes={{ maxLength: 15}}
 												allowNew={true}
 												addOnBlur={true}
-											    tags={this.state.locations}
-											    suggestions={this.state.suggestions}
+											    tags={audience_locations}
+											    suggestions={suggestions}
 											    handleDelete={this.handleLocationDelete.bind(this)}
 											    handleAddition={this.handleLocationAddition.bind(this)}
 											    classNames = {{root:"inner-tag react-tags"}} />
 						                </div>
 									</div>
 
-			                        <div className="sub-control"><b>Interests</b></div>
+			                        <div className="sub-control"><b>audience_interests</b></div>
 									<div className="col-sm-12 no-padding-left">
 										<div className="input-icon">
 											<img src={require("../res/img/pencil.png")}/>
@@ -239,8 +301,8 @@ class SellerDashboard extends React.Component{
 												inputAttributes={{ maxLength: 15}}
 												allowNew={true}
 												addOnBlur={true}
-											    tags={this.state.interests}
-											    suggestions={this.state.suggestions}
+											    tags={audience_interests}
+											    suggestions={suggestions}
 											    handleDelete={this.handleInterestsDelete.bind(this)}
 											    handleAddition={this.handleInterestsAddition.bind(this)}
 											    classNames = {{root:"outer-tag react-tags"}} />
@@ -393,8 +455,8 @@ class SellerDashboard extends React.Component{
 									<div className="material-select media-type">
 										<FormControl>
 										  <Select
-										    value={this.state.channel}
-										    onChange={this.onChangeChannel}
+										    value={mediaType}
+										    onChange={this.onChangeMediatype}
 										    inputProps={{
 										      name: 'material',
 										      id: 'material-simple',
@@ -475,8 +537,8 @@ class SellerDashboard extends React.Component{
 									<div className="material-select media-type">
 										<FormControl>
 										  <Select
-										    value={this.state.channel}
-										    onChange={this.onChangeChannel}
+										    value={mediaType}
+										    onChange={this.onChangeMediatype}
 										    inputProps={{
 										      name: 'material',
 										      id: 'material-simple',
@@ -557,8 +619,8 @@ class SellerDashboard extends React.Component{
 									<div className="material-select media-type">
 										<FormControl>
 										  <Select
-										    value={this.state.channel}
-										    onChange={this.onChangeChannel}
+										    value={mediaType}
+										    onChange={this.onChangeMediatype}
 										    inputProps={{
 										      name: 'material',
 										      id: 'material-simple',
@@ -615,7 +677,7 @@ class SellerDashboard extends React.Component{
 						</div>
 						<div className="action_group">
 							<button className="btn btn-blue left"><img src={require("../res/img/eye_white.png")}/> Preview</button>
-							<Link to="/seller_page" className="btn btn-yellow right"><img src={require("../res/img/check_black.png")}/> Save</Link>
+							<button className="btn btn-yellow right" onClick={this.handleSubmit.bind(this)}><img src={require("../res/img/check_black.png")}/> Save</button>
 						</div>
 					</div>
 				</div>
@@ -624,23 +686,19 @@ class SellerDashboard extends React.Component{
     );
   }
 }
-
 const mapStateToProps = state => {
-  return {
+  	const { user } = state.authentication;
 
-  };
+	return {
+		user
+	};
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-
-    },
-    dispatch
-  );
+  return {dispatch};
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SellerDashboard);
+)(withRouter(SellerDashboard));
