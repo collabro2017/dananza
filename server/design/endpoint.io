@@ -54,13 +54,14 @@
   Desc: Update buyer profile
 /api/buyer/social
   --- Not designed
-~~~~/api/buyer/saved
+
+* /api/buyer/saved
   Method: GET
   Desc: Get saved adza list
-~~~~/api/buyer/saved/:id
+* /api/buyer/saved/:id
   Method: DELETE
   Desc: remove save adza from list
-~~~~/api/buyer/saved
+* /api/buyer/saved
   Method: POST
   params: adza_id, listing_id
   Desc: save adza to list
@@ -153,17 +154,12 @@
   Method: DELETE
   Desc: Delete message
 
-/api/cart
+* /api/cart
   Method: GET
   Desc: get listings from cart
-/api/cart/:id
-  Method: PUT
-  Params: listing_id
-  Desc: Add new cart action
-/api/cart/:id
-  Method: DELETE
-  Params: lising_id
-  Desc: remove listing from cart
+* /api/cart
+  Method: Delete
+  Desc: Clear Current Cart
 
 /api/order
   Method: GET
@@ -183,8 +179,8 @@
 
 /api/search
   Method: GET
-  Params: queryStr, media_types, interests, locations, min_reach, gender, age_min, age_max, price_range, review_point, lunch_date
-  Desc: Searh
+  Params: queryStr, media_types, interests, locations, min_reach, gender, age_min, age_max, price_range, review_point, launch_date
+  Desc: Get Adza List By Search Query
 /api/stats
   Method: GET
   Desc: get stats infos for Adza

@@ -13,17 +13,18 @@ const msg = {
     'createdSuccess':"Created Successfully",
     'updatedSuccess':"Updated Successfully",
     'deletedSuccess':"Deleted Successfully",
+    'noOwner': "Forbidden. You're not owner",
+    'noCampaign': "You haven't any Campaign yet.",
+    'noCart': "You haven't cart yet.",
 
     // Auth
     'requireLoginInput': "Please pass email and password.",
     'authUserNotFound': "Opps. Authentication failed. User not found.", 
     'authWrongPassword': "Authentication failed. Wrong password.",
     'authEmailExists':"Email already exists.",
-
     'haveProfile': "Already you have profile.",
-    'noOwner': "Forbidden. You're not owner",
-
-    'campaignExist': "Already you have opened Campaign",
+    'campaignExist': "Already you have opened Campaign.",
+    'alreadyInList': "Already you have it in the list.",
 };
 
 module.exports = msg;
