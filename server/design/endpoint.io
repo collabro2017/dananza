@@ -179,7 +179,7 @@
 
 /api/search
   Method: GET
-  Params: queryStr, media_types, interests, locations, min_reach, gender, age_min, age_max, price_range, review_point, lunch_date
+  Params: queryStr, media_types, interests, locations, min_reach, gender, age_min, age_max, price_range, review_point, launch_date
   Desc: Get Adza List By Search Query
 /api/stats
   Method: GET
