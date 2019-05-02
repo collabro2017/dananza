@@ -24,6 +24,8 @@ const msg = {
     'noOwner': "Forbidden. You're not owner",
 
     'campaignExist': "Already you have opened Campaign",
+    'noCampaign': "You haven't any Campaign yet.",
+    'noCart': "You haven't cart yet.",
 };
 
 module.exports = msg;
