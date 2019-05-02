@@ -8,6 +8,9 @@ import ReactTags from "react-tag-autocomplete";
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import {Collapse} from 'react-bootstrap'
+import $ from "jquery";
+
 import { sellerActions } from '../store/actions';
 
 import SellerSidebar from "../components/Sidebar/SellerSidebar";
@@ -30,7 +33,7 @@ class SellerDashboard extends React.Component{
 			{ name: "Lemonfefes" },
 			{ name: "Apricots"}
 		],
-		userprofile: {
+		sellerprofile: {
 			'profile_photo': 'user1',
 			'profile_description': "",
 			'profile_location': "",
@@ -41,6 +44,8 @@ class SellerDashboard extends React.Component{
 			'audience_locations' : [],
 			'audience_interests' : [],	
 		},
+		channels: [],
+		adlist: [],
 		'mediaType' : 'Instagram',
 		'channel' : 'Instagram'
   }
@@ -51,13 +56,46 @@ class SellerDashboard extends React.Component{
   }
 
   componentDidMount(){
-    document.title = "Seller Dashboard"
+    document.title = "Seller Dashboard";
   }
+
+  componentDidUpdate(){
+	$(".channel-show").click(function () {
+  		$(this).next().slideToggle();
+  	});
+	$(".edit-adlist").click(function () {
+  		var id = $(this).attr('data-toggle');
+  		debugger;
+  		$("#"+id).slideToggle();
+  	});
+  	
+  }
+
+  componentWillMount(){
+  	const { dispatch } = this.props;
+  	dispatch(sellerActions.getProfile());
+  	dispatch(sellerActions.getChannel());
+  	dispatch(sellerActions.getAdlist());
+  }
+
+  componentWillReceiveProps(props){
+  	if (props.sellerprofile != undefined) {
+  		this.setState({sellerprofile:props.sellerprofile});
+  	}
+  	if (props.channel != undefined) {
+  		this.setState({channels:props.channel});
+  	}
+  	if (props.adlist != undefined) {
+  		console.log(props.adlist);
+  		this.setState({adlist:props.adlist});
+  	}
+  }
+
   onAgeSlide = (render, handle, value, un, percent) => {
-  	const {userprofile} = this.state;
+  	const {sellerprofile} = this.state;
     this.setState({
-    	userprofile:{
-			...userprofile,
+    	sellerprofile:{
+			...sellerprofile,
 			'audience_age_min':value[0].toFixed(0), 
 			'audience_age_max':value[1].toFixed(0)
 		}
@@ -66,62 +104,61 @@ class SellerDashboard extends React.Component{
   
   onGenderSlide = (render, handle, value, un, percent) => {
   	const audience_male_percent = value[0].toFixed(0);
-  	const {userprofile} = this.state;
+  	const {sellerprofile} = this.state;
     this.setState({
-    	userprofile:{
-    		...userprofile,
+    	sellerprofile:{
+    		...sellerprofile,
     		audience_male_percent
     	}
     });
   }
 
-  onChangeMediatype = event => {
-  	const {userprofile} = this.state;
-    this.setState({
-   		mediaType: event.target.value
-    });
+  onChangeAdlist = (name,index,event) => {
+	var adlist = this.state.adlist.slice(0);
+	adlist[index][name] = event.target.value;
+    this.setState({adlist});
   };
 
   onChangeChannel = event => {
-	const {userprofile} = this.state;
+	const {sellerprofile} = this.state;
     this.setState({
 		channel: event.target.value
     });
   };
 
-  onChangeEdit = (name,event) => {
-	const {userprofile} = this.state;
+  onChangeProfile = (name,event) => {
+	const {sellerprofile} = this.state;
     this.setState({
-    	userprofile:{
-    		...userprofile,
+    	sellerprofile:{
+    		...sellerprofile,
     		[name]: event.target.value
     	}
     });
   }
 
   handleLocationDelete (i) {
-    const {userprofile} = this.state;
-    const audience_locations = userprofile.audience_locations.slice(0);
+    const {sellerprofile} = this.state;
+    const audience_locations = sellerprofile.audience_locations.slice(0);
     audience_locations.splice(i, 1)
     this.setState({
-    	userprofile:{
-    		...userprofile,
+    	sellerprofile:{
+    		...sellerprofile,
     		audience_locations
     	}
     });
   }
  
   handleLocationAddition (location) {
-    const {userprofile} = this.state;
-    const audience_locations = [].concat(userprofile.audience_locations, location)
+    const {sellerprofile} = this.state;
+    const audience_locations = [].concat(sellerprofile.audience_locations, location)
 
     if( audience_locations.length > 5 )
     	return;
     
-    if( !userprofile.audience_locations.some(item => location.name === item.name )){
+    if( !sellerprofile.audience_locations.some(item => location.name === item.name )){
     	this.setState({
-	    	userprofile:{
-	    		...userprofile,
+	    	sellerprofile:{
+	    		...sellerprofile,
 	    		audience_locations
 	    	}
 	    });
@@ -129,25 +166,25 @@ class SellerDashboard extends React.Component{
   }
 
   handleInterestsDelete (i) {
-    const {userprofile} = this.state;
-    const audience_interests = userprofile.audience_interests.slice(0)
+    const {sellerprofile} = this.state;
+    const audience_interests = sellerprofile.audience_interests.slice(0)
     audience_interests.splice(i, 1)
     this.setState({
-    	userprofile:{
-    		...userprofile,
+    	sellerprofile:{
+    		...sellerprofile,
     		audience_interests
     	}
     });
   }
  
   handleInterestsAddition (interest) {
-    const {userprofile} = this.state;
-    const audience_interests = [].concat(userprofile.audience_interests, interest)
+    const {sellerprofile} = this.state;
+    const audience_interests = [].concat(sellerprofile.audience_interests, interest)
     
-    if( !userprofile.audience_interests.some(item => interest.name === item.name )){
+    if( !sellerprofile.audience_interests.some(item => interest.name === item.name )){
     	this.setState({
-	    	userprofile:{
-	    		...userprofile,
+	    	sellerprofile:{
+	    		...sellerprofile,
 	    		audience_interests
 	    	}
 	    });
@@ -155,16 +192,27 @@ class SellerDashboard extends React.Component{
   }
 
   handleSubmit () {
-  	const { userprofile } = this.state;
+  	const { sellerprofile } = this.state;
   	const { dispatch } = this.props;
-  	dispatch(sellerActions.setProfile(userprofile));
+  	dispatch(sellerActions.setProfile(sellerprofile));
+  }
+
+  showFollows(number){
+  	if (number >= 1000) {
+  		var str = "" + Math.floor(number/1000) + 'k';
+  		if (number % 1000) {
+  			str+='+';
+  		}
+  		return str;
+  	}
+  	return number;
   }
 
   render(){
   	const { audience_age_min, audience_age_max, audience_male_percent, 
   			audience_locations, audience_interests,
-  			profile_photo } = this.state.userprofile;
-  	const { suggestions,mediaType, channel } = this.state;
+  			profile_photo, profile_description, profile_location } = this.state.sellerprofile;
+  	const { suggestions,mediaType, channel, channels, adlist } = this.state;
 
     return (
     	<div className="dashboard_seller">
@@ -175,6 +223,7 @@ class SellerDashboard extends React.Component{
 						<label className="title">Edit Your Profile Page</label>
 						
 						<label className="subtitle">Seller’s Description</label>
+						<label className="warning"> {this.props.sellerProfileMSG} </label>
 						<div className="control-list">
 							<div className="formcontrol row">
 								<label className="col-sm-2 controllabel"> Profile photo</label>
@@ -194,7 +243,7 @@ class SellerDashboard extends React.Component{
 									Describe Your Company (140 characters)
 								</label>
 								<div className="col-sm-10 controlcontent">
-									<textarea onChange={(event)=>{this.onChangeEdit("profile_description",event)}}
+									<textarea value={profile_description} onChange={(event)=>{this.onChangeProfile("profile_description",event)}}
 										className="form-control btn-radius" placeholder="Official Account of Target Tree Miami"></textarea>
 								</div>
 							</div>
@@ -205,7 +254,7 @@ class SellerDashboard extends React.Component{
 								<div className="col-sm-10 controlcontent">
 									<div className="input-icon">
 					                    <img src={require('../res/img/minami.png')}/>
-					                    <input onChange={(event)=>{this.onChangeEdit("profile_location",event)}}
+					                    <input value={profile_location} onChange={(event)=>{this.onChangeProfile("profile_location",event)}}
 					                    	type="text" className="form-control btn-radius"/>
 					                </div>
 								</div>
@@ -315,365 +364,146 @@ class SellerDashboard extends React.Component{
 							Edit Channels
 							<a className="add-channel">+ Add Another Channel</a>
 						</label>
-						<div className="channel-list" id="channelList">
-							<div className="channel">
-								<div className="channel-show" data-toggle="collapse" data-parent="#channelList" href="#collapse_channel_1" aria-expanded="false">
-									<img className="icon" src={require("../res/img/instagram_sq.png")}/>
-									<b>@targettree</b>
-									<i className="fa fa-user"></i>
-									<b>60k+</b>
-									<div className="toolbox">
-										<a>
-											<img src={require("../res/img/delete.png")}/>
-										</a>
-									</div>
-								</div>
-								<div id="collapse_channel_1" className="dropdown-edit collapse" aria-expanded="false">
-									<label>Media Type</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="Instagram" readOnly/>
-								    	<img className="control-icon" src={require('../res/img/instagram_sq.png')} />
-									</div>
-									<label>User Name</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="@targettree" readOnly/>
-										<i className="fa fa-user control-icon"></i>
-									</div>
-									<label>Link to Channel</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="https://instagram.com/targettree" readOnly/>
-										<img className="control-icon" src={require("../res/img/link.png")}/>
-									</div>
-									<label># of Followers</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="62,350" readOnly/>
-										<img className="control-icon" src={require("../res/img/followers.png")}/>
-									</div>
-								</div>
-							</div>
-							<div className="channel">
-								<div className="channel-show" data-toggle="collapse" data-parent="#channelList" href="#collapse_channel_2" aria-expanded="false">
-									<img className="icon" src={require("../res/img/facebook_sq.png")}/>
-									<b>Targettree</b>
-									<i className="fa fa-user"></i>
-									<b>60k+</b>
-									<div className="toolbox">
-										<a>
-											<img src={require("../res/img/delete.png")}/>
-										</a>
-									</div>
-								</div>
-								<div id="collapse_channel_2" className="dropdown-edit collapse" aria-expanded="false">
-									<label>Media Type</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="Facebook" readOnly/>
-								    	<img className="control-icon" src={require('../res/img/facebook_sq.png')} />
-									</div>
-									<label>User Name</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="Targettree" readOnly/>
-										<i className="fa fa-user control-icon"></i>
-									</div>
-									<label>Link to Channel</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="https://facebook.com/targettree" readOnly/>
-										<img className="control-icon" src={require("../res/img/link.png")}/>
-									</div>
-									<label># of Followers</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="66,350" readOnly/>
-										<img className="control-icon" src={require("../res/img/followers.png")}/>
-									</div>
-								</div>
-							</div>
-
-							<div className="channel">
-								<div className="channel-show" data-toggle="collapse" data-parent="#channelList" href="#collapse_channel_3" aria-expanded="false">
-									<img className="icon" src={require("../res/img/youtube_sq.png")}/>
-									<b>targettree</b>
-									<i className="fa fa-user"></i>
-									<b>60k+</b>
-									<div className="toolbox">
-										<a>
-											<img src={require("../res/img/delete.png")}/>
-										</a>
-									</div>
-								</div>
-								<div id="collapse_channel_3" className="dropdown-edit collapse" aria-expanded="false">
-									<label>Media Type</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="Youtube" readOnly/>
-								    	<img className="control-icon" src={require('../res/img/youtube_sq.png')} />
-									</div>
-									<label>User Name</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="targettree" readOnly/>
-										<i className="fa fa-user control-icon"></i>
-									</div>
-									<label>Link to Channel</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="https://youtube.com/targettree" readOnly/>
-										<img className="control-icon" src={require("../res/img/link.png")}/>
-									</div>
-									<label># of Followers</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="68,350" readOnly/>
-										<img className="control-icon" src={require("../res/img/followers.png")}/>
-									</div>
-								</div>
-							</div>
+						<div className="channel-list">
+							{
+								channels.map(
+									(item,index)=>(
+										<div className="channel">
+											<div className="channel-show">
+												<img className="icon" src={require("../res/img/"+item.media_type+"_sq.png")}/>
+												<b>{item.username}</b>
+												<i className="fa fa-user"></i>
+												<b>{this.showFollows(item.follows)}</b>
+												<div className="toolbox">
+													<a>
+														<img src={require("../res/img/delete.png")}/>
+													</a>
+												</div>
+											</div>
+											<div className="dropdown-edit collapse">
+												<label>Media Type</label>
+												<div>
+													<input type="text" className="form-control radius-formcontrol" value={item.media_type} readOnly/>
+											    	<img className="control-icon" src={require("../res/img/"+item.media_type+"_sq.png")} />
+												</div>
+												<label>User Name</label>
+												<div>
+													<input type="text" className="form-control radius-formcontrol" value={item.username} readOnly/>
+													<i className="fa fa-user control-icon"></i>
+												</div>
+												<label>Link to Channel</label>
+												<div>
+													<input type="text" className="form-control radius-formcontrol" value={item.linked_channel} readOnly/>
+													<img className="control-icon" src={require("../res/img/link.png")}/>
+												</div>
+												<label># of Followers</label>
+												<div>
+													<input type="text" className="form-control radius-formcontrol" value={item.follows} readOnly/>
+													<img className="control-icon" src={require("../res/img/followers.png")}/>
+												</div>
+											</div>
+										</div>
+									)
+								)
+							}
 						</div>
 						<label className="subtitle">
 							Ad Listings
 							<a className="add-channel">+ Add Another Listing</a>
 						</label>
-						<div className="ad_listings" id="ADList">
-							<div className="ad-list">
-								<div className="ad-list-show">
-									<div className="ad_list_head">
-										<img className="icon" src={require("../res/img/instagram_sq.png")}/>
-										<div className="ad_title">Instagram Story - Product View</div>
-										<div className="ad_value">$100</div>
-										<div className="ad_toolbox">
-											<a data-toggle="collapse" data-parent="#ADList" href="#collapse_adlist_1" aria-expanded="false">
-												<img src={require("../res/img/pencil.png")}/>
-											</a>
-											<a>
-												<img src={require("../res/img/delete.png")}/>
-											</a>
+						<div className="ad_listings">
+							{
+								adlist.map(
+									(item,index)=>(
+										<div className="ad-list">
+											<div className="ad-list-show">
+												<div className="ad_list_head">
+													<img className="icon" src={require("../res/img/instagram_sq.png")}/>
+													<div className="ad_title">{item.title}</div>
+													<div className="ad_value">${item.price}</div>
+													<div className="ad_toolbox">
+														<a data-toggle={"collapse_adlist_"+index} className="edit-adlist">
+															<img src={require("../res/img/pencil.png")}/>
+														</a>
+														<a>
+															<img src={require("../res/img/delete.png")}/>
+														</a>
+													</div>
+												</div>
+												<div className="ad_list_content">
+													<img src={require("../res/img/ad_list1.png")}/>
+													<div className="">
+														{item.description}
+													</div>
+												</div>
+											</div>
+											<div className="dropdown-edit packed collapse" data-toggle={"collapse_adlist_"+index}>
+												<label>Choose Channel</label>
+												<div className="material-select media-type">
+													<FormControl>
+													  <Select
+													    value={item.media_type}
+													    onChange={(event)=>{this.onChangeAdlist("media_type",index,event)}}
+													    inputProps={{
+													      name: 'material',
+													      id: 'material-simple',
+													    }}
+													  >
+													    <MenuItem value={'Instagram'}>
+													    	<img src={require('../res/img/instagram_sq.png')} />
+													    	Instagram
+													    </MenuItem>
+													    <MenuItem value={'Facebook'}>
+													   		<img src={require('../res/img/facebook_sq.png')} />
+													    	Facebook
+													    </MenuItem>
+													    <MenuItem value={'Twitter'}>
+													    	<img src={require('../res/img/twitter_sq.png')} />
+													    	Twitter
+													    </MenuItem>
+													  </Select>
+													</FormControl>
+												</div>
+												<label>Listing Title</label>
+												<div>
+													<input type="text" className="form-control radius-formcontrol"
+														value={item.title} onChange={(event)=>{this.onChangeAdlist("title",index,event)}}/>
+													<img className="control-icon" src={require("../res/img/pencil.png")}/>
+												</div>
+												<label>Price</label>
+												<div>
+													<input type="text" className="form-control radius-formcontrol"
+														value={item.price} onChange={(event)=>{this.onChangeAdlist("price",index,event)}}/>
+													<img className="control-icon" src={require("../res/img/dollar.png")}/>
+												</div>
+												<label>Featured Photo ( 833 px X 1167 px )</label>
+												<div>
+													<input type="text" className="form-control radius-formcontrol"
+														value={item.title} onChange={(event)=>{this.onChangeAdlist("featured_photo",index,event)}}/>
+													<img className="control-icon" src={require("../res/img/followers.png")}/>
+													<a className="fa fa-remove close-but"></a>
+												</div>
+												<label>Details (300 characters)</label>
+												<div>
+													<textarea className="form-control radius-formcontrol detail-textarea" maxLength="300" 
+														value={item.title} onChange={(event)=>{this.onChangeAdlist("description",index,event)}}/>
+													<i className="fa fa-commenting-o control-icon"></i>
+												</div>
+												<div className="action">
+													<button className="btn btn-outline btn-radius btn-cancel">
+														<i className="fa fa-long-arrow-left"></i>
+														Cancel
+													</button>
+													<button className="btn btn-outline btn-radius btn-save">
+														<i className="fa fa-check"></i>
+														Save
+													</button>
+												</div>
+											</div>
 										</div>
-									</div>
-									<div className="ad_list_content">
-										<img src={require("../res/img/ad_list1.png")}/>
-										<div className="">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-										</div>
-									</div>
-								</div>
-								<div id="collapse_adlist_1" className="dropdown-edit packed collapse" aria-expanded="false">
-									<label>Choose Channel</label>
-									<div className="material-select media-type">
-										<FormControl>
-										  <Select
-										    value={mediaType}
-										    onChange={this.onChangeMediatype}
-										    inputProps={{
-										      name: 'material',
-										      id: 'material-simple',
-										    }}
-										  >
-										    <MenuItem value={'Instagram'}>
-										    	<img src={require('../res/img/instagram_sq.png')} />
-										    	Instagram
-										    </MenuItem>
-										    <MenuItem value={'Facebook'}>
-										   		<img src={require('../res/img/facebook_sq.png')} />
-										    	Facebook
-										    </MenuItem>
-										    <MenuItem value={'Twitter'}>
-										    	<img src={require('../res/img/twitter_sq.png')} />
-										    	Twitter
-										    </MenuItem>
-										  </Select>
-										</FormControl>
-									</div>
-									<label>Listing Title</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="Instagram Story - Product Review"/>
-										<img className="control-icon" src={require("../res/img/pencil.png")}/>
-									</div>
-									<label>Price</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="100"/>
-										<img className="control-icon" src={require("../res/img/dollar.png")}/>
-									</div>
-									<label>Featured Photo ( 833 px X 1167 px )</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="image-instagram.jpg"/>
-										<img className="control-icon" src={require("../res/img/followers.png")}/>
-										<a className="fa fa-remove close-but"></a>
-									</div>
-									<label>Details (300 characters)</label>
-									<div>
-										<textarea className="form-control radius-formcontrol detail-textarea" maxLength="300" defaultValue='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut'></textarea>
-										<i className="fa fa-commenting-o control-icon"></i>
-									</div>
-									<div className="action">
-										<button className="btn btn-outline btn-radius btn-cancel">
-											<i className="fa fa-long-arrow-left"></i>
-											Cancel
-										</button>
-										<button className="btn btn-outline btn-radius btn-save">
-											<i className="fa fa-check"></i>
-											Save
-										</button>
-									</div>
-								</div>
-							</div>
-							<div className="ad-list">
-								<div className="ad-list-show">
-									<div className="ad_list_head">
-										<img className="icon" src={require("../res/img/facebook_sq.png")}/>
-										<div className="ad_title">Facebook - Advertise Your Business/Product</div>
-										<div className="ad_value">$100</div>
-										<div className="ad_toolbox">
-											<a data-toggle="collapse" data-parent="#ADList" href="#collapse_adlist_2" aria-expanded="false">
-												<img src={require("../res/img/pencil.png") }/>
-											</a>
-											<a>
-												<img src={require("../res/img/delete.png")}/>
-											</a>
-										</div>
-									</div>
-									<div className="ad_list_content">
-										<img src={require("../res/img/ad_list2.png")}/>
-										<div className="">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-										</div>
-									</div>
-								</div>
-								<div id="collapse_adlist_2" className="dropdown-edit packed collapse" aria-expanded="false">
-									<label>Choose Channel</label>
-									<div className="material-select media-type">
-										<FormControl>
-										  <Select
-										    value={mediaType}
-										    onChange={this.onChangeMediatype}
-										    inputProps={{
-										      name: 'material',
-										      id: 'material-simple',
-										    }}
-										  >
-										    <MenuItem value={'Instagram'}>
-										    	<img src={require('../res/img/instagram_sq.png')} />
-										    	Instagram
-										    </MenuItem>
-										    <MenuItem value={'Facebook'}>
-										   		<img src={require('../res/img/facebook_sq.png')} />
-										    	Facebook
-										    </MenuItem>
-										    <MenuItem value={'Twitter'}>
-										    	<img src={require('../res/img/twitter_sq.png')} />
-										    	Twitter
-										    </MenuItem>
-										  </Select>
-										</FormControl>
-									</div>
-									<label>Listing Title</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="Instagram Story - Product Review"/>
-										<img className="control-icon" src={require("../res/img/pencil.png")}/>
-									</div>
-									<label>Price</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="100"/>
-										<img className="control-icon" src={require("../res/img/dollar.png")}/>
-									</div>
-									<label>Featured Photo ( 833 px X 1167 px )</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="image-instagram.jpg"/>
-										<img className="control-icon" src={require("../res/img/followers.png")}/>
-										<a className="fa fa-remove close-but"></a>
-									</div>
-									<label>Details (300 characters)</label>
-									<div>
-										<textarea className="form-control radius-formcontrol detail-textarea" maxLength="300" defaultValue='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut'></textarea>
-										<i className="fa fa-commenting-o control-icon"></i>
-									</div>
-									<div className="action">
-										<button className="btn btn-outline btn-radius btn-cancel">
-											<i className="fa fa-long-arrow-left"></i>
-											Cancel
-										</button>
-										<button className="btn btn-outline btn-radius btn-save">
-											<i className="fa fa-check"></i>
-											Save
-										</button>
-									</div>
-								</div>
-							</div>
-							<div className="ad-list">
-								<div className="ad-list-show">
-									<div className="ad_list_head">
-										<img className="icon" src={require("../res/img/youtube_sq.png")}/>
-										<div className="ad_title">Have Your Business/Product Featured</div>
-										<div className="ad_value">$100</div>
-										<div className="ad_toolbox">
-											<a data-toggle="collapse" data-parent="#ADList" href="#collapse_adlist_3" aria-expanded="false">
-												<img src={require("../res/img/pencil.png")}/>
-											</a>
-											<a>
-												<img src={require("../res/img/delete.png")}/>
-											</a>
-										</div>
-									</div>
-									<div className="ad_list_content">
-										<img src={require("../res/img/ad_list3.png")}/>
-										<div className="">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-										</div>
-									</div>
-								</div>
-								<div id="collapse_adlist_3" className="dropdown-edit packed collapse" aria-expanded="false">
-									<label>Choose Channel</label>
-									<div className="material-select media-type">
-										<FormControl>
-										  <Select
-										    value={mediaType}
-										    onChange={this.onChangeMediatype}
-										    inputProps={{
-										      name: 'material',
-										      id: 'material-simple',
-										    }}
-										  >
-										    <MenuItem value={'Instagram'}>
-										    	<img src={require('../res/img/instagram_sq.png')} />
-										    	Instagram
-										    </MenuItem>
-										    <MenuItem value={'Facebook'}>
-										   		<img src={require('../res/img/facebook_sq.png')} />
-										    	Facebook
-										    </MenuItem>
-										    <MenuItem value={'Twitter'}>
-										    	<img src={require('../res/img/twitter_sq.png')} />
-										    	Twitter
-										    </MenuItem>
-										  </Select>
-										</FormControl>
-									</div>
-									<label>Listing Title</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="Instagram Story - Product Review"/>
-										<img className="control-icon" src={require("../res/img/pencil.png")}/>
-									</div>
-									<label>Price</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="100"/>
-										<img className="control-icon" src={require("../res/img/dollar.png")}/>
-									</div>
-									<label>Featured Photo ( 833 px X 1167 px )</label>
-									<div>
-										<input type="text" className="form-control radius-formcontrol" value="image-instagram.jpg"/>
-										<img className="control-icon" src={require("../res/img/followers.png")}/>
-										<a className="fa fa-remove close-but"></a>
-									</div>
-									<label>Details (300 characters)</label>
-									<div>
-										<textarea className="form-control radius-formcontrol detail-textarea" maxLength="300" defaultValue='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut'></textarea>
-										<i className="fa fa-commenting-o control-icon"></i>
-									</div>
-									<div className="action">
-										<button className="btn btn-outline btn-radius btn-cancel">
-											<i className="fa fa-long-arrow-left"></i>
-											Cancel
-										</button>
-										<button className="btn btn-outline btn-radius btn-save">
-											<i className="fa fa-check"></i>
-											Save
-										</button>
-									</div>
-								</div>
-							</div>
+									)
+								)
+							}
 						</div>
 						<div className="action_group">
 							<button className="btn btn-blue left"><img src={require("../res/img/eye_white.png")}/> Preview</button>
@@ -688,9 +518,14 @@ class SellerDashboard extends React.Component{
 }
 const mapStateToProps = state => {
   	const { user } = state.authentication;
+  	const { sellerProfileMSG, sellerprofile, channel, adlist } = state.seller;
 
 	return {
-		user
+		user,
+		sellerProfileMSG,
+		sellerprofile,
+		channel,
+		adlist
 	};
 };
 

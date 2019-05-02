@@ -8,6 +8,8 @@ import ReactTags from "react-tag-autocomplete";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
+import { buyerActions } from '../store/actions';
 
 import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
 import 'icheck/skins/all.css';
@@ -20,15 +22,15 @@ import "../res/css/BuyerProfile.css"
 
 class BuyerProfile extends React.Component{
 
-  state={'headerType': "buyer",
-          suggestions: [
-            { name: "Bananas" },
-            { name: "Mangos" },
-            { name: "Lemons" },
-            { name: "Lemonfffffas" },
-            { name: "Lemonfefes" },
-            { name: "Apricots"}
-          ],
+  state={
+          'headerType': "buyer",
+          username: '',
+          description: '',
+          job_type: '',
+          location: '',
+          linkedAccount: '',
+          websites: '',
+          workplace: '',
           accounts:[],
           accountlength:[],
           locations : [],
@@ -37,8 +39,32 @@ class BuyerProfile extends React.Component{
 
   constructor(props) {
     super(props);
-    props.changeHeaderType( this.state.headerType )
+    props.changeHeaderType( this.state.headerType );
+
+    this.props.dispatch(buyerActions.read());
+    this.handleJobType = this.handleJobType.bind(this);
   }
+
+  componentWillReceiveProps (nextprops) {
+
+    const { profile } = nextprops;
+
+    //set initial value
+    this.setState({
+      username: profile.username,
+      description: profile.profile_description,
+      job_type: profile.job_type,
+      location: profile.location,
+      linkedAccount: profile.linkedAccount,
+      websites: profile.websites,
+    });
+  }
+
+  handleJobType(e) {
+    console.log('job type = ', e.target.value);
+    this.setState({ job_type: e.target.value});
+  }
+  
   handleLocationDelete (i) {
     const locations = this.state.locations.slice(0)
     locations.splice(i, 1)
@@ -81,6 +107,7 @@ class BuyerProfile extends React.Component{
   }
 
   render(){
+    const { profile } = this.props;
     return (
       <div className="buyer_landing buyer_profile">
         <div className="page-container">
@@ -120,7 +147,12 @@ class BuyerProfile extends React.Component{
                         words
                       </label>
                       <div className="col-md-10 controlcontent">
-                        <textarea className="form-control btn-radius" placeholder="Hi there!" rows="5" style={{'height':'120px'}}></textarea>
+                        <textarea 
+                          className="form-control btn-radius" 
+                          placeholder="Hi there!" rows="5" style={{'height':'120px'}} 
+                          value={ this.state.description }
+                        >
+                        </textarea>
                       </div>
                     </div>
                     <div className="formcontrol row">
@@ -135,24 +167,32 @@ class BuyerProfile extends React.Component{
                                   radioClass="iradio_minimal-blue"
                                   increaseArea="20%"
                                   label="Business Owner"
+                                  checked={ this.state.job_type == "business_owner" }
+                                  onClick={ this.handleJobType }
                                 />
                                 <Radio
                                   value="Freelancer"
                                   radioClass="iradio_minimal-blue"
                                   increaseArea="20%"
                                   label="Freelancer"
+                                  checked={ this.state.job_type == "freelancer" }
+                                  onClick={ this.handleJobType }
                                 />
                                 <Radio
                                   value="Employee"
                                   radioClass="iradio_minimal-blue"
                                   increaseArea="20%"
                                   label="Employee"
+                                  checked={ this.state.job_type == "employee" }
+                                  onClick={ this.handleJobType }
                                 />
                                 <Radio
                                   value="Agency"
                                   radioClass="iradio_minimal-blue"
                                   increaseArea="20%"
                                   label="Agency"
+                                  checked={ this.state.job_type == "agency" }
+                                  onClick={ this.handleJobType }
                                 />
                             </RadioGroup>
                         </div>
@@ -213,7 +253,10 @@ class BuyerProfile extends React.Component{
                         <div className="col-md-10 controlcontent">
                           <div className="input-icon">
                             <img src={require("../res/img/username.png")} className="placeholder-img"/>
-                            <input type="text" className="form-control btn-radius" placeholder="Username"/>
+                            <input type="text" className="form-control btn-radius" 
+                                   placeholder="Username"
+                                   value={ this.state.username }
+                            />
                           </div>
                         </div>
                       </div>
@@ -317,21 +360,19 @@ class BuyerProfile extends React.Component{
 }
 
 const mapStateToProps = state => {
+  const { profile } = state.buyerProfile
   return {
-
+    profile
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-
-    },
+  return {
     dispatch
-  );
+  }
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BuyerProfile);
+)(withRouter(BuyerProfile));

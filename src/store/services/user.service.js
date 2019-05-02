@@ -8,6 +8,7 @@ export const userService = {
     getAll,
     getById,
     update,
+    handleResponse,
     delete: _delete
 };
 

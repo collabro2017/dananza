@@ -5,28 +5,23 @@ export function buyerProfile(state={}, action)
 	switch(action.type)
 	{
 		case buyerConstants.CREAT: 
-			return 
-			{
-
+			return 	{
+				create: true,
 			};
 		case buyerConstants.READ:
 			return	{
-
-				profile: action.profile
+				profile: action.buyer_profile
 			};
 		case buyerConstants.UPDATE:
-			return
-			{
+			return 	{
 
 			};
 		case buyerConstants.DELETE:
-			return
-			{
+			return 	{
 
 			};
 		case buyerConstants.ERROR:
-			return
-			{
+			return 	{
 
 			};
 		default:

@@ -22,8 +22,6 @@ class BuyerLanding extends React.Component{
   constructor(props) {
     super(props);
     props.changeHeaderType( this.state.headerType );
-
-    this.props.dispatch(buyerActions.read());
   }
 
   componentDidMount(){

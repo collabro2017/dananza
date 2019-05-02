@@ -8,9 +8,18 @@ export const buyerActions = {
     delete: _delete
 };
 
-function create ()
+function create ( _newBuyer )
 {
+    return dispatch => {
+        buyerService.create( _newBuyer )
+            .then(
+                 msg => dispatch(success(msg)),
+                 error => dispatch(fail(error))
+            );
+    };
 
+    function success( msg ) { return { type: buyerConstants.CREATE, msg }}
+    function fail ( error ) { return { type: buyerConstants.ERROR, error}}
 }
 
 function read()
@@ -19,12 +28,12 @@ function read()
 
         buyerService.read()
             .then(
-                profile => dispatch(success(profile)),
+                buyer_profile => dispatch(success(buyer_profile)),
                 error => dispatch(failure(error))
             );
     };
 
-    function success(profile) { return { type: buyerConstants.READ, profile } }
+    function success(buyer_profile) { return { type: buyerConstants.READ, buyer_profile } }
     function failure(error) { return { type: buyerConstants.ERROR, error } }
 
 }

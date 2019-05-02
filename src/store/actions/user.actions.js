@@ -1,6 +1,6 @@
 import { userConstants } from '../config';
 import { userService } from '../services';
-import { alertActions } from './';
+import { alertActions, buyerActions } from './';
 //import { history } from '../helpers'
 
 export const userActions = {
@@ -19,7 +19,6 @@ function login(email, password) {
             .then(
                 user => { 
                     dispatch(success(user));
-                    // history.push('/buyer_landing');
                 },
                 error => {
                     dispatch(failure(error));
@@ -46,7 +45,10 @@ function register(user) {
             .then(
                 user => { 
                     dispatch(success());
-                    // history.push('/');
+                    
+                    //creat new buyer profile
+                    // dispatch(buyerActions.create(user));
+
                     dispatch(alertActions.success('Registration successful'));
                 },
                 error => {

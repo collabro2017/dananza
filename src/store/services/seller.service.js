@@ -3,7 +3,10 @@ import { userInfo } from '../helpers';
 import { apiConfig } from '../config';
 
 export const sellerService = {
-    setProfile
+    setProfile,
+    getProfile,
+    getChannel,
+    getAdlist
 };
 
 const apiRoot = apiConfig.apiRoot;
@@ -11,8 +14,7 @@ const apiRoot = apiConfig.apiRoot;
 function setProfile(sellerprofile) {
     const requestOptions = {
         method: 'POST',
-        headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify({id: userInfo().id})
+        headers: { ...authHeader() }
     };
 
     return fetch( apiRoot + `/adza`, requestOptions)
@@ -21,12 +23,42 @@ function setProfile(sellerprofile) {
             const updateOptions = {
                 method: 'PUT',
                 headers: { ...authHeader(), 'Content-Type': 'application/json' },
-                body: JSON.stringify({sellerprofile,id: userInfo().id})
+                body: JSON.stringify({sellerprofile})
             };
-            return fetch( apiRoot + `/adza`, requestOptions)
+            return fetch( apiRoot + `/adza`, updateOptions)
                 .then(handleResponse)
                 .then(seller=>{});
         });
+}
+
+function getProfile(sellerprofile) {
+    const requestOptions = {
+        method: 'GET',
+        headers: { ...authHeader() }
+    };
+
+    return fetch( apiRoot + `/adza`, requestOptions)
+        .then(handleResponse);
+}
+
+function getChannel() {
+    const requestOptions = {
+        method: 'GET',
+        headers: { ...authHeader() }
+    };
+
+    return fetch( apiRoot + `/channel`, requestOptions)
+        .then(handleResponse);
+}
+
+function getAdlist() {
+    const requestOptions = {
+        method: 'GET',
+        headers: { ...authHeader() }
+    };
+
+    return fetch( apiRoot + `/listing`, requestOptions)
+        .then(handleResponse);
 }
 
 function logout() {
