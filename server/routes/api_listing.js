@@ -13,8 +13,26 @@ const Channel = require('../models').Channel;
 const Listing = require('../models').Listing;
 
 // TODO: think this APi is required
-router.get('/', passport.authenticate('jwt', {session: false}), function(req, res) {
-  	res.status(201).send({success: true, message: 'Router exists.'});
+router.get('/', passport.authenticate('jwt', {session: false}), async function(req, res) {
+	var auth_user = req.user;
+	var adza = await Adza_Profile.getAdzaFromUserID( auth_user.id, function(err, profile ){
+		if( !err )
+			return profile;
+		else
+			return res.status(400).send( {success: false, message: err });
+	} );
+
+	Listing
+		.findAll({ where: {adza_id: adza.id} } )
+		.then(function( Listing ){
+			if( Listing.length )
+			{
+				return res.status(201).send({success: true, adlist:Listing});
+			}
+			else
+				return res.status(201).send({success: true, message: msg.noResult });
+		})
+		.catch((error) => res.status(500).send({success: false, message: error }))
 });
 
 // get listing info
