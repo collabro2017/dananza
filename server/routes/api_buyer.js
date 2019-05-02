@@ -89,8 +89,33 @@ router.get('/saved', passport.authenticate('jwt', {session: false}), function(re
 });
 
 // save new adza to saved_adza list
-router.post('/saved', passport.authenticate('jwt', {session: false}), function(req, res) {
-  	res.status(201).send({success: true, message: ' exists.'});
+router.post('/saved', passport.authenticate('jwt', {session: false}), async function(req, res) {
+	var auth_user = req.user;
+	var user_id = auth_user.id;
+	var adza_id = req.body.adza_id;
+
+	var buyer = await Buyer_Profile.getBuyerFromUserID( auth_user.id, function(err, profile ){
+		if( !err )
+			return profile;
+		else
+			return res.status(400).send( {success: false, message: err });
+	} );
+
+	Saved_Adza
+		.findOrCreate({
+			where: {buyer_id: buyer.id, adza_id: adza_id}, 
+			defaults: {
+				buyer_id: buyer.id,
+				adza_id: adza_id,
+				save_time: new Date()
+		}})
+		.spread( function(saved_adza, created){
+			if( created )
+				res.status(201).send({success: true, message: msg.addedSuccess})
+			else
+				res.status(400).send({success: false, message: msg.alreadyInList})
+		})
+		.catch((error) => res.status(400).send({success: false, message: error }));
 });
 
 // remove adza from saved list
