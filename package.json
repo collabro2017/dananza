@@ -6,6 +6,7 @@
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
     "audit": "0.0.6",
+    "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "fix": "0.0.6",
     "icheck": "^1.0.2",
@@ -14,6 +15,7 @@
     "peer": "^0.2.10",
     "query-string": "^6.4.2",
     "react": "16.8.6",
+    "react-avatar-edit": "^0.8.2",
     "react-bootstrap": "^1.0.0-beta.6",
     "react-bootstrap-select": "^0.14.0",
     "react-canvas-knob": "^0.5.0",
@@ -26,7 +28,7 @@
     "react-responsive-carousel": "^3.1.49",
     "react-router": "5.0.0",
     "react-router-dom": "5.0.0",
-    "react-scripts": "^2.1.8",
+    "react-scripts": "^3.0.0",
     "react-tag-autocomplete": "^5.10.0",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
@@ -35,8 +37,7 @@
     "redux": "4.0.1",
     "redux-form": "^8.1.0",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "2.3.0",
-    "axios": "^0.18.0"
+    "redux-thunk": "2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -20,6 +20,9 @@ import "../res/css/components/tag.css"
 // import "../res/css/Dananza_Search.css"
 import "../res/css/BuyerProfile.css"
 
+import Avatar from 'react-avatar-edit'
+import avatarDefault from '../res/img/userinfo_img.png';
+
 class BuyerProfile extends React.Component{
 
   state={
@@ -34,6 +37,8 @@ class BuyerProfile extends React.Component{
           accounts:[],
           accountlength:[],
           locations : [],
+          preview: avatarDefault,
+          avatar_src: null
         }
 
 
@@ -43,6 +48,12 @@ class BuyerProfile extends React.Component{
 
     this.props.dispatch(buyerActions.read());
     this.handleJobType = this.handleJobType.bind(this);
+
+    // Avatar
+    this.setState({ src: avatarDefault});
+    this.onCrop = this.onCrop.bind(this)
+    this.onClose = this.onClose.bind(this)
+    this.onBeforeFileLoad = this.onBeforeFileLoad.bind(this)
   }
 
   componentWillReceiveProps (nextprops) {
@@ -106,6 +117,22 @@ class BuyerProfile extends React.Component{
     this.setState({accounts});
   }
 
+  // Avatar
+  onClose() {
+    this.setState({preview: null})
+  }
+  
+  onCrop(preview) {
+    this.setState({preview})
+  }
+ 
+  onBeforeFileLoad(elem) {
+    if(elem.target.files[0].size > 71680){
+      alert("File is too big!");
+      elem.target.value = "";
+    };
+  }
+
   render(){
     const { profile } = this.props;
     return (
@@ -129,14 +156,25 @@ class BuyerProfile extends React.Component{
                     <div className="formcontrol row">
                       <label className="col-md-2 controllabel"> Profile photo</label>
                       <div className="col-md-10 controlcontent">
-                        <img src={require("../res/img/userinfo_img.png")} />
+                        {/*<img src={require("../res/img/userinfo_img.png")} />
                         <div className="col-md-offset-1 col-md-7">
                           <a className="btn dark btn-outline btn-radius">
                             <i className="fa fa-file-image-o"></i>
                             <b>Choose Photo</b>
                           </a>
-                          <div className="description">This photo is your identity in Dananza.</div>
+                          
+                        </div>*/}
+                        <div className="avatar_preview">
+                          <img src={this.state.preview} alt="Preview" />
                         </div>
+                        <Avatar
+                          width={390}
+                          height={295}
+                          onCrop={this.onCrop}
+                          onClose={this.onClose}
+                          onBeforeFileLoad={this.onBeforeFileLoad}
+                          src={this.state.avatar_src}
+                        />
                       </div>
                     </div>
                     <div className="formcontrol row">

@@ -81,4 +81,14 @@
     width:100%;
   }
 }
+
+.buyer_profile .controlcontent .avatar_preview{
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+    border: 1px solid #333;
+}
+.buyer_profile .controlcontent .avatar_preview img{
+  width: 100%;
+}
 /*# sourceMappingURL=../BuyerProfile.css.map */
