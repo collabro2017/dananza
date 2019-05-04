@@ -15,35 +15,39 @@ router.get('/', passport.authenticate('jwt', {session: false}), function(req, re
   var auth_user = req.user;
   var user_id = auth_user.id;
 
-  Buyer_Profile
-  	.findOne({ where: {user_id: user_id} })
-  	.then((buyer_profile) => res.status(200).send(buyer_profile))
-  	.catch((error) => res.status(400).send({success: false, message: error }));
+	Buyer_Profile
+	  	.findOne({ where: {user_id: user_id} })
+	  	.then((buyer_profile) => 
+	  	{
+	  		if(buyer_profile) res.status(200).send(buyer_profile);
+	  		else res.status(304).send({ success: false, message: msg.noResult});
+  		})
+	  	.catch((error) => res.status(400).send({success: false, message: error }));
 });
 
 // create buyer profile first time
-router.post('/', passport.authenticate('jwt', {session: false}), function(req, res) {
-  var auth_user = req.user;
-  var user_id = auth_user.id;
-
-  Buyer_Profile
-	.findOrCreate({
-		where: {user_id: user_id}, 
-		defaults: {
-			user_id: user_id,
-			location: req.body.location,
-			profession: req.body.profession,
-			profile_description: req.body.profile_description,
-			has_seller_acct: false,
-			signup_date: new Date()
-	}})
-	.then( function(buyer_profile, created){
-		if( created )
-			res.status(201).send(buyer_profile)
-		else
-			res.status(400).send({success: false, message: msg.haveBuyerProfile})
-	})
-	.catch((error) => res.status(400).send({success: false, message: error }));
+router.post('/', function(req, res) {
+	var user_id = req.body.id;
+  	Buyer_Profile
+		.findOrCreate({
+			where: { user_id: user_id }, 
+			defaults: {
+				user_id: user_id,
+				location: null,
+				profession: null,
+				profile_description: null,
+				has_seller_acct: false,
+				business_name: null,
+				job_type: null,
+				signup_date: new Date()
+		}})
+		.then((created) => {
+			if( created )
+				res.status(201).send({success: false, message: msg.haveProfile})
+			else
+				res.status(400).send({success: false, message: msg.haveProfile})
+		})
+		.catch((error) => res.status(400).send({success: false, message: error }));
 });
 
 // Update Buyer profile
@@ -57,7 +61,9 @@ router.put('/', passport.authenticate('jwt', {session: false}), function(req, re
 		profile.update({
 			location: req.body.location,
 			profession: req.body.profession,
-			profile_description: req.body.profile_description,
+			profile_description: req.body.description,
+			business_name: req.body.business_name,
+			job_type: req.body.job_type,
 			has_seller_acct: req.body.has_seller_acct
 		})
 		.then((profile)=>res.status(201).send({success: true, message: msg.updatedSuccess}))
