@@ -14,12 +14,12 @@ const apiRoot = apiConfig.apiRoot;
 
 function create ( _newBuyer )
 {
-
+    console.log('userid = ', _newBuyer);
     const requestOptions = 
     {
         method: 'POST',
-        headers: { ...authHeader(), 'ContentType': 'application/json'},
-        body: _newBuyer
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(_newBuyer)
     }
 
     return fetch( apiRoot + `/buyer`, requestOptions )
@@ -51,9 +51,20 @@ function read ()
         });
 }
 
-function update ()
+function update ( _newData )
 {
-	
+    console.log('update data = ', _newData);
+	const requestOptions = {
+        method: "PUT",
+        headers: { ...authHeader(), "Content-Type": "application/json" },
+        body: JSON.stringify( _newData )
+    }
+
+    return fetch( apiRoot + `/buyer`, requestOptions )
+        .then( userService.handleResponse )
+        .then( message =>{
+            return message
+        });
 }
 
 function _delete ()

@@ -45,53 +45,73 @@ class SellerDashboard extends React.Component{
 			'audience_interests' : [],	
 		},
 		channels: [],
+		new_channel:{},
 		adlist: [],
-		'mediaType' : 'Instagram',
-		'channel' : 'Instagram'
+		adlist_edit: [],
+		new_adlist:{},
+		flag: 0
   }
 
-  constructor(props) {
+  constructor(props)
+  {
     super(props);
     props.changeHeaderType( this.state.headerType )
   }
 
-  componentDidMount(){
+  componentDidMount()
+  {
     document.title = "Seller Dashboard";
   }
 
-  componentDidUpdate(){
-	$(".channel-show").click(function () {
-  		$(this).next().slideToggle();
-  	});
-	$(".edit-adlist").click(function () {
-  		var id = $(this).attr('data-toggle');
-  		debugger;
-  		$("#"+id).slideToggle();
-  	});
-  	
+  componentDidUpdate(prevProps,prevState)
+  {
+  	if(this.state.channels.length && this.state.flag==0)
+  	{
+  		this.state.flag ++;
+		$(".channel-show").click(function ()
+		{
+	  		$(this).next().slideToggle();
+	  	});
+	}
+	if(this.state.adlist.length && this.state.flag==1)
+	{
+		this.state.flag++;
+		$(".edit-adlist").click(function ()
+		{
+	  		var id = $(this).attr('data-toggle');
+	  		$("#"+id).slideToggle();
+	  	});
+	}
   }
 
-  componentWillMount(){
+  componentWillMount()
+  {
   	const { dispatch } = this.props;
   	dispatch(sellerActions.getProfile());
   	dispatch(sellerActions.getChannel());
   	dispatch(sellerActions.getAdlist());
   }
 
-  componentWillReceiveProps(props){
-  	if (props.sellerprofile != undefined) {
-  		this.setState({sellerprofile:props.sellerprofile});
+  componentWillReceiveProps(props)
+  {
+  	if (props.sellerprofile != undefined)
+  	{
+  		this.setState({sellerprofile:{...props.sellerprofile}});
   	}
-  	if (props.channel != undefined) {
-  		this.setState({channels:props.channel});
+  	if (props.channel != undefined)
+  	{
+  		this.setState({channels:(props.channel.map(item=>({...item})))});
   	}
-  	if (props.adlist != undefined) {
+  	if (props.adlist != undefined)
+  	{
   		console.log(props.adlist);
-  		this.setState({adlist:props.adlist});
+  		this.setState({adlist:(props.adlist.map(item=>({...item}))),
+  						adlist_edit:(props.adlist.map(item=>({...item}))) });
   	}
   }
 
-  onAgeSlide = (render, handle, value, un, percent) => {
+  onAgeSlide = (render, handle, value, un, percent) =>
+  {
   	const {sellerprofile} = this.state;
     this.setState({
     	sellerprofile:{
@@ -102,7 +122,8 @@ class SellerDashboard extends React.Component{
 	});
   }
   
-  onGenderSlide = (render, handle, value, un, percent) => {
+  onGenderSlide = (render, handle, value, un, percent) =>
+  {
   	const audience_male_percent = value[0].toFixed(0);
   	const {sellerprofile} = this.state;
     this.setState({
@@ -113,20 +134,8 @@ class SellerDashboard extends React.Component{
     });
   }
 
-  onChangeAdlist = (name,index,event) => {
-	var adlist = this.state.adlist.slice(0);
-	adlist[index][name] = event.target.value;
-    this.setState({adlist});
-  };
-
-  onChangeChannel = event => {
-	const {sellerprofile} = this.state;
-    this.setState({
-		channel: event.target.value
-    });
-  };
-
-  onChangeProfile = (name,event) => {
+  onChangeProfile = (name,event) =>
+  {
 	const {sellerprofile} = this.state;
     this.setState({
     	sellerprofile:{
@@ -136,7 +145,85 @@ class SellerDashboard extends React.Component{
     });
   }
 
-  handleLocationDelete (i) {
+  onCreateNewChannel = () =>
+  {
+  	var new_channel = {id:0,media_type:"instagram",follows:0,username:"",linked_channel:""};
+  		
+  	this.setState({new_channel});
+  	$(".new-channel").slideDown();
+  }
+
+  onChangeNewChannel = (name,event) =>
+  {
+	var new_channel = {...this.state.new_channel};
+  	
+  	new_channel[name] = event.target.value;
+  	this.setState({new_channel});
+  }
+
+  onSaveNewChannel = () =>
+  {
+  	var channels = this.state.channels.slice(0);
+
+  	channels.unshift({...this.state.new_channel});
+  	this.setState({channels});
+
+  	$(".new-channel").slideUp();
+  }
+
+  onChangeAdlist = (name,index,event) =>
+  {
+	var adlist_edit = this.state.adlist_edit.slice(0);
+
+  	if (name == "channel_id")
+  		this.state.channels.some(item => (event.target.value === item.id ? (adlist_edit[index].media_type = item.media_type) : false));
+
+	adlist_edit[index][name] = event.target.value;
+    this.setState({adlist_edit});
+  };
+
+  onSaveAdlist = (index) =>
+  {
+  	this.setState({adlist:(this.state.adlist_edit.map(item=>({...item})))});
+  	$("#collapse_adlist_"+index).slideToggle();
+  }
+
+  onCreateNewAdlist = () =>
+  {
+  	var new_adlist = {channel_id:0,title:"", media_type:"", featured_photo:"", channel:"", price:"", description:""};
+  	
+  	if (this.state.channels.length)
+  	{
+  		new_adlist.channel_id = this.state.channels[0].id;
+  		new_adlist.media_type = this.state.channels[0].media_type;
+  	}
+  	
+  	this.setState({new_adlist});
+  	$(".new-adlist").slideDown();
+  }
+
+  onChangeNewAdlist = (name,event) =>
+  {
+	var new_adlist = {...this.state.new_adlist};
+  	if (name == "channel_id")
+  		this.state.channels.some(item => (event.target.value === item.id ? (new_adlist.media_type = item.media_type) : false) );
+
+  	new_adlist[name] = event.target.value;
+  	this.setState({new_adlist});
+  }
+
+  onSaveNewAdlist = () =>
+  {
+  	var adlist = this.state.adlist.slice(0);
+
+  	adlist.unshift({...this.state.new_adlist});
+  	this.setState({adlist, adlist_edit:(adlist.map(item=>({...item})))});
+
+  	$(".new-adlist").slideUp();
+  }
+
+  handleLocationDelete (i)
+  {
     const {sellerprofile} = this.state;
     const audience_locations = sellerprofile.audience_locations.slice(0);
     audience_locations.splice(i, 1)
@@ -148,14 +235,16 @@ class SellerDashboard extends React.Component{
     });
   }
  
-  handleLocationAddition (location) {
+  handleLocationAddition (location)
+  {
     const {sellerprofile} = this.state;
     const audience_locations = [].concat(sellerprofile.audience_locations, location)
 
     if( audience_locations.length > 5 )
     	return;
     
-    if( !sellerprofile.audience_locations.some(item => location.name === item.name )){
+    if( !sellerprofile.audience_locations.some(item => location.name === item.name ))
+    {
     	this.setState({
 	    	sellerprofile:{
 	    		...sellerprofile,
@@ -165,10 +254,13 @@ class SellerDashboard extends React.Component{
     }
   }
 
-  handleInterestsDelete (i) {
+  handleInterestsDelete (i)
+  {
     const {sellerprofile} = this.state;
     const audience_interests = sellerprofile.audience_interests.slice(0)
+  
     audience_interests.splice(i, 1)
+  
     this.setState({
     	sellerprofile:{
     		...sellerprofile,
@@ -177,11 +269,13 @@ class SellerDashboard extends React.Component{
     });
   }
  
-  handleInterestsAddition (interest) {
+  handleInterestsAddition (interest)
+  {
     const {sellerprofile} = this.state;
     const audience_interests = [].concat(sellerprofile.audience_interests, interest)
     
-    if( !sellerprofile.audience_interests.some(item => interest.name === item.name )){
+    if( !sellerprofile.audience_interests.some(item => interest.name === item.name ))
+    {
     	this.setState({
 	    	sellerprofile:{
 	    		...sellerprofile,
@@ -191,18 +285,21 @@ class SellerDashboard extends React.Component{
     }
   }
 
-  handleSubmit () {
+  handleSubmit ()
+  {
   	const { sellerprofile } = this.state;
   	const { dispatch } = this.props;
   	dispatch(sellerActions.setProfile(sellerprofile));
   }
 
-  showFollows(number){
-  	if (number >= 1000) {
+  showFollows(number)
+  {
+  	if (number >= 1000)
+  	{
   		var str = "" + Math.floor(number/1000) + 'k';
-  		if (number % 1000) {
+
+  		if (number % 1000)
   			str+='+';
-  		}
   		return str;
   	}
   	return number;
@@ -212,7 +309,7 @@ class SellerDashboard extends React.Component{
   	const { audience_age_min, audience_age_max, audience_male_percent, 
   			audience_locations, audience_interests,
   			profile_photo, profile_description, profile_location } = this.state.sellerprofile;
-  	const { suggestions,mediaType, channel, channels, adlist } = this.state;
+  	const { suggestions,mediaType, channel, channels, adlist, adlist_edit, new_adlist, new_channel } = this.state;
 
     return (
     	<div className="dashboard_seller">
@@ -220,10 +317,10 @@ class SellerDashboard extends React.Component{
 				<SellerSidebar navitem={"sellers_page"}/>
 				<div className="page-result-wrapper">
 					<div className="page-result">
-						<label className="title">Edit Your Profile Page</label>
-						
+						<label className="title">Edit Your Profile Page</label>						
 						<label className="subtitle">Seller’s Description</label>
 						<label className="warning"> {this.props.sellerProfileMSG} </label>
+
 						<div className="control-list">
 							<div className="formcontrol row">
 								<label className="col-sm-2 controllabel"> Profile photo</label>
@@ -360,11 +457,69 @@ class SellerDashboard extends React.Component{
 								</div>
 							</div>
 						</div>
+
 						<label className="subtitle">
 							Edit Channels
-							<a className="add-channel">+ Add Another Channel</a>
+							<a className="add-channel" onClick={this.onCreateNewChannel.bind(this)}>+ Add Another Channel</a>
 						</label>
+
 						<div className="channel-list">
+							<div className="dropdown-edit collapse new-channel">
+								<label>Media Type</label>
+								<div className="material-select media-type">
+									<FormControl>
+									  <Select
+									    value={new_channel.media_type}
+									    onChange={(event)=>{this.onChangeNewChannel("media_type",event)}}
+									    inputProps={{
+									      name: 'material',
+									      id: 'material-simple',
+									    }}
+									  >
+									    <MenuItem value={'instagram'}>
+									    	<img src={require('../res/img/instagram_sq.png')} />
+									    	instagram
+									    </MenuItem>
+									    <MenuItem value={'facebook'}>
+									   		<img src={require('../res/img/facebook_sq.png')} />
+									    	facebook
+									    </MenuItem>
+									    <MenuItem value={'twitter'}>
+									    	<img src={require('../res/img/twitter_sq.png')} />
+									    	twitter
+									    </MenuItem>
+									  </Select>
+									</FormControl>
+								</div>
+								<label>User Name</label>
+								<div>
+									<input type="text" className="form-control radius-formcontrol"
+										onChange={(event)=>{this.onChangeNewChannel("username",event)}} value={new_channel.username}/>
+									<i className="fa fa-user control-icon"></i>
+								</div>
+								<label>Link to Channel</label>
+								<div>
+									<input type="text" className="form-control radius-formcontrol"
+										onChange={(event)=>{this.onChangeNewChannel("linked_channel",event)}} value={new_channel.linked_channel}/>
+									<img className="control-icon" src={require("../res/img/link.png")}/>
+								</div>
+								<label># of Followers</label>
+								<div>
+									<input type="text" className="form-control radius-formcontrol"
+										onChange={(event)=>{this.onChangeNewChannel("follows",event)}} value={new_channel.follows}/>
+									<img className="control-icon" src={require("../res/img/followers.png")}/>
+								</div>
+								<div className="action">
+									<button className="btn btn-outline btn-radius btn-cancel" onClick={()=>{$(".new-channel").slideUp()}}>
+										<i className="fa fa-long-arrow-left"></i>
+										Cancel
+									</button>
+									<button className="btn btn-outline btn-radius btn-save" onClick={this.onSaveNewChannel.bind(this)}>
+										<i className="fa fa-check"></i>
+										Save
+									</button>
+								</div>
+							</div>
 							{
 								channels.map(
 									(item,index)=>(
@@ -409,16 +564,77 @@ class SellerDashboard extends React.Component{
 						</div>
 						<label className="subtitle">
 							Ad Listings
-							<a className="add-channel">+ Add Another Listing</a>
+							<a className="add-channel" onClick={this.onCreateNewAdlist.bind(this)}>+ Add Another Listing</a>
 						</label>
 						<div className="ad_listings">
+							<div className="dropdown-edit packed collapse new-adlist">
+								<label>Choose Channel</label>
+								<div className="material-select media-type">
+									<FormControl>
+									  <Select
+									    value={new_adlist.channel_id}
+									    onChange={(event)=>{this.onChangeNewAdlist("channel_id",event)}}
+									    inputProps={{
+									      name: 'material',
+									      id: 'material-simple',
+									    }}
+									  >
+									  	{
+									  		channels.map(
+									  			(chn) => (
+									  				<MenuItem value={chn.id}>
+												    	<img src={require('../res/img/'+chn.media_type+'_sq.png')} />
+												    	{chn.media_type}
+												    </MenuItem>
+									  			)
+									  		)
+									  	}
+									  </Select>
+									</FormControl>
+								</div>
+								<label>Listing Title</label>
+								<div>
+									<input type="text" className="form-control radius-formcontrol"
+										value={new_adlist.title} onChange={(event)=>{this.onChangeNewAdlist("title",event)}}/>
+									<img className="control-icon" src={require("../res/img/pencil.png")}/>
+								</div>
+								<label>Price</label>
+								<div>
+									<input type="text" className="form-control radius-formcontrol"
+										value={new_adlist.price} onChange={(event)=>{this.onChangeNewAdlist("price",event)}}/>
+									<img className="control-icon" src={require("../res/img/dollar.png")}/>
+								</div>
+								<label>Featured Photo ( 833 px X 1167 px )</label>
+								<div>
+									<input type="text" className="form-control radius-formcontrol"
+										value={new_adlist.featured_photo} onChange={(event)=>{this.onChangeNewAdlist("featured_photo",event)}}/>
+									<img className="control-icon" src={require("../res/img/followers.png")}/>
+									<a className="fa fa-remove close-but"></a>
+								</div>
+								<label>Details (300 characters)</label>
+								<div>
+									<textarea className="form-control radius-formcontrol detail-textarea" maxLength="300" 
+										value={new_adlist.description} onChange={(event)=>{this.onChangeNewAdlist("description",event)}}/>
+									<i className="fa fa-commenting-o control-icon"></i>
+								</div>
+								<div className="action">
+									<button className="btn btn-outline btn-radius btn-cancel" onClick={()=>{$(".new-adlist").slideUp()}}>
+										<i className="fa fa-long-arrow-left"></i>
+										Cancel
+									</button>
+									<button className="btn btn-outline btn-radius btn-save" onClick={this.onSaveNewAdlist.bind(this)}>
+										<i className="fa fa-check"></i>
+										Save
+									</button>
+								</div>
+							</div>
 							{
 								adlist.map(
 									(item,index)=>(
 										<div className="ad-list">
 											<div className="ad-list-show">
 												<div className="ad_list_head">
-													<img className="icon" src={require("../res/img/instagram_sq.png")}/>
+													<img className="icon" src={require("../res/img/"+item.media_type+"_sq.png")}/>
 													<div className="ad_title">{item.title}</div>
 													<div className="ad_value">${item.price}</div>
 													<div className="ad_toolbox">
@@ -437,64 +653,62 @@ class SellerDashboard extends React.Component{
 													</div>
 												</div>
 											</div>
-											<div className="dropdown-edit packed collapse" data-toggle={"collapse_adlist_"+index}>
+											<div className="dropdown-edit packed collapse" id={"collapse_adlist_"+index}>
 												<label>Choose Channel</label>
 												<div className="material-select media-type">
 													<FormControl>
 													  <Select
-													    value={item.media_type}
-													    onChange={(event)=>{this.onChangeAdlist("media_type",index,event)}}
+													    value={adlist_edit[index].channel_id}
+													    onChange={(event)=>{this.onChangeAdlist("channel_id",index,event)}}
 													    inputProps={{
 													      name: 'material',
 													      id: 'material-simple',
 													    }}
 													  >
-													    <MenuItem value={'Instagram'}>
-													    	<img src={require('../res/img/instagram_sq.png')} />
-													    	Instagram
-													    </MenuItem>
-													    <MenuItem value={'Facebook'}>
-													   		<img src={require('../res/img/facebook_sq.png')} />
-													    	Facebook
-													    </MenuItem>
-													    <MenuItem value={'Twitter'}>
-													    	<img src={require('../res/img/twitter_sq.png')} />
-													    	Twitter
-													    </MenuItem>
+													  	{
+													  		channels.map(
+													  			(chn) => (
+													  				<MenuItem value={chn.id}>
+																    	<img src={require('../res/img/'+chn.media_type+'_sq.png')} />
+																    	{chn.media_type}
+																    </MenuItem>
+													  			)
+													  		)
+													  	}
 													  </Select>
 													</FormControl>
 												</div>
 												<label>Listing Title</label>
 												<div>
 													<input type="text" className="form-control radius-formcontrol"
-														value={item.title} onChange={(event)=>{this.onChangeAdlist("title",index,event)}}/>
+														value={adlist_edit[index].title} onChange={(event)=>{this.onChangeAdlist("title",index,event)}}/>
 													<img className="control-icon" src={require("../res/img/pencil.png")}/>
 												</div>
 												<label>Price</label>
 												<div>
 													<input type="text" className="form-control radius-formcontrol"
-														value={item.price} onChange={(event)=>{this.onChangeAdlist("price",index,event)}}/>
+														value={adlist_edit[index].price} onChange={(event)=>{this.onChangeAdlist("price",index,event)}}/>
 													<img className="control-icon" src={require("../res/img/dollar.png")}/>
 												</div>
 												<label>Featured Photo ( 833 px X 1167 px )</label>
 												<div>
 													<input type="text" className="form-control radius-formcontrol"
-														value={item.title} onChange={(event)=>{this.onChangeAdlist("featured_photo",index,event)}}/>
+														value={adlist_edit[index].featured_photo} onChange={(event)=>{this.onChangeAdlist("featured_photo",index,event)}}/>
 													<img className="control-icon" src={require("../res/img/followers.png")}/>
 													<a className="fa fa-remove close-but"></a>
 												</div>
 												<label>Details (300 characters)</label>
 												<div>
 													<textarea className="form-control radius-formcontrol detail-textarea" maxLength="300" 
-														value={item.title} onChange={(event)=>{this.onChangeAdlist("description",index,event)}}/>
+														value={adlist_edit[index].description} onChange={(event)=>{this.onChangeAdlist("description",index,event)}}/>
 													<i className="fa fa-commenting-o control-icon"></i>
 												</div>
 												<div className="action">
-													<button className="btn btn-outline btn-radius btn-cancel">
+													<button className="btn btn-outline btn-radius btn-cancel" onClick={()=>{$("#collapse_adlist_"+index).slideToggle()}}>
 														<i className="fa fa-long-arrow-left"></i>
 														Cancel
 													</button>
-													<button className="btn btn-outline btn-radius btn-save">
+													<button className="btn btn-outline btn-radius btn-save" onClick={this.onSaveAdlist.bind(this,index)}>
 														<i className="fa fa-check"></i>
 														Save
 													</button>

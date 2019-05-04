@@ -150,11 +150,12 @@
   margin-left:20px;
 }
 /*# sourceMappingURL=sellers.css.map */
-
+.sellers .datetime {
+  position: unset;
+  display: inline-flex;
+}
 .sellers .datetime i{
-  position: absolute;
-  left: 28px;
-  top: 17px;
+  margin-top: 7px;
 }
 .sellers .datetime .react-datepicker__input-container input{
   background: #f1f6f9;
@@ -165,10 +166,14 @@
 }
 .sellers .datetime div.react-datepicker-wrapper, .search_page .datetime div.react-datepicker-wrapper div{
   width: 100%;
-  z-index: 2;
   background: transparent;
 }
 .sellers .datetime .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name{
   margin: 1.066rem;
   font-size: 12px;
+}
+@media (max-width: 767px){
+  .sellers .datetime {
+    width: 100%;
+  }
 }

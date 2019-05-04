@@ -22,25 +22,34 @@ function create ( _newBuyer )
     function fail ( error ) { return { type: buyerConstants.ERROR, error}}
 }
 
-function read()
+function read ()
 {
     return dispatch => {
 
         buyerService.read()
             .then(
                 buyer_profile => dispatch(success(buyer_profile)),
-                error => dispatch(failure(error))
+                error => dispatch(fail(error))
             );
     };
 
     function success(buyer_profile) { return { type: buyerConstants.READ, buyer_profile } }
-    function failure(error) { return { type: buyerConstants.ERROR, error } }
+    function fail(error) { return { type: buyerConstants.ERROR, error } }
 
 }
 
-function update () 
+function update ( _newData ) 
 {
+    return  dispatch => {
+                buyerService.update( _newData )
+                    .then(
+                        msg => dispatch(success(msg)),
+                        error => dispatch(fail(error))        
+                    );
+    };
 
+    function success( msg ) { return {type: buyerConstants.UPDATE, msg }}
+    function fail ( error ) { return { type: buyerConstants.ERROR, error }}
 }
 
 function _delete() 

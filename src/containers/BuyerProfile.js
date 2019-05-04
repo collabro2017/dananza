@@ -30,6 +30,7 @@ class BuyerProfile extends React.Component{
           username: '',
           description: '',
           job_type: '',
+          business_name: '',
           location: '',
           linkedAccount: '',
           websites: '',
@@ -205,32 +206,33 @@ class BuyerProfile extends React.Component{
                                   radioClass="iradio_minimal-blue"
                                   increaseArea="20%"
                                   label="Business Owner"
-                                  checked={ this.state.job_type == "business_owner" }
                                   onClick={ this.handleJobType }
+                                  checked={ this.state.job_type === "Business Owner" }
                                 />
                                 <Radio
                                   value="Freelancer"
                                   radioClass="iradio_minimal-blue"
                                   increaseArea="20%"
                                   label="Freelancer"
-                                  checked={ this.state.job_type == "freelancer" }
+                                   defaultChecked
                                   onClick={ this.handleJobType }
+                                  checked={ this.state.job_type === "Freelancer" }
                                 />
                                 <Radio
                                   value="Employee"
                                   radioClass="iradio_minimal-blue"
                                   increaseArea="20%"
                                   label="Employee"
-                                  checked={ this.state.job_type == "employee" }
                                   onClick={ this.handleJobType }
+                                  checked={ this.state.job_type === "Employee" }
                                 />
                                 <Radio
                                   value="Agency"
                                   radioClass="iradio_minimal-blue"
                                   increaseArea="20%"
                                   label="Agency"
-                                  checked={ this.state.job_type == "agency" }
                                   onClick={ this.handleJobType }
+                                  checked={ this.props.job_type === "Agency" }
                                 />
                             </RadioGroup>
                         </div>
@@ -249,7 +251,9 @@ class BuyerProfile extends React.Component{
                         
                       </label>
                       <div className="col-md-10 controlcontent">
-                        <input type="text" className="form-control btn-radius" placeholder="ex: Ad Agency"/>
+                        <input type="text" className="form-control btn-radius" 
+                               placeholder="ex: Ad Agency"
+                               value={ this.state.business_name }/>
                       </div>
                     </div>
                     <div className="formcontrol row">
@@ -259,7 +263,7 @@ class BuyerProfile extends React.Component{
                       <div className="col-md-10 controlcontent">
                         <div className="input-icon">
                           <ReactTags
-                            inputAttributes={{ maxLength: 15, className: "form-control btn-radius"}}
+                            inputAttributes={{ maxLength: 15, class: "form-control btn-radius"}}
                             placeholder="Miami, Florida"
                             allowNew={true}
                             addOnBlur={true}
@@ -391,6 +395,10 @@ class BuyerProfile extends React.Component{
               </div>
             </div>
           </div>
+        </div>
+        <div className="action_group">
+          <button className="btn btn-blue left"><img src={require("../res/img/eye_white.png")}/> Preview</button>
+          <button className="btn btn-yellow right" onClick={this.handleSubmit.bind(this)}><img src={require("../res/img/check_black.png")}/> Save</button>
         </div>
       </div>
     );

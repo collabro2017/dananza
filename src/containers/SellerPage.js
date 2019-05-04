@@ -196,6 +196,7 @@ class Sellers extends React.Component{
                                                    Instagram Story
                                                    </div>
                                                    <div className="col-sm-4 datetime">
+                                                      <i className="fa fa-calendar"></i> 
                                                       <DatePicker
                                                         className="btn btn-default"
                                                         selected={this.state.startDate[0]}
@@ -203,7 +204,6 @@ class Sellers extends React.Component{
                                                         placeholderText="Choose Post Date"
                                                         dateFormat="YYYY-MM-dd"
                                                       />
-                                                      <i className="fa fa-calendar"></i> 
                                                    </div>
                                                    <div className="col-sm-4">
                                                      <Link to="/buyer_page">
@@ -217,6 +217,7 @@ class Sellers extends React.Component{
                                                    <img src={require("../res/img/themainmenu_1.png")} /> Instagram Post
                                                  </div>
                                                  <div className="col-sm-4 datetime">
+                                                      <i className="fa fa-calendar"></i> 
                                                       <DatePicker
                                                         className="btn btn-default"
                                                         selected={this.state.startDate[1]}
@@ -224,7 +225,6 @@ class Sellers extends React.Component{
                                                         placeholderText="Choose Post Date"
                                                         dateFormat="YYYY-MM-dd"
                                                       />
-                                                      <i className="fa fa-calendar"></i> 
                                                    </div>
                                                  <div className="col-sm-4">
                                                    <Link to="/buyer_page">
@@ -237,6 +237,7 @@ class Sellers extends React.Component{
                                                    <img src={require("../res/img/themainmenu_1.png")} />Instagram Video
                                                  </div>
                                                  <div className="col-sm-4 datetime">
+                                                      <i className="fa fa-calendar"></i> 
                                                       <DatePicker
                                                         className="btn btn-default"
                                                         selected={this.state.startDate[2]}
@@ -244,7 +245,6 @@ class Sellers extends React.Component{
                                                         placeholderText="Choose Post Date"
                                                         dateFormat="YYYY-MM-dd"
                                                       />
-                                                      <i className="fa fa-calendar"></i> 
                                                    </div>
                                                  <div className="col-sm-4">
                                                    <Link to="/buyer_page">
@@ -304,6 +304,7 @@ class Sellers extends React.Component{
                                                    Instagram Story
                                                    </div>
                                                    <div className="col-sm-4 datetime">
+                                                      <i className="fa fa-calendar"></i> 
                                                       <DatePicker
                                                         className="btn btn-default"
                                                         selected={this.state.startDate[3]}
@@ -311,7 +312,6 @@ class Sellers extends React.Component{
                                                         placeholderText="Choose Post Date"
                                                         dateFormat="YYYY-MM-dd"
                                                       />
-                                                      <i className="fa fa-calendar"></i> 
                                                    </div>
                                                    <div className="col-sm-4">
                                                      <Link to="/buyer_page">
@@ -325,6 +325,7 @@ class Sellers extends React.Component{
                                                    <img src={require("../res/img/themainmenu_1.png")} /> Instagram Post
                                                  </div>
                                                  <div className="col-sm-4 datetime">
+                                                      <i className="fa fa-calendar"></i> 
                                                       <DatePicker
                                                         className="btn btn-default"
                                                         selected={this.state.startDate[4]}
@@ -332,7 +333,6 @@ class Sellers extends React.Component{
                                                         placeholderText="Choose Post Date"
                                                         dateFormat="YYYY-MM-dd"
                                                       />
-                                                      <i className="fa fa-calendar"></i> 
                                                    </div>
                                                  <div className="col-sm-4">
                                                    <Link to="/buyer_page">
@@ -345,6 +345,7 @@ class Sellers extends React.Component{
                                                    <img src={require("../res/img/themainmenu_1.png")} />Instagram Video
                                                  </div>
                                                  <div className="col-sm-4 datetime">
+                                                      <i className="fa fa-calendar"></i> 
                                                       <DatePicker
                                                         className="btn btn-default"
                                                         selected={this.state.startDate[5]}
@@ -352,7 +353,6 @@ class Sellers extends React.Component{
                                                         placeholderText="Choose Post Date"
                                                         dateFormat="YYYY-MM-dd"
                                                       />
-                                                      <i className="fa fa-calendar"></i> 
                                                    </div>
                                                  <div className="col-sm-4">
                                                    <Link to="/buyer_page">
@@ -412,6 +412,7 @@ class Sellers extends React.Component{
                                                    Instagram Story
                                                    </div>
                                                    <div className="col-sm-4 datetime">
+                                                      <i className="fa fa-calendar"></i> 
                                                       <DatePicker
                                                         className="btn btn-default"
                                                         selected={this.state.startDate[6]}
@@ -419,7 +420,6 @@ class Sellers extends React.Component{
                                                         placeholderText="Choose Post Date"
                                                         dateFormat="YYYY-MM-dd"
                                                       />
-                                                      <i className="fa fa-calendar"></i> 
                                                    </div>
                                                    <div className="col-sm-4">
                                                      <Link to="/buyer_page">
@@ -433,6 +433,7 @@ class Sellers extends React.Component{
                                                    <img src={require("../res/img/themainmenu_1.png")} /> Instagram Post
                                                  </div>
                                                  <div className="col-sm-4 datetime">
+                                                      <i className="fa fa-calendar"></i> 
                                                       <DatePicker
                                                         className="btn btn-default"
                                                         selected={this.state.startDate[7]}
@@ -440,7 +441,6 @@ class Sellers extends React.Component{
                                                         placeholderText="Choose Post Date"
                                                         dateFormat="YYYY-MM-dd"
                                                       />
-                                                      <i className="fa fa-calendar"></i> 
                                                    </div>
                                                  <div className="col-sm-4">
                                                    <Link to="/buyer_page">
@@ -453,6 +453,7 @@ class Sellers extends React.Component{
                                                    <img src={require("../res/img/themainmenu_1.png")} />Instagram Video
                                                  </div>
                                                  <div className="col-sm-4 datetime">
+                                                      <i className="fa fa-calendar"></i> 
                                                       <DatePicker
                                                         className="btn btn-default"
                                                         selected={this.state.startDate[8]}
@@ -460,7 +461,6 @@ class Sellers extends React.Component{
                                                         placeholderText="Choose Post Date"
                                                         dateFormat="YYYY-MM-dd"
                                                       />
-                                                      <i className="fa fa-calendar"></i> 
                                                    </div>
                                                  <div className="col-sm-4">
                                                    <Link to="/buyer_page">

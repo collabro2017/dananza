@@ -14,7 +14,7 @@ export function buyerProfile(state={}, action)
 			};
 		case buyerConstants.UPDATE:
 			return 	{
-
+				updated: action.msg
 			};
 		case buyerConstants.DELETE:
 			return 	{
@@ -22,7 +22,7 @@ export function buyerProfile(state={}, action)
 			};
 		case buyerConstants.ERROR:
 			return 	{
-
+				error: action.error
 			};
 		default:
 			return state;
