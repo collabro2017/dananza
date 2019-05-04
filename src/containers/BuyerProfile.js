@@ -61,20 +61,32 @@ class BuyerProfile extends React.Component{
 
     const { profile } = nextprops;
 
-    //set initial value
-    this.setState({
-      username: profile.username,
-      description: profile.profile_description,
-      job_type: profile.job_type,
-      location: profile.location,
-      linkedAccount: profile.linkedAccount,
-      websites: profile.websites,
-    });
+    if(profile)
+    {
+      this.setState({
+        username: profile.username ? profile.username : '',
+        description: profile.profile_description ? profile.profile_description : 'Hello World!',
+        job_type: profile.job_type ? profile.job_type : 'Freelancer',
+        business_name: profile.business_name ? profile.business_name : 'kcc',
+        location: profile.location ? profile.location : '',
+        linkedAccount: profile.linkedAccount ? profile.linkedAccount : '',
+        websites: profile.websites ? profile.websites : '',
+      });
+    }
   }
 
   handleJobType(e) {
+    e.preventDefault();
     console.log('job type = ', e.target.value);
-    this.setState({ job_type: e.target.value});
+    if(e.target.checked)
+    {
+      this.setState({ job_type: e.target.value});
+    }
+  }
+
+  handleSubmit() {
+    const { dispatch } = this.props;
+    dispatch(buyerActions.update(this.state));
   }
   
   handleLocationDelete (i) {
