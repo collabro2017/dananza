@@ -8,6 +8,7 @@ export const buyerService = {
     read,
     update,
     delete: _delete,
+    fetchSavedAdza
 };
 
 const apiRoot = apiConfig.apiRoot;
@@ -70,4 +71,17 @@ function update ( _newData )
 function _delete ()
 {
 	
+}
+
+function fetchSavedAdza(){
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader(),
+    };
+
+    return fetch( apiRoot + `/buyer/saved`, requestOptions )
+        .then( userService.handleResponse )
+        .then( adzas => {
+            return adzas;
+        });
 }

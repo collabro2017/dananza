@@ -5,6 +5,7 @@ import { registration } from './registration.reducer';
 import { users } from './users.reducer';
 import { alert } from './alert.reducer';
 import { buyerProfile } from './buyer.reducer';
+import { buyerSavedAdzas } from './buyer.reducer';
 import { seller } from './seller.reducer';
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   users,
   alert,
   buyerProfile,
+  buyerSavedAdzas,
   seller
 });
 

@@ -24,7 +24,20 @@ export function buyerProfile(state={}, action)
 			return 	{
 				error: action.error
 			};
+
 		default:
 			return state;
 	}
 }
+
+export function buyerSavedAdzas(state={}, action) 
+{
+	switch(action.type)
+	{
+		case buyerConstants.FETCH_SAVED_ADZA:
+			return { adzas: action.adzas };
+		default:
+			return state;
+	}
+}
+
