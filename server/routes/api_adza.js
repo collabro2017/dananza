@@ -73,13 +73,7 @@ router.put('/', passport.authenticate('jwt', {session: false}), function(req, re
 	.findOne({ where: {user_id: user_id} })
 	.then(function(profile) {
 		profile.update({
-			profile_photo: req.body.profile_photo,
-			profile_description: req.body.profile_description,
-			audience_male_percent: req.body.audience_male_percent,
-			audience_age_min: req.body.audience_age_min,
-			audience_age_max: req.body.audience_age_max,
-			audience_locations: req.body.audience_locations,
-			audience_interests: req.body.audience_interests,
+			...req.body.sellerprofile,
 			update_time: new Date()
 		})
 		.then((profile)=>res.status(201).send({success: true, message: msg.updatedSuccess}))

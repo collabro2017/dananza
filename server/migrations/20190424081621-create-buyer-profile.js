@@ -11,17 +11,26 @@ module.exports = {
       user_id: {
         type: Sequelize.INTEGER
       },
+      profile_description: {
+        type: Sequelize.STRING
+      },
+      job_type: {
+        type: Sequelize.STRING
+      },
+      business_title: {
+        type: Sequelize.STRING
+      },
       location: {
         type: Sequelize.STRING
       },
       profession: {
         type: Sequelize.STRING
       },
+      username: {
+        type: Sequelize.STRING
+      },
       has_seller_acct: {
         type: Sequelize.BOOLEAN
-      },
-      profile_description: {
-        type: Sequelize.STRING
       },
       signup_date: {
         type: Sequelize.DATE

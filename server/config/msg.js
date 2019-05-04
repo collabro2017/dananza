@@ -22,9 +22,12 @@ const msg = {
     'authUserNotFound': "Opps. Authentication failed. User not found.", 
     'authWrongPassword': "Authentication failed. Wrong password.",
     'authEmailExists':"Email already exists.",
+
     'haveProfile': "Already you have profile.",
     'campaignExist': "Already you have opened Campaign.",
     'alreadyInList': "Already you have it in the list.",
+    'createdProfile': "New Buyer Profile Successfully Created",
+    'noOwner': "Forbidden. You're not owner",
 };
 
 module.exports = msg;
