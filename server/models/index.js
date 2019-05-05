@@ -34,4 +34,10 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.Adza_Profile = require('./adza_profile.js')(sequelize, Sequelize); 
+db.Saved_Adza = require('./saved_adza.js')(sequelize, Sequelize); 
+
+db.Adza_Profile.hasMany(db.Saved_Adza)  
+db.Saved_Adza.belongsTo(db.Adza_Profile, { as: 'adza' })  
+
 module.exports = db;

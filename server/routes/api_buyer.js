@@ -81,7 +81,7 @@ router.get('/saved', passport.authenticate('jwt', {session: false}), function(re
 		.findOne({ where: {user_id: user_id} })
 		.then(function(profile) { 
 			var buyer_id = profile.id;
-			Saved_Adza.findAll( { where: {buyer_id: buyer_id} } )
+			Saved_Adza.findAll( { where: {buyer_id: buyer_id}, include:[{model:Adza_Profile, as:'adza'}] } )
 				.then( function( adzas ){
 					if( adzas.length )
 					{
@@ -91,7 +91,7 @@ router.get('/saved', passport.authenticate('jwt', {session: false}), function(re
 						res.status(201).send({success: true, message: msg.noResult });
 				})
 		})
-		.catch((error) => res.status(400).send({success: false, message: error }));
+		// .catch((error) => res.status(400).send({success: false, message: error }));
 });
 
 // save new adza to saved_adza list
