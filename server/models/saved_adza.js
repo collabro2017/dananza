@@ -5,9 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     adza_id: DataTypes.INTEGER,
     listing_id: DataTypes.INTEGER,
     save_time: DataTypes.DATE
-  }, {
-    underscored: true
-  });
+  }, {});
   Saved_Adza.associate = function(models) {
     // associations can be defined here
   };

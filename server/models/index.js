@@ -34,10 +34,20 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.User = require('./user.js')(sequelize, Sequelize); 
 db.Adza_Profile = require('./adza_profile.js')(sequelize, Sequelize); 
+db.Buyer_Profile = require('./buyer_profile.js')(sequelize, Sequelize); 
 db.Saved_Adza = require('./saved_adza.js')(sequelize, Sequelize); 
+db.Campaign = require('./campaign.js')(sequelize, Sequelize); 
+db.Campaign_Listing = require('./campaign_listing.js')(sequelize, Sequelize); 
+db.Channel = require('./channel.js')(sequelize, Sequelize); 
+db.Listing = require('./listing.js')(sequelize, Sequelize); 
+db.Order = require('./order.js')(sequelize, Sequelize); 
+db.Order_History = require('./order_history.js')(sequelize, Sequelize); 
+db.Review = require('./review.js')(sequelize, Sequelize); 
+db.Cart = require('./cart.js')(sequelize, Sequelize); 
 
-db.Adza_Profile.hasMany(db.Saved_Adza)  
-db.Saved_Adza.belongsTo(db.Adza_Profile, { as: 'adza' })  
+db.Adza_Profile.hasMany(db.Saved_Adza)
+db.Saved_Adza.belongsTo(db.Adza_Profile)  
 
 module.exports = db;
