@@ -81,7 +81,10 @@ router.get('/saved', passport.authenticate('jwt', {session: false}), function(re
 		.findOne({ where: {user_id: user_id} })
 		.then(function(profile) { 
 			var buyer_id = profile.id;
-			Saved_Adza.findAll( { where: {buyer_id: buyer_id}, include:[{model:Adza_Profile, as:'adza'}] } )
+			Saved_Adza.findAll( { 
+				where: {buyer_id: buyer_id}, 
+				include:[{model:Adza_Profile, as:'adza'}], 
+				attributes:['buyer_id', 'save_time'] } )
 				.then( function( adzas ){
 					if( adzas.length )
 					{
