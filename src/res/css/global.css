@@ -201,3 +201,14 @@ a:hover{
   padding-top: 20px;
   position: relative;
   padding-bottom: 40px; }
+
+/* alert str css */
+div.successAlert > div{
+    background-color: #1976d2;
+    color: white;
+    font-size: 14px
+}
+div.successAlert > div button{
+  padding: 2px;
+  border-radius: 50% !important;
+}

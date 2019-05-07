@@ -6,6 +6,10 @@ import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
+import Snackbar from '@material-ui/core/Snackbar';
 
 import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
 
@@ -18,6 +22,7 @@ class BuyerSaved extends React.Component{
 
   state={
 	'headerType': "buyer", 
+	'openAlert' : true,
 	'searchText': '',
 	'adzas': []
 	}
@@ -45,6 +50,16 @@ class BuyerSaved extends React.Component{
   	this.props.history.push("/results?s="+this.state.searchText);
   }
 
+  removeAdza( AdzaProfileId ){
+  	this.setState({ openAlert: true });
+  }
+  handleCloseSnack = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({ openAlert: false });
+  };
   render(){
   	const { adzas } = this.state;
   	var adza_list = [];
@@ -52,9 +67,29 @@ class BuyerSaved extends React.Component{
   		adza_list = adzas.adzas
 
 console.log( "--------------------------" );
-console.log( adza_list );
+console.log( adzas );
     return (
     	<div className="buyer_saved">
+	    	<Snackbar
+	          anchorOrigin={{
+	            vertical: 'top',
+	            horizontal: 'right',
+	          }}
+	          className="successAlert"
+	          open={this.state.openAlert}
+	          onClick={this.handleCloseSnack}
+	          message="This is a success message!"
+	          action={[
+		        <IconButton
+		          key="close"
+		          aria-label="Close"
+		          color="inherit"
+		          onClick={this.handleCloseSnack}
+		        >
+		          <CloseIcon />
+		        </IconButton>,
+		      ]}
+	        />
 			<div className="page-container">
 				<div className="page-content">
 					<BuyerSidebar navitem={"saved"}/>
@@ -82,7 +117,7 @@ console.log( adza_list );
 									<div className="item active">
 										<div className="item-header">
 											<div className="title">
-												{adza.adza_id}
+												<Link to={ "/seller_profile/" + adza.AdzaProfileId }>{adza.Adza_Profile.User.business_name}</Link>
 											</div>
 											<div className="sites">
 												<img src={require("../res/img/instagram.png")} />
@@ -111,7 +146,7 @@ console.log( adza_list );
 											<div className="price">
 												<span className="small"> Starting at </span>
 												<span className="value"> $100 </span>
-												<a><img src={require("../res/img/delete.png")} /></a>
+												<a onClick={this.removeAdza.bind(this, adza.AdzaProfileId)}><img src={require("../res/img/delete.png")} /></a>
 											</div>
 										</div>
 									</div>
