@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Channel = sequelize.define('Channel', {
-    adza_id: DataTypes.INTEGER,
+    AdzaProfileId: DataTypes.INTEGER,
     media_type: DataTypes.STRING,
     follows: DataTypes.INTEGER,
     username: DataTypes.STRING,

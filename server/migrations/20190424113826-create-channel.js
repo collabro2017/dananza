@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      adza_id: {
+      AdzaProfileId: {
         type: Sequelize.INTEGER
       },
       media_type: {

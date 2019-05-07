@@ -22,7 +22,7 @@ router.get('/', passport.authenticate('jwt', {session: false}), async function(r
 	} );
 
 	Channel
-		.findAll({ where: {adza_id: adza.id} } )
+		.findAll({ where: {AdzaProfileId: adza.id} } )
 		.then(function( channels ){
 			if( channels.length )
 			{
@@ -47,7 +47,7 @@ router.post('/', passport.authenticate('jwt', {session: false}), async function(
 
 	Channel
 		.create({
-			adza_id: adza.id,
+			AdzaProfileId: adza.id,
 			media_type: req.body.media_type,
 			follows: req.body.follows,
 			username: req.body.username,
@@ -61,7 +61,7 @@ router.post('/', passport.authenticate('jwt', {session: false}), async function(
 
 // Delete Channel
 router.delete('/:id', passport.authenticate('jwt', {session: false}), async function(req, res) {
-	var channel_id = req.params.id;
+	var ChannelId = req.params.id;
 	var auth_user = req.user;
 
 	var adza = await Adza_Profile.getAdzaFromUserID( auth_user.id, function(err, profile ){
@@ -72,7 +72,7 @@ router.delete('/:id', passport.authenticate('jwt', {session: false}), async func
 	} );
 
 	Channel
-	    .destroy( { where: { id: channel_id, adza_id: adza.id } } )
+	    .destroy( { where: { id: ChannelId, AdzaProfileId: adza.id } } )
 	    .then((channel) => {
 	    	if( channel)
 	    		res.status(200).send({success: true, message: msg.deletedSuccess})

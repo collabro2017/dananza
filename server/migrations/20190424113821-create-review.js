@@ -8,10 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      adza_id: {
+      AdzaProfileId: {
         type: Sequelize.INTEGER
       },
-      buyer_id: {
+      BuyerProfileId: {
         type: Sequelize.INTEGER
       },
       review_point: {

@@ -63,7 +63,7 @@
   Desc: remove save adza from list
 * /api/buyer/saved
   Method: POST
-  params: adza_id, listing_id
+  params: AdzaProfileId, ListingId
   Desc: save adza to list
 
 * /api/campaign
@@ -85,7 +85,7 @@
   Desc: get listings by campaign ID
 * /api/campaign/:id/listing
   Method: POST
-  Params: adza_id, listing_id
+  Params: AdzaProfileId, ListingId
   Desc: insert listing to campaign  
 * /api/campaign/:id/remove/:lid
   Method: PUT
@@ -125,7 +125,7 @@
   Desc: get all linked listings associated with Channel
 * /api/listing
   Method: POST
-  Params: channel_id, media_type, title, price, featured_photo, description
+  Params: ChannelId, media_type, title, price, featured_photo, description
   Desc: add new listing depending on Channel
 * /api/listing/:id
   Method: GET
@@ -137,12 +137,12 @@
   Method: DELETE
   Desc: delete listing
 
-* /api/review/:adza_id
+* /api/review/:AdzaProfileId
   Method: GET
   Desc: get reviews for seleted Adza
 * /api/review
   Method: POST
-  Params: adza_id, buyer_id( logged in actor ), review_point, review_description, review_date
+  Params: AdzaProfileId, BuyerProfileId( logged in actor ), review_point, review_description, review_date
 
 /api/message
   Method: get

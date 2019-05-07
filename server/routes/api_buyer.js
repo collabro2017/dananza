@@ -13,10 +13,10 @@ const Saved_Adza = require('../models').Saved_Adza;
 // Get Buyer info of Current User
 router.get('/', passport.authenticate('jwt', {session: false}), function(req, res) {
   var auth_user = req.user;
-  var user_id = auth_user.id;
+  var UserId = auth_user.id;
 
 	Buyer_Profile
-	  	.findOne({ where: {user_id: user_id} })
+	  	.findOne({ where: {UserId: UserId} })
 	  	.then((buyer_profile) => 
 	  	{
 	  		if(buyer_profile) res.status(200).send(buyer_profile);
@@ -27,12 +27,12 @@ router.get('/', passport.authenticate('jwt', {session: false}), function(req, re
 
 // create buyer profile first time
 router.post('/', function(req, res) {
-	var user_id = req.body.id;
+	var UserId = req.body.id;
   	Buyer_Profile
 		.findOrCreate({
-			where: { user_id: user_id }, 
+			where: { UserId: UserId }, 
 			defaults: {
-				user_id: user_id,
+				UserId: UserId,
 				location: null,
 				profession: null,
 				profile_description: null,
@@ -53,10 +53,10 @@ router.post('/', function(req, res) {
 // Update Buyer profile
 router.put('/', passport.authenticate('jwt', {session: false}), function(req, res) {
   var auth_user = req.user;
-  var user_id = auth_user.id;
+  var UserId = auth_user.id;
 
   Buyer_Profile
-	.findOne({ where: {user_id: user_id} })
+	.findOne({ where: {UserId: UserId} })
 	.then(function(profile) {
 		profile.update({
 			location: req.body.location,
@@ -75,16 +75,21 @@ router.put('/', passport.authenticate('jwt', {session: false}), function(req, re
 // Get Saved Adza
 router.get('/saved', passport.authenticate('jwt', {session: false}), function(req, res) {
 	var auth_user = req.user;
-	var user_id = auth_user.id;
+	var UserId = auth_user.id;
 
 	Buyer_Profile
-		.findOne({ where: {user_id: user_id} })
+		.findOne({ where: {UserId: UserId} })
 		.then(function(profile) { 
-			var buyer_id = profile.id;
-			Saved_Adza.findAll( { 
-				where: {buyer_id: buyer_id}, 
-				include:[{model:Adza_Profile, as:'adza'}], 
-				attributes:['buyer_id', 'save_time'] } )
+			var BuyerProfileId = profile.id;
+			Saved_Adza.findAll({ 
+				where: {BuyerProfileId: BuyerProfileId}, 
+				include:[{model:Adza_Profile,
+		          	include: [
+		            {
+		              model: User
+        		    }]
+        		}]
+              	})
 				.then( function( adzas ){
 					if( adzas.length )
 					{
@@ -100,8 +105,8 @@ router.get('/saved', passport.authenticate('jwt', {session: false}), function(re
 // save new adza to saved_adza list
 router.post('/saved', passport.authenticate('jwt', {session: false}), async function(req, res) {
 	var auth_user = req.user;
-	var user_id = auth_user.id;
-	var adza_id = req.body.adza_id;
+	var UserId = auth_user.id;
+	var AdzaProfileId = req.body.AdzaProfileId;
 
 	var buyer = await Buyer_Profile.getBuyerFromUserID( auth_user.id, function(err, profile ){
 		if( !err )
@@ -112,10 +117,10 @@ router.post('/saved', passport.authenticate('jwt', {session: false}), async func
 
 	Saved_Adza
 		.findOrCreate({
-			where: {buyer_id: buyer.id, adza_id: adza_id}, 
+			where: {BuyerProfileId: buyer.id, AdzaProfileId: AdzaProfileId}, 
 			defaults: {
-				buyer_id: buyer.id,
-				adza_id: adza_id,
+				BuyerProfileId: buyer.id,
+				AdzaProfileId: AdzaProfileId,
 				save_time: new Date()
 		}})
 		.spread( function(saved_adza, created){

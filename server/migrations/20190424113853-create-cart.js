@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      campaign_id: {
+      CampaignId: {
         type: Sequelize.INTEGER
       },
       subtotal: {

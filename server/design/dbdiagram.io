@@ -12,7 +12,7 @@ Table users{
 
 Table buyer_profile{
   id int [pk]
-  user_id int
+  UserId int
   location varchar
   profession varchar
   has_seller_acct tinyint
@@ -22,7 +22,7 @@ Table buyer_profile{
 
 Table social_accounts{
   id int [pk]
-  buyer_id int
+  BuyerProfileId int
   media_type varchar
   username varchar
   linked_account varchar
@@ -31,32 +31,32 @@ Table social_accounts{
 
 Table saved_adza{
   id int [pk]
-  buyer_id int
-  adza_id int  
-  listing_id int
+  BuyerProfileId int
+  AdzaProfileId int  
+  ListingId int
   save_time date
 }
 
 Table campaigns{
   id int [pk]
-  buyer_id int
+  BuyerProfileId int
   campaign_name varchar
   campaign_status varchar
   campaign_price float
-  order_id int
+  OrderId int
 }
 
 Table campaign_listings{
   id int [pk]
-  campaign_id int
-  adza_id int
-  listing_id int
+  CampaignId int
+  AdzaProfileId int
+  ListingId int
   add_time datetime
 }
 
 Table adza_profile{
   id int [pk]
-  user_id int
+  UserId int
   profile_photo varchar
   profile_description blob
   review_point float
@@ -72,7 +72,7 @@ Table adza_profile{
 
 Table sessions{
   id int [pk]
-  buyer_id int
+  BuyerProfileId int
   adza_result_click tinyint
   adza_profile_id int
   adza_page_interaction tinyint
@@ -88,8 +88,8 @@ Table sessions{
 
 Table reviews{
   id int [pk]
-  adza_id int
-  buyer_id int
+  AdzaProfileId int
+  BuyerProfileId int
   review_point float
   review_description varchar
   review_date datetime
@@ -97,7 +97,7 @@ Table reviews{
 
 Table channels{
   id int [pk]
-  adza_id int
+  AdzaProfileId int
   media_type varchar
   follows int
   username varchar
@@ -108,8 +108,8 @@ Table channels{
 
 Table listings{
   id int [pk]
-  adza_id int
-  channel_id int
+  AdzaProfileId int
+  ChannelId int
   media_type varchar
   title varchar
   price float
@@ -120,8 +120,8 @@ Table listings{
 
 Table messages{
   id int [pk]
-  buyer_id int
-  adza_id int
+  BuyerProfileId int
+  AdzaProfileId int
   message_text varchar
   message_time date
   is_new tinyint
@@ -129,21 +129,21 @@ Table messages{
 
 Table carts{
   id int [pk]
-  campaign_id int
+  CampaignId int
   subtotal float
 }
 
 Table orders{
   id int [pk]
-  buyer_id int
-  campaign_id int
+  BuyerProfileId int
+  CampaignId int
   order_status varchar
   order_date date
 }
 
 Table order_history{
   id int [pk]
-  order_id int
+  OrderId int
   order_comment varchar
   order_status varchar
   update_time date  
@@ -164,25 +164,25 @@ Table audience_keywords{
   active tinyint
 }
 
-Ref: users.id > buyer_profile.user_id
-Ref: buyer_profile.id > social_accounts.buyer_id
-Ref: saved_adza.buyer_id > buyer_profile.id
-Ref: saved_adza.adza_id > adza_profile.id
-Ref: saved_adza.listing_id > listings.id
-Ref: campaigns.buyer_id > buyer_profile.id
-Ref: campaign_listings.campaign_id > campaigns.id
-Ref: campaign_listings.adza_id > adza_profile.id
-Ref: campaign_listings.listing_id > listings.id
-Ref: users.id > adza_profile.user_id
-Ref: reviews.adza_id > adza_profile.id
-Ref: reviews.buyer_id > buyer_profile.id
-Ref: channels.adza_id > adza_profile.id
-Ref: listings.adza_id > adza_profile.id
-Ref: listings.channel_id > channels.id
-Ref: messages.buyer_id > buyer_profile.id
-Ref: messages.adza_id > adza_profile.id
-Ref: carts.campaign_id > campaigns.id
-Ref: orders.campaign_id > campaigns.id
-Ref: sessions.buyer_id > buyer_profile.id
+Ref: users.id > buyer_profile.UserId
+Ref: buyer_profile.id > social_accounts.BuyerProfileId
+Ref: saved_adza.BuyerProfileId > buyer_profile.id
+Ref: saved_adza.AdzaProfileId > adza_profile.id
+Ref: saved_adza.ListingId > listings.id
+Ref: campaigns.BuyerProfileId > buyer_profile.id
+Ref: campaign_listings.CampaignId > campaigns.id
+Ref: campaign_listings.AdzaProfileId > adza_profile.id
+Ref: campaign_listings.ListingId > listings.id
+Ref: users.id > adza_profile.UserId
+Ref: reviews.AdzaProfileId > adza_profile.id
+Ref: reviews.BuyerProfileId > buyer_profile.id
+Ref: channels.AdzaProfileId > adza_profile.id
+Ref: listings.AdzaProfileId > adza_profile.id
+Ref: listings.ChannelId > channels.id
+Ref: messages.BuyerProfileId > buyer_profile.id
+Ref: messages.AdzaProfileId > adza_profile.id
+Ref: carts.CampaignId > campaigns.id
+Ref: orders.CampaignId > campaigns.id
+Ref: sessions.BuyerProfileId > buyer_profile.id
 Ref: sessions.adza_profile_id > adza_profile.id
 

@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      buyer_id: {
+      BuyerProfileId: {
         type: Sequelize.INTEGER
       },
       adza_result_click: {

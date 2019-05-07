@@ -8,13 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      buyer_id: {
+      BuyerProfileId: {
         type: Sequelize.INTEGER
       },
-      adza_id: {
+      AdzaProfileId: {
         type: Sequelize.INTEGER
       },
-      listing_id: {
+      ListingId: {
         type: Sequelize.INTEGER
       },
       save_time: {
