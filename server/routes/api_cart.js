@@ -13,7 +13,7 @@ const Campaign_Listing = require('../models').Campaign_Listing;
 // Get All listings in Cart
 router.get('/', passport.authenticate('jwt', {session: false}), async function(req, res) {
 	var auth_user = req.user;
-	var user_id = auth_user.id;
+	var UserId = auth_user.id;
 	
 	var buyer = await Buyer_Profile.getBuyerFromUserID( auth_user.id, function(err, profile ){
 		if( !err )
@@ -24,15 +24,15 @@ router.get('/', passport.authenticate('jwt', {session: false}), async function(r
 
 	// get current Campaign
 	var opened_campaign = await Campaign
-		.findOne({where:{buyer_id: buyer.id, campaign_status:"open"}})
+		.findOne({where:{BuyerProfileId: buyer.id, campaign_status:"open"}})
 		.then((campaign) => { if( campaign ) return campaign; else return null })
 		.catch((error) => res.status(500).send({success: false, message: error }));
 
 	if( !opened_campaign ){
 		Campaign
 			.findOrCreate({
-				where:{ buyer_id: buyer.id, campaign_status: "open" }, 
-				defaults: { buyer_id: buyer.id, campaign_name: "Campaign1", campaign_status: "open" }
+				where:{ BuyerProfileId: buyer.id, campaign_status: "open" }, 
+				defaults: { BuyerProfileId: buyer.id, campaign_name: "Campaign1", campaign_status: "open" }
 			})
 			.spread(function(campaign, created){
 				if( created )
@@ -46,15 +46,15 @@ router.get('/', passport.authenticate('jwt', {session: false}), async function(r
 
 	// Get current Cart info
 	var current_cart = await Cart
-		.findOne({where:{campaign_id: opened_campaign.id}})
+		.findOne({where:{CampaignId: opened_campaign.id}})
 		.then((cart) => { if( cart ) return cart; else return null; })
 		.catch((error) => res.status(500).send({success: false, message: error }));
 
 	if( !current_cart ){
 		Cart
 			.findOrCreate({
-				where:{campaign_id: opened_campaign.id }, 
-				defaults: { campaign_id: opened_campaign.id, subtotal: 0 }
+				where:{CampaignId: opened_campaign.id }, 
+				defaults: { CampaignId: opened_campaign.id, subtotal: 0 }
 			})
 			.spread(function(cart, created){
 				if( created )
@@ -68,7 +68,7 @@ router.get('/', passport.authenticate('jwt', {session: false}), async function(r
 
 	// Get associated Listings
 	var listings = await Campaign_Listing
-		.findAll({where:{campaign_id: opened_campaign.id}})
+		.findAll({where:{CampaignId: opened_campaign.id}})
 		.then(function( listings ) {
 			if( listings.length )
 				return listings;
@@ -83,7 +83,7 @@ router.get('/', passport.authenticate('jwt', {session: false}), async function(r
 // Clear current cart
 router.delete('/', passport.authenticate('jwt', {session: false}), async function(req, res) {
 	var auth_user = req.user;
-	var user_id = auth_user.id;
+	var UserId = auth_user.id;
 
 	var buyer = await Buyer_Profile.getBuyerFromUserID( auth_user.id, function(err, profile ){
 		if( !err )
@@ -94,7 +94,7 @@ router.delete('/', passport.authenticate('jwt', {session: false}), async functio
 
 	// get current Campaign
 	var opened_campaign = await Campaign
-		.findOne({where:{buyer_id: buyer.id, campaign_status:"open"}})
+		.findOne({where:{BuyerProfileId: buyer.id, campaign_status:"open"}})
 		.then((campaign) => { if( campaign ) return campaign; else return null })
 		.catch((error) => res.status(500).send({success: false, message: error }));
 
@@ -102,7 +102,7 @@ router.delete('/', passport.authenticate('jwt', {session: false}), async functio
 		.update({campaign_status: 'closed'});
 
 	var current_cart = await Cart
-		.findOne({where:{campaign_id: opened_campaign.id}})
+		.findOne({where:{CampaignId: opened_campaign.id}})
 		.then((cart) => { if( cart ) return cart; else return null; })
 		.catch((error) => res.status(500).send({success: false, message: error }));
 

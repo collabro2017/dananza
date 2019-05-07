@@ -48,6 +48,9 @@ db.Review = require('./review.js')(sequelize, Sequelize);
 db.Cart = require('./cart.js')(sequelize, Sequelize); 
 
 db.Adza_Profile.hasMany(db.Saved_Adza)
-db.Saved_Adza.belongsTo(db.Adza_Profile)  
+db.Saved_Adza.belongsTo(db.Adza_Profile)
+
+db.User.hasOne(db.Adza_Profile)
+db.Adza_Profile.belongsTo(db.User)  
 
 module.exports = db;

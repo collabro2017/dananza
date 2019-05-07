@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Buyer_Profile = sequelize.define('Buyer_Profile', {
-    user_id: DataTypes.INTEGER,
+    UserId: DataTypes.INTEGER,
     location: DataTypes.INTEGER,
     profession: DataTypes.INTEGER,
     has_seller_acct: DataTypes.BOOLEAN,
@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
   };
 
-  Buyer_Profile.getBuyerFromUserID = function(user_id, callback){
-    return this.findOne({ where: {user_id: user_id} })
+  Buyer_Profile.getBuyerFromUserID = function(UserId, callback){
+    return this.findOne({ where: {UserId: UserId} })
         .then((profile) => { return callback(null, profile);})
         .catch((error) => { return callback(error, null);});
   };

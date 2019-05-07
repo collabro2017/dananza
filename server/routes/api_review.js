@@ -12,11 +12,11 @@ const Buyer_Profile = require('../models').Buyer_Profile;
 const Review = require('../models').Review;
 
 // get reviews for Special Adza
-router.get('/:adza_id', passport.authenticate('jwt', {session: false}), function(req, res) {
-	var adza_id = req.params.adza_id;
+router.get('/:AdzaProfileId', passport.authenticate('jwt', {session: false}), function(req, res) {
+	var AdzaProfileId = req.params.AdzaProfileId;
 
 	Review
-		.findAll({where:{adza_id: adza_id}})
+		.findAll({where:{AdzaProfileId: AdzaProfileId}})
 		.then(function( reviews ) {
 			if( reviews.length )
 				return res.status(201).send({success: true, reviews:reviews});
@@ -38,8 +38,8 @@ router.post('/', passport.authenticate('jwt', {session: false}), async function(
 
 	Review
 		.create({
-			adza_id: req.body.adza_id,
-			buyer_id: buyer.id,
+			AdzaProfileId: req.body.AdzaProfileId,
+			BuyerProfileId: buyer.id,
 			review_point: req.body.review_point,
 			review_description: req.body.review_description,
 			review_date: new Date()

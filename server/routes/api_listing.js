@@ -23,7 +23,7 @@ router.get('/', passport.authenticate('jwt', {session: false}), async function(r
 	} );
 
 	Listing
-		.findAll({ where: {adza_id: adza.id} } )
+		.findAll({ where: {AdzaProfileId: adza.id} } )
 		.then(function( Listing ){
 			if( Listing.length )
 			{
@@ -37,9 +37,9 @@ router.get('/', passport.authenticate('jwt', {session: false}), async function(r
 
 // get listing info
 router.get('/:id', passport.authenticate('jwt', {session: false}), function(req, res) {
-	var listing_id = req.params.id;
+	var ListingId = req.params.id;
 	Listing
-	    .findByPk( listing_id )
+	    .findByPk( ListingId )
 	    .then((listing) => res.status(200).send(listing))
 	    .catch((error) => res.status(500).send({success: false, message: error }));
 });
@@ -48,7 +48,7 @@ router.get('/:id', passport.authenticate('jwt', {session: false}), function(req,
 router.post('/', passport.authenticate('jwt', {session: false}), async function(req, res) {
 	var auth_user = req.user;
 
-	var channel_id 		= req.body.channel_id;
+	var ChannelId 		= req.body.ChannelId;
 	var media_type 		= req.body.media_type;
 	var title 			= req.body.title;
 	var price 			= req.body.price;
@@ -65,8 +65,8 @@ router.post('/', passport.authenticate('jwt', {session: false}), async function(
 
 	Listing
 		.create({
-			adza_id: 		adza.id,
-			channel_id: 	channel_id,
+			AdzaProfileId: 		adza.id,
+			ChannelId: 	ChannelId,
 			media_type: 	media_type,
 			title: 			title,
 			price: 			price,
@@ -80,7 +80,7 @@ router.post('/', passport.authenticate('jwt', {session: false}), async function(
 
 // Update Listing Info
 router.put('/:id', passport.authenticate('jwt', {session: false}), async function(req, res) {
-	var listing_id = req.params.id;
+	var ListingId = req.params.id;
 	var auth_user = req.user;
 
 	var adza = await Adza_Profile.getAdzaFromUserID( auth_user.id, function(err, profile ){
@@ -96,9 +96,9 @@ router.put('/:id', passport.authenticate('jwt', {session: false}), async functio
 	var description 	= req.body.description;
 
 	Listing
-		.findByPk( listing_id )
+		.findByPk( ListingId )
 		.then(function(listing) {
-			if( listing.adza_id == adza.id ){
+			if( listing.AdzaProfileId == adza.id ){
 				listing.update({
 					title: 			title,
 					price: 			price,
@@ -115,7 +115,7 @@ router.put('/:id', passport.authenticate('jwt', {session: false}), async functio
 
 // Delete Channel
 router.delete('/:id', passport.authenticate('jwt', {session: false}), async function(req, res) {
-	var listing_id = req.params.id;
+	var ListingId = req.params.id;
 	var auth_user = req.user;
 
 	var adza = await Adza_Profile.getAdzaFromUserID( auth_user.id, function(err, profile ){
@@ -126,7 +126,7 @@ router.delete('/:id', passport.authenticate('jwt', {session: false}), async func
 	} );
 
 	Listing
-	    .destroy( { where: { id: listing_id, adza_id: adza.id } } )
+	    .destroy( { where: { id: ListingId, AdzaProfileId: adza.id } } )
 	    .then((listing) => {
 	    	if( listing)
 	    		res.status(200).send({success: true, message: msg.deletedSuccess})

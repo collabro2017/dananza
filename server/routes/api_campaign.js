@@ -12,7 +12,7 @@ const Campaign_Listing = require('../models').Campaign_Listing;
 // Get all campaigns
 router.get('/', passport.authenticate('jwt', {session: false}), async function(req, res) {
 	var auth_user = req.user;
-	var user_id = auth_user.id;
+	var UserId = auth_user.id;
 
 	var buyer = await Buyer_Profile.getBuyerFromUserID( auth_user.id, function(err, profile ){
 		if( !err )
@@ -21,7 +21,7 @@ router.get('/', passport.authenticate('jwt', {session: false}), async function(r
 			return res.status(400).send( {success: false, message: err });
 	} );
 	Campaign
-		.findAll({where:{buyer_id: buyer.id}})
+		.findAll({where:{BuyerProfileId: buyer.id}})
 		.then(function( campaigns ) {
 			if( campaigns.length )
 				return res.status(201).send({success: true, campaigns:campaigns});
@@ -34,7 +34,7 @@ router.get('/', passport.authenticate('jwt', {session: false}), async function(r
 // Create new Campaign
 router.post('/', passport.authenticate('jwt', {session: false}), async function(req, res) {
 	var auth_user = req.user;
-	var user_id = auth_user.id;
+	var UserId = auth_user.id;
 
 	var buyer = await Buyer_Profile.getBuyerFromUserID( auth_user.id, function(err, profile ){
 		if( !err )
@@ -47,8 +47,8 @@ router.post('/', passport.authenticate('jwt', {session: false}), async function(
 
 	Campaign
 		.findOrCreate({
-			where:{buyer_id: buyer.id, campaign_status:"open"}, 
-			defaults: { buyer_id: buyer.id, campaign_name: name, campaign_status: "open" }
+			where:{BuyerProfileId: buyer.id, campaign_status:"open"}, 
+			defaults: { BuyerProfileId: buyer.id, campaign_name: name, campaign_status: "open" }
 		})
 		.spread(function(campaign, created){
 			if( created )
@@ -62,8 +62,8 @@ router.post('/', passport.authenticate('jwt', {session: false}), async function(
 // Update Campaign Info
 router.put('/:id', passport.authenticate('jwt', {session: false}), async function(req, res) {
 	var auth_user = req.user;
-	var user_id = auth_user.id;
-	var campaign_id = req.params.id;
+	var UserId = auth_user.id;
+	var CampaignId = req.params.id;
 
 	var buyer = await Buyer_Profile.getBuyerFromUserID( auth_user.id, function(err, profile ){
 		if( !err )
@@ -73,7 +73,7 @@ router.put('/:id', passport.authenticate('jwt', {session: false}), async functio
 	} );
 
 	Campaign
-		.findByPk(campaign_id)
+		.findByPk(CampaignId)
 		.then(function(campaign){
 			if( campaign )
 			{
@@ -81,7 +81,7 @@ router.put('/:id', passport.authenticate('jwt', {session: false}), async functio
 					campaign_name: req.body.campaign_name,
 					campaign_status: req.body.campaign_status,
 					campaign_price: req.body.campaign_price,
-					order_id: req.body.order_id
+					OrderId: req.body.OrderId
 				})
 				.then((campaign)=>res.status(201).send({success: true, message: msg.updatedSuccess}))
 				.catch((error) => res.status(500).send(error));
@@ -94,7 +94,7 @@ router.put('/:id', passport.authenticate('jwt', {session: false}), async functio
 
 // Delete Campaign
 router.delete('/:id', passport.authenticate('jwt', {session: false}), async function(req, res) {
-	var campaign_id = req.params.id;
+	var CampaignId = req.params.id;
 	var auth_user = req.user;
 
 	var buyer = await Buyer_Profile.getBuyerFromUserID( auth_user.id, function(err, profile ){
@@ -105,7 +105,7 @@ router.delete('/:id', passport.authenticate('jwt', {session: false}), async func
 	} );
 
 	Campaign
-	    .destroy( { where: { id: campaign_id, buyer_id: buyer.id } } )
+	    .destroy( { where: { id: CampaignId, BuyerProfileId: buyer.id } } )
 	    .then((campaign) => {
 	    	if( campaign)
 	    		res.status(200).send({success: true, message: msg.deletedSuccess})
@@ -116,11 +116,11 @@ router.delete('/:id', passport.authenticate('jwt', {session: false}), async func
 });
 // get listings by campaign ID
 router.get('/:id/listing', passport.authenticate('jwt', {session: false}), async function(req, res) {
-	var campaign_id = req.params.id;
+	var CampaignId = req.params.id;
 	var auth_user = req.user;
 
 	Campaign_Listing
-		.findAll({where:{campaign_id: campaign_id}})
+		.findAll({where:{CampaignId: CampaignId}})
 		.then(function( listings ) {
 			if( listings.length )
 				return res.status(201).send({success: true, listings:listings});
@@ -132,14 +132,14 @@ router.get('/:id/listing', passport.authenticate('jwt', {session: false}), async
 
 // add Listing to Campaign
 router.post('/:id/listing', passport.authenticate('jwt', {session: false}), async function(req, res) {
-	var campaign_id = req.params.id;
-	var listing_id = req.body.listing_id;
+	var CampaignId = req.params.id;
+	var ListingId = req.body.ListingId;
 
 	// TODO : find AdzaID from listing ID
 	Campaign_Listing
 		.findOrCreate({
-			where:{campaign_id: campaign_id, listing_id: listing_id }, 
-			defaults: { campaign_id: campaign_id, listing_id: listing_id, add_time: new Date() }
+			where:{CampaignId: CampaignId, ListingId: ListingId }, 
+			defaults: { CampaignId: CampaignId, ListingId: ListingId, add_time: new Date() }
 		})
 		.spread(function(listing, created){
 			if( created )
@@ -152,11 +152,11 @@ router.post('/:id/listing', passport.authenticate('jwt', {session: false}), asyn
 
 // Delete listing from Campaign
 router.delete('/:id/remove/:lid', passport.authenticate('jwt', {session: false}), async function(req, res) {
-	var campaign_id = req.params.id;
-	var listing_id = req.params.lid;
+	var CampaignId = req.params.id;
+	var ListingId = req.params.lid;
 
 	Campaign_Listing
-	    .destroy( { where: { listing_id: listing_id, campaign_id: campaign_id } } )
+	    .destroy( { where: { ListingId: ListingId, CampaignId: CampaignId } } )
 	    .then((listing) => {
 	    	if( listing)
 	    		res.status(200).send({success: true, message: msg.deletedSuccess})

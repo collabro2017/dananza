@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Social_Account = sequelize.define('Social_Account', {
-    buyer_id: DataTypes.INTEGER,
+    BuyerProfileId: DataTypes.INTEGER,
     media_type: DataTypes.STRING,
     username: DataTypes.STRING,
     linked_account: DataTypes.STRING,

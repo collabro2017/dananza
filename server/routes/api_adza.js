@@ -11,10 +11,10 @@ const Buyer_Profile = require('../models').Buyer_Profile;
 // get Adza profile by JWT
 router.get('/', passport.authenticate('jwt', {session: false}), function(req, res) {
   var auth_user = req.user;
-  var user_id = auth_user.id;
+  var UserId = auth_user.id;
 
   Adza_Profile
-  	.findOne({ where: {user_id: user_id} })
+  	.findOne({ where: {UserId: UserId} })
   	.then((profile) => { 
   		if( profile ) res.status(200).send(profile) 
   		else res.status(200).send(msg.noResult);
@@ -38,13 +38,13 @@ router.get('/:profile_id', passport.authenticate('jwt', {session: false}), funct
 // create adza profile first time
 router.post('/', passport.authenticate('jwt', {session: false}), function(req, res) {
   var auth_user = req.user;
-  var user_id = auth_user.id;
+  var UserId = auth_user.id;
 
   Adza_Profile
 	.findOrCreate({
-		where: {user_id: user_id}, 
+		where: {UserId: UserId}, 
 		defaults: {
-			user_id: user_id,
+			UserId: UserId,
 			signup_date: new Date(),
 			update_time: new Date()
 
@@ -52,7 +52,7 @@ router.post('/', passport.authenticate('jwt', {session: false}), function(req, r
 	.then(function(profile, created){
 		if( profile ){
 			Buyer_Profile
-			  	.findOne({ where: {user_id: user_id} })
+			  	.findOne({ where: {UserId: UserId} })
 			  	.then((buyer_profile) => { buyer_profile.update({ has_seller_acct: true }) })
 			  	.catch((error) => res.status(400).send({success: false, message: error }));
 
@@ -67,10 +67,10 @@ router.post('/', passport.authenticate('jwt', {session: false}), function(req, r
 // Update Adza profile
 router.put('/', passport.authenticate('jwt', {session: false}), function(req, res) {
   var auth_user = req.user;
-  var user_id = auth_user.id;
+  var UserId = auth_user.id;
 
   Adza_Profile
-	.findOne({ where: {user_id: user_id} })
+	.findOne({ where: {UserId: UserId} })
 	.then(function(profile) {
 		profile.update({
 			...req.body.sellerprofile,

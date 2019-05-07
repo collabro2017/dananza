@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      buyer_id: {
+      BuyerProfileId: {
         type: Sequelize.INTEGER
       },
       campaign_name: {
@@ -20,7 +20,7 @@ module.exports = {
       campaign_price: {
         type: Sequelize.FLOAT
       },
-      order_id: {
+      OrderId: {
         type: Sequelize.INTEGER
       }
     });

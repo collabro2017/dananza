@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Message = sequelize.define('Message', {
-    buyer_id: DataTypes.INTEGER,
-    adza_id: DataTypes.INTEGER,
+    BuyerProfileId: DataTypes.INTEGER,
+    AdzaProfileId: DataTypes.INTEGER,
     message_text: DataTypes.STRING,
     message_time: DataTypes.DATE,
     is_new: DataTypes.BOOLEAN

@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Adza_Profile = sequelize.define('Adza_Profile', {
-    user_id: DataTypes.INTEGER,
+    UserId: DataTypes.INTEGER,
     profile_photo: DataTypes.STRING,
     profile_description: DataTypes.STRING,
     profile_location:DataTypes.STRING,
@@ -17,8 +17,8 @@ module.exports = (sequelize, DataTypes) => {
   Adza_Profile.associate = function(models) {
     // associations can be defined here
   };
-  Adza_Profile.getAdzaFromUserID = function(user_id, callback){
-    return this.findOne({ where: {user_id: user_id} })
+  Adza_Profile.getAdzaFromUserID = function(UserId, callback){
+    return this.findOne({ where: {UserId: UserId} })
         .then((profile) => { return callback(null, profile);})
         .catch((error) => { return callback(error, null);});
   };

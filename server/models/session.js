@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Session = sequelize.define('Session', {
-    buyer_id: DataTypes.INTEGER,
+    BuyerProfileId: DataTypes.INTEGER,
     adza_result_click: DataTypes.BOOLEAN,
     adza_profile_id: DataTypes.INTEGER,
     adza_page_interaction: DataTypes.BOOLEAN,
