@@ -77,8 +77,9 @@ console.log( adzas );
 	          }}
 	          className="info snackAlert"
 	          open={this.state.openAlert}
-	          onClick={this.handleCloseSnack}
+	          onClose={this.handleCloseSnack}
 	          message="This is a success message!"
+	          autoHideDuration={6000}
 	          action={[
 		        <IconButton
 		          key="close"
