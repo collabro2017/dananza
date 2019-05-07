@@ -75,7 +75,7 @@ console.log( adzas );
 	            vertical: 'top',
 	            horizontal: 'right',
 	          }}
-	          className="successAlert"
+	          className="info snackAlert"
 	          open={this.state.openAlert}
 	          onClick={this.handleCloseSnack}
 	          message="This is a success message!"
