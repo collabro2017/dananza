@@ -7,6 +7,8 @@ const msg = require('../config/msg');
 
 const Adza_Profile = require('../models').Adza_Profile;
 const Buyer_Profile = require('../models').Buyer_Profile;
+const Channel = require('../models').Channel;
+const Listing = require('../models').Listing;
 
 // get Adza profile by JWT
 router.get('/', passport.authenticate('jwt', {session: false}), function(req, res) {
@@ -22,11 +24,11 @@ router.get('/', passport.authenticate('jwt', {session: false}), function(req, re
   	.catch((error) => res.status(400).send({success: false, message: error }));
 });
 
-router.get('/:profile_id', passport.authenticate('jwt', {session: false}), function(req, res) {
-  var profile_id = req.params.profile_id;
+router.get('/:id', passport.authenticate('jwt', {session: false}), function(req, res) {
+  var id = req.params.id;
 
   Adza_Profile
-  	.findOne({ where: {profile_id: profile_id} })
+  	.findOne({ where: {id: id} })
   	.then((profile) => { 
   		if( profile ) res.status(200).send(profile) 
   		else res.status(200).send(msg.noResult);
@@ -47,9 +49,8 @@ router.post('/', passport.authenticate('jwt', {session: false}), function(req, r
 			UserId: UserId,
 			signup_date: new Date(),
 			update_time: new Date()
-
 	}})
-	.then(function(profile, created){
+	.then((profile, created) => {
 		if( profile ){
 			Buyer_Profile
 			  	.findOne({ where: {UserId: UserId} })
@@ -82,6 +83,27 @@ router.put('/', passport.authenticate('jwt', {session: false}), function(req, re
 	.catch((error) => res.status(400).send({success: false, message: error }));
 });
 
+// Get All info of Adza
+router.get('/:id/adzainfo', passport.authenticate('jwt', {session: false}), function(req, res) {
+  var AdzaprofileId = req.params.id;
 
+  Adza_Profile
+  	.findOne({  where: {id: AdzaprofileId},
+  			    include:[{model:Channel,
+		          	include: [
+		            {
+		              model: Listing
+        		    }]
+        		}] })
+  	.then((adzas) => { 
+		if( adzas )
+		{
+			res.status(201).send({success: true, adzas:adzas});
+		}
+		else
+			res.status(201).send({success: true, message: msg.noResult });
+	})
+  	.catch((error) => res.status(400).send({success: false, message: error }));
+});
 
 module.exports = router;

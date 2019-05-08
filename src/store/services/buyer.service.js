@@ -4,16 +4,16 @@ import { userService } from '../services';
 import { alertActions } from '../actions'
 
 export const buyerService = {
-    create,
-    read,
-    update,
-    delete: _delete,
-    fetchSavedAdza
+    create_buyer_profile,
+    read_buyer_profile,
+    update_buyer_profile,
+    get_all_campaigns,
+    delete_buyer_profile: _delete_buyer_profile,
 };
 
 const apiRoot = apiConfig.apiRoot;
 
-function create ( _newBuyer )
+function create_buyer_profile ( _newBuyer )
 {
     console.log('userid = ', _newBuyer);
     const requestOptions = 
@@ -34,7 +34,7 @@ function create ( _newBuyer )
         });
 }
 
-function read ()
+function read_buyer_profile ()
 {
 	const requestOptions = {
         method: 'GET',
@@ -43,18 +43,14 @@ function read ()
 
     return fetch( apiRoot + `/buyer`, requestOptions )
         .then( userService.handleResponse )
-        .then( buyer_profile => {
-            
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('Buyer Profile', JSON.stringify(buyer_profile));
-
+        .then( buyer_profile => 
+        {
             return buyer_profile;
         });
 }
 
-function update ( _newData )
+function update_buyer_profile ( _newData )
 {
-    console.log('update data = ', _newData);
 	const requestOptions = {
         method: "PUT",
         headers: { ...authHeader(), "Content-Type": "application/json" },
@@ -68,20 +64,20 @@ function update ( _newData )
         });
 }
 
-function _delete ()
+function _delete_buyer_profile ()
 {
-	
 }
 
-function fetchSavedAdza(){
-    const requestOptions = {
+function get_all_campaigns()
+{
+    const reqOpt = {
         method: 'GET',
-        headers: authHeader(),
-    };
+        headers: { ...authHeader(), "Content-Type": "application/json" }
+    }
 
-    return fetch( apiRoot + `/buyer/saved`, requestOptions )
+    return fetch( apiRoot + `/campaign`, reqOpt )
         .then( userService.handleResponse )
-        .then( adzas => {
-            return adzas;
+        .then( campaigns =>{
+            return campaigns
         });
 }

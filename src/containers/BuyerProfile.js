@@ -17,76 +17,50 @@ import {Checkbox, Radio, RadioGroup} from 'react-icheck';
 
 import "../res/icheck/skins/ltblue.css"
 import "../res/css/components/tag.css"
-// import "../res/css/Dananza_Search.css"
 import "../res/css/BuyerProfile.css"
-
-import Avatar from 'react-avatar-edit'
-import avatarDefault from '../res/img/userinfo_img.png';
 
 class BuyerProfile extends React.Component{
 
-  state={
-          'headerType': "buyer",
-          username: '',
-          description: '',
-          job_type: '',
-          business_name: '',
-          location: '',
-          linkedAccount: '',
-          websites: '',
-          workplace: '',
-          accounts:[],
-          accountlength:[],
-          locations : [],
-          preview: avatarDefault,
-          avatar_src: null
-        }
-
-
+  state = {
+            has_seller_acct: false,
+            profile_description: '',
+            job_type: '',
+            locations: [],
+            linkedAccounts:{},
+            accounts: [],
+            updated: {}
+          }
+          
   constructor(props) {
     super(props);
-    props.changeHeaderType( this.state.headerType );
+    props.changeHeaderType("buyer");
 
-    this.props.dispatch(buyerActions.read());
+    this.props.dispatch(buyerActions.getBuyerProfile());
     this.handleJobType = this.handleJobType.bind(this);
-
-    // Avatar
-    this.setState({ src: avatarDefault});
-    this.onCrop = this.onCrop.bind(this)
-    this.onClose = this.onClose.bind(this)
-    this.onBeforeFileLoad = this.onBeforeFileLoad.bind(this)
   }
 
   componentWillReceiveProps (nextprops) {
 
     const { profile } = nextprops;
-
     if(profile)
     {
-      this.setState({
-        username: profile.username ? profile.username : '',
-        description: profile.profile_description ? profile.profile_description : 'Hello World!',
-        job_type: profile.job_type ? profile.job_type : 'Freelancer',
-        business_name: profile.business_name ? profile.business_name : 'kcc',
-        location: profile.location ? profile.location : '',
-        linkedAccount: profile.linkedAccount ? profile.linkedAccount : '',
-        websites: profile.websites ? profile.websites : '',
+      this.setState ({
+        ...nextprops.profile,
       });
     }
   }
 
   handleJobType(e) {
-    e.preventDefault();
-    console.log('job type = ', e.target.value);
-    if(e.target.checked)
-    {
-      this.setState({ job_type: e.target.value});
-    }
+    this.setState({ job_type: e.target.value });
   }
 
   handleSubmit() {
     const { dispatch } = this.props;
-    dispatch(buyerActions.update(this.state));
+    dispatch(buyerActions.updateBuyerProfile(this.state));
+  }
+
+  getDescriptionValue (e) {
+    this.setState({ profile_description: e.target.value })
   }
   
   handleLocationDelete (i) {
@@ -106,48 +80,33 @@ class BuyerProfile extends React.Component{
 
   componentDidMount(){
     document.title = "Buyer Profile"
+    console.log('state = ', this.state);
   }
 
   addAccount(){
-    var length = this.state.accountlength.length;
-    var add = this.state.accountlength[length-1] + 1;
     this.setState({
-                    accountlength:[...this.state.accountlength,add],
-                    accounts:[...this.state.accounts,
-                            {mediatype:'',linkedaccount:'',websites:'',username:''} ]
-                  });
+      accounts:[...this.state.accounts,
+                {  mediatype:'', linkedaccount:'', websites:'', username:'' } ]
+    });
   }
+
   removeAccount(key){
-    var accountlength = this.state.accountlength.slice(0);
-    accountlength.splice(key,1);
     var accounts = this.state.accounts.slice(0);
     accounts.splice(key,1);
-    this.setState({accountlength, accounts});
+    this.setState({accounts});
   }
-  getValue(index,item,event){
+
+  getValue(index, item, event){
     var accounts = this.state.accounts.slice(0);
     accounts[index][item] = event.target.value;
     this.setState({accounts});
   }
 
-  // Avatar
-  onClose() {
-    this.setState({preview: null})
-  }
-  
-  onCrop(preview) {
-    this.setState({preview})
-  }
- 
-  onBeforeFileLoad(elem) {
-    if(elem.target.files[0].size > 71680){
-      alert("File is too big!");
-      elem.target.value = "";
-    };
+  handleLinked(e) {
+    this.setState({ linkedAccounts: {...this.state.linkedAccounts, [e.target.name]: e.target.value } })
   }
 
   render(){
-    const { profile } = this.props;
     return (
       <div className="buyer_landing buyer_profile">
         <div className="page-container">
@@ -164,30 +123,25 @@ class BuyerProfile extends React.Component{
                 </div>
                 <hr className="divider-line" />
                 <div className="page-main-content pd-bottom row">
+                { this.props.updated ?
+                  <div className="alert_msg">
+                    <p>{ this.props.updated }</p>
+                  </div> 
+                  : null
+                }
                 <form role="form" className="form-horizontal">
                   <div className="form-body" ref="formbody">
                     <div className="formcontrol row">
                       <label className="col-md-2 controllabel"> Profile photo</label>
                       <div className="col-md-10 controlcontent">
-                        {/*<img src={require("../res/img/userinfo_img.png")} />
+                        <img src={require("../res/img/userinfo_img.png")} />
                         <div className="col-md-offset-1 col-md-7">
                           <a className="btn dark btn-outline btn-radius">
                             <i className="fa fa-file-image-o"></i>
                             <b>Choose Photo</b>
                           </a>
-                          
-                        </div>*/}
-                        <div className="avatar_preview">
-                          <img src={this.state.preview} alt="Preview" />
+                          <div className="description">This photo is your identity in Dananza.</div>
                         </div>
-                        <Avatar
-                          width={390}
-                          height={295}
-                          onCrop={this.onCrop}
-                          onClose={this.onClose}
-                          onBeforeFileLoad={this.onBeforeFileLoad}
-                          src={this.state.avatar_src}
-                        />
                       </div>
                     </div>
                     <div className="formcontrol row">
@@ -201,7 +155,8 @@ class BuyerProfile extends React.Component{
                         <textarea 
                           className="form-control btn-radius" 
                           placeholder="Hi there!" rows="5" style={{'height':'120px'}} 
-                          value={ this.state.description }
+                          value={ this.state.profile_description }
+                          onChange={ this.getDescriptionValue.bind(this) }
                         >
                         </textarea>
                       </div>
@@ -212,14 +167,14 @@ class BuyerProfile extends React.Component{
                       </label>
                       <div className="col-md-10 controlcontent">
                         <div className="mt-radio-list">
-                            <RadioGroup className="mt-radio-list" name="radio" value="Business Owner">
+                            <RadioGroup className="mt-radio-list" name="radio" 
+                                        value={this.state.job_type} 
+                                        onChange={ this.handleJobType.bind(this) }>
                                 <Radio
                                   value="Business Owner"
                                   radioClass="iradio_minimal-blue"
                                   increaseArea="20%"
                                   label="Business Owner"
-                                  onClick={ this.handleJobType }
-                                  checked={ this.state.job_type === "Business Owner" }
                                 />
                                 <Radio
                                   value="Freelancer"
@@ -227,24 +182,18 @@ class BuyerProfile extends React.Component{
                                   increaseArea="20%"
                                   label="Freelancer"
                                    defaultChecked
-                                  onClick={ this.handleJobType }
-                                  checked={ this.state.job_type === "Freelancer" }
                                 />
                                 <Radio
                                   value="Employee"
                                   radioClass="iradio_minimal-blue"
                                   increaseArea="20%"
                                   label="Employee"
-                                  onClick={ this.handleJobType }
-                                  checked={ this.state.job_type === "Employee" }
                                 />
                                 <Radio
                                   value="Agency"
                                   radioClass="iradio_minimal-blue"
                                   increaseArea="20%"
                                   label="Agency"
-                                  onClick={ this.handleJobType }
-                                  checked={ this.props.job_type === "Agency" }
                                 />
                             </RadioGroup>
                         </div>
@@ -265,7 +214,7 @@ class BuyerProfile extends React.Component{
                       <div className="col-md-10 controlcontent">
                         <input type="text" className="form-control btn-radius" 
                                placeholder="ex: Ad Agency"
-                               value={ this.state.business_name }/>
+                               value={ this.state.job_type }/>
                       </div>
                     </div>
                     <div className="formcontrol row">
@@ -279,7 +228,8 @@ class BuyerProfile extends React.Component{
                             placeholder="Miami, Florida"
                             allowNew={true}
                             addOnBlur={true}
-                            tags={this.state.locations}
+                            autofocus={false}
+                            tags={ this.state.locations ? this.state.locations : ''}
                             suggestions={this.state.suggestions}
                             handleDelete={this.handleLocationDelete.bind(this)}
                             handleAddition={this.handleLocationAddition.bind(this)}
@@ -296,7 +246,12 @@ class BuyerProfile extends React.Component{
                         <div className="col-md-10 controlcontent">
                           <div className="input-icon">
                             <img src={require("../res/img/play.png")} className="placeholder-img"/>
-                            <input type="text" className="form-control btn-radius" placeholder="Choose Media Type"/>
+                            <input type="text" className="form-control btn-radius" 
+                                   placeholder="Choose Media Type"
+                                   name="MediaType"
+                                   value={ this.state.linkedAccounts ? this.state.linkedAccounts.MediaType : '' }
+                                   onChange={ this.handleLinked.bind(this) }
+                            />
                           </div>
                         </div>
                       </div>
@@ -309,7 +264,9 @@ class BuyerProfile extends React.Component{
                             <img src={require("../res/img/username.png")} className="placeholder-img"/>
                             <input type="text" className="form-control btn-radius" 
                                    placeholder="Username"
-                                   value={ this.state.username }
+                                   name="Username"
+                                   value={ this.state.linkedAccounts ? this.state.linkedAccounts.Username : '' }
+                                   onChange={ this.handleLinked.bind(this) }
                             />
                           </div>
                         </div>
@@ -321,7 +278,12 @@ class BuyerProfile extends React.Component{
                         <div className="col-md-10 controlcontent">
                           <div className="input-icon">
                             <img src={require("../res/img/link.png")} className="placeholder-img"/>
-                            <input type="text" className="form-control btn-radius" placeholder="Linked Account"/>
+                            <input  type="text" className="form-control btn-radius" 
+                                    placeholder="Linked Account"
+                                    name="linkedAcct"
+                                    value={ this.state.linkedAccounts ? this.state.linkedAccounts.linkedAcct : '' }
+                                    onChange={ this.handleLinked.bind(this) }
+                            />
                           </div>
                         </div>
                       </div>
@@ -332,16 +294,21 @@ class BuyerProfile extends React.Component{
                         <div className="col-md-10 controlcontent">
                           <div className="input-icon">
                             <img src={require("../res/img/link.png")} className="placeholder-img"/>
-                            <input type="text" className="form-control btn-radius" placeholder="https://itsmichaelaseyra.com"/>
+                            <input type="text" className="form-control btn-radius" 
+                                   placeholder="https://itsmichaelaseyra.com"
+                                   name="Website"
+                                   value={ this.state.linkedAccounts ? this.state.linkedAccounts.Website : '' }
+                                   onChange={ this.handleLinked.bind(this) }
+                            />
                           </div>
                         </div>
                       </div>
                     </div>
                     <div aria-live='polite' aria-relevant='additions removals'>
                     {
-                      this.state.accountlength.map(
-                      (key,index)=>(
-                            <div className="account" key={key}>
+                      this.state.accounts.map(
+                      (items,index)=>(
+                            <div className="account">
                               <div className="formcontrol row">
                                 <label className="col-md-2 controllabel">
                                   Linked Accounts{index}
@@ -405,12 +372,13 @@ class BuyerProfile extends React.Component{
                 </form>
                 <p><a className="add-website" onClick={this.addAccount.bind(this)}>+ Add Another Account</a></p>
               </div>
+              <div className="action_group">
+                <button className="btn btn-blue left"><img src={require("../res/img/eye_white.png")}/> Preview</button>
+                <button className="btn btn-yellow right" onClick={this.handleSubmit.bind(this)}><img src={require("../res/img/check_black.png")}/> Save</button>
+              </div>
             </div>
+            
           </div>
-        </div>
-        <div className="action_group">
-          <button className="btn btn-blue left"><img src={require("../res/img/eye_white.png")}/> Preview</button>
-          <button className="btn btn-yellow right" onClick={this.handleSubmit.bind(this)}><img src={require("../res/img/check_black.png")}/> Save</button>
         </div>
       </div>
     );
@@ -418,15 +386,16 @@ class BuyerProfile extends React.Component{
 }
 
 const mapStateToProps = state => {
-  const { profile } = state.buyerProfile
+  const { profile, updated } = state.buyerProfile
   return {
-    profile
+    profile,
+    updated
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    dispatch
+    dispatch,
   }
 };
 

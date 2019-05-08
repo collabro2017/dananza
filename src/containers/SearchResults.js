@@ -6,12 +6,15 @@ import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { withStyles } from '@material-ui/core/styles';
+
+import { sellerActions } from '../store/actions';
 
 import 'icheck/skins/all.css';
 import {Checkbox, Radio} from 'react-icheck';
@@ -42,18 +45,21 @@ class SearchResults extends React.Component{
 
   state={
   		'headerType': "seller",
-  		'relevance': 'relevance',
-  		'reach_start': 0,
-  		'reach_end': 100,
-  		'gender_percent' : 0,
-  		'age_start': 0,
-  		'age_end': 60,
-  		'searchText':'Social Media',
-  		'startDate': null,
-		tags: [
-	        { name: "Apples" },
-	        { name: "Pears" }
-		],
+  		'search_option':{
+  			'relevance': 'relevance',
+	  		'reach_start': 0,
+	  		'reach_end': 100,
+	  		'gender_percent' : 0,
+	  		'age_start': 0,
+	  		'age_end': 60,
+	  		'searchText':'Social Media',
+	  		'startDate': null,
+			'locations' : [],
+			'interests': [],
+			'media_type': [],
+			'price_start': 0,
+			'price_end': 0,
+  		},
 		suggestions: [
 			{ name: "Bananas" },
 			{ name: "Mangos" },
@@ -62,71 +68,29 @@ class SearchResults extends React.Component{
 			{ name: "Lemonfefes" },
 			{ name: "Apricots"}
 		],
-		'locations' : []
-  }
+		allAdlist: [],
+		searchResult: [],
+		resultcount: 0,
+		price_start: '',
+		price_end: '',
+		color: [
+			"#eeb0a0",
+			"#ff9865",
+			"#f3b4b3",
+			"#c9aedf",
+			"#ffd766",
+			"#96dab0",
+			"#96b8da",
+			"#ea8891",
+			"#99cccc"
+		]
+  };
 
   constructor(props) {
     super(props);
     props.changeHeaderType( this.state.headerType )
 
     this.onChangeStartDate = this.onChangeStartDate.bind(this);
-  }
-
-  onChangeRelevance = event => {
-	this.setState({ ['relevance']: event.target.value });
-  };
-  
-  onReachSlide = (render, handle, value, un, percent) => {
-    this.setState({
-      'reach_start':value[0].toFixed(0), 
-      'reach_end':value[1].toFixed(0)
-    });
-  };
-  onAgeSlide = (render, handle, value, un, percent) => {
-    this.setState({
-      'age_start':value[0].toFixed(0), 
-      'age_end':value[1].toFixed(0)
-    });
-  };
-  onGenderSlide = (render, handle, value, un, percent) => {
-    this.setState({
-      'gender_percent':value[0].toFixed(0), 
-    });
-  };
-
-  onChangeStartDate(date) {
-    this.setState({
-      startDate: date
-    });
-  };
-  handleKeywordDelete (i) {
-    const tags = this.state.tags.slice(0)
-    tags.splice(i, 1)
-    this.setState({ tags })
-  }
- 
-  handleKeywordAddition (tag) {
-    const tags = [].concat(this.state.tags, tag)
-    if( tags.length > 5 )
-    	return;
-    
-    if( !this.state.tags.some(item => tag.name === item.name ))
-    	this.setState({ tags: [...this.state.tags, tag]})
-  }
-
-  handleLocationDelete (i) {
-    const locations = this.state.locations.slice(0)
-    locations.splice(i, 1)
-    this.setState({ locations })
-  }
- 
-  handleLocationAddition (location) {
-    const locations = [].concat(this.state.locations, location)
-    if( locations.length > 5 )
-    	return;
-    
-    if( !this.state.locations.some(item => location.name === item.name ))
-    	this.setState({ locations: [...this.state.locations, location]})
   }
 
   componentDidMount(){
@@ -136,42 +100,285 @@ class SearchResults extends React.Component{
       startDate: new Date()
     });
   };
+  componentWillMount()
+  {
+  	const { dispatch } = this.props;
+  	dispatch(sellerActions.getSearchResult());
+  }
+
+  componentWillReceiveProps(props)
+  {
+  	if (props.allAdlist != undefined)
+  	{
+  		this.setState({allAdlist:props.allAdlist});
+  		this.state.allAdlist = props.allAdlist;
+  		this.filter();
+  	}
+  }
+
+  onChangeRelevance = event => {
+  	const {search_option} = this.state;
+	this.setState({ search_option: {...search_option, relevance : event.target.value}});
+    this.filter();
+  };
+  
+  onReachSlide = (render, handle, value, un, percent) => {
+
+  	const {search_option} = this.state;
+	this.setState({ search_option: {...search_option,
+								'reach_start':value[0].toFixed(0), 
+      							'reach_end':value[1].toFixed(0)}});
+    this.filter();
+  };
+  onAgeSlide = (render, handle, value, un, percent) => {
+  	const {search_option} = this.state;
+	this.setState({ search_option: {...search_option,
+								'age_start':value[0].toFixed(0), 
+     							'age_end':value[1].toFixed(0)}});
+    this.filter();
+  };
+  onGenderSlide = (render, handle, value, un, percent) => {
+  	const {search_option} = this.state;
+	this.setState({ search_option: {...search_option,
+								'gender_percent':value[0].toFixed(0)}});
+    this.filter();
+  };
+
+  onChangeStartDate(date) {
+  	const {search_option} = this.state;
+  	search_option.startDate = date;
+	this.setState({ search_option });
+    this.filter();
+  };
+
+  onChangePriceStart(event) {
+	this.setState({ price_start: parseInt(event.target.value)});
+  }
+
+  onChangePriceEnd(event) {
+	this.setState({ price_end: parseInt(event.target.value)});
+  }
+
+  onMediumType(media) {
+  	const {search_option} = this.state;
+  	let index = search_option.media_type.indexOf(media);
+
+  	if (index != -1){
+  		search_option.media_type.splice(index,1);
+  		if (media == 'socialmedia') {
+  			search_option.media_type.splice(search_option.media_type.indexOf('facebook'),1);
+  			search_option.media_type.splice(search_option.media_type.indexOf('twitter'),1);
+  			search_option.media_type.splice(search_option.media_type.indexOf('instagram'),1);
+  			search_option.media_type.splice(search_option.media_type.indexOf('linkedin'),1);
+  			search_option.media_type.splice(search_option.media_type.indexOf('youtube'),1);
+  			search_option.media_type.splice(search_option.media_type.indexOf('pinterest'),1);
+  		}
+  	}
+  	else{
+  		search_option.media_type.push(media);
+  		if (media == 'socialmedia')
+  		{
+  			if(search_option.media_type.indexOf('facebook')==-1)
+  				search_option.media_type.push('facebook');
+  			if(search_option.media_type.indexOf('twitter')==-1)
+  				search_option.media_type.push('twitter');
+  			if(search_option.media_type.indexOf('instagram')==-1)
+  				search_option.media_type.push('instagram');
+  			if(search_option.media_type.indexOf('linkedin')==-1)
+  				search_option.media_type.push('linkedin');
+  			if(search_option.media_type.indexOf('youtube')==-1)
+  				search_option.media_type.push('youtube');
+  			if(search_option.media_type.indexOf('pinterest')==-1)
+  				search_option.media_type.push('pinterest');
+  		}
+  	}
+
+  	this.setState({search_option});
+    this.filter();
+  }
+
+  handleInterestsDelete (i) {
+    const interests = this.state.search_option.interests.slice(0);
+    const {search_option} = this.state;
+    interests.splice(i, 1)
+    search_option.interests = interests;
+	this.setState({ search_option });
+    this.filter();
+  }
+ 
+  handleInterestsAddition (tag) {
+    const interests = [].concat(this.state.search_option.interests, tag)
+    const {search_option} = this.state;
+    if( interests.length > 5 )
+    	return;
+    
+    if( !this.state.search_option.interests.some(item => tag.name === item.name )){
+    	search_option.interests = interests;
+		this.setState({ search_option });
+    	this.filter();
+    }
+  }
+
+  handleLocationDelete (i) {
+    const locations = this.state.search_option.locations.slice(0);
+    const {search_option} = this.state;
+    locations.splice(i, 1)
+    search_option.locations = locations;
+    this.setState({ search_option });
+	this.filter();
+  }
+ 
+  handleLocationAddition (location) {
+    const locations = [].concat(this.state.search_option.locations, location)
+    const {search_option} = this.state;
+    if( locations.length > 5 )
+    	return;
+    
+    if( !this.state.search_option.locations.some(item => location.name === item.name )){
+    	search_option.locations = locations;
+    	this.setState({ search_option});
+    	this.filter();
+    }
+  }
+
+  showFollows(number)
+  {
+  	if (number >= 1000)
+  	{
+  		var str = "" + Math.floor(number/1000) + 'k';
+
+  		if (number % 1000)
+  			str+='+';
+  		return str;
+  	}
+  	return number;
+  }
+
+  moveSellerpage(id)
+  {
+  	const { dispatch } = this.props;
+  	dispatch(sellerActions.moveSellerPage(id));
+  	this.props.history.push("/seller_page");
+  }
+
+  filterPrice()
+  {
+  	const {search_option} = this.state;
+  	search_option.price_start = this.state.price_start;
+  	search_option.price_end = this.state.price_end;
+  	this.setState({search_option});
+   	this.filter();
+  }
+
+  filter()
+  {
+  	const {relevance, reach_start, reach_end,
+	  		gender_percent, age_start, age_end,
+	  		searchText,	startDate, locations, interests, media_type, price_start, price_end} = this.state.search_option;
+	let searchResult = [];
+	let resultcount = 0;
+	for(var item of this.state.allAdlist)
+	{
+		if(item.Adza_Profile == null)
+			continue;
+	  	const {audience_age_min,
+	  		audience_age_max,
+	  		audience_male_percent,
+	  		audience_locations,
+	  		audience_interests} = item.Adza_Profile;
+	  	const {price} = item;
+	  	const {follows} = item.Channel;
+		var launchDate = new Date(item.insert_date);
+	  	let flag = false;
+
+	  	if (audience_age_max < age_start || age_end < audience_age_min)
+	  		continue;
+	  	if (Math.abs(audience_male_percent - gender_percent) > 5)
+	  		continue;
+	  	if (follows < (reach_start*1000) || follows > (reach_end*1000))
+	  		continue;
+	  	if ((price < price_start || price > price_end) && price_start && price_end)
+	  		continue;
+
+	  	for(var location of locations)
+	  	{
+	  		if (audience_locations.some(item => location.name === item.name ))
+	  		{
+	  			flag = true;
+	  			break;
+	  		}
+	  	}
+	  	if (flag == false && locations.length || audience_locations == null)
+	  		continue;
+
+	  	flag = false;
+	  	for(var interest of interests)
+	  	{
+	  		if (audience_interests.some(item => interest.name === item.name ))
+	  		{
+	  			flag = true;
+	  			break;
+	  		}
+	  	}
+	  	if (flag == false && interests.length || audience_interests == null)
+	  		continue;
+
+		if (media_type.length && media_type.indexOf(item.media_type) == -1)
+			continue;
+
+		if (startDate > launchDate ) {
+			continue;
+		}
+
+		resultcount ++;
+	  	searchResult.push(item);
+	}
+	this.setState({searchResult,resultcount});
+  }
 
   render(){
-  	const { reach_start, reach_end } = this.state;
-  	const { age_start, age_end } = this.state;
-  	const { gender_percent } = this.state;
+  	const { reach_start, reach_end, interests, locations, media_type } = this.state.search_option;
+  	const { age_start, searchText, startDate, age_end, gender_percent, relevance } = this.state.search_option;
+  	const { searchResult, resultcount, color, suggestions, price_start, price_end } = this.state;
+  	let count = 0;
 
     return (
     	<div className="search_page full_container">
 			<div className="page-navbar">
 				<div className="page-navbar-content">
 					<div className="btn-group" data-toggle="buttons">
-						<label className="btn btn-default">
+						<label className={"btn btn-default " + (media_type.indexOf('facebook')!=-1?"active focus":"")}
+							  onClick={this.onMediumType.bind(this,"facebook")}>
 							<input type="checkbox" className="toggle"/>
 							Facebook
 						</label>
-						<label className="btn btn-default">
+						<label className={"btn btn-default " + (media_type.indexOf('instagram')!=-1?"active focus":"")}
+							  onClick={this.onMediumType.bind(this,"instagram")}>
 							<input type="checkbox" className="toggle"/>
 							Instagram
 						</label>
-						<label className="btn btn-default">
+						<label className={"btn btn-default " + (media_type.indexOf('twitter')!=-1?"active focus":"")}
+							  onClick={this.onMediumType.bind(this,"twitter")}>
 							<input type="checkbox" className="toggle"/>
 							Twitter
 						</label>
-						<label className="btn btn-default">
+						<label className={"btn btn-default " + (media_type.indexOf('linkedin')!=-1?"active focus":"")}
+							  onClick={this.onMediumType.bind(this,"linkedin")}>
 							<input type="checkbox" className="toggle"/>
 							LinkedIn
 						</label>
-						<label className="btn btn-default">
+						<label className={"btn btn-default " + (media_type.indexOf('youtube')!=-1?"active focus":"")}
+							  onClick={this.onMediumType.bind(this,"youtube")}>
 							<input type="checkbox" className="toggle"/>
 							YouTube
 						</label>
-						<label className="btn btn-default">
+						<label className={"btn btn-default " + (media_type.indexOf('blog')!=-1?"active focus":"")}
+							  onClick={this.onMediumType.bind(this,"blog")}>
 							<input type="checkbox" className="toggle"/>
 							Blog
 						</label>
-						<label className="btn btn-default">
+						<label className={"btn btn-default " + (media_type.indexOf('podcasts')!=-1?"active focus":"")}
+							  onClick={this.onMediumType.bind(this,"podcasts")}>
 							<input type="checkbox" className="toggle"/>
 							Podcasts
 						</label>
@@ -184,7 +391,7 @@ class SearchResults extends React.Component{
 						<span className="grey">Sort by:</span>
 						<FormControl>
 						  <Select
-						    value={this.state.relevance}
+						    value={relevance}
 						    onChange={this.onChangeRelevance}
 						    inputProps={{
 						      name: 'material',
@@ -213,6 +420,7 @@ class SearchResults extends React.Component{
 											  increaseArea="20%"
 											  label="Social Media"
 											  className="icheck"
+											  onChange={this.onMediumType.bind(this,"socialmedia")}
 											/>
 										</div>
 										<ul className="sub-menu">
@@ -223,6 +431,8 @@ class SearchResults extends React.Component{
 													  increaseArea="40%"
 													  label="Facebook"
 													  className="icheck"
+													  checked={media_type.indexOf('facebook')!=-1}
+													  onChange={this.onMediumType.bind(this,"facebook")}
 													/>
 												</div>
 											</li>
@@ -233,6 +443,8 @@ class SearchResults extends React.Component{
 													  increaseArea="40%"
 													  label="Instagram"
 													  className="icheck"
+													  checked={media_type.indexOf('instagram')!=-1}
+													  onChange={this.onMediumType.bind(this,"instagram")}
 													/>
 												</div>
 											</li>
@@ -243,6 +455,8 @@ class SearchResults extends React.Component{
 													  increaseArea="40%"
 													  label="Twitter"
 													  className="icheck"
+													  checked={media_type.indexOf('twitter')!=-1}
+													  onChange={this.onMediumType.bind(this,"twitter")}
 													/>
 												</div>
 											</li>
@@ -253,6 +467,8 @@ class SearchResults extends React.Component{
 													  increaseArea="40%"
 													  label="Linkedin"
 													  className="icheck"
+													  checked={media_type.indexOf('linkedin')!=-1}
+													  onChange={this.onMediumType.bind(this,"linkedin")}
 													/>
 												</div>
 											</li>
@@ -263,6 +479,8 @@ class SearchResults extends React.Component{
 													  increaseArea="40%"
 													  label="YouTube"
 													  className="icheck"
+													  checked={media_type.indexOf('youtube')!=-1}
+													  onChange={this.onMediumType.bind(this,"youtube")}
 													/>
 												</div>
 											</li>
@@ -273,6 +491,8 @@ class SearchResults extends React.Component{
 													  increaseArea="40%"
 													  label="Pinterest"
 													  className="icheck"
+													  checked={media_type.indexOf('pinterest')!=-1}
+													  onChange={this.onMediumType.bind(this,"pinterest")}
 													/>
 												</div>
 											</li>
@@ -285,6 +505,7 @@ class SearchResults extends React.Component{
 											  increaseArea="40%"
 											  label="Blogs"
 											  className="icheck"
+											  onChange={this.onMediumType.bind(this,"blogs")}
 											/>
 										</div>
 									</li>
@@ -295,6 +516,7 @@ class SearchResults extends React.Component{
 											  increaseArea="40%"
 											  label="Podcasts"
 											  className="icheck"
+											  onChange={this.onMediumType.bind(this,"podcasts")}
 											/>
 										</div>
 									</li>
@@ -311,10 +533,10 @@ class SearchResults extends React.Component{
 										placeholder="Type Audience Interests"
 										inputAttributes={{ maxLength: 15 }}
 										allowNew={true}
-									    tags={this.state.tags}
-									    suggestions={this.state.suggestions}
-									    handleDelete={this.handleKeywordDelete.bind(this)}
-									    handleAddition={this.handleKeywordAddition.bind(this)}
+									    tags={interests}
+									    suggestions={suggestions}
+									    handleDelete={this.handleInterestsDelete.bind(this)}
+									    handleAddition={this.handleInterestsAddition.bind(this)}
 									    classNames = {{root:"outer-tag react-tags"}} />
 								</div>
 								<div className="features">
@@ -323,7 +545,7 @@ class SearchResults extends React.Component{
 										placeholder="Enter City, State, or Zip Code"
 										inputAttributes={{ maxLength: 15 }}
 										allowNew={true}
-									    tags={this.state.locations}
+									    tags={locations}
 									    handleDelete={this.handleLocationDelete.bind(this)}
 									    handleAddition={this.handleLocationAddition.bind(this)}
 									    classNames = {{root:"outer-tag react-tags"}}/>
@@ -336,7 +558,7 @@ class SearchResults extends React.Component{
 									    range={{min: 0, max: 100}}
 									    start={[ reach_start, reach_end]}
 									    connect
-									    onSlide={this.onReachSlide}
+									    onChange={this.onReachSlide}
 									  />
 		                                <label className="dark-grey">{ reach_start } - { reach_end }k</label>
 		                            </div>
@@ -347,8 +569,7 @@ class SearchResults extends React.Component{
 		                                <Nouislider											
 										    range={{min: 0, max: 100}}
 										    start={[gender_percent]}
-										    connect
-										    onSlide={this.onGenderSlide}
+										    onChange={this.onGenderSlide}
 										  />
 		                                <div className="dark-grey">
 		                                	<label>Male</label>
@@ -363,7 +584,7 @@ class SearchResults extends React.Component{
 										    range={{min: 0, max: 60}}
 										    start={[age_start, age_end]}
 										    connect
-										    onSlide={this.onAgeSlide}
+										    onChange={this.onAgeSlide}
 										  />
 		                                <label className="dark-grey"> { age_start } - { age_end }</label>
 		                            </div>
@@ -376,14 +597,16 @@ class SearchResults extends React.Component{
 							<div className="content price-range">
 								<div className="price-form">
 									<div>$</div>
-									<input className="danaza-input-small" type="number" name="pricefrom"/>
+									<input className="danaza-input-small" type="number" value={price_start}
+										onChange={(event)=>{this.onChangePriceStart(event)}}/>
 								</div>
 								<label>to</label>
 								<div className="price-form">
 									<div>$</div>
-									<input className="danaza-input-small" type="number" name="priceto"/>
+									<input className="danaza-input-small" type="number" value={price_end}
+										onChange={(event)=>{this.onChangePriceEnd(event)}}/>
 								</div>
-								<button className="btn">></button>
+								<button className="btn" onClick={this.filterPrice.bind(this)}>></button>
 							</div>
 						</div>
 						<div className="split"></div>
@@ -392,7 +615,7 @@ class SearchResults extends React.Component{
 							<div className="content datetime">
 								<DatePicker
 									className="btn btn-default"
-							        selected={this.state.startDate}
+							        selected={startDate}
 							        onChange={this.onChangeStartDate}
 							        placeholderText="Select Date/s"
 							        dateFormat="YYYY-MM-dd"
@@ -459,353 +682,73 @@ class SearchResults extends React.Component{
 					<div className="page-result">
 						<div className="page-result-header">
 							<li> <i className="fa fa-circle"></i> Sponsored </li>
-							<div style={{'display': 'inline-flex', float:'right'}}> 1-20 of 10718 results for <span className="search_keyword color-dark"> "{this.state.searchText}" </span></div>
+							<div style={{'display': 'inline-flex', float:'right'}}> 1-20 of {resultcount} results for
+							<span className="search_keyword color-dark"> "{searchText}" </span></div>
 						</div>
 						<div className="page-result-content row">
-							<div className="col-sm-6 col-md-3">
-								<div className="item active">
-									<div className="item-header">
-										<div className="title">
-											@themiamimenu
-										</div>
-										<div className="sites">
-											<img src={require("../res/img/instagram.png")} />
-											<img src={require("../res/img/facebook.png")} />
-											<img src={require("../res/img/youtube.png")} />
-										</div>
-										<div className="keywords">
-											<a className="btn btn-default btn-type btn-food">Food</a>
-											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
-											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
-											<div className="hide-end"></div>
-										</div>
-									</div>
-									<div className="item-image">
-										<img src={require("../res/img/item1.png")}/>
-									</div>
-									<div className="item-footer">
-										<div className="reach">
-											<i className="fa fa-user"></i>
-											<span> 60k+</span> 
-										</div>
-										<div className="rating">
-											<i className="fa fa-star"></i>
-											<span> 5.0(17)</span> 
-										</div>
-										<div className="price">
-											<span className="small"> Starting at </span>
-											<span className="value"> $100 </span>
-											<a>+</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="col-sm-6 col-md-3">
-								<div className="item active">
-									<div className="item-header">
-										<div className="title">
-											@themiamimenu
-										</div>
-										<div className="sites">
-											<img src={require("../res/img/instagram.png")} />
-											<img src={require("../res/img/facebook.png")} />
-											<img src={require("../res/img/twitter.png")} />
-											<img src={require("../res/img/youtube.png")} />
-										</div>
-										<div className="keywords">
-											<a className="btn btn-default btn-type btn-restaurant">Restaurant</a>
-											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
-											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
-											<div className="hide-end"></div>
-										</div>
-									</div>
-									<div className="item-image">
-										<img src={require("../res/img/item2.png")}/>
-									</div>
-									<div className="item-footer">
-										<div className="reach">
-											<i className="fa fa-user"></i>
-											<span> 60k+</span> 
-										</div>
-										<div className="rating">
-											<i className="fa fa-star"></i>
-											<span> 5.0(17)</span> 
-										</div>
-										<div className="price">
-											<span className="small"> Starting at </span>
-											<span className="value"> $100 </span>
-											<a>+</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="col-sm-6 col-md-3">
-								<div className="item active">
-									<div className="item-header">
-										<div className="title">
-											@themiamimenu
-										</div>
-										<div className="sites">
-											<img src={require("../res/img/instagram.png")} />
-											<img src={require("../res/img/twitter.png")} />
-											<img src={require("../res/img/youtube.png")} />
-										</div>
-										<div className="keywords">
-											<a className="btn btn-default btn-type btn-food">Food</a>
-											<a className="btn btn-default btn-type btn-miami">Miami</a>
-											<a className="btn btn-default btn-type btn-website">Website</a>
-											<div className="hide-end"></div>
-										</div>
-									</div>
-									<div className="item-image">
-										<img src={require("../res/img/item4.png")}/>
-									</div>
-									<div className="item-footer">
-										<div className="reach">
-											<i className="fa fa-user"></i>
-											<span> 60k+</span> 
-										</div>
-										<div className="rating">
-											<i className="fa fa-star"></i>
-											<span> 5.0(17)</span> 
-										</div>
-										<div className="price">
-											<span className="small"> Starting at </span>
-											<span className="value"> $100 </span>
-											<a>+</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="col-sm-6 col-md-3">
-								<div className="item active">
-									<div className="item-header">
-										<div className="title">
-											@themiamimenu
-										</div>
-										<div className="sites">
-											<img src={require("../res/img/instagram.png")} />
-											<img src={require("../res/img/facebook.png")} />
-											<img src={require("../res/img/youtube.png")} />
-											<img src={require("../res/img/www.png")} />
-										</div>
-										<div className="keywords">
-											<a className="btn btn-default btn-type btn-technology">Technology</a>
-											<a className="btn btn-default btn-type btn-sports">Sports</a>
-											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
-											<div className="hide-end"></div>
-										</div>
-									</div>
-									<div className="item-image">
-										<img src={require("../res/img/item3.png")}/>
-									</div>
-									<div className="item-footer">
-										<div className="reach">
-											<i className="fa fa-user"></i>
-											<span> 60k+</span> 
-										</div>
-										<div className="rating">
-											<i className="fa fa-star"></i>
-											<span> 5.0(17)</span> 
-										</div>
-										<div className="price">
-											<span className="small"> Starting at </span>
-											<span className="value"> $100 </span>
-											<a>+</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="col-sm-6 col-md-3">
-								<div className="item active">
-									<div className="item-header">
-										<div className="title">
-											@themiamimenu
-										</div>
-										<div className="sites">
-											<img src={require("../res/img/instagram.png")} />
-											<img src={require("../res/img/facebook.png")} />
-											<img src={require("../res/img/youtube.png")} />
-										</div>
-										<div className="keywords">
-											<a className="btn btn-default btn-type btn-food">Food</a>
-											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
-											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
-											<div className="hide-end"></div>
-										</div>
-									</div>
-									<div className="item-image">
-										<img src={require("../res/img/item3.png")}/>
-									</div>
-									<div className="item-footer">
-										<div className="reach">
-											<i className="fa fa-user"></i>
-											<span> 60k+</span> 
-										</div>
-										<div className="rating">
-											<i className="fa fa-star"></i>
-											<span> 5.0(17)</span> 
-										</div>
-										<div className="price">
-											<span className="small"> Starting at </span>
-											<span className="value"> $100 </span>
-											<a>+</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="col-sm-6 col-md-3">
-								<div className="item">
-									<div className="item-header">
-										<div className="title">
-											@themiamimenu
-										</div>
-										<div className="sites">
-											<img src={require("../res/img/instagram.png")} />
-											<img src={require("../res/img/facebook.png")} />
-											<img src={require("../res/img/youtube.png")} />
-										</div>
-										<div className="keywords">
-											<a className="btn btn-default btn-type btn-food">Food</a>
-											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
-											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
-											<div className="hide-end"></div>
-										</div>
-									</div>
-									<div className="item-image">
-										<img src={require("../res/img/item5.png")}/>
-									</div>
-									<div className="item-footer">
-										<div className="reach">
-											<i className="fa fa-user"></i>
-											<span> 60k+</span> 
-										</div>
-										<div className="rating">
-											<i className="fa fa-star"></i>
-											<span> 5.0(17)</span> 
-										</div>
-										<div className="price">
-											<span className="small"> Starting at </span>
-											<span className="value"> $100 </span>
-											<a>+</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="col-sm-6 col-md-3">
-								<div className="item">
-									<div className="item-header">
-										<div className="title">
-											@themiamimenu
-										</div>
-										<div className="sites">
-											<img src={require("../res/img/instagram.png")} />
-											<img src={require("../res/img/facebook.png")} />
-											<img src={require("../res/img/youtube.png")} />
-										</div>
-										<div className="keywords">
-											<a className="btn btn-default btn-type btn-food">Food</a>
-											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
-											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
-											<div className="hide-end"></div>
-										</div>
-									</div>
-									<div className="item-image">
-										<img src={require("../res/img/item2.png")}/>
-									</div>
-									<div className="item-footer">
-										<div className="reach">
-											<i className="fa fa-user"></i>
-											<span> 60k+</span> 
-										</div>
-										<div className="rating">
-											<i className="fa fa-star"></i>
-											<span> 5.0(17)</span> 
-										</div>
-										<div className="price">
-											<span className="small"> Starting at </span>
-											<span className="value"> $100 </span>
-											<a>+</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="col-sm-6 col-md-3">
-								<div className="item">
-									<div className="item-header">
-										<div className="title">
-											@themiamimenu
-										</div>
-										<div className="sites">
-											<img src={require("../res/img/instagram.png")} />
-											<img src={require("../res/img/facebook.png")} />
-											<img src={require("../res/img/youtube.png")} />
-										</div>
-										<div className="keywords">
-											<a className="btn btn-default btn-type btn-food">Food</a>
-											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
-											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
-											<div className="hide-end"></div>
-										</div>
-									</div>
-									<div className="item-image">
-										<img src={require("../res/img/item1.png")}/>
-									</div>
-									<div className="item-footer">
-										<div className="reach">
-											<i className="fa fa-user"></i>
-											<span> 60k+</span> 
-										</div>
-										<div className="rating">
-											<i className="fa fa-star"></i>
-											<span> 5.0(17)</span> 
-										</div>
-										<div className="price">
-											<span className="small"> Starting at </span>
-											<span className="value"> $100 </span>
-											<a>+</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="col-sm-6 col-md-3">
-								<div className="item">
-									<div className="item-header">
-										<div className="title">
-											@themiamimenu
-										</div>
-										<div className="sites">
-											<img src={require("../res/img/instagram.png")} />
-											<img src={require("../res/img/facebook.png")} />
-											<img src={require("../res/img/youtube.png")} />
-										</div>
-										<div className="keywords">
-											<a className="btn btn-default btn-type btn-food">Food</a>
-											<a className="btn btn-default btn-type btn-topchef">TopChef</a>
-											<a className="btn btn-default btn-type btn-millenials">Millenialsddddd</a>
-											<div className="hide-end"></div>
-										</div>
-									</div>
-									<div className="item-image">
-										<img src={require("../res/img/item4.png")}/>
-									</div>
-									<div className="item-footer">
-										<div className="reach">
-											<i className="fa fa-user"></i>
-											<span> 60k+</span> 
-										</div>
-										<div className="rating">
-											<i className="fa fa-star"></i>
-											<span> 5.0(17)</span> 
-										</div>
-										<div className="price">
-											<span className="small"> Starting at </span>
-											<span className="value"> $100 </span>
-											<a>+</a>
-										</div>
-									</div>
-								</div>
-							</div>
+							{
+								searchResult.map(
+									(item,index) =>
+									{
+										return(
+											<div className="col-sm-6 col-md-3">
+												<div className="item active">
+													<div className="item-header">
+														<div className="title">
+															<a onClick={this.moveSellerpage.bind(this,item.AdzaProfileId)}>
+																{item.Channel.username}
+															</a>
+														</div>
+														<div className="sites">
+															{
+																item.Adza_Profile.Channels.map(
+																	channel =>
+																	(
+																		<a><img src={require("../res/img/"+channel.media_type+".png")} /></a>
+																	)
+																)
+															}
+														</div>
+														<div className="keywords">
+															{
+																item.Adza_Profile.audience_interests.map(
+																	interest =>
+																	(
+																		<a className="btn btn-default btn-type btn-food"
+																			style={{'background-color':color[parseInt(Math.random()*10)]}}>
+																			{interest.name}
+																		</a>
+																	)
+																)
+															}
+															<div className="hide-end"></div>
+														</div>
+													</div>
+													<div className="item-image">
+														<img src={require("../res/img/item"+(parseInt(Math.random()*10)%5+1)+".png")}/>
+													</div>
+													<div className="item-footer">
+														<div className="reach">
+															<i className="fa fa-user"></i>
+															<span> {this.showFollows(item.Channel.follows)}</span> 
+														</div>
+														<div className="rating">
+															<i className="fa fa-star"></i>
+															<span> 5.0(17)</span> 
+														</div>
+														<div className="price">
+															<span className="small"> Starting at </span>
+															<span className="value"> ${item.price} </span>
+															<a>+</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										);
+									}
+								)
+							}
+
 
 							<div className="col-sm-12 pagination">
 								<a className="btn btn-default" id="prev"> {'<'} </a>
@@ -844,19 +787,19 @@ class SearchResults extends React.Component{
 }
 
 const mapStateToProps = state => {
-  return {
+  	const { user } = state.authentication;
+  	const { allAdlist } = state.seller;
 
-  };
+	return {
+		user,
+		allAdlist,
+	};
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-
-    },
-    dispatch
-  );
+  return {dispatch};
 };
+
 
 export default connect(
   mapStateToProps,

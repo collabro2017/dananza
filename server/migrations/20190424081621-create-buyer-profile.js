@@ -11,26 +11,23 @@ module.exports = {
       UserId: {
         type: Sequelize.INTEGER
       },
+      has_seller_acct: {
+        type: Sequelize.BOOLEAN
+      },
       profile_description: {
         type: Sequelize.STRING
       },
       job_type: {
         type: Sequelize.STRING
       },
-      business_title: {
-        type: Sequelize.STRING
+      locations: {
+        type: Sequelize.JSON
       },
-      location: {
-        type: Sequelize.STRING
+      linkedAccounts: {
+        type: Sequelize.JSON
       },
-      profession: {
-        type: Sequelize.STRING
-      },
-      username: {
-        type: Sequelize.STRING
-      },
-      has_seller_acct: {
-        type: Sequelize.BOOLEAN
+      accounts: {
+        type: Sequelize.JSON
       },
       signup_date: {
         type: Sequelize.DATE

@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import DatePicker from "react-datepicker";
+import { sellerActions } from '../store/actions';
 
 import "react-datepicker/dist/react-datepicker.css";
 import "../res/css/infoflowPage.css"
@@ -13,17 +14,59 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
 class Sellers extends React.Component{
-  state={"startDate":[],"headerType":"seller"};
+  state={
+        "startDate":[],
+        "headerType":"seller",
+        "sellerprofile":{}};
 
   constructor(props) {
     super(props);
     props.changeHeaderType( this.state.headerType );
     this.onChangeStartDate = this.onChangeStartDate.bind(this);
+    this.state.sellerprofile = {...props.sellerprofile,Channels:[]};
   }
 
   componentDidMount(){
     document.title = "Sellers"
   }
+
+  componentWillMount()
+  {
+    const { dispatch } = this.props;
+    dispatch(sellerActions.getAllProfile(this.props.AdzaprofileId));
+  }
+
+  componentWillReceiveProps(props)
+  {
+    if (props.sellerinfo != undefined)
+    {
+      var profile_photo;
+      if (props.buyer_sellerview == false)
+      {
+        debugger;
+        try{
+          profile_photo = require("../res/img/"+props.sellerprofile.profile_photo+".png");
+          profile_photo = props.sellerprofile.profile_photo;
+        }catch(e){
+          profile_photo = "profile_photo";
+        }
+
+        this.setState({sellerprofile:{...props.sellerinfo,...props.sellerprofile,profile_photo}});
+      }
+      else
+      {
+        try{
+          profile_photo = require("../res/img/"+props.sellerinfo.profile_photo+".png");
+          profile_photo = props.sellerinfo.profile_photo;
+        }catch(e){
+          profile_photo = "profile_photo";
+        }
+
+        this.setState({sellerprofile:{...props.sellerinfo,profile_photo}});
+      }
+    }
+  }
+
   onChangeStartDate(date,event,i) {
     var temp = this.state.startDate.slice(0);
     console.log(event);
@@ -33,7 +76,38 @@ class Sellers extends React.Component{
     });
   };
 
+  showFollows(number)
+  {
+    if (number >= 1000)
+    {
+      var str = "" + Math.floor(number/1000) + 'k';
+
+      if (number % 1000)
+        str+='+';
+      return str;
+    }
+    return number;
+  }
+
+  slideTab(index){
+    for(var i = 0;$("#panel_"+i).length; i++){
+      if(index != i)
+        $("#panel_"+i).slideUp();
+    }
+    $("#panel_"+index).slideToggle();
+  }
+
   render(){
+    var {audience_age_max,
+        audience_age_min,
+        audience_interests,
+        audience_locations,
+        audience_male_percent,
+        image_gallery,
+        profile_description,
+        profile_location,
+        profile_photo,Channels} = this.state.sellerprofile;
+    var str = "";
     return (
       <div className="dashboard_seller">
         <div className="sellers container">
@@ -41,7 +115,7 @@ class Sellers extends React.Component{
             <div className="sidebar col-md-3">
               <div className="section target_tree">
                 <div className="image">
-                  <img src={require("../res/img/profile_photo.png")} />
+                  <img src={require("../res/img/"+profile_photo+".png")} />
                   <div className="tree">Target Tree</div>
                     <i className="fa fa-star"></i>
                     <i className="fa fa-star"></i>
@@ -83,7 +157,7 @@ class Sellers extends React.Component{
                     Age
                   </div>
                   <div className="value col-md-6">
-                    30-45 yrs old
+                    {audience_age_min}-{audience_age_max} yrs old
                   </div>
                 </div>
                 <div className="info row">
@@ -91,8 +165,8 @@ class Sellers extends React.Component{
                     Gender
                   </div>
                   <div className="value col-md-6">
-                    Men 40%<br/> 
-                    Female 60%
+                    Men {audience_male_percent}%<br/> 
+                    Female {100-audience_male_percent}%
                   </div>
                 </div>
                 <div className="info row">
@@ -100,9 +174,13 @@ class Sellers extends React.Component{
                     Location
                   </div>
                   <div className="value col-md-6">
-                    Miami<br/> 
-                    Los Angeles<br/>
-                    San Francisco
+                    {
+                      audience_locations.map(
+                        (item) => (
+                          <div>{item.name}</div>
+                        )
+                      )
+                    }
                   </div>
                 </div>
                 <div className="info row">
@@ -110,7 +188,14 @@ class Sellers extends React.Component{
                     Interests
                   </div>
                   <div className="value col-md-6">
-                    Local Events,Local Dining, Gyms, Sports, Local News, Local Activities, Trendy Restaurants, Trendy Bars, Local Guides, Local Business, Professional Sports, Craft Breweries, Miami
+                    {
+                      audience_interests.map(
+                        (item,index) => {
+                          str += (index?', ':' ') + item.name;
+                        }
+                      )
+                    }
+                    {str}
                   </div>
                 </div>
               </div>
@@ -145,333 +230,89 @@ class Sellers extends React.Component{
                         </div>
                         <div className="portlet-body">
                             <div className="panel-group" id="accordion3">
-                                <div className="panel panel-default">
-                                    <div className="panel-heading">
-                                        <h4 className="panel-title">
-                                          <a className="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion3" href="#collapse_3_1" aria-expanded="false">
-                                              <img src={require("../res/img/tab_title_insta.png")} />
-                                              Instagram<span>@targettree
-                                              <i className="fa fa-angle-up">
-                                              </i></span>
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapse_3_1" className="panel-collapse collapse" aria-expanded="false">
-                                        <div className="panel-body">
-                                          <div className="body_header">
-                                            <div className="header_posts">
-                                              <div className="col-sm-3">
-                                                <i className="fa fa-user"></i>Followers
+                              {
+                                Channels.map(
+                                  (item,index) => (
+                                    <div className="panel panel-default">
+                                      <div className="panel-heading">
+                                          <h4 className="panel-title">
+                                            <a className="accordion-toggle collapsed" onClick={this.slideTab.bind(this,index)}>
+                                                <img className="tab-mediatype" src={require("../res/img/"+item.media_type+"_sq.png")} />
+                                                <span className="mediatype-name">{item.media_type}</span>
+                                                <span>
+                                                  {item.username}
+                                                  <i className="fa fa-angle-up"></i>
+                                                </span>
+                                              </a>
+                                          </h4>
+                                      </div>
+                                      <div id={"panel_"+index} className="panel-collapse collapse" aria-expanded="false">
+                                          <div className="panel-body">
+                                            <div className="body_header">
+                                              <div className="header_posts">
+                                                <div className="col-sm-3">
+                                                  <i className="fa fa-user"></i>Followers
+                                                </div>
+                                                <div className="col-sm-3">  
+                                                  <i className="fa fa-user"></i>Engagement Rate
+                                                </div>
+                                                <div className="col-sm-3">
+                                                  <i className="fa fa-commenting"></i>Avg Comments
+                                                </div>
+                                                <div className="col-sm-3">
+                                                  <i className="fa fa-clone"></i>Posts per Week
+                                                </div>
                                               </div>
-                                              <div className="col-sm-3">  
-                                                <i className="fa fa-user"></i>Engagement Rate
-                                              </div>
-                                              <div className="col-sm-3">
-                                                <i className="fa fa-commenting"></i>Avg Comments
-                                              </div>
-                                              <div className="col-sm-3">
-                                                <i className="fa fa-clone"></i>Posts per Week
+                                              <div className="header_posts_value">
+                                                <div className="col-sm-3">
+                                                  {this.showFollows(item.follows)}
+                                                </div>
+                                                <div className="col-sm-3">
+                                                  2.95%
+                                                </div>
+                                                <div className="col-sm-3">
+                                                  30
+                                                </div>
+                                                <div className="col-sm-3">
+                                                  2.95%
+                                                </div>
                                               </div>
                                             </div>
-                                            <div className="header_posts_value">
-                                              <div className="col-sm-3">
-                                                11k
+                                              <div className="body_content">
+                                                {
+                                                  item.Listings.map(
+                                                    (list,index) => (
+                                                      <div className="item post row">
+                                                        <div className="col-sm-4">
+                                                          <img className="adlist-media" src={require("../res/img/"+list.media_type+"_sq.png")} />
+                                                          {list.title}
+                                                        </div>
+                                                        <div className="col-sm-4 datetime">
+                                                             <i className="fa fa-calendar"></i> 
+                                                             <DatePicker
+                                                               className="btn btn-default"
+                                                               selected={this.state.startDate[1]}
+                                                               onChange={(date,event)=>{this.onChangeStartDate(date,event,1)}}
+                                                               placeholderText="Choose Post Date"
+                                                               dateFormat="YYYY-MM-dd"
+                                                             />
+                                                          </div>
+                                                        <div className="col-sm-4 action">
+                                                          <Link to="/cart">
+                                                              ${list.price} <i className="fa fa-cart-plus"></i>
+                                                          </Link>
+                                                        </div>
+                                                      </div>
+                                                    )
+                                                  )
+                                                }
                                               </div>
-                                              <div className="col-sm-3">
-                                                2.95%
-                                              </div>
-                                              <div className="col-sm-3">
-                                                30
-                                              </div>
-                                              <div className="col-sm-3">
-                                                2.95%
-                                              </div>
-                                            </div>
                                           </div>
-                                            <div className="body_content">
-                                               <div className="item">
-                                                 <div className="story row">
-                                                   <div className="col-sm-4 ins_story">
-                                                   <img src={require("../res/img/themainmenu_1.png")} />
-                                                   Instagram Story
-                                                   </div>
-                                                   <div className="col-sm-4 datetime">
-                                                      <i className="fa fa-calendar"></i> 
-                                                      <DatePicker
-                                                        className="btn btn-default"
-                                                        selected={this.state.startDate[0]}
-                                                        onChange={(date,event)=>{this.onChangeStartDate(date,event,0)}}
-                                                        placeholderText="Choose Post Date"
-                                                        dateFormat="YYYY-MM-dd"
-                                                      />
-                                                   </div>
-                                                   <div className="col-sm-4">
-                                                     <Link to="/buyer_page">
-                                                       $100 <i className="fa fa-cart-plus"></i>
-                                                     </Link>
-                                                   </div>
-                                                 </div>
-                                               </div>
-                                               <div className="item post row">
-                                                 <div className="col-sm-4">
-                                                   <img src={require("../res/img/themainmenu_1.png")} /> Instagram Post
-                                                 </div>
-                                                 <div className="col-sm-4 datetime">
-                                                      <i className="fa fa-calendar"></i> 
-                                                      <DatePicker
-                                                        className="btn btn-default"
-                                                        selected={this.state.startDate[1]}
-                                                        onChange={(date,event)=>{this.onChangeStartDate(date,event,1)}}
-                                                        placeholderText="Choose Post Date"
-                                                        dateFormat="YYYY-MM-dd"
-                                                      />
-                                                   </div>
-                                                 <div className="col-sm-4">
-                                                   <Link to="/buyer_page">
-                                                       $100 <i className="fa fa-cart-plus"></i>
-                                                     </Link>
-                                                 </div>
-                                               </div>
-                                               <div className="item video row">
-                                                 <div className="col-sm-4">
-                                                   <img src={require("../res/img/themainmenu_1.png")} />Instagram Video
-                                                 </div>
-                                                 <div className="col-sm-4 datetime">
-                                                      <i className="fa fa-calendar"></i> 
-                                                      <DatePicker
-                                                        className="btn btn-default"
-                                                        selected={this.state.startDate[2]}
-                                                        onChange={(date,event)=>{this.onChangeStartDate(date,event,2)}}
-                                                        placeholderText="Choose Post Date"
-                                                        dateFormat="YYYY-MM-dd"
-                                                      />
-                                                   </div>
-                                                 <div className="col-sm-4">
-                                                   <Link to="/buyer_page">
-                                                       $100 <i className="fa fa-cart-plus"></i>
-                                                     </Link>
-                                                 </div>
-                                               </div>
-                                             </div>
-                                        </div>
+                                      </div>
                                     </div>
-                                </div>
-                                <div className="panel panel-default">
-                                    <div className="panel-heading">
-                                        <h4 className="panel-title">
-                                          <a className="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion3" href="#collapse_3_2" aria-expanded="false">
-                                              <img src={require("../res/img/tab_title_facebook.png")} />Facebook<span>@targettree<i className="fa fa-angle-up"></i></span>
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapse_3_2" className="panel-collapse collapse" aria-expanded="false">
-                                        <div className="panel-body">
-                                          <div className="body_header">
-                                            <div className="header_posts">
-                                              <div className="col-sm-3">
-                                                <i className="fa fa-user"></i>Followers
-                                              </div>
-                                              <div className="col-sm-3">  
-                                                <i className="fa fa-user"></i>Engagement Rate
-                                              </div>
-                                              <div className="col-sm-3">
-                                                <i className="fa fa-commenting"></i>Avg Comments
-                                              </div>
-                                              <div className="col-sm-3">
-                                                <i className="fa fa-clone"></i>Posts per Week
-                                              </div>
-                                            </div>
-                                            <div className="header_posts_value">
-                                              <div className="col-sm-3">
-                                                11k
-                                              </div>
-                                              <div className="col-sm-3">
-                                                2.95%
-                                              </div>
-                                              <div className="col-sm-3">
-                                                30
-                                              </div>
-                                              <div className="col-sm-3">
-                                                2.95%
-                                              </div>
-                                            </div>
-                                          </div>
-                                            <div className="body_content">
-                                               <div className="item">
-                                                 <div className="story row">
-                                                   <div className="col-sm-4 ins_story">
-                                                   <img src={require("../res/img/themainmenu_1.png")} />
-                                                   Instagram Story
-                                                   </div>
-                                                   <div className="col-sm-4 datetime">
-                                                      <i className="fa fa-calendar"></i> 
-                                                      <DatePicker
-                                                        className="btn btn-default"
-                                                        selected={this.state.startDate[3]}
-                                                        onChange={(date,event)=>{this.onChangeStartDate(date,event,3)}}
-                                                        placeholderText="Choose Post Date"
-                                                        dateFormat="YYYY-MM-dd"
-                                                      />
-                                                   </div>
-                                                   <div className="col-sm-4">
-                                                     <Link to="/buyer_page">
-                                                       $100 <i className="fa fa-cart-plus"></i>
-                                                     </Link>
-                                                   </div>
-                                                 </div>
-                                               </div>
-                                               <div className="item post row">
-                                                 <div className="col-sm-4">
-                                                   <img src={require("../res/img/themainmenu_1.png")} /> Instagram Post
-                                                 </div>
-                                                 <div className="col-sm-4 datetime">
-                                                      <i className="fa fa-calendar"></i> 
-                                                      <DatePicker
-                                                        className="btn btn-default"
-                                                        selected={this.state.startDate[4]}
-                                                        onChange={(date,event)=>{this.onChangeStartDate(date,event,4)}}
-                                                        placeholderText="Choose Post Date"
-                                                        dateFormat="YYYY-MM-dd"
-                                                      />
-                                                   </div>
-                                                 <div className="col-sm-4">
-                                                   <Link to="/buyer_page">
-                                                       $100 <i className="fa fa-cart-plus"></i>
-                                                     </Link>
-                                                 </div>
-                                               </div>
-                                               <div className="item video row">
-                                                 <div className="col-sm-4">
-                                                   <img src={require("../res/img/themainmenu_1.png")} />Instagram Video
-                                                 </div>
-                                                 <div className="col-sm-4 datetime">
-                                                      <i className="fa fa-calendar"></i> 
-                                                      <DatePicker
-                                                        className="btn btn-default"
-                                                        selected={this.state.startDate[5]}
-                                                        onChange={(date,event)=>{this.onChangeStartDate(date,event,5)}}
-                                                        placeholderText="Choose Post Date"
-                                                        dateFormat="YYYY-MM-dd"
-                                                      />
-                                                   </div>
-                                                 <div className="col-sm-4">
-                                                   <Link to="/buyer_page">
-                                                       $100 <i className="fa fa-cart-plus"></i>
-                                                     </Link>
-                                                 </div>
-                                               </div>
-                                             </div>
-                                        </div>
-                                    </div>        
-                                </div>
-                                <div className="panel panel-default">
-                                    <div className="panel-heading">
-                                        <h4 className="panel-title">
-                                          <a className="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion3" href="#collapse_3_3" aria-expanded="false">
-                                              <img src={require("../res/img/tab_title_yuto.png")} />YouTube<span>targettree<i className="fa fa-angle-up"></i></span>
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapse_3_3" className="panel-collapse collapse" aria-expanded="false">
-                                        <div className="panel-body">
-                                          <div className="body_header">
-                                            <div className="header_posts">
-                                              <div className="col-sm-3">
-                                                <i className="fa fa-user"></i>Followers
-                                              </div>
-                                              <div className="col-sm-3">  
-                                                <i className="fa fa-user"></i>Engagement Rate
-                                              </div>
-                                              <div className="col-sm-3">
-                                                <i className="fa fa-commenting"></i>Avg Comments
-                                              </div>
-                                              <div className="col-sm-3">
-                                                <i className="fa fa-clone"></i>Posts per Week
-                                              </div>
-                                            </div>
-                                            <div className="header_posts_value">
-                                              <div className="col-sm-3">
-                                                11k
-                                              </div>
-                                              <div className="col-sm-3">
-                                                2.95%
-                                              </div>
-                                              <div className="col-sm-3">
-                                                30
-                                              </div>
-                                              <div className="col-sm-3">
-                                                2.95%
-                                              </div>
-                                            </div>
-                                          </div>
-                                            <div className="body_content">
-                                               <div className="item">
-                                                 <div className="story row">
-                                                   <div className="col-sm-4 ins_story">
-                                                   <img src={require("../res/img/themainmenu_1.png")} />
-                                                   Instagram Story
-                                                   </div>
-                                                   <div className="col-sm-4 datetime">
-                                                      <i className="fa fa-calendar"></i> 
-                                                      <DatePicker
-                                                        className="btn btn-default"
-                                                        selected={this.state.startDate[6]}
-                                                        onChange={(date,event)=>{this.onChangeStartDate(date,event,6)}}
-                                                        placeholderText="Choose Post Date"
-                                                        dateFormat="YYYY-MM-dd"
-                                                      />
-                                                   </div>
-                                                   <div className="col-sm-4">
-                                                     <Link to="/buyer_page">
-                                                       $100 <i className="fa fa-cart-plus"></i>
-                                                     </Link>
-                                                   </div>
-                                                 </div>
-                                               </div>
-                                               <div className="item post row">
-                                                 <div className="col-sm-4">
-                                                   <img src={require("../res/img/themainmenu_1.png")} /> Instagram Post
-                                                 </div>
-                                                 <div className="col-sm-4 datetime">
-                                                      <i className="fa fa-calendar"></i> 
-                                                      <DatePicker
-                                                        className="btn btn-default"
-                                                        selected={this.state.startDate[7]}
-                                                        onChange={(date,event)=>{this.onChangeStartDate(date,event,7)}}
-                                                        placeholderText="Choose Post Date"
-                                                        dateFormat="YYYY-MM-dd"
-                                                      />
-                                                   </div>
-                                                 <div className="col-sm-4">
-                                                   <Link to="/buyer_page">
-                                                       $100 <i className="fa fa-cart-plus"></i>
-                                                     </Link>
-                                                 </div>
-                                               </div>
-                                               <div className="item video row">
-                                                 <div className="col-sm-4">
-                                                   <img src={require("../res/img/themainmenu_1.png")} />Instagram Video
-                                                 </div>
-                                                 <div className="col-sm-4 datetime">
-                                                      <i className="fa fa-calendar"></i> 
-                                                      <DatePicker
-                                                        className="btn btn-default"
-                                                        selected={this.state.startDate[8]}
-                                                        onChange={(date,event)=>{this.onChangeStartDate(date,event,8)}}
-                                                        placeholderText="Choose Post Date"
-                                                        dateFormat="YYYY-MM-dd"
-                                                      />
-                                                   </div>
-                                                 <div className="col-sm-4">
-                                                   <Link to="/buyer_page">
-                                                       $100 <i className="fa fa-cart-plus"></i>
-                                                     </Link>
-                                                 </div>
-                                               </div>
-                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                  )
+                                )
+                              }
                             </div>
                         </div>
                     </div>
@@ -522,19 +363,22 @@ class Sellers extends React.Component{
 }
 
 const mapStateToProps = state => {
-  return {
+    const { user } = state.authentication;
+    const { sellerprofile, sellerinfo, buyer_sellerview, AdzaprofileId } = state.seller;
 
+  return {
+    user,
+    sellerprofile,
+    sellerinfo,
+    buyer_sellerview,
+    AdzaprofileId
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-
-    },
-    dispatch
-  );
+  return {dispatch};
 };
+
 
 export default connect(
   mapStateToProps,

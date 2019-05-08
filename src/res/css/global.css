@@ -201,27 +201,3 @@ a:hover{
   padding-top: 20px;
   position: relative;
   padding-bottom: 40px; }
-
-/* alert str css */
-div.snackAlert > div{
-    font-size: 14px;
-    color: white;
-}
-div.snackAlert > div button{
-  padding: 2px;
-  border-radius: 50% !important;
-}
-
-div.snackAlert.success > div{
-    background-color: #43a047;
-}
-div.snackAlert.warning > div{
-    background-color: #ffa000;
-}
-div.snackAlert.info > div{
-    background-color: #1976d2;
-}
-div.snackAlert.error > div{
-    background-color: #d32f2f;
-}
-

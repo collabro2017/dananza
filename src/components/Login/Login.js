@@ -21,7 +21,7 @@ class Login extends React.Component{
       this.routeChange = this.routeChange.bind(this);
 
       // reset login status
-      // this.props.dispatch(userActions.logout());
+      this.props.dispatch(userActions.logout());
 
       this.state = {
           email: '',

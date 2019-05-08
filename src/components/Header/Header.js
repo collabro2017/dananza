@@ -7,6 +7,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import PersonIcon from "@material-ui/icons/Person";
 import Typography from "@material-ui/core/Typography";
+import { withStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
@@ -25,6 +26,10 @@ import "../../res/css/layout.min.css"
 import $ from "jquery";
 
 import logoUrl from '../../res/img/logo.png';
+
+const styles = theme => ({
+  
+});
 
 class Header extends React.Component{
   state = {
@@ -52,13 +57,19 @@ class Header extends React.Component{
 
     if(loggedIn)
     {
-      this.setState({ headerType: "buyer"});
+      if(type == "seller")
+      {
+        this.setState({ headerType: "seller"});
+      }
+      else if(type == "buyer")
+      {
+        this.setState({ headerType: "buyer"});
+      }
     }
-    else
+    if ( !loggedIn && type == 'static')
     {
-      this.setState({ headerType: "homepage"});
+      this.setState({ headerType: "static"});
     }
-    
 
     this.validateToken(nextProps);
   }
@@ -109,9 +120,16 @@ class Header extends React.Component{
   {
     const { loggedIn, type } = nextProps;
 
-    if( ( !loggedIn || loggedIn == "undefined" ) && ( window.location.pathname != '/'))
-    {
-      this.props.history.push('/');
+    if( (!loggedIn || loggedIn == "undefined") 
+        && window.location.pathname != '/' 
+        && window.location.pathname != '/about'
+        && window.location.pathname != '/help'
+        && window.location.pathname != '/cart'
+        && window.location.pathname != '/checkout'
+        && window.location.pathname != '/uploadfiles'
+      )
+    {  
+        this.props.history.push('/');
     }
   }
 
@@ -524,57 +542,55 @@ class Header extends React.Component{
     }
     else // Static Pages
     {
-        return ( 
-          <div className="header_search">
-              <div className="nav_bar">
-                  <div className="logo">
-                      <Link to="/"><img src={logoUrl}/></Link>
-                  </div>
-                  <div className="input-icon">
-                      <i className="fa fa-search input"></i>
-                      <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
-                      <Link to="/results" className="btn bg-blue search-but color-white">Search</Link>
-                  </div>
-                  <div className="nav_menu">
-                      <ul className="nav_menu_list">
-                          <li>
-                              <Link to="/about">About</Link>
-                          </li>
-                          <li>
-                            <a data-toggle="modal" data-target="#myModal">Sign Up</a>
-                            
-                          </li>
-                          <li>
-                            <a data-toggle="modal" data-target="#login">Log In</a>
-                          </li>
-                          <li className="menu_last_li">
-                              <Link to="/seller_dashboard" className="menu_adza">Become an Adza</Link>
-                          </li>
-                      </ul>
-                      <button id="navbar_toggler" className="navbar_toggler_open mobile_navbar_toggler" type="button">
-                        <span className="navbar_toggler_icon"></span>
-                      </button>
-                  </div>
-                  <div className="nav_mobile_menu" style={{display:'none'}}>
-                <ul className="nav_mobile_list">
-                  <li>
-                      <Link to="/about">About</Link>
-                  </li>
-                  <li>
-                    <a data-toggle="modal" data-target="#myModal">Sign Up</a>
-                    
-                  </li>
-                  <li>
-                    <a data-toggle="modal" data-target="#login">Log In</a>
-                  </li>
-                  <li className="menu_last_li">
-                    <Link to="/seller_dashboard" className="btn bg-yellow btn-small">Become an Adza</Link>
-                  </li>
-                </ul>
-              </div>
-              </div>
-          </div>
-        );
+      return ( 
+        <div className="header_search">
+            <div className="nav_bar">
+                <div className="logo">
+                    <Link to="/"><img src={logoUrl}/></Link>
+                </div>
+                <div className="input-icon">
+                    <i className="fa fa-search input"></i>
+                    <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
+                    <Link to="/results" className="btn bg-blue search-but color-white">Search</Link>
+                </div>
+                <div className="nav_menu">
+                    <ul className="nav_menu_list">
+                        <li>
+                            <Link to="/about">About</Link>
+                        </li>
+                        <li>
+                          <a data-toggle="modal" data-target="#myModal">Sign Up</a>
+                        </li>
+                        <li>
+                          <a data-toggle="modal" data-target="#login">Log In</a>
+                        </li>
+                        <li className="menu_last_li">
+                            <Link to="/seller_dashboard" className="menu_adza">Become an Adza</Link>
+                        </li>
+                    </ul>
+                    <button id="navbar_toggler" className="navbar_toggler_open mobile_navbar_toggler" type="button">
+                      <span className="navbar_toggler_icon"></span>
+                    </button>
+                </div>
+                <div className="nav_mobile_menu" style={{display:'none'}}>
+              <ul className="nav_mobile_list">
+                <li>
+                    <Link to="/about">About</Link>
+                </li>
+                <li>
+                  <a data-toggle="modal" data-target="#myModal">Sign Up</a>
+                </li>
+                <li>
+                  <a data-toggle="modal" data-target="#login">Log In</a>
+                </li>
+                <li className="menu_last_li">
+                  <Link to="/seller_dashboard" className="btn bg-yellow btn-small">Become an Adza</Link>
+                </li>
+              </ul>
+            </div>
+            </div>
+        </div>
+      );
     }
   }
 
@@ -599,12 +615,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch =>
 {
-  return bindActionCreators(
-    {
-
-    },
-    dispatch
-  );
+  return { 
+    dispatch,
+  }
 };
 
 export default connect(
@@ -612,4 +625,4 @@ export default connect(
   mapDispatchToProps
 )(withRouter(Header));
 
-
+// export default withStyles(styles)(Header);

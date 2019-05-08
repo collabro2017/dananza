@@ -8,11 +8,20 @@ import "../res/css/infoflowPage.css"
 
 class Cart extends React.Component{
 
-  state={'headerType': "static","startDate":[],"qty":[1,1]}
+  	state = 
+  	{
+  		headerType: "static",
+  		"startDate":[],
+  		"qty":[1,1],
+  		camp: {
+  			camp_name: 'Campaign'
+  		}
+	}
 
   constructor(props) {
     super(props);
     props.changeHeaderType( this.state.headerType )
+    console.log('cart props =', props);
   }
 
   onChangeStartDate(date,event,i) {
@@ -37,6 +46,16 @@ class Cart extends React.Component{
   	var tmp = this.state.qty;
   	tmp[index] = tmp[index]>1?tmp[index]-1:tmp[index];
   	this.setState({"qty":[...tmp]});
+  }
+
+  handleCampName(e) {
+  	this.setState({
+  		camp: { ...this.state.camp, [e.target.name] : e.target.value }
+  	});
+  }
+
+  componentDidUpdate() {
+  	console.log('cart state =', this.state);
   }
 
   render(){
@@ -66,7 +85,14 @@ class Cart extends React.Component{
 						<div className="cart_des">You're a Few Clicks Away from Ad-ing to Your Business</div>
 						<div className="table_camp">
 							<h3 className="text">
-								Ad Campagin 1 <button><i className="fa fa-pencil"></i></button>
+								<input
+									className="input_campName" 
+									placeholder="Your Camp Name"
+									autofocus={ true }
+									name="camp_name"
+								    onChange={ this.handleCampName.bind(this) }
+								/>
+								<button><i className="fa fa-pencil"></i></button>
 							</h3>
 							<table className="table table-striped table-hover">
 	                            <thead>
@@ -183,12 +209,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
+	return {
+		dispatch,
+	}
 
-    },
-    dispatch
-  );
 };
 
 export default connect(
