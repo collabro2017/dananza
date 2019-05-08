@@ -5,6 +5,8 @@ const msg = {
     'passwordRequiredField': "'password' is a required field.",
     'noResult': "No Result",
     'alreadyExists': "Already exists",
+    'noOwner': "Forbidden. You're not owner",
+    'creatingError': "Sorry, Can't create new Object",
 
     // Success messages
     'loginSuccessful': "You've successfully logged in.",
@@ -27,7 +29,9 @@ const msg = {
     'campaignExist': "Already you have opened Campaign.",
     'alreadyInList': "Already you have it in the list.",
     'createdProfile': "New Buyer Profile Successfully Created",
-    'noOwner': "Forbidden. You're not owner",
+
+    // Message Part
+    'sentSuccess': "Message sent"
 };
 
 module.exports = msg;
