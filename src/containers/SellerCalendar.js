@@ -9,6 +9,12 @@ import Select from '@material-ui/core/Select';
 import SellerSidebar from "../components/Sidebar/SellerSidebar";
 
 import "../res/css/Seller_Dashboard_Calendar.css"
+import "react-big-calendar/lib/css/react-big-calendar.css"
+import BigCalendar from 'react-big-calendar'
+import moment from 'moment'
+
+const localizer = BigCalendar.momentLocalizer(moment)
+const myEventsList = []
 
 class SellerCalendar extends React.Component{
 
@@ -103,6 +109,16 @@ class SellerCalendar extends React.Component{
                             </label>
                         </div>
                       </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-sm-12" style={{ 'height': '600px'}}>
+                      <BigCalendar
+                            localizer={localizer}
+                            events={myEventsList}
+                            startAccessor="start"
+                            endAccessor="end"
+                          />
                   </div>
                 </div>
                 <div className="row">
