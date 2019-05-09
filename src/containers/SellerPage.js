@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import { sellerActions } from '../store/actions';
+import { buyerActions } from '../store/actions';
 
 import "react-datepicker/dist/react-datepicker.css";
 import "../res/css/infoflowPage.css"
@@ -33,11 +34,22 @@ class Sellers extends React.Component{
   componentWillMount()
   {
     const { dispatch } = this.props;
-    dispatch(sellerActions.getAllProfile(this.props.AdzaprofileId));
+    let path = this.props.location.pathname.split('/');
+
+    if(path[2])
+      dispatch(sellerActions.getAllProfile(parseInt(path[2])));
   }
 
   componentWillReceiveProps(props)
   {
+    if (props.location.pathname != this.props.location.pathname) {
+      const { dispatch } = this.props;
+      let path = props.location.pathname.split('/');
+
+      if(path[2])
+        dispatch(sellerActions.getAllProfile(parseInt(path[2])));
+    }
+
     if (props.sellerinfo != undefined)
     {
       var profile_photo;
@@ -95,6 +107,10 @@ class Sellers extends React.Component{
         $("#panel_"+i).slideUp();
     }
     $("#panel_"+index).slideToggle();
+  }
+
+  addToCart( listingId ) {
+    this.props.dispatch(buyerActions.addListingToCart(listingId));
   }
 
   render(){
@@ -298,7 +314,7 @@ class Sellers extends React.Component{
                                                              />
                                                           </div>
                                                         <div className="col-sm-4 action">
-                                                          <Link to="/cart">
+                                                          <Link to="/cart" onClick={this.addToCart.bind(this, list.id)}>
                                                               ${list.price} <i className="fa fa-cart-plus"></i>
                                                           </Link>
                                                         </div>

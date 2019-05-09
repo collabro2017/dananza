@@ -71,4 +71,10 @@ db.Campaign_Listing.belongsTo(db.Campaign)
 db.Listing.hasOne(db.Campaign_Listing)
 db.Campaign_Listing.belongsTo(db.Listing)
 
+db.Campaign.hasOne(db.Cart);
+db.Cart.belongsTo(db.Campaign);
+
+db.Buyer_Profile.hasOne(db.Cart);
+db.Cart.belongsTo(db.Buyer_Profile);
+
 module.exports = db;

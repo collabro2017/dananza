@@ -9,7 +9,7 @@ const Adza_Profile = require('../models').Adza_Profile;
 const Channel = require('../models').Channel;
 
 // get all listing info
-router.get('/', passport.authenticate('jwt', {session: false}), function(req, res) {
+router.get('/', function(req, res) {
 	var listing_id = req.params.id;
 	Listing
 	    .findAll({include:[

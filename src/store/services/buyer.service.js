@@ -8,6 +8,8 @@ export const buyerService = {
     read_buyer_profile,
     update_buyer_profile,
     get_all_campaigns,
+    create_new_campaign,
+    add_list_to_cart,
     delete_buyer_profile: _delete_buyer_profile,
 };
 
@@ -80,4 +82,33 @@ function get_all_campaigns()
         .then( campaigns =>{
             return campaigns
         });
+}
+
+function create_new_campaign() 
+{
+    const reqOpt = {
+        method: 'POST',
+        headers: { ...authHeader(), "Content-Type": "application/json" },
+        body: { campaign_name: 'MyCamp'}
+    }
+
+    return fetch( apiRoot + `/campaign/`, reqOpt )
+        .then( userService.handleResponse )
+        .then( message =>{
+            return message
+    });
+}
+
+function add_list_to_cart ( _newListingId ) 
+{
+    const reqOpt = {
+        method: 'POST',
+        headers: { ...authHeader(), "Content-Type": "application/json" }
+    }
+
+    return fetch( apiRoot + `/cart/${_newListingId}`, reqOpt )
+        .then( userService.handleResponse )
+        .then( message =>{
+            return message
+    });
 }

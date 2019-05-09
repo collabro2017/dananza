@@ -314,7 +314,7 @@ class SellerDashboard extends React.Component{
     } else {
       const { dispatch } = this.props;
       dispatch(sellerActions.moveSellerPagePreview(this.state.sellerprofile));
-      this.props.history.push("/seller_page");
+      this.props.history.push("/seller_page/"+this.state.sellerprofile.id);
     }
   }
 

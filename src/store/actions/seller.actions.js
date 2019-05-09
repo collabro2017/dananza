@@ -13,6 +13,7 @@ export const sellerActions = {
     getAdlist,
     getAllProfile,
     moveSellerPage,
+    moveMySellerPage,
     moveSellerPagePreview,
     getSearchResult
 };
@@ -251,6 +252,29 @@ function getSearchResult(){
     function request() { return { type: sellerConstants.GET_SELLER_ALL_ADLIST_REQUEST } }
     function success(adlist) { return { type: sellerConstants.GET_SELLER_ALL_ADLIST_SUCCESS, adlist }; }
     function failure(error) { return { type: sellerConstants.GET_SELLER_ALL_ADLIST_FAILURE, error } }
+}
+
+function moveMySellerPage(){
+    return dispatch => {
+        dispatch(request());
+
+        sellerService.getProfile()
+            .then(
+                seller => {
+                    if(seller != "No Result") {
+                        dispatch(success(seller));
+                        dispatch(moveSellerPage(seller.id));
+                    }
+                },
+                error => {
+                    dispatch(failure());
+                }
+            );
+    }
+
+    function request() { return { type: sellerConstants.GET_SELLER_PROFILE_REQUEST } }
+    function success(sellerprofile) { return { type: sellerConstants.GET_SELLER_PROFILE_SUCCESS, sellerprofile }; }
+    function failure(error) { return { type: sellerConstants.GET_SELLER_PROFILE_FAILURE, error } }
 }
 
 function moveSellerPage(id){

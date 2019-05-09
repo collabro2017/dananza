@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import { userActions } from '../../store/actions';
+import { sellerActions } from '../../store/actions';
 import { withRouter } from "react-router-dom";
 
 import "../../res/bootstrap/css/bootstrap.min.css"
@@ -36,6 +37,7 @@ class Header extends React.Component{
     headerType: ""
   };
   toggleflag = 0;
+  goAdza = false;
 
   constructor(props) {
     super(props);
@@ -44,17 +46,20 @@ class Header extends React.Component{
   }
 
   componentWillReceiveProps( nextProps ){
-
     window.jQuery = $;
     window.$ = $;
     global.jQuery = $;
     
     const bootstrap = require('bootstrap');
-
-    this.setState({headerType: nextProps.type})
-     
     const { loggedIn, type } = nextProps;
 
+    if (this.goAdza == true && nextProps.AdzaprofileId != undefined) {
+      this.props.history.push("/seller_page/"+nextProps.AdzaprofileId);
+      this.goAdza = false;
+    }
+
+    this.setState({headerType: nextProps.type}) 
+    
     if(loggedIn)
     {
       if(type == "seller")
@@ -116,6 +121,13 @@ class Header extends React.Component{
     this.props.dispatch(userActions.logout());
   }
 
+  showSellerProfile()
+  {
+    const { dispatch } = this.props;
+    this.goAdza = true;
+    dispatch(sellerActions.moveMySellerPage());
+  }
+
   validateToken(nextProps)
   {
     const { loggedIn, type } = nextProps;
@@ -152,13 +164,13 @@ class Header extends React.Component{
               </div>
               <div className="input-icon">
                 <i className="fa fa-search input"></i>
-                <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" value=""/>
-                <Link to="/results"><a href="#" className="btn green search-but">Search</a></Link>
+                <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?"/>
+                <Link to="/results" className="btn green search-but">Search</Link>
               </div>
               <div className="nav_menu">
                 <ul className="nav_menu_list">
                   <li>
-                    <Link to="/seller_page">Adza Page</Link>
+                    <a onClick={this.showSellerProfile.bind(this)}>Adza Page</a>
                   </li>
                   <li>
                     <Link to="/seller_orders">Campaign</Link>
@@ -177,21 +189,21 @@ class Header extends React.Component{
                     </a>
                     <ul className="dropdown-menu dropdown-menu-default seller ">
                         <li>
-                            <Link to="/seller_dashboard">
+                            <Link to="/seller_page">
                               <a href="#">
                                   My Profile 
                               </a>
                             </Link>
                         </li>
                         <li>
-                            <Link to="/seller_page">
+                            <Link to="/seller_dashboard">
                               <a href="#">
                                   My Dashboard 
                               </a>
                             </Link>
                         </li>
                         <li>
-                            <Link to="/signup">
+                            <Link to="/account_setting_account">
                               <a href="#">
                                   Account Settings
                               </a>
@@ -261,7 +273,7 @@ class Header extends React.Component{
                     </div>
                   </li>
                   <li>
-                    <Link to="/seller_page">Adza Page</Link>
+                    <a onClick={this.showSellerProfile.bind(this)}>Adza Page</a>
                   </li>
                   <li>
                     <Link to="/seller_orders">Campaign</Link>
@@ -280,17 +292,15 @@ class Header extends React.Component{
                     </a>
                     <ul className="dropdown-menu dropdown-menu-default seller ">
                         <li>
-                            <Link to="/seller_dashboard">
-                                My Profile 
-                            </Link>
+                            <a onClick={this.showSellerProfile.bind(this)}>My Profile</a>
                         </li>
                         <li>
-                            <Link to="/seller_page">
+                            <Link to="/seller_dashboard">
                                 My Dashboard 
                             </Link>
                         </li>
                         <li>
-                            <Link to="/signup">
+                            <Link to="/account_setting_account">
                                 Account Settings
                             </Link>
                         </li>
@@ -386,7 +396,7 @@ class Header extends React.Component{
                             <Link to="/buyer_landing">My Dashboard </Link>
                         </li>
                         <li>
-                            <Link to="/buyer_settings">Account Setting</Link>
+                            <Link to="/account_setting_account">Account Setting</Link>
                         </li>
                         <li className="divider"> </li>
                         <li>
@@ -452,7 +462,7 @@ class Header extends React.Component{
                             <Link to="/buyer_landing">My Dashboard </Link>
                         </li>
                         <li>
-                            <Link to="/buyer_settings">Account Setting</Link>
+                            <Link to="/account_setting_account">Account Setting</Link>
                         </li>
                         <li className="divider"> </li>
                         <li>
@@ -607,9 +617,11 @@ class Header extends React.Component{
 const mapStateToProps = state => {
 
   const { loggedIn } = state.authentication;
+  const { AdzaprofileId} = state.seller;
 
   return {
-    loggedIn
+    loggedIn,
+    AdzaprofileId
   };
 };
 

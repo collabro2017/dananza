@@ -15,6 +15,7 @@ import Select from '@material-ui/core/Select';
 import { withStyles } from '@material-ui/core/styles';
 
 import { sellerActions } from '../store/actions';
+import { buyerActions } from '../store/actions';
 
 import 'icheck/skins/all.css';
 import {Checkbox, Radio} from 'react-icheck';
@@ -73,6 +74,9 @@ class SearchResults extends React.Component{
 		resultcount: 0,
 		price_start: '',
 		price_end: '',
+		page: 1,
+		itemPerPage: 3,
+		pages: [],
 		color: [
 			"#eeb0a0",
 			"#ff9865",
@@ -258,7 +262,7 @@ class SearchResults extends React.Component{
   {
   	const { dispatch } = this.props;
   	dispatch(sellerActions.moveSellerPage(id));
-  	this.props.history.push("/seller_page");
+  	this.props.history.push("/seller_page/"+id);
   }
 
   filterPrice()
@@ -277,6 +281,7 @@ class SearchResults extends React.Component{
 	  		searchText,	startDate, locations, interests, media_type, price_start, price_end} = this.state.search_option;
 	let searchResult = [];
 	let resultcount = 0;
+	let {pages} = this.state;
 	for(var item of this.state.allAdlist)
 	{
 		if(item.Adza_Profile == null)
@@ -293,7 +298,7 @@ class SearchResults extends React.Component{
 
 	  	if (audience_age_max < age_start || age_end < audience_age_min)
 	  		continue;
-	  	if (Math.abs(audience_male_percent - gender_percent) > 5)
+	  	if (Math.abs(audience_male_percent - gender_percent) > 20)
 	  		continue;
 	  	if (follows < (reach_start*1000) || follows > (reach_end*1000))
 	  		continue;
@@ -333,53 +338,54 @@ class SearchResults extends React.Component{
 		resultcount ++;
 	  	searchResult.push(item);
 	}
-	this.setState({searchResult,resultcount});
+	pages = [];
+	for (var i = 0; i < Math.ceil(resultcount/this.state.itemPerPage) ; i++)
+		pages.push(i+1);
+	this.setState({searchResult,resultcount,page:1,pages});
   }
+
+  addToCart( listingId ) {
+	this.props.dispatch(buyerActions.addListingToCart(listingId));
+  }
+
 
   render(){
   	const { reach_start, reach_end, interests, locations, media_type } = this.state.search_option;
   	const { age_start, searchText, startDate, age_end, gender_percent, relevance } = this.state.search_option;
-  	const { searchResult, resultcount, color, suggestions, price_start, price_end } = this.state;
+  	const { searchResult, resultcount, color, suggestions, price_start, price_end, pages, page, itemPerPage } = this.state;
   	let count = 0;
 
     return (
     	<div className="search_page full_container">
 			<div className="page-navbar">
 				<div className="page-navbar-content">
-					<div className="btn-group" data-toggle="buttons">
+					<div className="btn-grou">
 						<label className={"btn btn-default " + (media_type.indexOf('facebook')!=-1?"active focus":"")}
 							  onClick={this.onMediumType.bind(this,"facebook")}>
-							<input type="checkbox" className="toggle"/>
 							Facebook
 						</label>
 						<label className={"btn btn-default " + (media_type.indexOf('instagram')!=-1?"active focus":"")}
 							  onClick={this.onMediumType.bind(this,"instagram")}>
-							<input type="checkbox" className="toggle"/>
 							Instagram
 						</label>
 						<label className={"btn btn-default " + (media_type.indexOf('twitter')!=-1?"active focus":"")}
 							  onClick={this.onMediumType.bind(this,"twitter")}>
-							<input type="checkbox" className="toggle"/>
 							Twitter
 						</label>
 						<label className={"btn btn-default " + (media_type.indexOf('linkedin')!=-1?"active focus":"")}
 							  onClick={this.onMediumType.bind(this,"linkedin")}>
-							<input type="checkbox" className="toggle"/>
 							LinkedIn
 						</label>
 						<label className={"btn btn-default " + (media_type.indexOf('youtube')!=-1?"active focus":"")}
 							  onClick={this.onMediumType.bind(this,"youtube")}>
-							<input type="checkbox" className="toggle"/>
 							YouTube
 						</label>
-						<label className={"btn btn-default " + (media_type.indexOf('blog')!=-1?"active focus":"")}
-							  onClick={this.onMediumType.bind(this,"blog")}>
-							<input type="checkbox" className="toggle"/>
+						<label className={"btn btn-default " + (media_type.indexOf('blogs')!=-1?"active focus":"")}
+							  onClick={this.onMediumType.bind(this,"blogs")}>
 							Blog
 						</label>
 						<label className={"btn btn-default " + (media_type.indexOf('podcasts')!=-1?"active focus":"")}
 							  onClick={this.onMediumType.bind(this,"podcasts")}>
-							<input type="checkbox" className="toggle"/>
 							Podcasts
 						</label>
 					</div>
@@ -505,6 +511,7 @@ class SearchResults extends React.Component{
 											  increaseArea="40%"
 											  label="Blogs"
 											  className="icheck"
+											  checked={media_type.indexOf('blogs')!=-1}
 											  onChange={this.onMediumType.bind(this,"blogs")}
 											/>
 										</div>
@@ -516,6 +523,7 @@ class SearchResults extends React.Component{
 											  increaseArea="40%"
 											  label="Podcasts"
 											  className="icheck"
+											  checked={media_type.indexOf('podcasts')!=-1}
 											  onChange={this.onMediumType.bind(this,"podcasts")}
 											/>
 										</div>
@@ -597,13 +605,13 @@ class SearchResults extends React.Component{
 							<div className="content price-range">
 								<div className="price-form">
 									<div>$</div>
-									<input className="danaza-input-small" type="number" value={price_start}
+									<input className="danaza-input-small" type="number" min={0} value={price_start}
 										onChange={(event)=>{this.onChangePriceStart(event)}}/>
 								</div>
 								<label>to</label>
 								<div className="price-form">
 									<div>$</div>
-									<input className="danaza-input-small" type="number" value={price_end}
+									<input className="danaza-input-small" type="number" min={0} value={price_end}
 										onChange={(event)=>{this.onChangePriceEnd(event)}}/>
 								</div>
 								<button className="btn" onClick={this.filterPrice.bind(this)}>></button>
@@ -682,15 +690,21 @@ class SearchResults extends React.Component{
 					<div className="page-result">
 						<div className="page-result-header">
 							<li> <i className="fa fa-circle"></i> Sponsored </li>
-							<div style={{'display': 'inline-flex', float:'right'}}> 1-20 of {resultcount} results for
-							<span className="search_keyword color-dark"> "{searchText}" </span></div>
+							<div style={{'display': 'inline-flex', float:'right'}}>
+								{resultcount?
+									((page-1)*itemPerPage+1)+"-"+(page*itemPerPage<resultcount?page*itemPerPage:resultcount)+" of "+resultcount+" results "
+								:"No result "}
+								for&nbsp;
+								<span className="search_keyword color-dark"> "{searchText}" </span>
+							</div>
 						</div>
 						<div className="page-result-content row">
 							{
 								searchResult.map(
 									(item,index) =>
 									{
-										return(
+										return parseInt(index/itemPerPage)==page-1?
+										(
 											<div className="col-sm-6 col-md-3">
 												<div className="item active">
 													<div className="item-header">
@@ -739,43 +753,47 @@ class SearchResults extends React.Component{
 														<div className="price">
 															<span className="small"> Starting at </span>
 															<span className="value"> ${item.price} </span>
-															<a>+</a>
+															<a onClick={ this.addToCart.bind(this, item.id) }>+</a>
 														</div>
 													</div>
 												</div>
 											</div>
-										);
+										):"";
 									}
 								)
 							}
 
+							{pages.length>1?(
+								<div className="col-sm-12 pagination">
+									<a className={"btn btn-default "+(page == 1 ?"disabled":"")}
+										onClick={()=>{ this.setState({page:page-1}) }}> {'<'} </a>
+									<div className="btn-group" data-toggle="buttons" id="pages">
+										{
+											pages.map(
+												(item,index) =>
+												{
+													let bef = Math.min(4,page-1),
+														aft = Math.min(4,pages.length - page);
+													const before = Math.max(bef, 8-aft), after =Math.max(aft, 8-bef);
 
-							<div className="col-sm-12 pagination">
-								<a className="btn btn-default" id="prev"> {'<'} </a>
-								<div className="btn-group" data-toggle="buttons" id="pages">
-		                            <label className="btn btn-default active">
-		                                <input type="radio" className="toggle"/> 1 </label>
-		                            <label className="btn btn-default">
-		                                <input type="radio" className="toggle"/> 2 </label>
-		                            <label className="btn btn-default">
-		                                <input type="radio" className="toggle"/> 3 </label>
-		                            <label className="btn btn-default ">
-		                                <input type="radio" className="toggle"/> 4 </label>
-		                            <label className="btn btn-default">
-		                                <input type="radio" className="toggle"/> 5 </label>
-		                            <label className="btn btn-default">
-		                                <input type="radio" className="toggle"/> 6 </label>
-		                            <label className="btn btn-default ">
-		                                <input type="radio" className="toggle"/> 7 </label>
-		                            <label className="btn btn-default">
-		                                <input type="radio" className="toggle"/> 8 </label>
-		                            <label className="btn btn-default">
-		                                <input type="radio" className="toggle"/> 9 </label>
-		                            <label className="btn btn-default ">
-		                                <input type="radio" className="toggle"/> 10 </label>
-		                        </div>
-		                        <a className="btn btn-default" id="next"> {'>'} </a>
-							</div>
+													if((item < page-before) || (item > page+after))
+														return "";
+													return (
+														<label className={"btn btn-default "+(item == page?"active":"")}
+															onClick={()=>{ this.setState({page:item}) }}>
+				                                			<input type="radio" className="toggle"/>
+				                                			{item}
+				                                		</label>
+			                                		);
+												}
+											)
+										}
+			                        </div>
+			                        <a className={"btn btn-default "+(page >= pages.length ?"disabled":"")}
+			                        	onClick={()=>{ this.setState({page:page+1}) }}> {'>'} </a>
+								</div>
+								):""
+							}
 						</div>
 						
 					</div>

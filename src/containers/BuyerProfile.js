@@ -386,7 +386,7 @@ class BuyerProfile extends React.Component{
 }
 
 const mapStateToProps = state => {
-  const { profile, updated } = state.buyerProfile
+  const { profile, updated } = state.buyer
   return {
     profile,
     updated

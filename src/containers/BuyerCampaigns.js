@@ -36,7 +36,7 @@ class BuyerCampaigns extends React.Component{
 
   componentWillReceiveProps( nextprops ) {
     this.setState({ allCampaigns: nextprops.campaigns });
-    console.log('campaign = ', this.state.allCampaigns);
+    if(!this.state.allCampaigns) this.props.dispatch(buyerActions.createNewCampaign()); 
   }
 
   onChangeRelevance = event => {
@@ -44,6 +44,7 @@ class BuyerCampaigns extends React.Component{
   };
 
   componentDidMount(){
+
     document.title = "Buyer Campaigns"
 
     var index     = 1;
@@ -134,11 +135,11 @@ class BuyerCampaigns extends React.Component{
                 <div className="third-title">Pending Campaigns</div>
                 <div className="main-slider">
                 {
-                  this.state.allCampaign != null ? this.state.allCampaigns.map(
-                    (items, index) =>(
+                  this.state.allCampaign ? this.state.allCampaigns.map(
+                    (item, index) =>(
                       <div className="slider-item">
                         <div className="panel-title">
-                          <span className="first">{ this.state.allCampaigns[index].campaign_name }</span>
+                          <span className="first">{ item.campaign_name }</span>
                           <span className="second">  
                             <Link to="buyer_messages" className="color-dark">
                               <i className="fa fa-comment-o"></i> Message
@@ -212,7 +213,7 @@ class BuyerCampaigns extends React.Component{
                               </thead>
                               <tbody>
                               {
-                                this.state.allCampaigns[index].Campaign_Listings.map(
+                                item.Campaign_Listings.map(
                                   (l_items, l_index) =>(
                                     <tr style={{'height':'73px'}}>
                                       <td>
@@ -729,7 +730,7 @@ class BuyerCampaigns extends React.Component{
 }
 
 const mapStateToProps = state => {
-  const { campaigns } = state.buyerProfile;
+  const { campaigns } = state.buyer;
   return {
     campaigns
   };  

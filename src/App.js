@@ -39,6 +39,8 @@ import BuyerProfile from "./containers/BuyerProfile";
 import BuyerCampaigns from "./containers/BuyerCampaigns";
 import BuyerMessages from "./containers/BuyerMessages";
 
+import AccountSettingAccount from "./containers/AccountSetting_Account";
+
 import NewOrder from "./containers/NewOrder";
 
 const NotFound = () => {
@@ -104,7 +106,7 @@ class App extends Component {
                 <DashboardRoute exact path="/seller_orders" component={SellerOrders} />
                 <DashboardRoute exact path="/seller_analytics" component={SellerAnalytics} />
                 <DashboardRoute exact path="/seller_calendar" component={SellerCalendar} />
-                <DashboardRoute exact path="/seller_page" component={SellerPage} />
+                <DashboardRoute path="/seller_page" component={SellerPage} />
                 <DashboardRoute exact path="/seller_messages" component={SellerMessages} />
 
                 <DashboardRoute exact path="/buyer_landing" component={BuyerLanding} />
@@ -115,6 +117,8 @@ class App extends Component {
 
                 <DashboardRoute exact path="/blogView" component={BlogView} />
                 <DashboardRoute exact path="/blogs" component={BlogHome} />
+
+                <DashboardRoute exact path="/account_setting_account" component={AccountSettingAccount}/>
 
                 <DashboardRoute exact path="/new_order" component={NewOrder} />
 

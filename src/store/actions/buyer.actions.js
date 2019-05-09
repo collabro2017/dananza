@@ -7,6 +7,8 @@ export const buyerActions = {
     updateBuyerProfile,
     controlAction,
     getAllCampaigns,
+    createNewCampaign,
+    addListingToCart,
     delete: _deleteBuyerProfile
 };
 
@@ -56,6 +58,28 @@ function getAllCampaigns ()
             .then(
                 campaigns => dispatch(controlAction(buyerConstants.GET_ALL_CAMPAIGN, campaigns)),
                 error => dispatch(controlAction(buyerConstants.ERROR, error))  
+            )
+    }
+}
+
+function createNewCampaign () 
+{
+    return dispatch => {
+        buyerService.create_new_campaign()
+            .then(
+                campaign => dispatch(controlAction(buyerConstants.CREAT_CAMPAIGN), campaign),
+                error => dispatch(controlAction(buyerConstants.ERROR, error))  
+            )
+    }
+}
+
+function addListingToCart( _newListingId ) 
+{
+    return dispatch => {
+        buyerService.add_list_to_cart( _newListingId )
+            .then(
+                msg => dispatch(controlAction(buyerConstants.ADDLISTTOCART, msg)),
+                error => dispatch(controlAction(buyerConstants.ERROR, error)) 
             )
     }
 }

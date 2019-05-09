@@ -1,6 +1,6 @@
 import { buyerConstants } from '../config';
 
-export function buyerProfile(state={}, action) 
+export function buyer(state={}, action) 
 {
 	switch(action.type)
 	{

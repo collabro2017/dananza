@@ -4,7 +4,7 @@ import { authentication } from './authentication.reducer';
 import { registration } from './registration.reducer';
 import { users } from './users.reducer';
 import { alert } from './alert.reducer';
-import { buyerProfile } from './buyer.reducer';
+import { buyer } from './buyer.reducer';
 import { seller } from './seller.reducer';
 
 const rootReducer = combineReducers({
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   registration,
   users,
   alert,
-  buyerProfile,
+  buyer,
   seller
 });
 
