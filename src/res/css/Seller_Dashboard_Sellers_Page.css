@@ -318,4 +318,28 @@
 	}
 }
 
+
+.dashboard_seller .fileUploader{
+	padding:0 ;
+}
+.dashboard_seller .fileUploader .fileContainer{
+	padding: 0; background: unset; box-shadow: none;
+}
+.dashboard_seller .fileUploader .fileContainer .uploadIcon,
+.dashboard_seller .fileUploader .fileContainer  p { display: none; }
+.dashboard_seller .fileUploader .fileContainer .chooseFileButton { 
+	width: 100%;  margin: 0; padding: 15px 0; background: transparent; color: #555; font-weight: bold; text-align: left; border: 3px dashed #b3c3cb;}
+.dashboard_seller .fileUploader .fileContainer .chooseFileButton span{
+	margin-left: 35px;
+}
+.dashboard_seller .fileUploader .fileContainer .input-icon i{ margin-top: 3px !important; }
+.dashboard_seller .fileUploader .fileContainer .uploadPictureContainer img.uploadPicture{ width: 80px; height: 80px; }
+.dashboard_seller .fileUploader .fileContainer .uploadPictureContainer{ width: 100px; height: 100px; margin: 20px 20px 0 0;}
+.dashboard_seller .fileUploader .fileContainer .deleteImage{ 
+	background: white; color: black; width: 20px; height: 20px; line-height: 20px; border-radius: 50% !important; cursor: pointer; 
+    font-size: 14px;}
+.dashboard_seller .fileUploader .fileContainer .uploadPicturesWrapper > div{ justify-content:left !important; }
+
+.dashboard_seller .avatar_preview{ width: 150px; margin-right: 20px; }
+.dashboard_seller .avatar_preview img{ max-width: 100%; }
 /*# sourceMappingURL=header.css.map */

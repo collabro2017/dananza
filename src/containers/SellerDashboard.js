@@ -9,11 +9,16 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import {Collapse} from 'react-bootstrap'
+import ImageUploader from 'react-images-upload';
+
 import $ from "jquery";
 
 import { sellerActions } from '../store/actions';
 
 import SellerSidebar from "../components/Sidebar/SellerSidebar";
+
+import Avatar from 'react-avatar-edit'
+import avatarDefault from '../res/img/userinfo_img.png';
 
 import "../res/css/Seller_Dashboard_Sellers_Page.css"
 import "../res/icheck/skins/ltblue.css"
@@ -49,13 +54,23 @@ class SellerDashboard extends React.Component{
 		adlist: [],
 		adlist_edit: [],
 		new_adlist:{},
-		flag: 0
+		flag: 0,
+        preview: avatarDefault,
+		avatar_src: null
   }
 
   constructor(props)
   {
     super(props);
     props.changeHeaderType( this.state.headerType )
+
+    this.onDrop = this.onDrop.bind(this);
+
+    // Avatar
+    this.onCrop = this.onCrop.bind(this)
+    this.onClose = this.onClose.bind(this)
+    this.onBeforeFileLoad = this.onBeforeFileLoad.bind(this)
+
   }
 
   componentDidMount()
@@ -305,11 +320,47 @@ class SellerDashboard extends React.Component{
   	return number;
   }
 
+  onDrop(picture) {
+    const image_gallery = picture;
+  	const {sellerprofile} = this.state;
+    this.setState({
+    	sellerprofile:{
+    		...sellerprofile,
+    		image_gallery
+    	}
+    });
+  }
+
+  // Avatar
+  onClose() {
+    this.setState({preview: null})
+  }
+  
+  onCrop(preview) {
+    this.setState({preview})
+  }
+ 
+  onBeforeFileLoad(elem) {
+    if(elem.target.files[0].size > 71680){
+      alert("File is too big!");
+      elem.target.value = "";
+    };
+  }
+
   render(){
   	const { audience_age_min, audience_age_max, audience_male_percent, 
-  			audience_locations, audience_interests,
+  			audience_locations, audience_interests,image_gallery,
   			profile_photo, profile_description, profile_location } = this.state.sellerprofile;
   	const { suggestions,mediaType, channel, channels, adlist, adlist_edit, new_adlist, new_channel } = this.state;
+  	const uploader_button = <div className="input-icon"><i className="fa fa-file-image-o"></i><span>Drag files to upload or select files from your library</span></div>
+
+  	let preview_image;
+  	if( profile_photo )
+  		preview_image = <img className="profile" src={require("../res/img/"+profile_photo+".png")}/>
+  	
+  	if ( this.state.preview ) {
+      	preview_image =  <img src={this.state.preview} alt="Preview" />
+    } 
 
     return (
     	<div className="dashboard_seller">
@@ -325,14 +376,17 @@ class SellerDashboard extends React.Component{
 							<div className="formcontrol row">
 								<label className="col-sm-2 controllabel"> Profile photo</label>
 								<div className="col-sm-10 controlcontent">
-									<img className="profile" src={require("../res/img/"+profile_photo+".png")}/>
-									<div className="right-control col-sm-8">
-										<a className="btn dark btn-outline btn-radius">
-											<i className="fa fa-file-image-o"></i>
-											<b> Change Photo</b>
-										</a>
-										<div>This photo is your identity in Dananza.</div>
-									</div>
+									<div className="avatar_preview">
+			                          { preview_image }
+			                        </div>
+			                        <Avatar
+			                          width={390}
+			                          height={295}
+			                          onCrop={this.onCrop}
+			                          onClose={this.onClose}
+			                          onBeforeFileLoad={this.onBeforeFileLoad}
+			                          src={this.state.avatar_src}
+			                        />
 								</div>
 							</div>
 							<div className="formcontrol row">
@@ -361,23 +415,25 @@ class SellerDashboard extends React.Component{
 									Gallery
 								</label>
 								<div className="col-sm-10 controlcontent block">
-									<div className="input-icon">
-					                    <i className="fa fa-file-image-o"></i>
-					                    <input type="text" className="form-control drag-file btn-radius" value="Drag files to upload or select files from your library"/>
-					                </div>
+					                <ImageUploader
+						                withIcon={false}
+						                withLabel={false}
+						                buttonText= {uploader_button}
+						                onChange={this.onDrop}
+						                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+						                maxFileSize={5242880}
+						                withPreview={true}
+						            />
+
 					                <div className="images">
-										<div className="item">
-											<img src={require("../res/img/dragupload1.png")}/>
-											<img className="closebut" src={require("../res/img/close.png")}/>
-										</div>
-										<div className="item">
-											<img src={require("../res/img/dragupload2.png")}/>
-											<img className="closebut" src={require("../res/img/close.png")}/>
-										</div>
-										<div className="item">
-											<img src={require("../res/img/dragupload3.png")}/>
-											<img className="closebut" src={require("../res/img/close.png")}/>
-										</div>
+					                	{ 
+					                		image_gallery.map((item,index)=>(
+					                			<div className="item" key={index}>
+													<img src={require("../res/img/dragupload1.png")}/>
+													<img className="closebut" src={require("../res/img/close.png")}/>
+												</div>
+					                		))
+					                	}
 									</div>
 								</div>
 							</div>
