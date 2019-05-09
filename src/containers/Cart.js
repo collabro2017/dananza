@@ -1,5 +1,4 @@
 import React from "react";
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
@@ -126,7 +125,7 @@ class Cart extends React.Component{
 	                            		(
 	                            			<tr>
 			                                    <td>
-			                                    	<img src={require("../res/img/instagram_sq.png")} />
+			                                    	<img src={require("../res/img/instagram_sq.png")} alt=""/>
 			                                    	<Link className="color-dark" to='/seller_page'>{ this.props.campaigns[index].camp_name }</Link>
 			                                    </td>
 			                                    <td> { this.props.campaigns[index].media_type } </td>

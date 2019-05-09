@@ -1,5 +1,4 @@
 import React from "react";
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
@@ -61,7 +60,7 @@ class AccountSettingAccount extends React.Component{
                 </div>
                 <div className="col-sm-9">
                   <input className="form-control" value="Alyssa Edwards"/>
-                  <img className="show-icon" src={require('../res/img/username.png')}/>
+                  <img className="show-icon" src={require('../res/img/username.png')} alt=""/>
                 </div>
               </div>
               <div className="row">
@@ -70,13 +69,13 @@ class AccountSettingAccount extends React.Component{
                 </div>
                 <div className="col-sm-9">
                   <input className="form-control" value="alyssa_Ee@gmail.com"/>
-                  <img className="show-icon" src={require('../res/img/envelope2.png')}/>
+                  <img className="show-icon" src={require('../res/img/envelope2.png')} alt=""/>
                 </div>
               </div>
               <div className="row">
                 <div className="col-sm-3 control-label">
                   Online Status
-                  <img className="notice" src={require('../res/img/notice-message.png')}/>
+                  <img className="notice" src={require('../res/img/notice-message.png')} alt=""/>
                 </div>
                 <div className="col-sm-9 material-select">
                   <FormControl>
@@ -88,19 +87,19 @@ class AccountSettingAccount extends React.Component{
                       }}
                     >
                       <MenuItem value={'Be Online on Login'}>
-                        <img className="select-icon" src={require('../res/img/online.png')} />
+                        <img className="select-icon" src={require('../res/img/online.png')}  alt=""/>
                         Be Online on Login
                       </MenuItem>
                       <MenuItem value={'Be Online on Login'}>
-                         <img className="select-icon" src={require('../res/img/online.png')} />
+                         <img className="select-icon" src={require('../res/img/online.png')}  alt=""/>
                         Be Online on Login
                       </MenuItem>
                       <MenuItem value={'Be Online on Login'}>
-                        <img className="select-icon" src={require('../res/img/online.png')} />
+                        <img className="select-icon" src={require('../res/img/online.png')}  alt=""/>
                         Be Online on Login
                       </MenuItem>
                       <MenuItem value={'Be Online on Login'}>
-                        <img className="select-icon" src={require('../res/img/online.png')} />
+                        <img className="select-icon" src={require('../res/img/online.png')}  alt=""/>
                         Be Online on Login
                       </MenuItem>
                     </Select>

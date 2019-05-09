@@ -22,19 +22,19 @@ const AccountSettingSidebar = props => {
             <div className="btn-group" data-toggle="buttons" id="pages">
               <Link to="/account_setting_account">
                 <label className={navitem=="account"?"btn btn-default active":"btn btn-default"}>
-                  <img src={require('../../res/img/sidebar_user.png')}/>
+                  <img src={require('../../res/img/sidebar_user.png')} alt=""/>
                   <input type="radio" className="toggle"/> Account
                 </label>
               </Link>
               <Link to="/account_setting_account">
                 <label className={navitem=="security"?"btn btn-default active":"btn btn-default"}>
-                  <img src={require('../../res/img/sidebar_security.png')}/>
+                  <img src={require('../../res/img/sidebar_security.png')} alt=""/>
                   <input type="radio" className="toggle"/> Security
                 </label>
               </Link>
               <Link to="/account_setting_account">
                 <label className={navitem=="billing"?"btn btn-default active":"btn btn-default"}>
-                  <img src={require('../../res/img/sidebar_billing.png')}/>
+                  <img src={require('../../res/img/sidebar_billing.png')} alt=""/>
                   <input type="radio" className="toggle"/> Billing
                 </label>
               </Link>

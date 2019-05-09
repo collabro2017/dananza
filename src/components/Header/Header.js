@@ -1,16 +1,6 @@
 import React from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
-import MenuIcon from "@material-ui/icons/Menu";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import PersonIcon from "@material-ui/icons/Person";
-import Typography from "@material-ui/core/Typography";
-import { withStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from "redux";
 import { userActions } from '../../store/actions';
 import { sellerActions } from '../../store/actions';
 import { withRouter } from "react-router-dom";
@@ -27,10 +17,6 @@ import "../../res/css/layout.min.css"
 import $ from "jquery";
 
 import logoUrl from '../../res/img/logo.png';
-
-const styles = theme => ({
-  
-});
 
 class Header extends React.Component{
   state = {
@@ -160,7 +146,7 @@ class Header extends React.Component{
           <div className="header_search seller_header">
             <div className="nav_bar">
               <div className="logo">
-                <Link to="/"><img src={logoUrl}/></Link>
+                <Link to="/"><img src={logoUrl}  alt=""/></Link>
               </div>
               <div className="input-icon">
                 <i className="fa fa-search input"></i>
@@ -184,7 +170,7 @@ class Header extends React.Component{
                         data-hover="dropdown" 
                         data-close-others="false"
                     >
-                      <img alt="" className="img-circle seller_toggle" src={require("../../res/img/drop_menu_profile.png")} />
+                      <img className="img-circle seller_toggle" src={require("../../res/img/drop_menu_profile.png")} alt="" />
                       <i className="fa fa-angle-down"></i>
                     </a>
                     <ul className="dropdown-menu dropdown-menu-default seller ">
@@ -219,40 +205,40 @@ class Header extends React.Component{
                         </li>
                         <li class="other_act_img">
                             <a className="other_links" href="#">
-                             <img src={require("../../res/img/drop_menu_item1.png")}/>
+                             <img src={require("../../res/img/drop_menu_item1.png")} alt=""/>
                             </a>
                             <a className="other_links" href="#">
-                              <img src={require("../../res/img/drop_menu_item2.png")}/>                                
+                              <img src={require("../../res/img/drop_menu_item2.png")} alt=""/>                                
                             </a>
                             <a className="other_links" href="#">
-                              <img src={require("../../res/img/drop_menu_item3.png")}/>                                
+                              <img src={require("../../res/img/drop_menu_item3.png")} alt=""/>                                
                             </a>
                             <a className="other_links" href="#">
-                              <img src={require("../../res/img/drop_menu_item4.png")}/>
+                              <img src={require("../../res/img/drop_menu_item4.png")} alt=""/>
                             </a>
                             <a className="other_links" href="#">
-                              <img src={require("../../res/img/drop_menu_item5.png")}/>
+                              <img src={require("../../res/img/drop_menu_item5.png")} alt=""/>
                             </a>
                             <div class="more">+2</div>
                         </li>
                         <li>
                             <Link to="/buyer_landing">
                               <a href="#">
-                                  Switch to Buyer <img src={require("../../res/img/drop_menu_icon_swt.png")}/>
+                                  Switch to Buyer <img src={require("../../res/img/drop_menu_icon_swt.png")}  alt=""/>
                               </a>
                             </Link>
                         </li>
                         <li>
                             <Link to="/help">
                               <a href="#">
-                                  Help <img src={require("../../res/img/drop_menu_icon_help.png")}/>
+                                  Help <img src={require("../../res/img/drop_menu_icon_help.png")}  alt=""/>
                               </a>
                              </Link>
                         </li>
                         <li>
                             <Link to="/" onClick={ this.logout }>
                               <a href="#">
-                                  Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}/>
+                                  Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}  alt=""/>
                               </a>
                             </Link>
                         </li>
@@ -287,7 +273,7 @@ class Header extends React.Component{
                         data-hover="dropdown" 
                         data-close-others="false"
                     >
-                      <img alt="" className="img-circle seller_toggle" src={require("../../res/img/drop_menu_profile.png")} />
+                      <img className="img-circle seller_toggle" src={require("../../res/img/drop_menu_profile.png")} alt=""/>
                       <i className="fa fa-angle-down"></i>
                     </a>
                     <ul className="dropdown-menu dropdown-menu-default seller ">
@@ -307,40 +293,40 @@ class Header extends React.Component{
                         <li class="divider"> </li>
                         <li>
                             <Link to="/">
-                                Login to Other Accounts<img  className="menu_icon" src={require("../../res/img/drop_menu_icon_user.png")}/>
+                                Login to Other Accounts<img  className="menu_icon" src={require("../../res/img/drop_menu_icon_user.png")} alt=""/>
                             </Link>
                         </li>
                         <li class="other_act_img">
                             <a className="other_links" href="#">
-                             <img src={require("../../res/img/drop_menu_item1.png")}/>
+                             <img src={require("../../res/img/drop_menu_item1.png")} alt=""/>
                             </a>
                             <a className="other_links" href="#">
-                              <img src={require("../../res/img/drop_menu_item2.png")}/>                                
+                              <img src={require("../../res/img/drop_menu_item2.png")} alt=""/>                                
                             </a>
                             <a className="other_links" href="#">
-                              <img src={require("../../res/img/drop_menu_item3.png")}/>                                
+                              <img src={require("../../res/img/drop_menu_item3.png")} alt=""/>                                
                             </a>
                             <a className="other_links" href="#">
-                              <img src={require("../../res/img/drop_menu_item4.png")}/>
+                              <img src={require("../../res/img/drop_menu_item4.png")} alt=""/>
                             </a>
                             <a className="other_links" href="#">
-                              <img src={require("../../res/img/drop_menu_item5.png")}/>
+                              <img src={require("../../res/img/drop_menu_item5.png")} alt=""/>
                             </a>
                             <div class="more">+2</div>
                         </li>
                         <li>
                             <Link to="/buyer_landing">
-                                Switch to Buyer <img src={require("../../res/img/drop_menu_icon_swt.png")}/>
+                                Switch to Buyer <img src={require("../../res/img/drop_menu_icon_swt.png")}  alt=""/>
                             </Link>
                         </li>
                         <li>
                             <Link to="/help">
-                                  Help <img src={require("../../res/img/drop_menu_icon_help.png")}/>
+                                  Help <img src={require("../../res/img/drop_menu_icon_help.png")}  alt=""/>
                             </Link>
                         </li>
                         <li>
                             <Link to="/" onClick={ this.logout }>
-                                  Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}/>
+                                  Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}  alt=""/>
                             </Link>
                         </li>
                     </ul>
@@ -385,7 +371,7 @@ class Header extends React.Component{
                        data-toggle="dropdown"
                        data-hover="dropdown"
                        data-close-others="false">
-                        <img alt="" className="img-circle" src={require("../../res/img/logged_user.png")} />
+                        <img className="img-circle" src={require("../../res/img/logged_user.png")} alt=""/>
                         <i className="fa fa-angle-down"></i>
                     </a>
                     <ul className="dropdown-menu dropdown-menu-default seller">
@@ -402,19 +388,19 @@ class Header extends React.Component{
                         <li>
                             <Link to="/seller_dashboard">
                                 Switch to Seller
-                                <img src={require("../../res/img/switch.png")}/>
+                                <img src={require("../../res/img/switch.png")} alt=""/>
                             </Link>
                         </li>
                         <li>
                             <Link to="/help">
                                 Help 
-                                <img src={require("../../res/img/help.png")}/>
+                                <img src={require("../../res/img/help.png")} alt=""/>
                             </Link>
                         </li>
                         <li>
                             <Link to="/" onClick={ this.logout }>
                               logout
-                                <img src={require("../../res/img/logout.png")}/>
+                                <img src={require("../../res/img/logout.png")} alt=""/>
                             </Link>
                         </li>
                     </ul>
@@ -451,7 +437,7 @@ class Header extends React.Component{
                        data-toggle="dropdown"
                        data-hover="dropdown"
                        data-close-others="false">
-                        <img alt="" className="img-circle" src={require("../../res/img/logged_user.png")} />
+                        <img className="img-circle" src={require("../../res/img/logged_user.png")} alt=""/>
                         <i className="fa fa-angle-down"></i>
                     </a>
                     <ul className="dropdown-menu dropdown-menu-default seller">
@@ -468,19 +454,19 @@ class Header extends React.Component{
                         <li>
                             <Link to="/seller_dashboard">
                                 Switch to Seller
-                                <img src={require("../../res/img/switch.png")}/>
+                                <img src={require("../../res/img/switch.png")}  alt=""/>
                             </Link>
                         </li>
                         <li>
                             <Link to="/help">
                                 Help 
-                                <img src={require("../../res/img/help.png")}/>
+                                <img src={require("../../res/img/help.png")}  alt=""/>
                             </Link>
                         </li>
                         <li>
                             <Link to="/">
                               logout
-                                <img src={require("../../res/img/logout.png")}/>
+                                <img src={require("../../res/img/logout.png")}  alt=""/>
                             </Link>
                         </li>
                     </ul>
@@ -497,7 +483,7 @@ class Header extends React.Component{
           <div className="header_section">
             <div className="nav_bar">
               <div className="logo">
-                <Link to="/"><img src={logoUrl}/></Link>
+                <Link to="/"><img src={logoUrl} alt=""/></Link>
               </div>
               <div className="nav_menu">
                 <button id="navbar_toggler" className="navbar_toggler_open mobile_navbar_toggler" type="button">
@@ -523,7 +509,7 @@ class Header extends React.Component{
             <div className="nav_mobile_menu" style={{display:'none'}}>
               <div className="nav_bar">
                 <div className="logo">
-                  <Link to="/"><img src={logoUrl}/></Link>
+                  <Link to="/"><img src={logoUrl} alt=""/></Link>
                 </div>
                 <div className="nav_menu">
                   <button id="navbar_toggler" className="navbar_toggler_open mobile_navbar_toggler" type="button">
@@ -556,7 +542,7 @@ class Header extends React.Component{
         <div className="header_search">
             <div className="nav_bar">
                 <div className="logo">
-                    <Link to="/"><img src={logoUrl}/></Link>
+                    <Link to="/"><img src={logoUrl} alt=""/></Link>
                 </div>
                 <div className="input-icon">
                     <i className="fa fa-search input"></i>

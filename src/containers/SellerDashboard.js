@@ -1,7 +1,5 @@
 import React from "react";
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import Nouislider from 'react-nouislider';
 import ReactTags from "react-tag-autocomplete";

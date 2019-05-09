@@ -1,9 +1,5 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Typography from "@material-ui/core/Typography";
+
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
@@ -110,13 +106,13 @@ class Home extends React.Component{
               </div>
               <div className="col-sm-6 col-md-6 pull-right">
                 <div className="heroimage">
-                  <img src={require("../res/img/heroimage.png")}/>
+                  <img src={require("../res/img/heroimage.png")} alt=""/>
                 </div>
               </div>
             </div>
             <div className="row what_adza">
               <div className="col-lg-6 col-sm-5">
-                <img src={require("../res/img/dza.png")}/>
+                <img src={require("../res/img/dza.png")} alt=""/>
               </div>
               <div className="col-lg-6 col-sm-7">
                 <div className="info_title">What is an Adza?</div>
@@ -125,7 +121,7 @@ class Home extends React.Component{
             </div>
             <div className="row tell_reach">
               <div className="col-sm-7 col-lg-5 img">
-                <img src={require("../res/img/adza_reach.png")}/>
+                <img src={require("../res/img/adza_reach.png")} alt=""/>
               </div>
               <div className="col-sm-5 col-lg-7 content">
                 <div className="info_title">
@@ -140,34 +136,34 @@ class Home extends React.Component{
               </div>
               <div className="step">
                 <div className="col-sm-2">
-                  <img src={require("../res/img/ad_find.png")}/>
+                  <img src={require("../res/img/ad_find.png")} alt=""/>
                   <br/>
                   Find The Adzas You Need
                 </div>
                 <div className="col-sm-1 arrow">
                 </div>
                 <div className="col-sm-2">
-                  <img src={require("../res/img/ad_cart.png")}/>
+                  <img src={require("../res/img/ad_cart.png")} alt=""/>
                   <br/>
                   Add Packages From Their Page
                 </div>
                 <div className="col-sm-1 arrow">
                 </div>
                 <div className="col-sm-2">
-                  <img src={require("../res/img/ad_cloud.png")}/>
+                  <img src={require("../res/img/ad_cloud.png")} alt=""/>
                   <br/>
                   Upload Media & Instructions
                 </div>
                 <div className="col-sm-1 arrow">
                 </div>
                 <div className="col-sm-2">
-                  <img src={require("../res/img/ad_tablet.png")}/>
+                  <img src={require("../res/img/ad_tablet.png")} alt=""/>
                   <br/>
                   Monitor Status of Order
                 </div>
               </div>
               <div className="bg_img col-sm-12">
-                <img src={require("../res/img/ad_camp.png")}/>
+                <img src={require("../res/img/ad_camp.png")} alt=""/>
                 <div>
                   <Link to="/cart" className="btn btn-mid bg-yellow color-dark">Start Ad Campaign</Link>
                 </div>
@@ -180,7 +176,7 @@ class Home extends React.Component{
                 </div>
               </div>
               <div className="col-sm-6 col-md-6 img">
-                <img src={require("../res/img/rest_bg.png")}/>
+                <img src={require("../res/img/rest_bg.png")} alt=""/>
               </div>
               <div className="col-sm-6 col-md-6">
                 <div className="info_content">
@@ -207,7 +203,7 @@ class Home extends React.Component{
                   <div id="slidesContainer">
                       <Carousel showThumbs={false}>
                         <div>
-                          <img src={require("../res/img/test_slider1.png")} className="slide_img"/>
+                          <img src={require("../res/img/test_slider1.png")} className="slide_img" alt=""/>
                           <div className="img_content">
                             <div className="description">
                               “ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolor es et quas molestias! “
@@ -216,12 +212,12 @@ class Home extends React.Component{
                               John Doe, Founder
                             </div>
                             <div className="brand">
-                              <img src={require("../res/img/mock_data.png")}/>
+                              <img src={require("../res/img/mock_data.png")} alt=""/>
                             </div>
                           </div>
                         </div>
                         <div>
-                          <img src={require("../res/img/test_slider1.png")} className="slide_img"/>
+                          <img src={require("../res/img/test_slider1.png")} className="slide_img" alt=""/>
                           <div className="img_content">
                             <div className="description">
                               “ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolor es et quas molestias! “
@@ -230,12 +226,12 @@ class Home extends React.Component{
                               John Doe, Founder
                             </div>
                             <div className="brand">
-                              <img src={require("../res/img/mock_data.png")}/>
+                              <img src={require("../res/img/mock_data.png")} alt=""/>
                             </div>
                           </div>
                         </div>
                         <div>
-                          <img src={require("../res/img/test_slider1.png")} className="slide_img"/>
+                          <img src={require("../res/img/test_slider1.png")} className="slide_img" alt=""/>
                           <div className="img_content">
                             <div className="description">
                               “ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolor es et quas molestias! “
@@ -244,7 +240,7 @@ class Home extends React.Component{
                               John Doe, Founder
                             </div>
                             <div className="brand">
-                              <img src={require("../res/img/mock_data.png")}/>
+                              <img src={require("../res/img/mock_data.png")} alt=""/>
                             </div>
                           </div>
                         </div>

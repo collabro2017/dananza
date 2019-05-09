@@ -73,8 +73,6 @@ const EmptyRoute = ({ component: Component, ...rest }) => {
   );
 };
 
-const theme = createMuiTheme();
-
 class App extends Component {
   state = {
     auth: false
@@ -84,9 +82,8 @@ class App extends Component {
     const { auth } = this.props;
 
     return (
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
         <div>
+          <CssBaseline />
           <Router>
               <Switch>
                 <Route path="/signin" render={() => <Redirect to="/" />} />
@@ -126,7 +123,6 @@ class App extends Component {
               </Switch>
           </Router>
         </div>
-      </MuiThemeProvider>
     );
   }
 }

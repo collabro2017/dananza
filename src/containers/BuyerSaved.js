@@ -3,7 +3,6 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
@@ -63,9 +62,9 @@ class BuyerSaved extends React.Component{
   render(){
   	const { adzas } = this.state;
   	var adza_list = [];
-
-  	if( adzas.success == true && adzas.adzas !== undefined )
-  		adza_list = adzas.adzas
+  	if( adzas !== undefined )
+  		if( adzas.success == true && adzas.adzas !== undefined )
+  			adza_list = adzas.adzas
 
     return (
     	<div className="buyer_saved">
@@ -120,9 +119,9 @@ class BuyerSaved extends React.Component{
 												<Link to={ "/seller_profile/" + adza.AdzaProfileId }>{adza.Adza_Profile.User.business_name}</Link>
 											</div>
 											<div className="sites">
-												<img src={require("../res/img/instagram.png")} />
-												<img src={require("../res/img/facebook.png")} />
-												<img src={require("../res/img/youtube.png")} />
+												<img src={require("../res/img/instagram.png")} alt=""/>
+												<img src={require("../res/img/facebook.png")} alt=""/>
+												<img src={require("../res/img/youtube.png")} alt=""/>
 											</div>
 											<div className="types">
 												<a className="btn btn-default btn-type btn-food">Food</a>
@@ -132,7 +131,7 @@ class BuyerSaved extends React.Component{
 											</div>
 										</div>
 										<div className="item-image">
-											<img src={require("../res/img/item1.png")}/>
+											<img src={require("../res/img/item1.png")} alt=""/>
 										</div>
 										<div className="item-footer">
 											<div className="reach">
@@ -146,7 +145,7 @@ class BuyerSaved extends React.Component{
 											<div className="price">
 												<span className="small"> Starting at </span>
 												<span className="value"> $100 </span>
-												<a onClick={this.removeAdza.bind(this, adza.AdzaProfileId)}><img src={require("../res/img/delete.png")} /></a>
+												<a onClick={this.removeAdza.bind(this, adza.AdzaProfileId)}><img src={require("../res/img/delete.png")} alt=""/></a>
 											</div>
 										</div>
 									</div>

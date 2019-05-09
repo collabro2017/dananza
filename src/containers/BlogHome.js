@@ -1,9 +1,4 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
@@ -50,7 +45,7 @@ class BlogHome extends React.Component{
           <div className="post-advertise">
             <div className="post-list">
               <div className="post">
-                <img src={require("../res/img/item2.png")}/>
+                <img src={require("../res/img/item2.png")} alt=""/>
                 <div className="title">
                   10 Advertising Trends for 2019
                 </div>
@@ -69,7 +64,7 @@ class BlogHome extends React.Component{
                 </div>
               </div>
               <div className="post">
-                <img src={require("../res/img/item2.png")}/>
+                <img src={require("../res/img/item2.png")}  alt=""/>
                 <div className="title">
                   10 Advertising Trends for 2019
                 </div>
@@ -88,7 +83,7 @@ class BlogHome extends React.Component{
                 </div>
               </div>
               <div className="post">
-                <img src={require("../res/img/item2.png")}/>
+                <img src={require("../res/img/item2.png")} alt=""/>
                 <div className="title">
                   10 Advertising Trends for 2019
                 </div>
@@ -109,7 +104,7 @@ class BlogHome extends React.Component{
             </div>
             <div className="post-list">
               <div className="post">
-                <img src={require("../res/img/item2.png")}/>
+                <img src={require("../res/img/item2.png")} alt=""/>
                 <div className="title">
                   10 Advertising Trends for 2019
                 </div>
@@ -128,7 +123,7 @@ class BlogHome extends React.Component{
                 </div>
               </div>
               <div className="post">
-                <img src={require("../res/img/item2.png")}/>
+                <img src={require("../res/img/item2.png")} alt=""/>
                 <div className="title">
                   10 Advertising Trends for 2019
                 </div>
@@ -147,7 +142,7 @@ class BlogHome extends React.Component{
                 </div>
               </div>
               <div className="post">
-                <img src={require("../res/img/item2.png")}/>
+                <img src={require("../res/img/item2.png")} alt=""/>
                 <div className="title">
                   10 Advertising Trends for 2019
                 </div>

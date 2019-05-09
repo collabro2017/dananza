@@ -3,7 +3,6 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
 import { Link } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
@@ -48,7 +47,7 @@ class BuyerLanding extends React.Component{
                 <div className="panel">
                   <div className="panel-title">
                     <span className="first">Ad Campaign 1</span>
-                    <span className="second"><Link to="/buyer_messages"><img src={require("../res/img/messages.png")}/> Message</Link></span>
+                    <span className="second"><Link to="/buyer_messages"><img src={require("../res/img/messages.png")} alt=""/> Message</Link></span>
                   </div>
                   <div className="panel-body">
                     <div className="campaign-timeline">
@@ -57,7 +56,7 @@ class BuyerLanding extends React.Component{
                             <hr className="left" />
                             <hr className="right" />
                             <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
+                              <img src={require('../res/img/check.png')} alt=""/>
                             </a>
                           </div>
                           <div className="step-label">Order Date</div>
@@ -66,7 +65,7 @@ class BuyerLanding extends React.Component{
                         <div className="step active">
                           <div className="step-button">
                             <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
+                              <img src={require('../res/img/check.png')} alt=""/>
                             </a>
                             <hr className="left" />
                             <hr className="right" />
@@ -77,7 +76,7 @@ class BuyerLanding extends React.Component{
                         <div className="step">
                           <div className="step-button">
                             <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
+                              <img src={require('../res/img/check.png')} alt=""/>
                             </a>
                             <hr className="left" />
                             <hr className="right" />
@@ -87,7 +86,7 @@ class BuyerLanding extends React.Component{
                         <div className="step">
                           <div className="step-button">
                             <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
+                              <img src={require('../res/img/check.png')} alt=""/>
                             </a>
                             <hr className="left" />
                             <hr className="right" />
@@ -97,7 +96,7 @@ class BuyerLanding extends React.Component{
                         <div className="step last">
                           <div className="step-button">
                             <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
+                              <img src={require('../res/img/check.png')} alt=""/>
                             </a>
                             <hr className="left" />
                             <hr className="right" />
@@ -117,13 +116,13 @@ class BuyerLanding extends React.Component{
                         </thead>
                         <tbody>
                           <tr style={{ height : '73px' }}>
-                            <td><img className="left" src={require("../res/img/themainmenu_1.png")}/>@themainmenu</td>
+                            <td><img className="left" src={require("../res/img/themainmenu_1.png")} alt=""/>@themainmenu</td>
                             <td>Instagram Story</td>
                             <td>03/10/2019</td>
                             <td>$100</td>
                           </tr>
                           <tr className="end">
-                            <td><img className="left" src={require("../res/img/themainmenu_2.png")}/>@themainmenu</td>
+                            <td><img className="left" src={require("../res/img/themainmenu_2.png")} alt=""/>@themainmenu</td>
                             <td>Blog Post</td>
                             <td>03/10/2019</td>
                             <td>$100</td>
@@ -132,7 +131,7 @@ class BuyerLanding extends React.Component{
                       </table>
                     </div>
                     <div className="cancel">
-                      <a href="#"><img src={require("../res/img/remove.png")}/> Cancel Ad</a>
+                      <a href="#"><img src={require("../res/img/remove.png")} alt=""/> Cancel Ad</a>
                     </div>
                   </div>
                 </div>
@@ -154,9 +153,9 @@ class BuyerLanding extends React.Component{
                         <Link to="/seller_page">@themiamimenu</Link>
                       </div>
                       <div className="sites">
-                        <img src={require("../res/img/instagram.png")}/>
-                        <img src={require("../res/img/facebook.png")}/>
-                        <img src={require("../res/img/youtube.png")}/>
+                        <img src={require("../res/img/instagram.png")} alt=""/>
+                        <img src={require("../res/img/facebook.png")} alt=""/>
+                        <img src={require("../res/img/youtube.png")} alt=""/>
                         <a className="btn btn-default btn-type btn-food">Food</a>
                       </div>
                       <div className="types">
@@ -165,7 +164,7 @@ class BuyerLanding extends React.Component{
                       </div>
                     </div>
                     <div className="item-image">
-                      <img src={require("../res/img/item1.png")}/>
+                      <img src={require("../res/img/item1.png")} alt=""/>
                     </div>
                     <div className="item-footer">
                       <div className="reach">
@@ -179,7 +178,7 @@ class BuyerLanding extends React.Component{
                       <div className="price">
                         <span className="small"> Starting at </span>
                         <span className="value"> $100 </span>
-                        <a><img src={require("../res/img/delete.png")}/></a>
+                        <a><img src={require("../res/img/delete.png")} alt=""/></a>
                       </div>
                     </div>
                   </div>
@@ -191,10 +190,10 @@ class BuyerLanding extends React.Component{
                         <Link to="/seller_page">@themiamimenu</Link>
                       </div>
                       <div className="sites">
-                        <img src={require("../res/img/instagram.png")}/>
-                        <img src={require("../res/img/facebook.png")}/>
-                        <img src={require("../res/img/youtube.png")}/>
-                        <img src={require("../res/img/twitter.png")}/>
+                        <img src={require("../res/img/instagram.png")} alt=""/>
+                        <img src={require("../res/img/facebook.png")} alt=""/>
+                        <img src={require("../res/img/youtube.png")} alt=""/>
+                        <img src={require("../res/img/twitter.png")} alt=""/>
                         <a className="btn btn-default btn-type btn-website">Website</a>
                       </div>
                       <div className="types">
@@ -228,10 +227,10 @@ class BuyerLanding extends React.Component{
                         @Go Pros
                       </div>
                       <div className="sites">
-                        <img src={require("../res/img/instagram.png")}/>
-                        <img src={require("../res/img/facebook.png")}/>
-                        <img src={require("../res/img/twitter.png")}/>
-                        <img src={require("../res/img/www.png")}/>
+                        <img src={require("../res/img/instagram.png")} alt=""/>
+                        <img src={require("../res/img/facebook.png")} alt=""/>
+                        <img src={require("../res/img/twitter.png")} alt=""/>
+                        <img src={require("../res/img/www.png")} alt=""/>
                         <a className="btn btn-default btn-type btn-sports">Sports</a>
                       </div>
                       <div className="types">
@@ -239,7 +238,7 @@ class BuyerLanding extends React.Component{
                       </div>
                     </div>
                     <div className="item-image">
-                      <img src={require("../res/img/athlete.png")}/>
+                      <img src={require("../res/img/athlete.png")} alt=""/>
                     </div>
                     <div className="item-footer">
                       <div className="reach">
@@ -253,7 +252,7 @@ class BuyerLanding extends React.Component{
                       <div className="price">
                         <span className="small"> Starting at </span>
                         <span className="value"> $50 </span>
-                        <a><img src={require("../res/img/delete.png")}/></a>
+                        <a><img src={require("../res/img/delete.png")} alt=""/></a>
                       </div>
                     </div>
                   </div>

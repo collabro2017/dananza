@@ -25,7 +25,7 @@ class SellerOrders extends React.Component{
   }
 
   onChangeSelect = event => {
-    this.setState({ ['orderby']: event.target.value });
+    this.setState({'orderby': event.target.value });
   };
 
   render(){

@@ -91,7 +91,7 @@ class Signup extends React.Component{
                   </div>
                   <div className="google-part col-md-12">
                     <button className="google position-relative" type="button" data-dismiss="modal">
-                      <img src={require("../../res/img/google+.png")}/>
+                      <img src={require("../../res/img/google+.png")} alt=""/>
                       <span>Sign Up with Google</span>
                     </button>
                   </div>
@@ -134,30 +134,30 @@ class Signup extends React.Component{
                   }
                     <div className={"col-md-12" + (submitted && !user.businessName ? ' has-error' : '')}>
                       <input className="form-control" type="text" placeholder="Business Name" name="businessName" value={user.businessName} onChange={this.handleChange}/>
-                      <img className="show-icon" src={require('../../res/img/briefcase.png')}/>
+                      <img className="show-icon" src={require('../../res/img/briefcase.png')} alt=""/>
                     </div>
 
                     <div className={"col-md-6" + (submitted && !user.firstName ? ' has-error' : '')}>
                       <input className="form-control" type="text" placeholder="First Name" name="firstName" value={user.firstName} onChange={this.handleChange}/>
-                       <img className="show-icon" src={require('../../res/img/person_grey.png')}/>
+                       <img className="show-icon" src={require('../../res/img/person_grey.png')} alt=""/>
                     </div>
                     <div className={"col-md-6" + (submitted && !user.lastName ? ' has-error' : '')}>
                       <input className="form-control" type="text" placeholder="Last Name" name="lastName" value={user.lastName} onChange={this.handleChange}/>
-                      <img className="show-icon" src={require('../../res/img/person_grey.png')}/>
+                      <img className="show-icon" src={require('../../res/img/person_grey.png')} alt=""/>
                     </div>
 
                     <div className={"col-md-12" + (submitted && !user.email ? ' has-error' : '')}>
                       <input className="form-control" type="email" placeholder="Enter your Email" name="email" value={user.email} onChange={this.handleChange}/>
-                      <img className="show-icon" src={require('../../res/img/envelope.png')}/>
+                      <img className="show-icon" src={require('../../res/img/envelope.png')} alt=""/>
                     </div>
 
                     <div className={"col-md-6" + (submitted && !user.password ? ' has-error' : '')}>
                       <input className="form-control" type="password" placeholder="Your Password" name="password" value={user.password} onChange={this.handleChange}/>
-                      <img className="show-icon" src={require('../../res/img/key.png')}/>
+                      <img className="show-icon" src={require('../../res/img/key.png')} alt=""/>
                     </div>
                     <div className={"col-md-6" + (submitted && !user.cfm_password ? ' has-error' : '')}>
                       <input className="form-control" type="password" placeholder="Confirm Password" name="cfm_password" value={user.cfm_password} onChange={this.handleChange}/>
-                      <img className="show-icon" src={require('../../res/img/key.png')}/>
+                      <img className="show-icon" src={require('../../res/img/key.png')} alt=""/>
                     </div>
 
                     <div className="align-center col-md-12">

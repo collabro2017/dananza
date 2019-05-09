@@ -1,9 +1,4 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
@@ -39,7 +34,7 @@ class BuyerMessages extends React.Component{
                 </div>
                 <div class="btn-group" data-toggle="buttons" id="pages">
                   <label class="btn active">
-                    <img src={require("../res/img/user1.png")}/>
+                    <img src={require("../res/img/user1.png")} alt=""/>
                     <div class="detail">
                       <div class="f-16"> AdamInTech</div>
                       <div class="f-13 darkgrey"> Wonderful! When do you...</div>
@@ -48,7 +43,7 @@ class BuyerMessages extends React.Component{
                     <input type="radio" class="toggle" />
                   </label>
                   <label class="btn">
-                    <img src={require("../res/img/user1.png")}/>
+                    <img src={require("../res/img/user1.png")} alt=""/>
                     <div class="detail">
                       <div class="f-16"> AdamInTech</div>
                       <div class="f-13 darkgrey"> Wonderful! When do you...</div>
@@ -57,7 +52,7 @@ class BuyerMessages extends React.Component{
                     <input type="radio" class="toggle" />
                   </label>
                   <label class="btn">
-                    <img src={require("../res/img/user1.png")} />
+                    <img src={require("../res/img/user1.png")} alt=""/>
                     <div class="detail">
                       <div class="f-16"> AdamInTech</div>
                       <div class="f-13 darkgrey"> Wonderful! When do you...</div>
@@ -66,7 +61,7 @@ class BuyerMessages extends React.Component{
                     <input type="radio" class="toggle" />
                   </label>
                   <label class="btn">
-                    <img src={require("../res/img/user1.png")} />
+                    <img src={require("../res/img/user1.png")} alt=""/>
                     <div class="detail">
                       <div class="f-16"> AdamInTech</div>
                       <div class="f-13 darkgrey"> Wonderful! When do you...</div>
@@ -75,7 +70,7 @@ class BuyerMessages extends React.Component{
                     <input type="radio" class="toggle" />
                   </label>
                   <label class="btn">
-                    <img src={require("../res/img/user1.png")} />
+                    <img src={require("../res/img/user1.png")} alt=""/>
                     <div class="detail">
                       <div class="f-16"> AdamInTech</div>
                       <div class="f-13 darkgrey"> Wonderful! When do you...</div>
@@ -84,7 +79,7 @@ class BuyerMessages extends React.Component{
                     <input type="radio" class="toggle" />
                   </label>
                   <label class="btn">
-                    <img src={require("../res/img/user1.png")} />
+                    <img src={require("../res/img/user1.png")} alt=""/>
                     <div class="detail">
                       <div class="f-16"> AdamInTech</div>
                       <div class="f-13 darkgrey"> Wonderful! When do you...</div>
@@ -93,7 +88,7 @@ class BuyerMessages extends React.Component{
                     <input type="radio" class="toggle" />
                   </label>
                   <label class="btn">
-                    <img src={require("../res/img/user1.png")} />
+                    <img src={require("../res/img/user1.png")} alt=""/>
                     <div class="detail">
                       <div class="f-16"> AdamInTech</div>
                       <div class="f-13 darkgrey"> Wonderful! When do you...</div>
@@ -102,7 +97,7 @@ class BuyerMessages extends React.Component{
                     <input type="radio" class="toggle" />
                   </label>
                   <label class="btn">
-                    <img src={require("../res/img/user1.png")} />
+                    <img src={require("../res/img/user1.png")} alt=""/>
                     <div class="detail">
                       <div class="f-16"> AdamInTech</div>
                       <div class="f-13 darkgrey"> Wonderful! When do you...</div>
@@ -115,7 +110,7 @@ class BuyerMessages extends React.Component{
               <div class="page-message">
                 <div class="user-profile">
                   <div class="profile-image">
-                    <img src={require("../res/img/user1.png")} />
+                    <img src={require("../res/img/user1.png")} alt=""/>
                   </div>
                   <div class="profile-detail">
                     <div class="f-16"> AdamInTech </div>
@@ -142,7 +137,7 @@ class BuyerMessages extends React.Component{
                 <div class="message-content">
                   <div class="history">
                     <div class="sender">
-                      <img class="profile" src={require("../res/img/user1.png")} />
+                      <img class="profile" src={require("../res/img/user1.png")} alt=""/>
                       <span class="f-16"> AdamInTech </span>
                     </div>
                     <div class="history-content">
@@ -168,7 +163,7 @@ class BuyerMessages extends React.Component{
                   </div>
                   <div class="history">
                     <div class="sender">
-                      <img class="profile" src={require("../res/img/user1.png")} />
+                      <img class="profile" src={require("../res/img/user1.png")} alt=""/>
                       <span class="f-16"> AnnaSay </span>
                     </div>
                     <div class="history-content">

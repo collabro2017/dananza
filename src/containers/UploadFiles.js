@@ -22,9 +22,6 @@ class UploadFiles extends React.Component{
 		{ name: "Apricots"}
 	],
   };
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount(){
     document.title = "UploadFiles"

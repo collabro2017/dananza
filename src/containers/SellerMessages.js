@@ -146,10 +146,10 @@ class SellerMessages extends React.Component{
   }
 
   showSender(prev,now){
-    if(prev.sender != now.sender){
+    if(prev.sender !== now.sender){
       return (
         <div className="sender">
-          <img className="profile" src={require("../res/img/user1.png")} />
+          <img className="profile" src={require("../res/img/user1.png")} alt=""/>
           <span className="f-16"> {now.sender} </span>
         </div>
       );
@@ -157,7 +157,7 @@ class SellerMessages extends React.Component{
   }
   showDate(prev,now){
     var dif = now.time - prev.time;
-    if(prev.sender != now.sender || Math.floor(dif / 60000)){
+    if(prev.sender !== now.sender || Math.floor(dif / 60000)){
       var str = "";
       if (now.time.getHours()>12) {
         str = (now.time.getHours()-12)+":"+now.time.getMinutes()+" PM";
@@ -178,7 +178,7 @@ class SellerMessages extends React.Component{
 
   showMail(item,index){
     var prev = this.state.history[index-1];
-    if(index == 0)
+    if(index === 0)
       prev = {
               sender: "",
               time: item.time,
@@ -219,7 +219,7 @@ class SellerMessages extends React.Component{
                     this.state.users.map(
                       (user,index)=>(
                         <label className="btn">
-                          <img src={require("../res/img/user1.png")} />
+                          <img src={require("../res/img/user1.png")} alt=""/>
                           <div className="detail">
                             <div className="f-16"> {user.username} </div>
                             <div className="f-13 darkgrey"> {this.dealMail(user.recentmail)}</div>
@@ -234,12 +234,12 @@ class SellerMessages extends React.Component{
               </div>
               <div className="page-message">
                 <div className="user-profile">
-                  <img className="profile-photo" src={require("../res/img/user1.png")} />
+                  <img className="profile-photo" src={require("../res/img/user1.png")} alt=""/>
                   <span className="f-16"> AdamInTech </span>
                   <div className="action">
-                    <a className="btn btn-yellow">View Profile</a>
-                    <a>
-                      <img src={require("../res/img/delete.png")}/>
+                    <a href="#" className="btn btn-yellow">View Profile</a>
+                    <a href="#">
+                      <img src={require("../res/img/delete.png")} alt=""/>
                     </a>
                   </div>
                 </div>

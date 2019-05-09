@@ -3,7 +3,6 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import $ from "jquery";
@@ -153,7 +152,7 @@ class BuyerCampaigns extends React.Component{
                                 <hr className="left" />
                                 <hr className="right" />
                                 <a className="circle">
-                                  <img src={require('../res/img/check.png')}/>
+                                  <img src={require('../res/img/check.png')} alt=""/>
                                 </a>
                               </div>
                               <div className="step-label">Order Date</div>
@@ -162,7 +161,7 @@ class BuyerCampaigns extends React.Component{
                             <div className="step active">
                               <div className="step-button">
                                 <a className="circle">
-                                  <img src={require('../res/img/check.png')}/>
+                                  <img src={require('../res/img/check.png')} alt=""/>
                                 </a>
                                 <hr className="left" />
                                 <hr className="right" />
@@ -183,7 +182,7 @@ class BuyerCampaigns extends React.Component{
                             <div className="step">
                               <div className="step-button">
                                 <a className="circle">
-                                  <img src={require('../res/img/check.png')}/>
+                                  <img src={require('../res/img/check.png')} alt=""/>
                                 </a>
                                 <hr className="left" />
                                 <hr className="right" />
@@ -193,7 +192,7 @@ class BuyerCampaigns extends React.Component{
                             <div className="step last">
                               <div className="step-button">
                                 <a className="circle">
-                                  <img src={require('../res/img/check.png')}/>
+                                  <img src={require('../res/img/check.png')} alt=""/>
                                 </a>
                                 <hr className="left" />
                                 <hr className="right" />
@@ -219,7 +218,7 @@ class BuyerCampaigns extends React.Component{
                                       <td>
                                         <img 
                                           className="left" 
-                                          src={require("../res/img/themainmenu_1.png")}/>
+                                          src={require("../res/img/themainmenu_1.png")} alt=""/>
                                           { this.state.allCampaigns[index].Campaign_Listings[l_index].Listing.title }
                                       </td>
                                       <td>{ this.state.allCampaigns[index].Campaign_Listings[l_index].Listing.media_type }</td>
@@ -233,7 +232,7 @@ class BuyerCampaigns extends React.Component{
                             </table>
                           </div>
                           <div className="cancel">
-                            <a href="#"><img src={require("../res/img/remove.png")}/> Cancel Ad</a>
+                            <a href="#"><img src={require("../res/img/remove.png")} alt=""/> Cancel Ad</a>
                             <Link to="/new_order" className="btn btn-lg preview-media pull-right"><img src={require("../res/img/review.png")}/>Review Post</Link>
                           </div>
                         </div>
@@ -250,17 +249,17 @@ class BuyerCampaigns extends React.Component{
                 <div className="third-title">Completed Campaigns</div>
                 <div className="page-result-content">  
                   <div className="campaign active">
-                    <img src={require("../res/img/order1.png")} />
+                    <img src={require("../res/img/order1.png")}  alt=""/>
                     <div className="campaign-content">
                       <div className="content-header">
                         <span className="header-left">
-                          <img src={require("../res/img/ad_campaign.png")} />
+                          <img src={require("../res/img/ad_campaign.png")}  alt=""/>
                           <span>Ad Campaign</span>
                           <a>axel92</a>
                         </span>
                         <span className="header-right">
                           <span className="price">$300</span>
-                          <Link to="/seller_messages"><img src={require("../res/img/message.png")} />Message</Link>
+                          <Link to="/seller_messages"><img src={require("../res/img/message.png")}  alt=""/>Message</Link>
                         </span>
                       </div>
                       <div className="content-body">
@@ -270,7 +269,7 @@ class BuyerCampaigns extends React.Component{
                               <hr className="left" />
                               <hr className="right" />
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                             </div>
                             <div className="step-label">Order Date</div>
@@ -279,7 +278,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -290,7 +289,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -300,7 +299,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -310,7 +309,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step last">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -321,7 +320,7 @@ class BuyerCampaigns extends React.Component{
                       </div>
                       <div className="content-footer">
                         <Link to="/new_order" className="btn btn-default btn-yellow btn-radius">
-                          <img src={require("../res/img/review.png")} />
+                          <img src={require("../res/img/review.png")}  alt=""/>
                           Review Media
                         </Link>
                       </div>
@@ -333,13 +332,13 @@ class BuyerCampaigns extends React.Component{
                     <div className="campaign-content">
                       <div className="content-header">
                         <span className="header-left">
-                          <img src={require("../res/img/instagram_sq.png")} />
+                          <img src={require("../res/img/instagram_sq.png")}  alt=""/>
                           <span>Instagram Story for</span>
                           <a>jane_123</a>
                         </span>
                         <span className="header-right">
                           <span className="price">$100</span>
-                          <Link to="/seller_messages"><img src={require("../res/img/message.png")} />Message</Link>
+                          <Link to="/seller_messages"><img src={require("../res/img/message.png")}  alt=""/>Message</Link>
                         </span>
                       </div>
                       <div className="content-body">
@@ -347,7 +346,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step first active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -358,7 +357,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -369,7 +368,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -380,7 +379,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -390,7 +389,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step last">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -401,7 +400,7 @@ class BuyerCampaigns extends React.Component{
                       </div>
                       <div className="content-footer">
                         <button className="btn btn-default btn-yellow btn-radius">
-                        <img src={require("../res/img/launch.png")} />
+                        <img src={require("../res/img/launch.png")}  alt=""/>
                           Launch Ad
                         </button>
                       </div>
@@ -409,17 +408,17 @@ class BuyerCampaigns extends React.Component{
                   </div>
                   
                   <div className="campaign">
-                   <img src={require("../res/img/order3.png")} />
+                   <img src={require("../res/img/order3.png")}  alt=""/>
                     <div className="campaign-content">
                       <div className="content-header">
                         <span className="header-left">
-                          <img src={require("../res/img/twitter_sq.png")} />
+                          <img src={require("../res/img/twitter_sq.png")}  alt=""/>
                           <span>Twitter Ad for </span>
                           <a>sollen_dior </a>
                         </span>
                         <span className="header-right">
                           <span className="price">$65</span>
-                          <Link to="/seller_messages"><img src={require("../res/img/message.png")} />Message</Link>
+                          <Link to="/seller_messages"><img src={require("../res/img/message.png")}  alt=""/>Message</Link>
                         </span>
                       </div>
                       <div className="content-body">
@@ -427,7 +426,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step first active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -438,7 +437,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -449,7 +448,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -459,7 +458,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -469,7 +468,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step last active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left" />
                               <hr className="right" />
@@ -480,24 +479,24 @@ class BuyerCampaigns extends React.Component{
                       </div>
                       <div className="content-footer">
                         <button className="btn btn-default btn-transparent btn-radius">
-                        <img src={require("../res/img/eye.png")} />
+                        <img src={require("../res/img/eye.png")}  alt=""/>
                           View This Ad
                         </button>
                       </div>
                     </div>
                   </div>
                   <div className="campaign">
-                    <img src={require("../res/img/order4.png")} />
+                    <img src={require("../res/img/order4.png")}  alt=""/>
                     <div className="campaign-content">
                       <div className="content-header">
                         <span className="header-left">
-                          <img src={require("../res/img/instagram_sq.png")} />
+                          <img src={require("../res/img/instagram_sq.png")}  alt=""/>
                           <span>Instagram Ad for </span>
                           <a>beastyboyy</a>
                         </span>
                         <span className="header-right">
                           <span className="price">$100</span>
-                          <Link to="/seller_messages"><img src={require("../res/img/message.png")} />Message</Link>
+                          <Link to="/seller_messages"><img src={require("../res/img/message.png")} alt="" />Message</Link>
                         </span>
                       </div>
                       <div className="content-body">
@@ -505,7 +504,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step first active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -516,7 +515,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -527,7 +526,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -537,7 +536,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -547,7 +546,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step last active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -558,24 +557,24 @@ class BuyerCampaigns extends React.Component{
                       </div>
                       <div className="content-footer">
                         <button className="btn btn-default btn-transparent btn-radius">
-                        <img src={require("../res/img/eye.png")} />
+                        <img src={require("../res/img/eye.png")}  alt=""/>
                           View This Ad
                         </button>
                       </div>
                     </div>
                   </div>
                   <div className="campaign">
-                    <img src={require("../res/img/order5.png")} />
+                    <img src={require("../res/img/order5.png")}  alt=""/>
                     <div className="campaign-content">
                       <div className="content-header">
                         <span className="header-left">
-                          <img src={require("../res/img/ad_campaign.png")} />
+                          <img src={require("../res/img/ad_campaign.png")}  alt=""/>
                           <span>Ad Campaign for </span>
                           <a>martin_values</a>
                         </span>
                         <span className="header-right">
                           <span className="price">$400</span>
-                          <Link to="/seller_messages"><img src={require("../res/img/message.png")} />Message</Link>
+                          <Link to="/seller_messages"><img src={require("../res/img/message.png")}  alt=""/>Message</Link>
                         </span>
                       </div>
                       <div className="content-body">
@@ -583,7 +582,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step first active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -594,7 +593,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -605,7 +604,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -615,7 +614,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -625,7 +624,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step last active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -636,24 +635,24 @@ class BuyerCampaigns extends React.Component{
                       </div>
                       <div className="content-footer">
                         <button className="btn btn-default btn-transparent btn-radius">
-                          <img src={require("../res/img/eye.png")} />
+                          <img src={require("../res/img/eye.png")}  alt=""/>
                           View This Ad
                         </button>
                       </div>
                     </div>
                   </div>
                   <div className="campaign">
-                    <img src={require("../res/img/order1.png")} />
+                    <img src={require("../res/img/order1.png")}  alt=""/>
                     <div className="campaign-content">
                       <div className="content-header">
                         <span className="header-left">
-                          <img src={require("../res/img/instagram_sq.png")} />
+                          <img src={require("../res/img/instagram_sq.png")}  alt=""/>
                           <span>Instagram Ad for </span>
                           <a>marie_condo</a>
                         </span>
                         <span className="header-right">
                           <span className="price">$100</span>
-                          <Link to="/seller_messages"><img src={require("../res/img/message.png")} />Message</Link>
+                          <Link to="/seller_messages"><img src={require("../res/img/message.png")}  alt=""/>Message</Link>
                         </span>
                       </div>
                       <div className="content-body">
@@ -661,7 +660,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step first active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -672,7 +671,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -683,7 +682,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -693,7 +692,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -703,7 +702,7 @@ class BuyerCampaigns extends React.Component{
                           <div className="step last active">
                             <div className="step-button">
                               <a className="circle">
-                                <img src={require('../res/img/check.png')}/>
+                                <img src={require('../res/img/check.png')} alt=""/>
                               </a>
                               <hr className="left"/>
                               <hr className="right"/>
@@ -714,7 +713,7 @@ class BuyerCampaigns extends React.Component{
                       </div>
                       <div className="content-footer">
                         <button className="btn btn-default btn-transparent btn-radius">
-                        <img src={require("../res/img/eye.png")} />
+                        <img src={require("../res/img/eye.png")}  alt=""/>
                           View This Ad
                         </button>
                       </div>

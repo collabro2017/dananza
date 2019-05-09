@@ -3,7 +3,6 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import Typography from "@material-ui/core/Typography";
 import ReactTags from "react-tag-autocomplete";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -134,7 +133,7 @@ class BuyerProfile extends React.Component{
     let preview_image = "";
 
     if ( this.state.preview ) {
-      preview_image =  <img src={this.state.preview} alt="Preview" />
+      preview_image =  <img src={this.state.preview} alt="Preview"/>
     } 
 
     return (
@@ -267,7 +266,7 @@ class BuyerProfile extends React.Component{
                             handleDelete={this.handleLocationDelete.bind(this)}
                             handleAddition={this.handleLocationAddition.bind(this)}
                             classNames = {{root:"inner-tag react-tags"}} />
-                            <img src={require("../res/img/minami.png")} className="placeholder-img"/>
+                            <img src={require("../res/img/minami.png")} className="placeholder-img" alt=""/>
                         </div>
                       </div>
                     </div>
@@ -278,7 +277,7 @@ class BuyerProfile extends React.Component{
                         </label>
                         <div className="col-md-10 controlcontent">
                           <div className="input-icon">
-                            <img src={require("../res/img/play.png")} className="placeholder-img"/>
+                            <img src={require("../res/img/play.png")} className="placeholder-img" alt=""/>
                             <input type="text" className="form-control btn-radius" 
                                    placeholder="Choose Media Type"
                                    name="MediaType"
@@ -310,7 +309,7 @@ class BuyerProfile extends React.Component{
                         </label>
                         <div className="col-md-10 controlcontent">
                           <div className="input-icon">
-                            <img src={require("../res/img/link.png")} className="placeholder-img"/>
+                            <img src={require("../res/img/link.png")} className="placeholder-img" alt=""/>
                             <input  type="text" className="form-control btn-radius" 
                                     placeholder="Linked Account"
                                     name="linkedAcct"
@@ -326,7 +325,7 @@ class BuyerProfile extends React.Component{
                         </label>
                         <div className="col-md-10 controlcontent">
                           <div className="input-icon">
-                            <img src={require("../res/img/link.png")} className="placeholder-img"/>
+                            <img src={require("../res/img/link.png")} className="placeholder-img" alt=""/>
                             <input type="text" className="form-control btn-radius" 
                                    placeholder="https://itsmichaelaseyra.com"
                                    name="Website"
@@ -348,7 +347,7 @@ class BuyerProfile extends React.Component{
                                 </label>
                                 <div className="col-md-10 controlcontent">
                                   <div className="input-icon">
-                                    <img src={require("../res/img/play.png")} className="placeholder-img"/>
+                                    <img src={require("../res/img/play.png")} className="placeholder-img" alt=""/>
                                     <input value={this.state.accounts[index].mediatype} onChange={(text)=>{this.getValue(index,'mediatype',text);}} type="text" className="form-control btn-radius" placeholder="Choose Media Type"/>
                                   </div>
                                 </div>
@@ -359,7 +358,7 @@ class BuyerProfile extends React.Component{
                                 </label>
                                 <div className="col-md-10 controlcontent">
                                   <div className="input-icon">
-                                    <img src={require("../res/img/username.png")} className="placeholder-img"/>
+                                    <img src={require("../res/img/username.png")} className="placeholder-img" alt=""/>
                                     <input value={this.state.accounts[index].username} onChange={(text)=>{this.getValue(index,'username',text);}} type="text" className="form-control btn-radius" placeholder="Username"/>
                                   </div>
                                 </div>
@@ -370,7 +369,7 @@ class BuyerProfile extends React.Component{
                                 </label>
                                 <div className="col-md-10 controlcontent">
                                   <div className="input-icon">
-                                    <img src={require("../res/img/link.png")} className="placeholder-img"/>
+                                    <img src={require("../res/img/link.png")} className="placeholder-img" alt=""/>
                                     <input value={this.state.accounts[index].linkedaccount} onChange={(text)=>{this.getValue(index,'linkedaccount',text);}} type="text" className="form-control btn-radius" placeholder="Linked Account"/>
                                   </div>
                                 </div>
@@ -381,7 +380,7 @@ class BuyerProfile extends React.Component{
                                 </label>
                                 <div className="col-md-10 controlcontent">
                                   <div className="input-icon">
-                                    <img src={require("../res/img/link.png")} className="placeholder-img"/>
+                                    <img src={require("../res/img/link.png")} className="placeholder-img" alt=""/>
                                     <input value={this.state.accounts[index].websites} onChange={(text)=>{this.getValue(index,'websites',text);}} type="text" className="form-control btn-radius" placeholder="https://itsmichaelaseyra.com"/>
                                   </div>
                                 </div>
@@ -406,8 +405,8 @@ class BuyerProfile extends React.Component{
                 <p><a className="add-website" onClick={this.addAccount.bind(this)}>+ Add Another Account</a></p>
               </div>
               <div className="action_group">
-                <button className="btn btn-blue left"><img src={require("../res/img/eye_white.png")}/> Preview</button>
-                <button className="btn btn-yellow right" onClick={this.handleSubmit.bind(this)}><img src={require("../res/img/check_black.png")}/> Save</button>
+                <button className="btn btn-blue left"><img src={require("../res/img/eye_white.png")} alt=""/> Preview</button>
+                <button className="btn btn-yellow right" onClick={this.handleSubmit.bind(this)}><img src={require("../res/img/check_black.png")} alt=""/> Save</button>
               </div>
             </div>
             

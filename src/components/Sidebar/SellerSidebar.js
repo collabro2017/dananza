@@ -21,7 +21,7 @@ const SellerSidebar = props => {
         <div className="page-sidebar">
           <div className="section target-tree">
             <div className="image">
-              <img alt="" src={require("../../res/img/profile_photo.png")}/>
+              <img src={require("../../res/img/profile_photo.png")} alt=""/>
               <h1> Target Tree </h1>
             </div>
             <div className="dial">
@@ -87,31 +87,31 @@ const SellerSidebar = props => {
             <div className="btn-group" data-toggle="buttons" id="pages">
               <Link to="/seller_orders">
                 <label className={navitem=="orders"?"btn btn-default active":"btn btn-default"}>
-                  <img src={require('../../res/img/sidebar_cart.png')}/>
+                  <img src={require('../../res/img/sidebar_cart.png')} alt=""/>
                   <input type="radio" className="toggle"/> Orders
                 </label>
               </Link>
               <Link to="/seller_analytics">
                 <label className={navitem=="analytics"?"btn btn-default active":"btn btn-default"}>
-                  <img src={require('../../res/img/sidebar_graph.png')}/>
+                  <img src={require('../../res/img/sidebar_graph.png')} alt=""/>
                   <input type="radio" className="toggle"/> Analytics
                 </label>
               </Link>
               <Link to="/seller_calendar">
                 <label className={navitem=="calendar"?"btn btn-default active":"btn btn-default"}>
-                  <img src={require('../../res/img/sidebar_calendar.png')}/>
+                  <img src={require('../../res/img/sidebar_calendar.png')} alt=""/>
                   <input type="radio" className="toggle"/> Calendar
                 </label>
               </Link>
               <Link to="/seller_dashboard">
                 <label className={navitem=="sellers_page"?"btn btn-default active":"btn btn-default"}>
-                  <img src={require('../../res/img/sidebar_user.png')}/>
+                  <img src={require('../../res/img/sidebar_user.png')} alt=""/>
                   <input type="radio" className="toggle"/> Profile
                 </label>
               </Link>
               <Link to="/seller_messages">
                 <label className={navitem=="message"?"btn btn-default active":"btn btn-default"}>
-                  <img src={require('../../res/img/messages.png')}/>
+                  <img src={require('../../res/img/messages.png')} alt=""/>
                   <input type="radio" className="toggle"/> Messages
                 </label>
               </Link>

@@ -97,8 +97,6 @@ export function seller(state = initialState, action) {
       return state;
     case sellerConstants.GET_SELLER_ALL_ADLIST_SUCCESS:
       return { ...state, allAdlist: action.adlist };
-    case sellerConstants.GET_SELLER_ADLIST_FAILURE:
-      return state;
     default:
       return state
   }

@@ -1,5 +1,4 @@
 import React from "react";
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import DatePicker from "react-datepicker";
@@ -43,7 +42,7 @@ class Sellers extends React.Component{
 
   componentWillReceiveProps(props)
   {
-    if (props.location.pathname != this.props.location.pathname) {
+    if (props.location.pathname !== this.props.location.pathname) {
       const { dispatch } = this.props;
       let path = props.location.pathname.split('/');
 
@@ -51,10 +50,10 @@ class Sellers extends React.Component{
         dispatch(sellerActions.getAllProfile(parseInt(path[2])));
     }
 
-    if (props.sellerinfo != undefined)
+    if (props.sellerinfo !== undefined)
     {
       var profile_photo;
-      if (props.buyer_sellerview == false)
+      if (props.buyer_sellerview === false)
       {
         debugger;
         try{
@@ -104,7 +103,7 @@ class Sellers extends React.Component{
 
   slideTab(index){
     for(var i = 0;$("#panel_"+i).length; i++){
-      if(index != i)
+      if(index !== i)
         $("#panel_"+i).slideUp();
     }
     $("#panel_"+index).slideToggle();
@@ -128,9 +127,9 @@ class Sellers extends React.Component{
     let preview_image = "";
 
     if( profile_photo )
-      preview_image = <img className="profile" src={require("../res/img/"+profile_photo+".png")}/>
+      preview_image = <img className="profile" src={require("../res/img/"+profile_photo+".png")} alt=""/>
     else
-      preview_image = <img className="profile" src={ avatarDefault }/>
+      preview_image = <img className="profile" src={ avatarDefault } alt=""/>
 
     return (
       <div className="dashboard_seller">
@@ -158,20 +157,20 @@ class Sellers extends React.Component{
               </div>
               <div className="from_avg">
                 <div className="from">
-                  <img class="channel_img" src={require("../res/img/map_maker.png")} />From
+                  <img class="channel_img" src={require("../res/img/map_maker.png")} alt=""/>From
                   <span className="value">Miami</span>
                 </div>
                 <div className="avg">
-                  <img class="channel_img" src={require("../res/img/clock.png")} />Avg. Response Time
+                  <img class="channel_img" src={require("../res/img/clock.png")} alt=""/>Avg. Response Time
                   <span className="value">8 hrs</span>
                 </div>
               </div>
               <div className="channels">
-                <img class="channel_img" src={require("../res/img/play.png")} />Channels
+                <img class="channel_img" src={require("../res/img/play.png")} alt=""/>Channels
                 <span className="social_icons">
-                  <img src={require("../res/img/instagram.png")} />
-                  <img src={require("../res/img/facebook.png")} />
-                  <img src={require("../res/img/youtube.png")} />
+                  <img src={require("../res/img/instagram.png")} alt=""/>
+                  <img src={require("../res/img/facebook.png")} alt=""/>
+                  <img src={require("../res/img/youtube.png")} alt=""/>
                 </span>
               </div>
               <div className="audience">
@@ -229,13 +228,13 @@ class Sellers extends React.Component{
                 {/*<img src={require("../res/img/sellers_slider1.png")} />*/}
                 <Carousel showThumbs={false}>
                           <div>
-                              <img src={require("../res/img/sellers_slider1.png")} />
+                              <img src={require("../res/img/sellers_slider1.png")} alt=""/>
                           </div>
                           <div>
-                              <img src={require("../res/img/sellers_slider1.png")} />
+                              <img src={require("../res/img/sellers_slider1.png")} alt=""/>
                           </div>
                           <div>
-                              <img src={require("../res/img/sellers_slider1.png")} />
+                              <img src={require("../res/img/sellers_slider1.png")} alt=""/>
                           </div>
                       </Carousel>
               </div>
@@ -261,7 +260,7 @@ class Sellers extends React.Component{
                                       <div className="panel-heading">
                                           <h4 className="panel-title">
                                             <a className="accordion-toggle collapsed" onClick={this.slideTab.bind(this,index)}>
-                                                <img className="tab-mediatype" src={require("../res/img/"+item.media_type+"_sq.png")} />
+                                                <img className="tab-mediatype" src={require("../res/img/"+item.media_type+"_sq.png")}  alt=""/>
                                                 <span className="mediatype-name">{item.media_type}</span>
                                                 <span>
                                                   {item.username}
@@ -308,7 +307,7 @@ class Sellers extends React.Component{
                                                     (list,index) => (
                                                       <div className="item post row">
                                                         <div className="col-sm-4">
-                                                          <img className="adlist-media" src={require("../res/img/"+list.media_type+"_sq.png")} />
+                                                          <img className="adlist-media" src={require("../res/img/"+list.media_type+"_sq.png")}  alt=""/>
                                                           {list.title}
                                                         </div>
                                                         <div className="col-sm-4 datetime">
@@ -347,7 +346,7 @@ class Sellers extends React.Component{
                       </div>
                       <div className="review_lists">
                         <div className="person">
-                          <img src={require("../res/img/review_thum1.png")} />
+                          <img src={require("../res/img/review_thum1.png")}  alt=""/>
                           maximsalveson
                           <i className="fa fa-star"></i> 5.0
                         </div>
@@ -357,7 +356,7 @@ class Sellers extends React.Component{
                         <div className="divider"></div>
 
                         <div className="person">
-                          <img src={require("../res/img/review_thum1.png")} /> maximsalveson
+                          <img src={require("../res/img/review_thum1.png")}  alt=""/> maximsalveson
                           <i className="fa fa-star"></i> 5.0
                         </div>
                         <div className="content">
@@ -366,7 +365,7 @@ class Sellers extends React.Component{
                         <div className="divider"></div>
 
                         <div className="person">
-                          <img src={require("../res/img/review_thum1.png")} /> maximsalveson
+                          <img src={require("../res/img/review_thum1.png")}  alt=""/> maximsalveson
                           <i className="fa fa-star"></i> 5.0
                         </div>
                         <div className="content">
