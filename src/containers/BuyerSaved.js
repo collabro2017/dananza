@@ -63,11 +63,10 @@ class BuyerSaved extends React.Component{
   render(){
   	const { adzas } = this.state;
   	var adza_list = [];
-  	if( adzas.success == true && adzas.adzas !== "undefined" )
+
+  	if( adzas.success == true && adzas.adzas !== undefined )
   		adza_list = adzas.adzas
 
-console.log( "--------------------------" );
-console.log( adzas );
     return (
     	<div className="buyer_saved">
 	    	<Snackbar
@@ -88,7 +87,7 @@ console.log( adzas );
 		          onClick={this.handleCloseSnack}
 		        >
 		          <CloseIcon />
-		        </IconButton>,
+		        </IconButton>
 		      ]}
 	        />
 			<div className="page-container">
