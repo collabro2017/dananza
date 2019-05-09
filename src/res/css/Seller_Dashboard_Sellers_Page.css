@@ -341,5 +341,5 @@
 .dashboard_seller .fileUploader .fileContainer .uploadPicturesWrapper > div{ justify-content:left !important; }
 
 .dashboard_seller .avatar_preview{ width: 150px; margin-right: 20px; }
-.dashboard_seller .avatar_preview img{ max-width: 100%; }
+.dashboard_seller .avatar_preview img{ max-width: 100%; border: 1px dashed #757575; border-radius: 50% !important;}
 /*# sourceMappingURL=header.css.map */

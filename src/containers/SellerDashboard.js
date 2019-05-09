@@ -18,7 +18,7 @@ import { sellerActions } from '../store/actions';
 import SellerSidebar from "../components/Sidebar/SellerSidebar";
 
 import Avatar from 'react-avatar-edit'
-import avatarDefault from '../res/img/userinfo_img.png';
+import avatarDefault from '../res/img/user1.png';
 
 import "../res/css/Seller_Dashboard_Sellers_Page.css"
 import "../res/icheck/skins/ltblue.css"
@@ -55,7 +55,7 @@ class SellerDashboard extends React.Component{
 		adlist_edit: [],
 		new_adlist:{},
 		flag: 0,
-        preview: avatarDefault,
+        preview: null,
 		avatar_src: null
   }
 
@@ -357,7 +357,9 @@ class SellerDashboard extends React.Component{
   	let preview_image;
   	if( profile_photo )
   		preview_image = <img className="profile" src={require("../res/img/"+profile_photo+".png")}/>
-  	
+  	else
+  		preview_image = <img className="profile" src={ avatarDefault }/>
+
   	if ( this.state.preview ) {
       	preview_image =  <img src={this.state.preview} alt="Preview" />
     } 
