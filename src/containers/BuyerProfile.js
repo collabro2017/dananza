@@ -51,7 +51,6 @@ class BuyerProfile extends React.Component{
     this.handleJobType = this.handleJobType.bind(this);
 
     // Avatar
-    this.setState({ src: avatarDefault});
     this.onCrop = this.onCrop.bind(this)
     this.onClose = this.onClose.bind(this)
     this.onBeforeFileLoad = this.onBeforeFileLoad.bind(this)
@@ -148,6 +147,12 @@ class BuyerProfile extends React.Component{
 
   render(){
     const { profile } = this.props;
+    let preview_image = "";
+
+    if ( this.state.preview ) {
+      preview_image =  <img src={this.state.preview} alt="Preview" />
+    } 
+
     return (
       <div className="buyer_landing buyer_profile">
         <div className="page-container">
@@ -169,16 +174,8 @@ class BuyerProfile extends React.Component{
                     <div className="formcontrol row">
                       <label className="col-md-2 controllabel"> Profile photo</label>
                       <div className="col-md-10 controlcontent">
-                        {/*<img src={require("../res/img/userinfo_img.png")} />
-                        <div className="col-md-offset-1 col-md-7">
-                          <a className="btn dark btn-outline btn-radius">
-                            <i className="fa fa-file-image-o"></i>
-                            <b>Choose Photo</b>
-                          </a>
-                          
-                        </div>*/}
                         <div className="avatar_preview">
-                          <img src={this.state.preview} alt="Preview" />
+                          { preview_image }
                         </div>
                         <Avatar
                           width={390}
