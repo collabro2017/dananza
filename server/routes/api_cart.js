@@ -115,4 +115,21 @@ router.delete('/', passport.authenticate('jwt', {session: false}), async functio
 	    })
 });
 
+// Add a New Listing to the Cart
+router.post('/:id', passport.authenticate('jwt', {session: false}), async function(req, res) {
+	var auth_user = req.user;
+	var UserId = auth_user.id;
+	var newlisting = req.params.id;
+	
+	var current_cart = await Cart
+		.findOne({ where:{ BuyerProfileId: UserId }})
+		.then(function(cart) {
+			cart.update({
+				ListingIds: [...cart.ListingIds, parseInt(newlisting)]
+			})
+			.then( res.status(201).send({ success: true, message: msg.addedSuccess}))
+		})
+		.catch((error) => res.status(500).send({success: false, message: msg.noCart }));
+});
+
 module.exports = router;

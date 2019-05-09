@@ -47,7 +47,7 @@ function register(user) {
                     dispatch(success());
                     
                     //creat new buyer profile
-                    dispatch(buyerActions.create(user));
+                    dispatch(buyerActions.createBuyerProfile(user));
 
                     dispatch(alertActions.success('Registration successful'));
                 },

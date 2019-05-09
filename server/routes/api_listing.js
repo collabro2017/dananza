@@ -37,9 +37,9 @@ router.get('/', passport.authenticate('jwt', {session: false}), async function(r
 
 // get listing info
 router.get('/:id', passport.authenticate('jwt', {session: false}), function(req, res) {
-	var ListingId = req.params.id;
+	var listing_id = req.params.id;
 	Listing
-	    .findByPk( ListingId )
+	    .findByPk( listing_id )
 	    .then((listing) => res.status(200).send(listing))
 	    .catch((error) => res.status(500).send({success: false, message: error }));
 });
@@ -66,7 +66,7 @@ router.post('/', passport.authenticate('jwt', {session: false}), async function(
 	Listing
 		.create({
 			AdzaProfileId: 		adza.id,
-			ChannelId: 	ChannelId,
+			ChannelId: 		ChannelId,
 			media_type: 	media_type,
 			title: 			title,
 			price: 			price,
@@ -80,7 +80,7 @@ router.post('/', passport.authenticate('jwt', {session: false}), async function(
 
 // Update Listing Info
 router.put('/:id', passport.authenticate('jwt', {session: false}), async function(req, res) {
-	var ListingId = req.params.id;
+	var listing_id = req.params.id;
 	var auth_user = req.user;
 
 	var adza = await Adza_Profile.getAdzaFromUserID( auth_user.id, function(err, profile ){
@@ -90,16 +90,20 @@ router.put('/:id', passport.authenticate('jwt', {session: false}), async functio
 			return res.status(400).send( {success: false, message: err });
 	} );
 
+	var ChannelId		= req.body.ChannelId;
+	var media_type		= req.body.media_type;
 	var title 			= req.body.title;
 	var price 			= req.body.price;
 	var featured_photo 	= req.body.featured_photo;
 	var description 	= req.body.description;
 
 	Listing
-		.findByPk( ListingId )
+		.findByPk( listing_id )
 		.then(function(listing) {
 			if( listing.AdzaProfileId == adza.id ){
 				listing.update({
+					ChannelId:		ChannelId,
+					media_type:		media_type,
 					title: 			title,
 					price: 			price,
 					featured_photo: featured_photo,
@@ -115,7 +119,7 @@ router.put('/:id', passport.authenticate('jwt', {session: false}), async functio
 
 // Delete Channel
 router.delete('/:id', passport.authenticate('jwt', {session: false}), async function(req, res) {
-	var ListingId = req.params.id;
+	var listing_id = req.params.id;
 	var auth_user = req.user;
 
 	var adza = await Adza_Profile.getAdzaFromUserID( auth_user.id, function(err, profile ){
@@ -126,7 +130,7 @@ router.delete('/:id', passport.authenticate('jwt', {session: false}), async func
 	} );
 
 	Listing
-	    .destroy( { where: { id: ListingId, AdzaProfileId: adza.id } } )
+	    .destroy( { where: { id: listing_id, AdzaProfileId: adza.id } } )
 	    .then((listing) => {
 	    	if( listing)
 	    		res.status(200).send({success: true, message: msg.deletedSuccess})

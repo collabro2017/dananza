@@ -5,8 +5,15 @@ import { apiConfig } from '../config';
 export const sellerService = {
     setProfile,
     getProfile,
+    createChannel,
+    deleteChannel,
     getChannel,
-    getAdlist
+    createAdlist,
+    updateAdlist,
+    deleteAdlist,
+    getAdlist,
+    getAllProfile,
+    getSearchResult
 };
 
 const apiRoot = apiConfig.apiRoot;
@@ -31,13 +38,32 @@ function setProfile(sellerprofile) {
         });
 }
 
-function getProfile(sellerprofile) {
+function getProfile() {
     const requestOptions = {
         method: 'GET',
         headers: { ...authHeader() }
     };
 
     return fetch( apiRoot + `/adza`, requestOptions)
+        .then(handleResponse);
+}
+
+function createChannel(channel) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(channel)
+    };
+    return fetch( apiRoot + `/channel`, requestOptions)
+        .then(handleResponse);
+}
+
+function deleteChannel(channelID) {
+    const requestOptions = {
+        method: 'delete',
+        headers: { ...authHeader() }
+    };
+    return fetch( apiRoot + `/channel/${channelID}`, requestOptions)
         .then(handleResponse);
 }
 
@@ -51,6 +77,36 @@ function getChannel() {
         .then(handleResponse);
 }
 
+function createAdlist(adlist) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(adlist)
+    };
+    return fetch( apiRoot + `/listing`, requestOptions)
+        .then(handleResponse);
+}
+
+function updateAdlist(adlist) {
+    const requestOptions = {
+        method: 'PUT',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(adlist)
+    };
+    const {id} = adlist;
+    return fetch( apiRoot + `/listing/${id}`, requestOptions)
+        .then(handleResponse);
+}
+
+function deleteAdlist(adlistID) {
+    const requestOptions = {
+        method: 'delete',
+        headers: { ...authHeader() }
+    };
+    return fetch( apiRoot + `/listing/${adlistID}`, requestOptions)
+        .then(handleResponse);
+}
+
 function getAdlist() {
     const requestOptions = {
         method: 'GET',
@@ -58,6 +114,26 @@ function getAdlist() {
     };
 
     return fetch( apiRoot + `/listing`, requestOptions)
+        .then(handleResponse);
+}
+
+function getAllProfile(adzaid) {
+    const requestOptions = {
+        method: 'GET',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' }
+    };
+
+    return fetch( apiRoot + `/adza/${adzaid}/adzainfo`, requestOptions)
+        .then(handleResponse);
+}
+
+function getSearchResult(){
+    const requestOptions = {
+        method: 'GET',
+        headers: { ...authHeader() }
+    };
+
+    return fetch( apiRoot + `/search`, requestOptions)
         .then(handleResponse);
 }
 

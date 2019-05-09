@@ -33,19 +33,19 @@ router.post('/', function(req, res) {
 			where: { UserId: UserId }, 
 			defaults: {
 				UserId: UserId,
-				location: null,
-				profession: null,
 				profile_description: null,
 				has_seller_acct: false,
-				business_name: null,
 				job_type: null,
+				locations: [],
+				linkedAccounts: [],
+				accounts: [],
 				signup_date: new Date()
 		}})
 		.then((created) => {
 			if( created )
 				res.status(201).send({success: false, message: msg.haveProfile})
 			else
-				res.status(400).send({success: false, message: msg.haveProfile})
+				res.status(304).send({success: false, message: msg.haveProfile})
 		})
 		.catch((error) => res.status(400).send({success: false, message: error }));
 });
@@ -59,12 +59,12 @@ router.put('/', passport.authenticate('jwt', {session: false}), function(req, re
 	.findOne({ where: {UserId: UserId} })
 	.then(function(profile) {
 		profile.update({
-			location: req.body.location,
-			profession: req.body.profession,
-			profile_description: req.body.description,
-			business_name: req.body.business_name,
+			locations: req.body.locations,
+			profile_description: req.body.profile_description,
 			job_type: req.body.job_type,
-			has_seller_acct: req.body.has_seller_acct
+			has_seller_acct: req.body.has_seller_acct,
+			linkedAccounts: req.body.linkedAccounts,
+			accounts: req.body.accounts
 		})
 		.then((profile)=>res.status(201).send({success: true, message: msg.updatedSuccess}))
 		.catch((error) => res.status(400).send({success: false, message: error }));

@@ -8,23 +8,39 @@ const msg = require('../config/msg');
 const Buyer_Profile = require('../models').Buyer_Profile;
 const Campaign = require('../models').Campaign;
 const Campaign_Listing = require('../models').Campaign_Listing;
+const Listing = require('../models').Listing;
 
 // Get all campaigns
 router.get('/', passport.authenticate('jwt', {session: false}), async function(req, res) {
 	var auth_user = req.user;
 	var UserId = auth_user.id;
 
-	var buyer = await Buyer_Profile.getBuyerFromUserID( auth_user.id, function(err, profile ){
-		if( !err )
-			return profile;
-		else
-			return res.status(400).send( {success: false, message: err });
-	} );
+	console.log('userid/auth_user = ', auth_user, UserId);
+	console.log('user id = ', UserId);
+
+	// var buyer = await Buyer_Profile.getBuyerFromUserID( UserId, function(err, profile ){
+	// 	if( !err )
+	// 		return profile;
+	// 	else
+	// 		return res.status(400).send( {success: false, message: err });
+
+	// });
+	// console.log('buyer = ', buyer);
 	Campaign
-		.findAll({where:{BuyerProfileId: buyer.id}})
+		.findAll({
+			where:{BuyerProfileId: UserId}, 
+			include:
+			[{
+				model: Campaign_Listing,
+				include: 
+				[{
+					model: Listing
+				}]
+			}]
+		})
 		.then(function( campaigns ) {
 			if( campaigns.length )
-				return res.status(201).send({success: true, campaigns:campaigns});
+				return res.status(201).send(campaigns);
 			else
 				return res.status(201).send({success: true, message: msg.noResult });
 		})

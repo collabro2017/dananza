@@ -337,6 +337,12 @@
   padding: 13px 45px;
   border-radius: 5px !important; }
 
+  .infoflowPage .cartPart .input_campName
+  {
+    border: none;
+    width: 25%;
+  }
+
 /** infoflowPage end **/
 
 @media (max-width: 767px) {

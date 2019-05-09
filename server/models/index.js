@@ -53,4 +53,28 @@ db.Saved_Adza.belongsTo(db.Adza_Profile)
 db.User.hasOne(db.Adza_Profile)
 db.Adza_Profile.belongsTo(db.User)  
 
+db.Buyer_Profile.hasMany(db.Campaign)
+db.Campaign.belongsTo( db.Buyer_Profile)
+
+db.Adza_Profile.hasMany(db.Channel)
+db.Channel.belongsTo(db.Adza_Profile)
+
+db.Channel.hasMany(db.Listing)
+db.Listing.belongsTo(db.Channel)
+
+db.Adza_Profile.hasMany(db.Listing)
+db.Listing.belongsTo(db.Adza_Profile)
+
+db.Campaign.hasMany(db.Campaign_Listing)
+db.Campaign_Listing.belongsTo(db.Campaign)
+
+db.Listing.hasOne(db.Campaign_Listing)
+db.Campaign_Listing.belongsTo(db.Listing)
+
+db.Campaign.hasOne(db.Cart);
+db.Cart.belongsTo(db.Campaign);
+
+db.Buyer_Profile.hasOne(db.Cart);
+db.Cart.belongsTo(db.Buyer_Profile);
+
 module.exports = db;

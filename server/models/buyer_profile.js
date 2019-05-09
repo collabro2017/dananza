@@ -2,10 +2,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Buyer_Profile = sequelize.define('Buyer_Profile', {
     UserId: DataTypes.INTEGER,
-    location: DataTypes.INTEGER,
-    profession: DataTypes.INTEGER,
     has_seller_acct: DataTypes.BOOLEAN,
     profile_description: DataTypes.STRING,
+    job_type: DataTypes.STRING,
+    locations: DataTypes.JSON,
+    linkedAccounts: DataTypes.JSON,
+    accounts: DataTypes.JSON,
     signup_date: DataTypes.DATE
   }, {});
   Buyer_Profile.associate = function(models) {

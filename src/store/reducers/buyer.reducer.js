@@ -1,28 +1,44 @@
 import { buyerConstants } from '../config';
 
-export function buyerProfile(state={}, action) 
+export function buyer(state={}, action) 
 {
 	switch(action.type)
 	{
-		case buyerConstants.CREAT: 
+		case buyerConstants.CREATE_BUYPER_PROFILE: 
 			return 	{
 				create: true,
 			};
-		case buyerConstants.READ:
+		case buyerConstants.READ_BUYPER_PROFILE:
 			return	{
-				profile: action.buyer_profile
+				profile: action.data,
 			};
-		case buyerConstants.UPDATE:
+		case buyerConstants.UPDATE_BUYPER_PROFILE:
 			return 	{
-				updated: action.msg
+				updated: action.data.message
 			};
-		case buyerConstants.DELETE:
+		case buyerConstants.DELETE_BUYPER_PROFILE:
 			return 	{
 
 			};
+		case buyerConstants.CREAT_CAMPAIGN:
+			return {
+
+			}
+		case buyerConstants.GET_ALL_CAMPAIGN:
+			return {
+				campaigns: action.data
+			}
+		case buyerConstants.UPDATE_CAMPAIGN: 
+			return {
+
+			}
+		case buyerConstants.DELETE_CAMPAIGN:
+			return {
+
+			}	
 		case buyerConstants.ERROR:
 			return 	{
-				error: action.error
+				error: action.data
 			};
 
 		default:

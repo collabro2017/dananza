@@ -8,6 +8,8 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import $ from "jquery";
 import { Link } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
+import { buyerActions } from '../store/actions';
 
 import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
 
@@ -21,17 +23,28 @@ class BuyerCampaigns extends React.Component{
 
   state={
     'headerType': "buyer",
-    'campaign_status': 'All'
+    'campaign_status': 'All',
+    allCampaigns: []
   }
 
   constructor(props) {
     super(props);
     props.changeHeaderType( this.state.headerType )
+
+    this.props.dispatch(buyerActions.getAllCampaigns());
   }
+
+  componentWillReceiveProps( nextprops ) {
+    this.setState({ allCampaigns: nextprops.campaigns });
+    if(!this.state.allCampaigns) this.props.dispatch(buyerActions.createNewCampaign()); 
+  }
+
   onChangeRelevance = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
+
   componentDidMount(){
+
     document.title = "Buyer Campaigns"
 
     var index     = 1;
@@ -51,6 +64,7 @@ class BuyerCampaigns extends React.Component{
       else
         $(".slider-item:first").css('margin-left', 'calc(((( -100vw + 330px )*0.74445) - 15px)*'+(index-1)+')');
     });
+
     $(".next").click(function () {
       var itemWidth   = parseInt($(".slider-item").css('width'));
       if(sliderItemCount == index+1) {
@@ -66,7 +80,6 @@ class BuyerCampaigns extends React.Component{
         $(".slider-item:first").css('margin-left', 'calc(((( -100vw )*0.74445) - 15px)*'+(index-1)+')');
       else
         $(".slider-item:first").css('margin-left', 'calc(((( -100vw + 330px )*0.74445) - 15px)*'+(index-1)+')');
-
     });
 
     $(".previous").click(function () {
@@ -88,6 +101,7 @@ class BuyerCampaigns extends React.Component{
   }
 
   render(){
+    if( !this.state.allCampaigns ) return;
     return (
       <div className="buyer_landing buyer_campaign">
         <div className="page-container">
@@ -120,282 +134,112 @@ class BuyerCampaigns extends React.Component{
                 <hr className="divider-line" />
                 <div className="third-title">Pending Campaigns</div>
                 <div className="main-slider">
-                  <div className="slider-item">
-                    <div className="panel-title">
-                        <span className="first">Ad Campaign 1</span>
-                        <span className="second"><Link to="buyer_messages" className="color-dark"><i className="fa fa-comment-o"></i> Message</Link></span>
-                    </div>
-                    <div className="panel-body">
-                      <div className="campaign-timeline">
-                        <div className="step first active">
-                          <div className="step-button">
-                            <hr className="left" />
-                            <hr className="right" />
-                            <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
-                            </a>
-                          </div>
-                          <div className="step-label">Order Date</div>
-                          <div className="step-label">03/11</div>
+                {
+                  this.state.allCampaign ? this.state.allCampaigns.map(
+                    (item, index) =>(
+                      <div className="slider-item">
+                        <div className="panel-title">
+                          <span className="first">{ item.campaign_name }</span>
+                          <span className="second">  
+                            <Link to="buyer_messages" className="color-dark">
+                              <i className="fa fa-comment-o"></i> Message
+                            </Link>
+                          </span>
                         </div>
-                        <div className="step active">
-                          <div className="step-button">
-                            <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
-                            </a>
-                            <hr className="left" />
-                            <hr className="right" />
+                        <div className="panel-body">
+                          <div className="campaign-timeline">
+                            <div className="step first active">
+                              <div className="step-button">
+                                <hr className="left" />
+                                <hr className="right" />
+                                <a className="circle">
+                                  <img src={require('../res/img/check.png')}/>
+                                </a>
+                              </div>
+                              <div className="step-label">Order Date</div>
+                              <div className="step-label">03/11</div>
+                            </div>
+                            <div className="step active">
+                              <div className="step-button">
+                                <a className="circle">
+                                  <img src={require('../res/img/check.png')}/>
+                                </a>
+                                <hr className="left" />
+                                <hr className="right" />
+                              </div>
+                              <div className="step-label">Media Uploaded</div>
+                              <div className="step-label">03/11</div>
+                            </div>
+                            <div className="step">
+                              <div className="step-button">
+                                <a className="circle">
+                                  <img src={require('../res/img/check.png')}/>
+                                </a>
+                                <hr className="left" />
+                                <hr className="right" />
+                              </div>
+                              <div className="step-label">Order Accepted</div>
+                            </div>
+                            <div className="step">
+                              <div className="step-button">
+                                <a className="circle">
+                                  <img src={require('../res/img/check.png')}/>
+                                </a>
+                                <hr className="left" />
+                                <hr className="right" />
+                              </div>
+                              <div className="step-label">Ad Launched</div>
+                            </div>
+                            <div className="step last">
+                              <div className="step-button">
+                                <a className="circle">
+                                  <img src={require('../res/img/check.png')}/>
+                                </a>
+                                <hr className="left" />
+                                <hr className="right" />
+                              </div>
+                              <div className="step-label">Buyer Approved</div>
+                            </div>
                           </div>
-                          <div className="step-label">Media Uploaded</div>
-                          <div className="step-label">03/11</div>
-                        </div>
-                        <div className="step">
-                          <div className="step-button">
-                            <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
-                            </a>
-                            <hr className="left" />
-                            <hr className="right" />
+                          <div className="message-table">
+                            <table className="table">
+                              <thead>
+                                <tr style={{'backgroundColor': '#f1f6f9'}}>
+                                  <th><span className="left">adza</span></th>
+                                  <th>Medium</th>
+                                  <th>Schedule Date</th>
+                                  <th>Amount</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              {
+                                item.Campaign_Listings.map(
+                                  (l_items, l_index) =>(
+                                    <tr style={{'height':'73px'}}>
+                                      <td>
+                                        <img 
+                                          className="left" 
+                                          src={require("../res/img/themainmenu_1.png")}/>
+                                          { this.state.allCampaigns[index].Campaign_Listings[l_index].Listing.title }
+                                      </td>
+                                      <td>{ this.state.allCampaigns[index].Campaign_Listings[l_index].Listing.media_type }</td>
+                                      <td>{ this.state.allCampaigns[index].Campaign_Listings[l_index].Listing.insert_date.substring(0, 10) }</td>
+                                      <td>{ this.state.allCampaigns[index].Campaign_Listings[l_index].Listing.price }</td>
+                                    </tr>
+                                  )
+                                )
+                              }
+                              </tbody>
+                            </table>
                           </div>
-                          <div className="step-label">Order Accepted</div>
-                        </div>
-                        <div className="step">
-                          <div className="step-button">
-                            <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
-                            </a>
-                            <hr className="left" />
-                            <hr className="right" />
+                          <div className="cancel">
+                            <a href="#"><img src={require("../res/img/remove.png")}/> Cancel Ad</a>
+                            <Link to="/new_order" className="btn btn-lg preview-media pull-right"><img src={require("../res/img/review.png")}/>Review Post</Link>
                           </div>
-                          <div className="step-label">Ad Launched</div>
-                        </div>
-                        <div className="step last">
-                          <div className="step-button">
-                            <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
-                            </a>
-                            <hr className="left" />
-                            <hr className="right" />
-                          </div>
-                          <div className="step-label">Buyer Approved</div>
-                        </div>
-                      </div>
-                      <div className="message-table">
-                        <table className="table">
-                          <thead>
-                            <tr style={{'backgroundColor': '#f1f6f9'}}>
-                              <th><span className="left">adza</span></th>
-                              <th>Medium</th>
-                              <th>Schedule Date</th>
-                              <th>Amount</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr style={{'height':'73px'}}>
-                              <td><img className="left" src={require("../res/img/themainmenu_1.png")}/>@themainmenu</td>
-                              <td>Instagram Story</td>
-                              <td>03/10/2019</td>
-                              <td>$100</td>
-                            </tr>
-                            <tr className="end">
-                              <td><img className="left" src={require("../res/img/themainmenu_2.png")}/>@themainmenu</td>
-                              <td>Blog Post</td>
-                              <td>03/10/2019</td>
-                              <td>$100</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div className="cancel">
-                        <a href="#"><img src={require("../res/img/remove.png")}/> Cancel Ad</a>
-                        <Link to="/new_order" className="btn btn-lg preview-media pull-right"><img src={require("../res/img/review.png")}/>Review Post</Link>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="slider-item">
-                    <div className="panel-title">
-                        <span className="first">Ad Campaign 1</span>
-                        <span className="second"><Link to="buyer_messages" className="color-dark"><i className="fa fa-comment-o"></i> Message</Link></span>
-                    </div>
-                    <div className="panel-body">
-                      <div className="campaign-timeline">
-                        <div className="step first active">
-                          <div className="step-button">
-                            <hr className="left" />
-                            <hr className="right" />
-                            <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
-                            </a>
-                          </div>
-                          <div className="step-label">Order Date</div>
-                          <div className="step-label">03/11</div>
-                        </div>
-                        <div className="step active">
-                          <div className="step-button">
-                            <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
-                            </a>
-                            <hr className="left" />
-                            <hr className="right" />
-                          </div>
-                          <div className="step-label">Media Uploaded</div>
-                          <div className="step-label">03/11</div>
-                        </div>
-                        <div className="step">
-                          <div className="step-button">
-                            <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
-                            </a>
-                            <hr className="left" />
-                            <hr className="right" />
-                          </div>
-                          <div className="step-label">Order Accepted</div>
-                        </div>
-                        <div className="step">
-                          <div className="step-button">
-                            <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
-                            </a>
-                            <hr className="left" />
-                            <hr className="right" />
-                          </div>
-                          <div className="step-label">Ad Launched</div>
-                        </div>
-                        <div className="step last">
-                          <div className="step-button">
-                            <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
-                            </a>
-                            <hr className="left" />
-                            <hr className="right" />
-                          </div>
-                          <div className="step-label">Buyer Approved</div>
                         </div>
                       </div>
-                      <div className="message-table">
-                        <table className="table table-condensed">
-                          <thead>
-                            <tr style={{'backgroundColor': '#f1f6f9'}}>
-                              <th><span className="left">adza</span></th>
-                              <th>Medium</th>
-                              <th>Schedule Date</th>
-                              <th>Amount</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr style={{'height':'73px'}}>
-                              <td><img className="left" src={require("../res/img/themainmenu_1.png")}/>@themainmenu</td>
-                              <td>Instagram Story</td>
-                              <td>03/10/2019</td>
-                              <td>$100</td>
-                            </tr>
-                            <tr className="end">
-                              <td><img className="left" src={require("../res/img/themainmenu_2.png")}/>@themainmenu</td>
-                              <td>Blog Post</td>
-                              <td>03/10/2019</td>
-                              <td>$100</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div className="cancel">
-                        <a href="#"><img src={require("../res/img/remove.png")}/> Cancel Ad</a>
-                        <Link to="/new_order" className="btn btn-lg preview-media pull-right"><img src={require("../res/img/review.png")}/>Review Post</Link>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="slider-item">
-                    <div className="panel-title">
-                        <span className="first">Ad Campaign 1</span>
-                        <span className="second"><Link to="buyer_messages" className="color-dark"><i className="fa fa-comment-o"></i> Message</Link></span>
-                    </div>
-                    <div className="panel-body">
-                      <div className="campaign-timeline">
-                        <div className="step first active">
-                          <div className="step-button">
-                            <hr className="left" />
-                            <hr className="right" />
-                            <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
-                            </a>
-                          </div>
-                          <div className="step-label">Order Date</div>
-                          <div className="step-label">03/11</div>
-                        </div>
-                        <div className="step active">
-                          <div className="step-button">
-                            <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
-                            </a>
-                            <hr className="left" />
-                            <hr className="right" />
-                          </div>
-                          <div className="step-label">Media Uploaded</div>
-                          <div className="step-label">03/11</div>
-                        </div>
-                        <div className="step">
-                          <div className="step-button">
-                            <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
-                            </a>
-                            <hr className="left" />
-                            <hr className="right" />
-                          </div>
-                          <div className="step-label">Order Accepted</div>
-                        </div>
-                        <div className="step">
-                          <div className="step-button">
-                            <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
-                            </a>
-                            <hr className="left" />
-                            <hr className="right" />
-                          </div>
-                          <div className="step-label">Ad Launched</div>
-                        </div>
-                        <div className="step last">
-                          <div className="step-button">
-                            <a className="circle">
-                              <img src={require('../res/img/check.png')}/>
-                            </a>
-                            <hr className="left" />
-                            <hr className="right" />
-                          </div>
-                          <div className="step-label">Buyer Approved</div>
-                        </div>
-                      </div>
-                      <div className="message-table">
-                        <table className="table table-condensed">
-                          <thead>
-                            <tr style={{'backgroundColor': '#f1f6f9'}}>
-                              <th><span className="left">adza</span></th>
-                              <th>Medium</th>
-                              <th>Schedule Date</th>
-                              <th>Amount</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr style={{'height':'73px'}}>
-                              <td><img className="left" src={require("../res/img/themainmenu_1.png")}/>@themainmenu</td>
-                              <td>Instagram Story</td>
-                              <td>03/10/2019</td>
-                              <td>$100</td>
-                            </tr>
-                            <tr className="end">
-                              <td><img className="left" src={require("../res/img/themainmenu_2.png")}/>@themainmenu</td>
-                              <td>Blog Post</td>
-                              <td>03/10/2019</td>
-                              <td>$100</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div className="cancel">
-                        <a href="#"><img src={require("../res/img/remove.png")}/> Cancel Ad</a>
-                        <Link to="/new_order" className="btn btn-lg preview-media pull-right"><img src={require("../res/img/review.png")}/>Review Post</Link>
-                      </div>
-                    </div>
-                  </div>
+                    )) : ''
+                }
                 </div>
                 <div className="indicator">
                   <a className="next"><i className="fa fa-angle-right"></i></a> 
@@ -886,21 +730,20 @@ class BuyerCampaigns extends React.Component{
 }
 
 const mapStateToProps = state => {
+  const { campaigns } = state.buyer;
   return {
-
-  };
+    campaigns
+  };  
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-
-    },
-    dispatch
-  );
+  return {
+     dispatch, 
+  }
+  
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BuyerCampaigns);
+)(withRouter(BuyerCampaigns));

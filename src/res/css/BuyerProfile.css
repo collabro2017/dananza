@@ -68,6 +68,45 @@
   font-family: "Thasadith-Bold" !important;
   font-size: 16px;
 }
+
+.buyer_landing.buyer_profile .action_group {
+  padding: 20px 0; 
+  width: 80%;
+  margin: 0 auto;
+}
+.buyer_landing.buyer_profile .action_group .btn {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  width: 170px;
+  border-radius: 4px !important;
+  font-size: 16px;
+  font-family: Thasadith-Bold; 
+}
+.buyer_landing.buyer_profile .action_group .btn.btn-blue {
+  background-color: #2ab7c9;
+  color: white; 
+}
+.buyer_landing.buyer_profile .action_group .btn.btn-yellow {
+  background-color: #ffd766;
+  color: #01091c;
+  float: right; 
+}
+.buyer_landing.buyer_profile .page-main-content.row {
+  margin: 30px 14.44% 0 11.11% !important;
+}
+.buyer_landing.buyer_profile .action_group .left
+{
+  margin-left: 0 !important;
+}
+.alert_msg
+{
+  font-size: 24px;
+  margin: 15px auto;
+  width: 100%;
+  padding-left: 20px;
+  font-family: Coves-Bold;
+  color: red;
+}
 @media(max-width: 992px){
   .buyer_profile .controlcontent {
     display: block;
@@ -81,14 +120,11 @@
     width:100%;
   }
 }
-
-.buyer_profile .controlcontent .avatar_preview{
-    width: 150px;
-    height: 150px;
-    margin-right: 20px;
-    border: 1px solid #333;
-}
-.buyer_profile .controlcontent .avatar_preview img{
-  width: 100%;
+@media(max-width: 768px) {
+  .buyer_landing.buyer_profile .action_group .btn{
+    float: unset !important;
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
 /*# sourceMappingURL=../BuyerProfile.css.map */

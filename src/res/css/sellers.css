@@ -104,11 +104,22 @@
           font-family: "Thasadith-Bold";
           font-size: 14px;
           background: #f1f6f9;
-          padding: 10px 30px;
+          padding: 16px 30px;
           line-height: 2; }
+          .sellers .sellers_content .row.listings .body_content .item .col-sm-4.action{
+            text-align: center;
+          }
           .sellers .sellers_content .row.listings .body_content .item .col-sm-4 a {
             padding: 10px 30px;
+            display: inline-block;
+            margin-top: -10px;
+            margin-bottom: -10px;
+            border-radius: 5px !important;
+            min-width: 120px;
             background: #ffd766; }
+          .sellers .sellers_content .row.listings .body_content .item .col-sm-4 a i{
+            margin-left: 5px;
+          }
         .sellers .sellers_content .row.listings .body_content .item .story {
           margin-top: 10px; }
     .sellers .sellers_content .row.reviews span {
@@ -153,6 +164,7 @@
 .sellers .datetime {
   position: unset;
   display: inline-flex;
+  padding: 15px 30px !important;
 }
 .sellers .datetime i{
   margin-top: 7px;
@@ -171,6 +183,17 @@
 .sellers .datetime .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name{
   margin: 1.066rem;
   font-size: 12px;
+}
+.sellers .tab-mediatype{
+  width: 32px;
+  height: 32px;
+}
+.sellers .mediatype-name{
+  text-transform: capitalize;
+  float: unset !important;
+}
+.sellers .adlist-media{
+  margin-right: 10px;
 }
 @media (max-width: 767px){
   .sellers .datetime {

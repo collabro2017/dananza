@@ -2,57 +2,93 @@ import { buyerConstants } from '../config';
 import { buyerService } from '../services';
 
 export const buyerActions = {
-    create,
-    read,
-    update,
-    delete: _delete
+    createBuyerProfile,
+    getBuyerProfile,
+    updateBuyerProfile,
+    controlAction,
+    getAllCampaigns,
+    createNewCampaign,
+    addListingToCart,
+    delete: _deleteBuyerProfile
 };
 
-function create ( _newBuyer )
+function createBuyerProfile ( _newBuyer )
 {
     return dispatch => {
-        buyerService.create( _newBuyer )
+        buyerService.create_buyer_profile( _newBuyer )
             .then(
-                 msg => dispatch(success(msg)),
-                 error => dispatch(fail(error))
+                msg => dispatch(controlAction(buyerConstants.CREATE_BUYPER_PROFILE, msg)),
+                error => dispatch(controlAction(buyerConstants.ERROR, error))
             );
     };
-
-    function success( msg ) { return { type: buyerConstants.CREATE, msg }}
-    function fail ( error ) { return { type: buyerConstants.ERROR, error}}
 }
 
-function read ()
+function getBuyerProfile ()
 {
     return dispatch => {
 
-        buyerService.read()
+        buyerService.read_buyer_profile()
             .then(
-                buyer_profile => dispatch(success(buyer_profile)),
-                error => dispatch(fail(error))
-            );
+                buyer_profile => dispatch(controlAction(buyerConstants.READ_BUYPER_PROFILE, buyer_profile)),
+                error => dispatch(controlAction(buyerConstants.ERROR, error))
+            )
     };
-
-    function success(buyer_profile) { return { type: buyerConstants.READ, buyer_profile } }
-    function fail(error) { return { type: buyerConstants.ERROR, error } }
-
 }
 
-function update ( _newData ) 
+function updateBuyerProfile ( _newData ) 
 {
     return  dispatch => {
-                buyerService.update( _newData )
+                buyerService.update_buyer_profile( _newData )
                     .then(
-                        msg => dispatch(success(msg)),
-                        error => dispatch(fail(error))        
+                        msg => dispatch(controlAction(buyerConstants.UPDATE_BUYPER_PROFILE, msg)),
+                        error => dispatch(controlAction(buyerConstants.ERROR, error))        
                     );
     };
-
-    function success( msg ) { return {type: buyerConstants.UPDATE, msg }}
-    function fail ( error ) { return { type: buyerConstants.ERROR, error }}
 }
 
-function _delete() 
+function _deleteBuyerProfile() 
 {
 
 }
+
+function getAllCampaigns () 
+{
+    return dispatch => {
+        buyerService.get_all_campaigns()
+            .then(
+                campaigns => dispatch(controlAction(buyerConstants.GET_ALL_CAMPAIGN, campaigns)),
+                error => dispatch(controlAction(buyerConstants.ERROR, error))  
+            )
+    }
+}
+
+function createNewCampaign () 
+{
+    return dispatch => {
+        buyerService.create_new_campaign()
+            .then(
+                campaign => dispatch(controlAction(buyerConstants.CREAT_CAMPAIGN), campaign),
+                error => dispatch(controlAction(buyerConstants.ERROR, error))  
+            )
+    }
+}
+
+function addListingToCart( _newListingId ) 
+{
+    return dispatch => {
+        buyerService.add_list_to_cart( _newListingId )
+            .then(
+                msg => dispatch(controlAction(buyerConstants.ADDLISTTOCART, msg)),
+                error => dispatch(controlAction(buyerConstants.ERROR, error)) 
+            )
+    }
+}
+
+function controlAction ( type, data ) 
+{
+    return {
+        type:   type,
+                data
+    }
+}
+
