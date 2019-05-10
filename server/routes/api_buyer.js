@@ -4,6 +4,7 @@ const passport = require('passport');
 const router = express.Router();
 require('../config/passport')(passport);
 const msg = require('../config/msg');
+var fs = require('fs');
 
 const User = require('../models').User;
 const Buyer_Profile = require('../models').Buyer_Profile;
@@ -59,6 +60,22 @@ router.put('/', passport.authenticate('jwt', {session: false}), function(req, re
   Buyer_Profile
 	.findOne({ where: {UserId: UserId} })
 	.then(function(profile) {
+
+		profile_photo = profile.profile_photo;
+
+		if( req.body.preview != null ){
+			// TODO : need to make config for avatar base dir
+			base_path = "../src/assets/avatar/";
+			file_name = "profile_photo" + profile.id + ".png";
+			upload_path = base_path + file_name;
+
+			var data = req.body.preview.replace(/^data:image\/\w+;base64,/, "");
+			fs.writeFile( upload_path , data, {encoding: 'base64'}, function(err) {
+			    if (err) return res.status(400).send({success: false, message: err });
+			});
+			profile_photo = file_name;
+		}
+
 		profile.update({
 			locations: req.body.locations,
 			profile_description: req.body.profile_description,
@@ -66,6 +83,7 @@ router.put('/', passport.authenticate('jwt', {session: false}), function(req, re
 			has_seller_acct: req.body.has_seller_acct,
 			linkedAccounts: req.body.linkedAccounts,
 			accounts: req.body.accounts,
+			profile_photo: profile_photo,
 			update_time: new Date()
 		})
 		.then((profile)=>res.status(201).send({success: true, message: msg.updatedSuccess}))
