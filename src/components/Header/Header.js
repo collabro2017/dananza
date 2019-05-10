@@ -29,6 +29,7 @@ class Header extends React.Component{
     super(props);
 
     this.validateToken = this.validateToken.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   componentWillReceiveProps( nextProps ){
@@ -39,25 +40,25 @@ class Header extends React.Component{
     const bootstrap = require('bootstrap');
     const { loggedIn, type } = nextProps;
 
-    if (this.goAdza == true && nextProps.AdzaprofileId != undefined) {
+    if (this.goAdza == true && nextProps.AdzaprofileId !== undefined) {
       this.props.history.push("/seller_page/"+nextProps.AdzaprofileId);
       this.goAdza = false;
     }
 
     this.setState({headerType: nextProps.type}) 
-    
+
     if(loggedIn)
     {
-      if(type == "seller")
+      if(type === "seller")
       {
         this.setState({ headerType: "seller"});
       }
-      else if(type == "buyer")
+      else
       {
         this.setState({ headerType: "buyer"});
       }
     }
-    if ( !loggedIn && type == 'static')
+    if ( !loggedIn && type === 'static')
     {
       this.setState({ headerType: "static"});
     }
@@ -70,7 +71,7 @@ class Header extends React.Component{
   };
 
   componentDidUpdate(prevProps,prevState,prevContext){
-    if(prevState.headerType != "seller" && prevState.headerType != "buyer" && prevState.headerType != "static"){
+    if(prevState.headerType !== "seller" && prevState.headerType !== "buyer" && prevState.headerType !== "static"){
       $('.header_search .mobile_navbar_toggler').on('click', function() 
       {
         if( $('.nav_mobile_menu').css('display') == 'none' ) 
@@ -104,7 +105,8 @@ class Header extends React.Component{
 
   logout()
   {
-    this.props.dispatch(userActions.logout());
+    const { dispatch } = this.props;
+    dispatch( userActions.logout() )
   }
 
   showSellerProfile()
@@ -118,13 +120,13 @@ class Header extends React.Component{
   {
     const { loggedIn, type } = nextProps;
 
-    if( (!loggedIn || loggedIn == "undefined") 
-        && window.location.pathname != '/' 
-        && window.location.pathname != '/about'
-        && window.location.pathname != '/help'
-        && window.location.pathname != '/cart'
-        && window.location.pathname != '/checkout'
-        && window.location.pathname != '/uploadfiles'
+    if( (!loggedIn || loggedIn === "undefined") 
+        && window.location.pathname !== '/' 
+        && window.location.pathname !== '/about'
+        && window.location.pathname !== '/help'
+        && window.location.pathname !== '/cart'
+        && window.location.pathname !== '/checkout'
+        && window.location.pathname !== '/uploadfiles'
       )
     {  
         this.props.history.push('/');
@@ -140,7 +142,7 @@ class Header extends React.Component{
   */
   renderSwitchHeader(){
 
-    if( this.state.headerType == 'seller' ) // Seller Pages
+    if( this.state.headerType === 'seller' ) // Seller Pages
     {
         return (
           <div className="header_search seller_header">
@@ -236,11 +238,9 @@ class Header extends React.Component{
                              </Link>
                         </li>
                         <li>
-                            <Link to="/" onClick={ this.logout }>
-                              <a href="#">
-                                  Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}  alt=""/>
-                              </a>
-                            </Link>
+                            <a href="#" onClick={ this.logout }>
+                                Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}  alt=""/>
+                            </a>
                         </li>
                     </ul>
                   </li>
@@ -325,9 +325,9 @@ class Header extends React.Component{
                             </Link>
                         </li>
                         <li>
-                            <Link to="/" onClick={ this.logout }>
-                                  Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}  alt=""/>
-                            </Link>
+                            <a href="#" onClick={ this.logout }>
+                                Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}  alt=""/>
+                            </a>
                         </li>
                     </ul>
                   </li>
@@ -338,7 +338,7 @@ class Header extends React.Component{
 
         );
     }
-    else if( this.state.headerType == 'buyer' ) // Buyer Pages
+    else if( this.state.headerType === 'buyer' ) // Buyer Pages
     {
         return ( 
           <div className="header_search buyer_header">
@@ -398,10 +398,9 @@ class Header extends React.Component{
                             </Link>
                         </li>
                         <li>
-                            <Link to="/" onClick={ this.logout }>
-                              logout
-                                <img src={require("../../res/img/logout.png")} alt=""/>
-                            </Link>
+                            <a href="#" onClick={ this.logout }>
+                                Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}  alt=""/>
+                            </a>
                         </li>
                     </ul>
                   </li>
@@ -464,10 +463,9 @@ class Header extends React.Component{
                             </Link>
                         </li>
                         <li>
-                            <Link to="/">
-                              logout
-                                <img src={require("../../res/img/logout.png")}  alt=""/>
-                            </Link>
+                            <a href="#" onClick={ this.logout }>
+                                Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}  alt=""/>
+                            </a>
                         </li>
                     </ul>
                   </li>
@@ -477,7 +475,7 @@ class Header extends React.Component{
           </div>
         );
     }
-    else if( this.state.headerType == 'homepage' ) // Homepage
+    else if( this.state.headerType === 'homepage' ) // Homepage
     {
         return (
           <div className="header_section">
