@@ -15,12 +15,12 @@ const drawerWidth = 240;
 
 
 const BuyerSidebar = props => {
-  const { open, classes, navitem } = props;
+  const { open, classes, navitem, avatar } = props;
   return (
     <div className="page-sidebar buyer-sidebar">
         <div className="section target-tree">
           <div className="image">
-            <img src={require("../../res/img/userinfo_img.png")} alt=""/>
+            {avatar}
             <h1 className="buyer-name">Michaela Seyra</h1>
             <h5 className="buyer-mail">@michaela_Syr</h5>
           </div>
