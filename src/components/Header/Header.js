@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions, sellerActions, buyerActions } from '../../store/actions';
 import { withRouter } from "react-router-dom";
+import avatarDefault from '../../res/img/userinfo_img.png';
 
 import "../../res/bootstrap/css/bootstrap.min.css"
 import "../../res/font-awesome/css/font-awesome.min.css"
@@ -180,6 +181,14 @@ class Header extends React.Component{
   */
   renderSwitchHeader(){
 
+    const {profile} = this.props;
+
+    let BuyerAvatar;
+    if( profile !== undefined && profile.profile_photo !== undefined )
+      BuyerAvatar = <img className="profile" src={require("../../assets/avatar/"+profile.profile_photo)} alt=""/>
+    else
+      BuyerAvatar = <img className="profile" src={ avatarDefault } alt=""/>
+
     if( this.state.headerType === 'seller' ) // Seller Pages
     {
         return (
@@ -212,7 +221,7 @@ class Header extends React.Component{
                         data-hover="dropdown" 
                         data-close-others="false"
                     >
-                      <img className="img-circle seller_toggle" src={require("../../res/img/drop_menu_profile.png")} alt="" />
+                      {<img className="img-circle seller_toggle" src={require("../../res/img/drop_menu_profile.png")} alt="" />}
                       <i className="fa fa-angle-down"></i>
                     </a>
                     <ul className="dropdown-menu dropdown-menu-default seller ">
@@ -414,7 +423,7 @@ class Header extends React.Component{
                        data-toggle="dropdown"
                        data-hover="dropdown"
                        data-close-others="false">
-                        <img className="img-circle" src={require("../../res/img/logged_user.png")} alt=""/>
+                        {BuyerAvatar}
                         <i className="fa fa-angle-down"></i>
                     </a>
                     <ul className="dropdown-menu dropdown-menu-default seller">
