@@ -39,7 +39,8 @@ router.post('/', function(req, res) {
 				locations: [],
 				linkedAccounts: [],
 				accounts: [],
-				signup_date: new Date()
+				signup_date: new Date(),
+				update_time: new Date()
 		}})
 		.then((created) => {
 			if( created )
@@ -64,7 +65,8 @@ router.put('/', passport.authenticate('jwt', {session: false}), function(req, re
 			job_type: req.body.job_type,
 			has_seller_acct: req.body.has_seller_acct,
 			linkedAccounts: req.body.linkedAccounts,
-			accounts: req.body.accounts
+			accounts: req.body.accounts,
+			update_time: new Date()
 		})
 		.then((profile)=>res.status(201).send({success: true, message: msg.updatedSuccess}))
 		.catch((error) => res.status(400).send({success: false, message: error }));

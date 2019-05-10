@@ -14,7 +14,8 @@ export function buyer(state={}, action)
 			};
 		case buyerConstants.UPDATE_BUYPER_PROFILE:
 			return 	{
-				updated: action.data.message
+				...state,
+				updated: action.data
 			};
 		case buyerConstants.DELETE_BUYPER_PROFILE:
 			return 	{

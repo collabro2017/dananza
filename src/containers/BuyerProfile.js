@@ -14,6 +14,10 @@ import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
 import 'icheck/skins/all.css';
 import {Checkbox, Radio, RadioGroup} from 'react-icheck';
 
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
+import Snackbar from '@material-ui/core/Snackbar';
+
 import "../res/icheck/skins/ltblue.css"
 import "../res/css/components/tag.css"
 import "../res/css/BuyerProfile.css"
@@ -29,7 +33,10 @@ class BuyerProfile extends React.Component{
             locations: [],
             linkedAccounts:{},
             accounts: [],
-            updated: {}
+            updated: {},
+            preview: null,
+            profile_photo: null,
+            openAlert: false
           }
           
   constructor(props) {
@@ -54,6 +61,14 @@ class BuyerProfile extends React.Component{
         ...nextprops.profile,
       });
     }
+
+    const { updated } = nextprops;
+    if( updated !== undefined )
+    {
+      this.setState({ openAlert: true });
+      this.setState({ updated: updated });
+    }
+    
   }
 
   handleJobType(e) {
@@ -63,6 +78,7 @@ class BuyerProfile extends React.Component{
   handleSubmit() {
     const { dispatch } = this.props;
     dispatch(buyerActions.updateBuyerProfile(this.state));
+    // dispatch(buyerActions.getBuyerProfile());
   }
 
   getDescriptionValue (e) {
@@ -128,16 +144,65 @@ class BuyerProfile extends React.Component{
     this.setState({ linkedAccounts: {...this.state.linkedAccounts, [e.target.name]: e.target.value } })
   }
 
+  handleCloseSnack = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({ openAlert: false });
+  };
+
   render(){
     const { profile } = this.props;
-    let preview_image = "";
+    const { profile_photo, updated } = this.state;
+
+    let preview_image;
+    if( profile_photo )
+      preview_image = <img className="profile" src={require("../res/img/"+profile.profile_photo+".png")}/>
+    else
+      preview_image = <img className="profile" src={ avatarDefault }/>
 
     if ( this.state.preview ) {
-      preview_image =  <img src={this.state.preview} alt="Preview"/>
+        preview_image =  <img src={this.state.preview} alt="Preview" />
     } 
+
+    let alertClass = "snackAlert";
+    if( updated !== undefined )
+    {
+      if( updated.success === true )
+        alertClass += " success"
+      else
+        alertClass += " error"
+    }
 
     return (
       <div className="buyer_landing buyer_profile">
+
+      { this.state.openAlert ?
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        className={alertClass}
+        open={this.state.openAlert}
+        onClose={this.handleCloseSnack}
+        message={this.state.updated.message}
+        autoHideDuration={6000}
+        action={[
+        <IconButton
+          key="close"
+          aria-label="Close"
+          color="inherit"
+          onClick={this.handleCloseSnack}
+        >
+          <CloseIcon />
+        </IconButton>
+      ]}
+      />
+      : null
+      }
+
         <div className="page-container">
            <div className="page-content">
               <BuyerSidebar navitem={"edit_profile"}/>
@@ -152,12 +217,6 @@ class BuyerProfile extends React.Component{
                 </div>
                 <hr className="divider-line" />
                 <div className="page-main-content pd-bottom row">
-                { this.props.updated ?
-                  <div className="alert_msg">
-                    <p>{ this.props.updated }</p>
-                  </div> 
-                  : null
-                }
                 <form role="form" className="form-horizontal">
                   <div className="form-body" ref="formbody">
                     <div className="formcontrol row">
