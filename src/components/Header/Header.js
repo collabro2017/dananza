@@ -20,7 +20,8 @@ import logoUrl from '../../res/img/logo.png';
 
 class Header extends React.Component{
   state = {
-    headerType: ""
+    headerType: "",
+    show_search: true
   };
   toggleflag = 0;
   goAdza = false;
@@ -38,7 +39,7 @@ class Header extends React.Component{
     global.jQuery = $;
     
     const bootstrap = require('bootstrap');
-    const { loggedIn, type } = nextProps;
+    const { loggedIn, type, user } = nextProps;
 
     if (this.goAdza == true && nextProps.AdzaprofileId !== undefined) {
       this.props.history.push("/seller_page/"+nextProps.AdzaprofileId);
@@ -47,7 +48,15 @@ class Header extends React.Component{
 
     this.setState({headerType: nextProps.type}) 
 
-    if(loggedIn)
+     if( window.location.pathname === '/' ||
+         window.location.pathname === '/signup' )
+     {
+       this.setState({ show_search: false});
+     }
+     else
+       this.setState({ show_search: true }); 
+
+    if(loggedIn !== undefined )
     {
       if(type === "seller")
       {
@@ -58,7 +67,8 @@ class Header extends React.Component{
         this.setState({ headerType: "buyer"});
       }
     }
-    if ( !loggedIn && type === 'static')
+
+    if ( !loggedIn || type === 'static')
     {
       this.setState({ headerType: "static"});
     }
@@ -120,13 +130,15 @@ class Header extends React.Component{
   {
     const { loggedIn, type } = nextProps;
 
-    if( (!loggedIn || loggedIn === "undefined") 
+    if( (!loggedIn || loggedIn === undefined ) 
         && window.location.pathname !== '/' 
         && window.location.pathname !== '/about'
         && window.location.pathname !== '/help'
         && window.location.pathname !== '/cart'
         && window.location.pathname !== '/checkout'
-        && window.location.pathname !== '/uploadfiles'
+        && window.location.pathname !== '/blogs'
+        && window.location.pathname !== '/signup'
+        && window.location.pathname !== '/results'
       )
     {  
         this.props.history.push('/');
@@ -150,11 +162,13 @@ class Header extends React.Component{
               <div className="logo">
                 <Link to="/"><img src={logoUrl}  alt=""/></Link>
               </div>
+              { this.state.show_search  > 0 &&
               <div className="input-icon">
                 <i className="fa fa-search input"></i>
                 <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?"/>
                 <Link to="/results" className="btn green search-but">Search</Link>
               </div>
+              }
               <div className="nav_menu">
                 <ul className="nav_menu_list">
                   <li>
@@ -251,6 +265,7 @@ class Header extends React.Component{
               </div>
               <div className="nav_mobile_menu" style={{display:"none"}}>
                 <ul className="nav_mobile_list">
+                  { this.state.show_search  > 0 &&
                   <li>
                     <div className="input-icon">
                       <i className="fa fa-search input"></i>
@@ -258,6 +273,7 @@ class Header extends React.Component{
                       <Link to="/results"><button className="btn green search-but">Search</button></Link>
                     </div>
                   </li>
+                  }
                   <li>
                     <a onClick={this.showSellerProfile.bind(this)}>Adza Page</a>
                   </li>
@@ -346,11 +362,14 @@ class Header extends React.Component{
               <div className="logo">
                 <Link to="/"><img src={logoUrl}/></Link>
               </div>
+
+              { this.state.show_search  > 0 &&
               <div className="input-icon">
                 <i className="fa fa-search input"></i>
                 <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
                 <Link to="/results"><button className="btn green search-but">Search</button></Link>
               </div>
+              }
               <div className="nav_menu">
                 <ul className="nav_menu_list">
                   <li>
@@ -411,6 +430,7 @@ class Header extends React.Component{
               </div>
               <div className="nav_mobile_menu" style={{display:'none'}}>
                 <ul className="nav_mobile_list">
+                  { this.state.show_search  > 0 &&
                   <li>
                     <div className="input-icon">
                       <i className="fa fa-search input"></i>
@@ -418,6 +438,7 @@ class Header extends React.Component{
                       <Link to="/results"><button className="btn green search-but">Search</button></Link>
                     </div>
                   </li>
+                  }
                   <li>
                     <Link to="/buyer_saved">Saved</Link>
                   </li>
@@ -499,7 +520,7 @@ class Header extends React.Component{
                     <a data-toggle="modal" data-target="#login">Log In</a>
                   </li>
                   <li className="menu_last_li">
-                    <Link to="/seller_dashboard" className="btn bg-yellow btn-small">Become an Adza</Link>
+                    <Link to="/signup" className="btn bg-yellow btn-small">Become an Adza</Link>
                   </li>
                 </ul>
               </div>
@@ -527,7 +548,7 @@ class Header extends React.Component{
                   <a data-toggle="modal" data-target="#login">Log In</a>
                 </li>
                 <li className="menu_last_li">
-                    <Link to="/seller_dashboard" className="btn bg-yellow btn-small">Become an Adza</Link>
+                    <Link to="/signup" className="btn bg-yellow btn-small">Become an Adza</Link>
                 </li>
               </ul>
             </div>
@@ -542,11 +563,13 @@ class Header extends React.Component{
                 <div className="logo">
                     <Link to="/"><img src={logoUrl} alt=""/></Link>
                 </div>
+                { this.state.show_search  > 0 &&
                 <div className="input-icon">
                     <i className="fa fa-search input"></i>
                     <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
                     <Link to="/results" className="btn bg-blue search-but color-white">Search</Link>
                 </div>
+                }
                 <div className="nav_menu">
                     <ul className="nav_menu_list">
                         <li>
@@ -559,7 +582,7 @@ class Header extends React.Component{
                           <a data-toggle="modal" data-target="#login">Log In</a>
                         </li>
                         <li className="menu_last_li">
-                            <Link to="/seller_dashboard" className="menu_adza">Become an Adza</Link>
+                            <Link to="/signup" className="menu_adza">Become an Adza</Link>
                         </li>
                     </ul>
                     <button id="navbar_toggler" className="navbar_toggler_open mobile_navbar_toggler" type="button">
@@ -578,7 +601,7 @@ class Header extends React.Component{
                   <a data-toggle="modal" data-target="#login">Log In</a>
                 </li>
                 <li className="menu_last_li">
-                  <Link to="/seller_dashboard" className="btn bg-yellow btn-small">Become an Adza</Link>
+                  <Link to="/signup" className="btn bg-yellow btn-small">Become an Adza</Link>
                 </li>
               </ul>
             </div>
@@ -599,12 +622,12 @@ class Header extends React.Component{
 };
 
 const mapStateToProps = state => {
-
-  const { loggedIn } = state.authentication;
+  const { loggedIn, user } = state.authentication;
   const { AdzaprofileId} = state.seller;
 
   return {
     loggedIn,
+    user,
     AdzaprofileId
   };
 };
