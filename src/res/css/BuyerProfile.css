@@ -127,4 +127,8 @@
     margin-bottom: 10px;
   }
 }
+
+.buyer_landing.buyer_profile .avatar_preview{ width: 150px; margin-right: 20px; }
+.buyer_landing.buyer_profile .avatar_preview img{ max-width: 100%; border: 1px dashed #757575; border-radius: 50% !important;}
+
 /*# sourceMappingURL=../BuyerProfile.css.map */

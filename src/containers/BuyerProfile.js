@@ -163,7 +163,7 @@ class BuyerProfile extends React.Component{
 
     let preview_image;
     if( profile_photo )
-      preview_image = <img className="profile" src={require("../res/img/"+profile.profile_photo+".png")}/>
+      preview_image = <img className="profile" src={require("../assets/avatar/"+profile.profile_photo)}/>
     else
       preview_image = <img className="profile" src={ avatarDefault }/>
 
@@ -210,7 +210,7 @@ class BuyerProfile extends React.Component{
 
         <div className="page-container">
            <div className="page-content">
-              <BuyerSidebar navitem={"edit_profile"}/>
+              <BuyerSidebar navitem={"edit_profile"} avatar={preview_image}/>
               <div className="page-main">
                 <div className="page-main-header">
                   <span className="headline-first">
