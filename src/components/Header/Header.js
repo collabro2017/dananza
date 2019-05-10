@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { userActions } from '../../store/actions';
-import { sellerActions } from '../../store/actions';
+import { userActions, sellerActions, buyerActions } from '../../store/actions';
 import { withRouter } from "react-router-dom";
 
 import "../../res/bootstrap/css/bootstrap.min.css"
@@ -21,7 +20,9 @@ import logoUrl from '../../res/img/logo.png';
 class Header extends React.Component{
   state = {
     headerType: "",
-    show_search: true
+    show_search: true,
+    user_type: "buyer",
+    has_seller_acct: false
   };
   toggleflag = 0;
   goAdza = false;
@@ -39,26 +40,34 @@ class Header extends React.Component{
     global.jQuery = $;
     
     const bootstrap = require('bootstrap');
-    const { loggedIn, type, user } = nextProps;
+    const { loggedIn, type, user, profile, user_type } = nextProps;
 
     if (this.goAdza == true && nextProps.AdzaprofileId !== undefined) {
       this.props.history.push("/seller_page/"+nextProps.AdzaprofileId);
       this.goAdza = false;
     }
 
+    if( profile !== undefined ){
+      this.setState({has_seller_acct: profile.has_seller_acct}) 
+    }
+
     this.setState({headerType: nextProps.type}) 
 
-     if( window.location.pathname === '/' ||
-         window.location.pathname === '/signup' )
-     {
+    // Handle Search Box on Header
+    if( window.location.pathname === '/' || window.location.pathname === '/signup' )
        this.setState({ show_search: false});
-     }
-     else
+    else
        this.setState({ show_search: true }); 
 
-    if(loggedIn !== undefined )
+    if( user_type === 'seller' )
+      this.setState({ user_type: "seller" }) 
+    else
+      this.setState({ user_type: "buyer" }) 
+
+    // Handle Header Type for Buyer and Seller
+    if( loggedIn !== undefined )
     {
-      if(type === "seller")
+      if(type === "seller" || this.state.user_type === "seller")
       {
         this.setState({ headerType: "seller"});
       }
@@ -67,8 +76,7 @@ class Header extends React.Component{
         this.setState({ headerType: "buyer"});
       }
     }
-
-    if ( !loggedIn || type === 'static')
+    if ( !loggedIn )
     {
       this.setState({ headerType: "static"});
     }
@@ -78,6 +86,12 @@ class Header extends React.Component{
 
   componentDidMount() {
     this.setState({headerType: this.props.type});
+
+    const { dispatch, loggedIn } = this.props;
+    if( loggedIn !== undefined )
+    {
+      dispatch( buyerActions.getBuyerProfile() );
+    }
   };
 
   componentDidUpdate(prevProps,prevState,prevContext){
@@ -145,6 +159,18 @@ class Header extends React.Component{
     }
   }
 
+  switchToSeller(){
+    const { dispatch } = this.props;
+    dispatch( userActions.switchToSeller() );
+
+    this.props.history.push('/seller_dashboard');
+  }
+  switchToBuyer(){
+    const { dispatch } = this.props;
+    dispatch( userActions.switchToBuyer() );
+
+    this.props.history.push('/buyer_landing');
+  }
   /*
     header types:
       static : for general pages such as About, Help & Support
@@ -238,11 +264,9 @@ class Header extends React.Component{
                             <div class="more">+2</div>
                         </li>
                         <li>
-                            <Link to="/buyer_landing">
-                              <a href="#">
-                                  Switch to Buyer <img src={require("../../res/img/drop_menu_icon_swt.png")}  alt=""/>
-                              </a>
-                            </Link>
+                            <a href="#" onClick={this.switchToBuyer.bind(this)}>
+                                Switch to Buyer <img src={require("../../res/img/drop_menu_icon_swt.png")}  alt=""/>
+                            </a>
                         </li>
                         <li>
                             <Link to="/help">
@@ -331,9 +355,9 @@ class Header extends React.Component{
                             <div class="more">+2</div>
                         </li>
                         <li>
-                            <Link to="/buyer_landing">
+                            <a href="#" onClick={this.switchToBuyer.bind(this)}>
                                 Switch to Buyer <img src={require("../../res/img/drop_menu_icon_swt.png")}  alt=""/>
-                            </Link>
+                            </a>
                         </li>
                         <li>
                             <Link to="/help">
@@ -404,12 +428,14 @@ class Header extends React.Component{
                             <Link to="/account_setting_account">Account Setting</Link>
                         </li>
                         <li className="divider"> </li>
+                        { this.state.has_seller_acct === true &&
                         <li>
-                            <Link to="/seller_dashboard">
+                            <a onClick={this.switchToSeller.bind(this)}>
                                 Switch to Seller
                                 <img src={require("../../res/img/switch.png")} alt=""/>
-                            </Link>
+                            </a>
                         </li>
+                        }
                         <li>
                             <Link to="/help">
                                 Help 
@@ -471,12 +497,14 @@ class Header extends React.Component{
                             <Link to="/account_setting_account">Account Setting</Link>
                         </li>
                         <li className="divider"> </li>
+                        { this.state.has_seller_acct === true &&
                         <li>
                             <Link to="/seller_dashboard">
                                 Switch to Seller
                                 <img src={require("../../res/img/switch.png")}  alt=""/>
                             </Link>
                         </li>
+                        }
                         <li>
                             <Link to="/help">
                                 Help 
@@ -622,13 +650,16 @@ class Header extends React.Component{
 };
 
 const mapStateToProps = state => {
-  const { loggedIn, user } = state.authentication;
+  const { loggedIn, user, user_type } = state.authentication;
   const { AdzaprofileId} = state.seller;
+  const { profile } = state.buyer;
 
   return {
     loggedIn,
     user,
-    AdzaprofileId
+    AdzaprofileId,
+    profile,
+    user_type
   };
 };
 

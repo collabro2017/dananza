@@ -44,7 +44,7 @@ const styles = theme => ({
 class SearchResults extends React.Component{
 
   state={
-  		'headerType': "seller",
+  		'headerType': "",
   		'search_option':{
   			'relevance': 'relevance',
 	  		'reach_start': 0,

@@ -8,7 +8,9 @@ export const userActions = {
     logout,
     register,
     getAll,
-    delete: _delete
+    delete: _delete,
+    switchToSeller,
+    switchToBuyer
 };
 
 function login(email, password) {
@@ -99,3 +101,12 @@ function _delete(id) {
     function success(id) { return { type: userConstants.DELETE_SUCCESS, id } }
     function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
 }
+
+function switchToSeller(){
+    return { type: userConstants.USERTYPE, user_type: "seller" };
+}
+
+function switchToBuyer(){
+    return { type: userConstants.USERTYPE, user_type: "buyer" };
+}
+
