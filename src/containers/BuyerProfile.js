@@ -52,21 +52,23 @@ class BuyerProfile extends React.Component{
     this.onBeforeFileLoad = this.onBeforeFileLoad.bind(this)
   }
 
-  componentWillReceiveProps (nextprops) {
+  componentWillReceiveProps (nextProps) {
 
-    const { profile } = nextprops;
+    const { profile } = nextProps;
     if(profile)
     {
       this.setState ({
-        ...nextprops.profile,
+        ...nextProps.profile,
       });
     }
-
-    const { updated } = nextprops;
+   
+    const { updated } = nextProps;
     if( updated !== undefined )
     {
-      this.setState({ openAlert: true });
-      this.setState({ updated: updated });
+      if(nextProps.updated!==this.props.updated){
+        this.setState({ openAlert: true });
+        this.setState({ updated: updated });
+      }
     }
     
   }
@@ -135,7 +137,10 @@ class BuyerProfile extends React.Component{
  
   onBeforeFileLoad(elem) {
     if(elem.target.files[0].size > 71680){
-      alert("File is too big!");
+      
+      this.setState({ openAlert: true });
+      this.setState({ updated: {"success":false, "message":"Image size is too big!"} });
+
       elem.target.value = "";
     };
   }
