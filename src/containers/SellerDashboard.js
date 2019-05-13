@@ -102,7 +102,6 @@ class SellerDashboard extends React.Component{
   	}
   	if (props.adlist != undefined)
   	{
-  		console.log(props.adlist);
   		this.setState({adlist:props.adlist,
   						adlist_edit:(props.adlist.map(item=>({...item}))) });
   	}
@@ -452,6 +451,7 @@ class SellerDashboard extends React.Component{
 						                imgExtension={['.jpg', '.gif', '.png', '.gif']}
 						                maxFileSize={5242880}
 						                withPreview={true}
+                            name="image_gallery"
 						            />
 								</div>
 							</div>

@@ -69,12 +69,14 @@ router.post('/', passport.authenticate('jwt', {session: false}), function(req, r
 router.put('/', passport.authenticate('jwt', {session: false}), function(req, res) {
   var auth_user = req.user;
   var UserId = auth_user.id;
+  var requestProfile = JSON.parse( req.body.sellerprofile );
+  requestProfile.image_gallery = []
 
   Adza_Profile
 	.findOne({ where: {UserId: UserId} })
 	.then(function(profile) {
 		profile.update({
-			...req.body.sellerprofile,
+			...requestProfile,
 			update_time: new Date()
 		})
 		.then((profile)=>res.status(201).send({success: true, message: msg.updatedSuccess}))
