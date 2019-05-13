@@ -5,6 +5,7 @@ const router = express.Router();
 require('../config/passport')(passport);
 const msg = require('../config/msg');
 var multer = require('multer');
+var fs = require('fs');
 
 const Adza_Profile = require('../models').Adza_Profile;
 const Buyer_Profile = require('../models').Buyer_Profile;
@@ -20,8 +21,7 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
 
-    const newFilename = `${new Date().getDate()}-${new Date().getMonth() +
-      1}-${new Date().getFullYear()}-${file.originalname}`;
+    const newFilename = file.originalname;
     cb(null, newFilename);
   }
 });
@@ -88,7 +88,31 @@ router.put('/', passport.authenticate('jwt', {session: false}), upload.array('im
   var UserId = auth_user.id;
   var requestProfile = JSON.parse(req.body.sellerprofile);
 
-  var image_gallery = req.files;
+  // process uploaded images
+  var image_gallery = req.files;  	var arrImages = [];
+  for (var i = 0; i < image_gallery.length; i++) {
+  	var timeStamp = (new Date()).getTime();
+  	var file_name = timeStamp+"-"+image_gallery[i].originalname;
+  	var dest_path = "../src/assets/img/"+UserId+"/" + file_name;
+  	var src_path = "./uploads/"+ image_gallery[i].originalname;
+
+	if (!fs.existsSync( "../src/assets/img/"+UserId+"/" )){
+	    fs.mkdirSync( "../src/assets/img/"+UserId+"/" );
+	}
+  	fs.rename(src_path, dest_path, function (err) {
+        if (err) {
+            if (err.code === 'EXDEV') {
+                copy();
+            } else {
+                res.status(500).send({success: false, message: msg.fileUploadError })
+            }
+            return;
+        }
+    });
+
+  	arrImages.push( file_name );
+  }
+  requestProfile.image_gallery = arrImages;
 
   Adza_Profile
 	.findOne({ where: {UserId: UserId} })
