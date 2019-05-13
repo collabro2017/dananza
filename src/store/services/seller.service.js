@@ -32,9 +32,10 @@ function setProfile(sellerprofile) {
 
             var jsonData = JSON.stringify(sellerprofile);
             formData.append('sellerprofile', jsonData );
+
             // Process Images
             for (var i = 0; i < sellerprofile.image_gallery.length; i++) {
-                formData.append('image_gallery[]', sellerprofile.image_gallery[i], sellerprofile.image_gallery[i].name);
+                formData.append('image_gallery', sellerprofile.image_gallery[i], sellerprofile.image_gallery[i].name);
             }
 
             const updateOptions = {
