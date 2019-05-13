@@ -40,7 +40,10 @@ function updateBuyerProfile ( _newData )
     return  dispatch => {
                 buyerService.update_buyer_profile( _newData )
                     .then(
-                        msg => dispatch(controlAction(buyerConstants.UPDATE_BUYPER_PROFILE, msg)),
+                        msg => {
+                            dispatch(getBuyerProfile());
+                            dispatch(controlAction(buyerConstants.UPDATE_BUYPER_PROFILE, msg))
+                        },
                         error => dispatch(controlAction(buyerConstants.ERROR, error))        
                     );
     };
