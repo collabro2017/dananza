@@ -29,3 +29,5 @@ config.json
 *.css.map
 .sass-cache
 .env
+src/assets
+server/uploads
