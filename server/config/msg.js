@@ -31,7 +31,8 @@ const msg = {
     'createdProfile': "New Buyer Profile Successfully Created",
 
     // Message Part
-    'sentSuccess': "Message sent"
+    'sentSuccess': "Message sent",
+    'fileUploadError': "An error was occured to upload file"
 };
 
 module.exports = msg;

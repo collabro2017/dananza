@@ -4,11 +4,28 @@ const passport = require('passport');
 const router = express.Router();
 require('../config/passport')(passport);
 const msg = require('../config/msg');
+var multer = require('multer');
+var fs = require('fs');
 
 const Adza_Profile = require('../models').Adza_Profile;
 const Buyer_Profile = require('../models').Buyer_Profile;
 const Channel = require('../models').Channel;
 const Listing = require('../models').Listing;
+
+const storage = multer.diskStorage({
+
+  destination: (req, file, cb) => {
+
+    //uploaded files destination
+    cb(null, "./uploads");
+  },
+  filename: (req, file, cb) => {
+
+    const newFilename = file.originalname;
+    cb(null, newFilename);
+  }
+});
+var upload = multer({ storage: storage });
 
 // get Adza profile by JWT
 router.get('/', passport.authenticate('jwt', {session: false}), function(req, res) {
@@ -66,18 +83,45 @@ router.post('/', passport.authenticate('jwt', {session: false}), function(req, r
 });
 
 // Update Adza profile
-router.put('/', passport.authenticate('jwt', {session: false}), function(req, res) {
+router.put('/', passport.authenticate('jwt', {session: false}), upload.array('image_gallery'), function(req, res, next) {
   var auth_user = req.user;
   var UserId = auth_user.id;
+  var requestProfile = JSON.parse(req.body.sellerprofile);
+
+  // process uploaded images
+  var image_gallery = req.files;  	var arrImages = [];
+  for (var i = 0; i < image_gallery.length; i++) {
+  	var timeStamp = (new Date()).getTime();
+  	var file_name = timeStamp+"-"+image_gallery[i].originalname;
+  	var dest_path = "../src/assets/img/"+UserId+"/" + file_name;
+  	var src_path = "./uploads/"+ image_gallery[i].originalname;
+
+	if (!fs.existsSync( "../src/assets/img/"+UserId+"/" )){
+	    fs.mkdirSync( "../src/assets/img/"+UserId+"/" );
+	}
+  	fs.rename(src_path, dest_path, function (err) {
+        if (err) {
+            if (err.code === 'EXDEV') {
+                copy();
+            } else {
+                res.status(500).send({success: false, message: msg.fileUploadError })
+            }
+            return;
+        }
+    });
+
+  	arrImages.push( file_name );
+  }
+  requestProfile.image_gallery = arrImages;
 
   Adza_Profile
 	.findOne({ where: {UserId: UserId} })
 	.then(function(profile) {
 		profile.update({
-			...req.body.sellerprofile,
+			...requestProfile,
 			update_time: new Date()
 		})
-		.then((profile)=>res.status(201).send({success: true, message: msg.updatedSuccess}))
+		.then((profile)=>res.status(201).send({success: true, message: msg.updatedSuccess }))
 		.catch((error) => res.status(500).send(error));
 	})
 	.catch((error) => res.status(400).send({success: false, message: error }));

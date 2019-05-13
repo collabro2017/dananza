@@ -27,10 +27,21 @@ function setProfile(sellerprofile) {
     return fetch( apiRoot + `/adza`, requestOptions)
         .then(handleResponse)
         .then(seller => {
+
+            var formData = new FormData();
+
+            var jsonData = JSON.stringify(sellerprofile);
+            formData.append('sellerprofile', jsonData );
+
+            // Process Images
+            for (var i = 0; i < sellerprofile.image_gallery.length; i++) {
+                formData.append('image_gallery', sellerprofile.image_gallery[i], sellerprofile.image_gallery[i].name);
+            }
+
             const updateOptions = {
                 method: 'PUT',
-                headers: { ...authHeader(), 'Content-Type': 'application/json' },
-                body: JSON.stringify({sellerprofile})
+                headers: { ...authHeader() },
+                body: formData
             };
             return fetch( apiRoot + `/adza`, updateOptions)
                 .then(handleResponse)
