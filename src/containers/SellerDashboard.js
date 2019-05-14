@@ -16,7 +16,7 @@ import { sellerActions } from '../store/actions';
 import SellerSidebar from "../components/Sidebar/SellerSidebar";
 
 import Avatar from 'react-avatar-edit'
-import avatarDefault from '../res/img/user1.png';
+import avatarDefault from '../res/img/default_avatar.png';
 
 import "../res/css/Seller_Dashboard_Sellers_Page.css"
 import "../res/icheck/skins/ltblue.css"

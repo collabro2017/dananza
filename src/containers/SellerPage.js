@@ -12,7 +12,7 @@ import $ from "jquery";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
-import avatarDefault from '../res/img/user1.png';
+import avatarDefault from '../res/img/default_avatar.png';
 
 class Sellers extends React.Component{
   state={

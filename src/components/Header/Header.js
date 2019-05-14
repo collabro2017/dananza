@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions, sellerActions, buyerActions } from '../../store/actions';
 import { withRouter } from "react-router-dom";
-import avatarDefault from '../../res/img/userinfo_img.png';
+import avatarDefault from '../../res/img/default_avatar.png';
 
 import "../../res/bootstrap/css/bootstrap.min.css"
 import "../../res/font-awesome/css/font-awesome.min.css"
@@ -184,7 +184,7 @@ class Header extends React.Component{
     const {profile} = this.props;
 
     let BuyerAvatar;
-    if( profile !== undefined && profile.profile_photo !== undefined )
+    if( profile !== undefined && profile.profile_photo !== undefined && profile.profile_photo !== null)
       BuyerAvatar = <img className="profile" src={require("../../assets/avatar/"+profile.profile_photo)} alt=""/>
     else
       BuyerAvatar = <img className="profile" src={ avatarDefault } alt=""/>

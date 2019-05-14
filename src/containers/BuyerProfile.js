@@ -23,7 +23,7 @@ import "../res/css/components/tag.css"
 import "../res/css/BuyerProfile.css"
 
 import Avatar from 'react-avatar-edit'
-import avatarDefault from '../res/img/userinfo_img.png';
+import avatarDefault from '../res/img/default_avatar.png';
 class BuyerProfile extends React.Component{
 
   state = {
