@@ -137,8 +137,8 @@ class Signup extends React.Component{
                     <GoogleLogin
                       clientId="759652479052-91b6i3t72vg2bdkau2ivo6jok4ik9hle.apps.googleusercontent.com"
                       buttonText="Login"
-                      onSuccess={this.responseGoogle}
-                      onFailure={this.responseGoogle}
+                      onSuccess={this.responseGoogle.bind(this)}
+                      onFailure={this.responseGoogle.bind(this)}
                       cookiePolicy={'single_host_origin'}
                     />
                   </div>
