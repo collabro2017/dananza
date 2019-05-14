@@ -237,3 +237,8 @@
   color: black;
   float: right;
 }
+
+.AuthModal .facebook-part > span{ position: absolute;left:15px; width: calc(100% - 30px); }
+.AuthModal .facebook-part > span button{ width: 100%; background: transparent; height:40px; opacity: 0 }
+.AuthModal .google-part button:last-child, .AuthModal .google-part button:last-child:hover
+{ width: 100%; position: absolute;left: 15px; width: calc(100% - 30px); opacity:0 !important;}

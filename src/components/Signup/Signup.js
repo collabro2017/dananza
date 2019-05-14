@@ -8,6 +8,9 @@ import { userActions } from '../../store/actions';
 import 'icheck/skins/all.css';
 import {Checkbox} from 'react-icheck';
 
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
+
 import "../../res/bootstrap/css/bootstrap.min.css"
 import "../../res/font-awesome/css/font-awesome.min.css"
 import "../../res/css/components.min.css"
@@ -69,7 +72,32 @@ class Signup extends React.Component{
         if (user.firstName && user.lastName && user.email && user.password && user.businessName && user.password === user.cfm_password ) {
             dispatch(userActions.register(user));
         }
-    }
+    };
+
+    responseFacebook(response){
+      console.log(response);
+      // const { dispatch } = this.props;
+      // var user = {
+      //         firstName: '',
+      //         lastName: '',
+      //         businessName: response.name,
+      //         email: response.email
+      //     }
+      // dispatch(userActions.register(user));
+
+    };
+    responseGoogle(response){
+      console.log(response);
+      // const { dispatch } = this.props;
+      // var user = {
+      //         firstName: '',
+      //         lastName: '',
+      //         businessName: response.name,
+      //         email: response.email
+      //     }
+      // dispatch(userActions.register(user));
+
+    };
 
     render(){
       const { registering, alert } = this.props;
@@ -88,12 +116,24 @@ class Signup extends React.Component{
                         <i className="fa fa-facebook-square facebook-custom"></i>
                         <span>Sign Up with Facebook</span>
                     </button>
+                    <FacebookLogin
+                    appId="656533248130077"
+                    autoLoad={true}
+                    fields="name,email,picture"
+                    callback={this.responseFacebook.bind(this)} />
                   </div>
                   <div className="google-part col-md-12">
                     <button className="google position-relative" type="button" data-dismiss="modal">
                       <img src={require("../../res/img/google+.png")} alt=""/>
                       <span>Sign Up with Google</span>
                     </button>
+                    <GoogleLogin
+                      clientId="759652479052-91b6i3t72vg2bdkau2ivo6jok4ik9hle.apps.googleusercontent.com"
+                      buttonText="Login"
+                      onSuccess={this.responseGoogle}
+                      onFailure={this.responseGoogle}
+                      cookiePolicy={'single_host_origin'}
+                    />
                   </div>
                 <div className="border-line col-md-12">
                   <span className="thin-line col-md-5"></span>
