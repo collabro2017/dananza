@@ -8,7 +8,7 @@ const msg = require('../config/msg');
 const User = require('../models').User;
 
 router.post('/signup', function(req, res) {
-  if (!req.body.email || !req.body.password) {
+  if ((!req.body.email || !req.body.password) && req.body.type == undefined ) {
     res.status(400).send({message: msg.requireLoginInput})
   } else {
     User
@@ -53,6 +53,15 @@ router.post('/signin', function(req, res) {
           return res.status(401).send({
             message: msg.authUserNotFound,
           });
+        }
+        // social login( FB and Google+ )
+        if( req.body.isSocial !== undefined )
+        {
+          var token = jwt.sign(JSON.parse(JSON.stringify(user)), 'nodeauthsecret', {expiresIn: 86400 * 30});
+            jwt.verify(token, 'nodeauthsecret', function(err, data){
+              console.log(err, data);
+            })
+            return res.json({success: true, user_info:user, token: 'JWT ' + token});
         }
         user.comparePassword(req.body.password, (err, isMatch) => {
           if(isMatch && !err) {

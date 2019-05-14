@@ -76,27 +76,34 @@ class Signup extends React.Component{
 
     responseFacebook(response){
       console.log(response);
-      // const { dispatch } = this.props;
-      // var user = {
-      //         firstName: '',
-      //         lastName: '',
-      //         businessName: response.name,
-      //         email: response.email
-      //     }
-      // dispatch(userActions.register(user));
-
+      const { dispatch } = this.props;
+      if( response.error === undefined ){
+        var user = {
+                firstName: '',
+                lastName: '',
+                businessName: response.name,
+                email: response.email,
+                type: 'facebook'
+            }
+        dispatch(userActions.register(user));
+        dispatch(userActions.login(response.email, "", true));
+      }
     };
+
     responseGoogle(response){
       console.log(response);
-      // const { dispatch } = this.props;
-      // var user = {
-      //         firstName: '',
-      //         lastName: '',
-      //         businessName: response.name,
-      //         email: response.email
-      //     }
-      // dispatch(userActions.register(user));
+      const { dispatch } = this.props;
 
+      if( response.profileObj !== undefined ){
+        var user = {
+              firstName: response.profileObj.givenName,
+              lastName: response.profileObj.familyName,
+              businessName: response.profileObj.name,
+              email: response.profileObj.email
+            }
+        dispatch(userActions.register(user));
+        dispatch(userActions.login(response.profileObj.email, "", true));
+      }
     };
 
     render(){

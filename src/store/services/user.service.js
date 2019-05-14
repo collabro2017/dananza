@@ -24,11 +24,11 @@ function register(user) {
     return fetch( apiRoot + `/signup`, requestOptions).then(handleResponse);
 }
 
-function login(email, password) {
+function login(email, password, isSocial=false) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password, isSocial })
     };
 
     return fetch( apiRoot + `/signin`, requestOptions)

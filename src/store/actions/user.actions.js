@@ -13,11 +13,11 @@ export const userActions = {
     switchToBuyer
 };
 
-function login(email, password) {
+function login(email, password, isSocial="false") {
     return dispatch => {
         dispatch(request({ email }));
 
-        userService.login(email, password)
+        userService.login(email, password, isSocial)
             .then(
                 user => { 
                     dispatch(success(user));
