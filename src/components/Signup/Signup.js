@@ -109,6 +109,8 @@ class Signup extends React.Component{
     render(){
       const { registering, alert } = this.props;
       const { user, submitted } = this.state;
+      const google_clientID = process.env.REACT_APP_GOOGLE_CLIENTID;
+      const facebook_appID = process.env.REACT_APP_FACEBOOK_APPID;
 
       if(this.state.mode != "email"){
         return (
@@ -124,7 +126,7 @@ class Signup extends React.Component{
                         <span>Sign Up with Facebook</span>
                     </button>
                     <FacebookLogin
-                    appId="656533248130077"
+                    appId={facebook_appID}
                     autoLoad={true}
                     fields="name,email,picture"
                     callback={this.responseFacebook.bind(this)} />
@@ -135,7 +137,7 @@ class Signup extends React.Component{
                       <span>Sign Up with Google</span>
                     </button>
                     <GoogleLogin
-                      clientId="759652479052-91b6i3t72vg2bdkau2ivo6jok4ik9hle.apps.googleusercontent.com"
+                      clientId={google_clientID}
                       buttonText="Login"
                       onSuccess={this.responseGoogle.bind(this)}
                       onFailure={this.responseGoogle.bind(this)}
