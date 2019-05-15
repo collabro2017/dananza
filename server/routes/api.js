@@ -8,7 +8,7 @@ const msg = require('../config/msg');
 const User = require('../models').User;
 
 router.post('/signup', function(req, res) {
-  if ((!req.body.email || !req.body.password) && req.body.type == undefined ) {
+  if ((!req.body.email || !req.body.password) && req.body.type === undefined ) {
     res.status(400).send({message: msg.requireLoginInput})
   } else {
     User

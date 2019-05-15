@@ -1,3 +1,3 @@
 export const apiConfig = {
-    "apiRoot": 'http://localhost:8000/api'
+    "apiRoot": process.env.REACT_APP_API_ROOT
 };
