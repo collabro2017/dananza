@@ -32,7 +32,8 @@ const msg = {
 
     // Message Part
     'sentSuccess': "Message sent",
-    'fileUploadError': "An error was occured to upload file"
+    'fileUploadError': "An error was occured to upload file",
+    'addedToContact': "Added to Contact List"
 };
 
 module.exports = msg;

@@ -34,7 +34,7 @@ router.get('/', passport.authenticate('jwt', {session: false}), async function(r
 		if( contacts.length ){
 			var messages = contacts.map( function(contact){
 				const result = Message
-					.findAll({ where: { buyer_user: buyer.id } })
+					.findAll({ where: { BuyerProfileId: buyer.id } })
 					.then((messages) => { return messages; })
 					.catch((error) => res.status(400).send({success: false, message: error }))  
 
@@ -132,6 +132,40 @@ router.post('/', passport.authenticate('jwt', {session: false}), async function(
 	      })
 	      .then((blog) => res.status(201).send( {success: true, message: msg.sentSuccess } ))
 	      .catch((error) => res.status(400).send({success: false, message: msg.creatingError }));
+});
+
+// Make Connection from buyer to Seller
+router.post('/buyer/connect/:adzaId', passport.authenticate('jwt', {session: false}), async function(req, res) {
+	var auth_user = req.user;
+	var user_id = auth_user.id;
+	var AdzaProfileId = req.params.adzaId
+
+	var buyer = await Buyer_Profile.getBuyerFromUserID( auth_user.id, function(err, profile ){
+		if( !err )
+			return profile;
+		else
+			return res.status(400).send( {success: false, message: err });
+	} );
+
+	var BuyerProfileId = buyer.id;
+
+	Message_Contact
+		.findOrCreate({
+			where: {BuyerProfileId: BuyerProfileId, AdzaProfileId: AdzaProfileId}, 
+			defaults: {
+				BuyerProfileId: BuyerProfileId,
+				AdzaProfileId: AdzaProfileId,
+				connect_time: new Date()
+		}})
+		.then((contact, created) => {
+			if( contact ){
+				res.status(201).send( {success: false, message: msg.addedToContact } )
+			}
+			else
+				res.status(400).send({success: false, message: msg.haveProfile})
+		})
+		.catch((error) => res.status(400).send({success: false, message: error }));
+
 });
 
 module.exports = router;
