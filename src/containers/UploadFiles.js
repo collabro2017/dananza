@@ -3,51 +3,75 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ReactTags from "react-tag-autocomplete";
+import { withRouter } from "react-router-dom";
+import { sellerActions } from '../store/actions';
 
 import "../res/css/infoflowPage.css"
 import "../res/css/components/tag.css"
 
 class UploadFiles extends React.Component{
-  state = {
-  	receivers: [
-        { name: "user1" },
-        { name: "user" }
-	],
-	suggestions: [
-		{ name: "Bananas" },
-		{ name: "Mangos" },
-		{ name: "Lemons" },
-		{ name: "Lemonfffffas" },
-		{ name: "Lemonfefes" },
-		{ name: "Apricots"}
-	],
-  };
+  	state = 
+  	{
+	  	receivers: [
+	        { name: "user1" },
+	        { name: "user" }
+		],
+		suggestions: [
+			{ name: "Bananas" },
+			{ name: "Mangos" },
+			{ name: "Lemons" },
+			{ name: "Lemonfffffas" },
+			{ name: "Lemonfefes" },
+			{ name: "Apricots"}
+		],
+  	};
 
-  componentDidMount(){
-    document.title = "UploadFiles"
-  }
+  	componentDidMount(){
+    	document.title = "UploadFiles"
+  	}
 
-  handleReceiversDelete (i) {
-    const receivers = this.state.receivers.slice(0)
-    receivers.splice(i, 1)
-    this.setState({ receivers })
-  }
-  TagComponent(props){
-  	return (
-  		<button type='button' className={props.classNames.selectedTag} title='Click to remove tag' onClick={props.onDelete}>
-  			<img src={require("../res/img/"+props.tag.name+".png")}/>
-		    <span className={props.classNames.selectedTagName}>{props.tag.name}</span>
-		</button>
-  	);
-  }
-  handleReceiversAddition (receiver) {
-    const receivers = [].concat(this.state.receivers, receiver)
-    
-    if( !this.state.receivers.some(item => receiver.name === item.name ))
-    	this.setState({ receivers: [...this.state.receivers, receiver]})
-  }
+  	handleReceiversDelete (i) {
+	    const receivers = this.state.receivers.slice(0)
+	    receivers.splice(i, 1)
+	    this.setState({ receivers })
+  	}
+
+  	TagComponent(props){
+	  	return (
+	  		<button type='button' className={ props.classNames.selectedTag } title='Click to remove tag' onClick={props.onDelete}>
+	  			<img src={require("../res/img/"+props.tag.name+".png")}/>
+			    <span className={ props.classNames.selectedTagName }>{ props.tag.name }</span>
+			</button>
+	  	);
+  	}
+
+  	handleReceiversAddition (receiver) {
+	    const receivers = [].concat(this.state.receivers, receiver)
+	    
+	    if( !this.state.receivers.some(item => receiver.name === item.name ))
+    		this.setState({ receivers: [...this.state.receivers, receiver]})
+  	}
+
+  	createOrder( _listings ) {
+  		_listings.map(
+  			(item, index) => 
+  			{
+  				for(var i = 0; i < item.Counts; i++) {
+  					this.props.dispatch(sellerActions.createOrder( item ));
+  				}
+  			}
+		)
+	}
 
   render(){
+	if(this.props.location.info)
+	{
+		var info = this.props.location.info;
+		var cartInfo = this.props.location.info.cartInfo;
+		var subtotal = this.props.location.info.subTotal;
+		var qty = this.props.location.info.qty;
+	}
+
     return (
 		<div className="infoflowPage">
 			<div className="full_container">
@@ -99,8 +123,14 @@ class UploadFiles extends React.Component{
 		                    	</div>
 						</div>
 						<div className="proceed_chk">
-							<div className="checkout">
-								<Link to="/postcheckout" className="btn btn-mid bg-yellow color-dark">Submit</Link>
+							<div className="checkout" onClick={this.createOrder.bind(this, cartInfo.listings)}>
+								<Link 	
+									to =
+									{{
+										pathname: "/postcheckout",
+										info: info
+									}} 
+									className="btn btn-mid bg-yellow color-dark">Submit</Link>
 							</div>
 						</div>
 	                    	</form>
@@ -119,15 +149,12 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-
-    },
-    dispatch
-  );
+	return {
+		dispatch
+	}
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(UploadFiles);
+)(withRouter(UploadFiles));

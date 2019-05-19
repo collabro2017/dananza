@@ -40,8 +40,11 @@ import BuyerCampaigns from "./containers/BuyerCampaigns";
 import BuyerMessages from "./containers/BuyerMessages";
 
 import AccountSettingAccount from "./containers/AccountSetting_Account";
+import AccountSettingSecurity from "./containers/AccountSetting_Security";
+import AccountSettingBilling from "./containers/AccountSetting_Billing";
 
-import NewOrder from "./containers/NewOrder";
+import NewOrderSeller from "./containers/NewOrderSeller";
+import NewOrderBuyer from "./containers/NewOrderBuyer";
 
 const NotFound = () => {
   return <div>NotFound</div>;
@@ -98,7 +101,7 @@ class App extends Component {
                 <DashboardRoute exact path="/postcheckout" component={PostCheckout} />
                 <DashboardRoute exact path="/" component={Home} />
 
-                <DashboardRoute exact path="/results" component={SearchResults} />
+                <DashboardRoute path="/results" component={SearchResults} />
                 <DashboardRoute exact path="/seller_dashboard" component={SellerDashboard} />
                 <DashboardRoute exact path="/seller_orders" component={SellerOrders} />
                 <DashboardRoute exact path="/seller_analytics" component={SellerAnalytics} />
@@ -116,8 +119,11 @@ class App extends Component {
                 <DashboardRoute exact path="/blogs" component={BlogHome} />
 
                 <DashboardRoute exact path="/account_setting_account" component={AccountSettingAccount}/>
+                <DashboardRoute exact path="/account_setting_security" component={AccountSettingSecurity}/>
+                <DashboardRoute exact path="/account_setting_billing" component={AccountSettingBilling}/>
 
-                <DashboardRoute exact path="/new_order" component={NewOrder} />
+                <DashboardRoute exact path="/neworder_seller" component={NewOrderSeller} />
+                <DashboardRoute exact path="/neworder_buyer" component={NewOrderBuyer} />
 
                 <EmptyRoute component={NotFound} />
               </Switch>

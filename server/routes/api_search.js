@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 	var listing_id = req.params.id;
 	Listing
 	    .findAll({include:[
-	    				{model:Channel,attributes:['username','follows']},
+	    				{model:Channel,attributes:['username','follows','linked_channel']},
 	    				{model:Adza_Profile,include:[
 	    					{model:Channel, attributes:['media_type']}
 	    				]}

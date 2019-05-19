@@ -430,6 +430,32 @@
   width: 20px !important;  
 }
 
+ .table .add_date i{
+    position: absolute;
+    left: 28px;
+    top: 17px;
+  }
+.table .add_date .react-datepicker__input-container input{
+    background: unset;
+    border: none;
+    font-size: 14px;
+    font-family: 'Thasadith-Bold';
+    padding: 5px 8px;
+  }
+ .table .add_date div.react-datepicker-wrapper, .search_page .datetime div.react-datepicker-wrapper div{
+    width: 100%;
+    z-index: 2;
+    background: transparent;
+  }
+.table .add_date .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name{
+    margin: 1.066rem;
+    font-size: 12px;
+  }
+.table img {
+    margin-right: 10px !important;
+    margin-left: 30px !important;
+}
+
 @media (max-width: 992px) {
   .buyer_landing .page_sidebar {
     width: 100% !important;

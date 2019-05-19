@@ -44,6 +44,15 @@ export function users(state = {}, action) {
           return user;
         })
       };
+    case userConstants.UPDATE_USERINFO_REQUEST:
+    case userConstants.UPDATE_USERINFO_SUCCESS:
+    case userConstants.UPDATE_USERINFO_FAILED:
+      return state;
+    case userConstants.UPDATE_PWD_REQUEST:
+    case userConstants.UPDATE_PWD_SUCCESS:
+      return {...state,pwd_change:action.result};
+    case userConstants.UPDATE_PWD_FAILED:
+      return {...state,pwd_change:false};
     default:
       return state
   }

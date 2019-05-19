@@ -12,7 +12,7 @@ import $ from "jquery";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
-import avatarDefault from '../res/img/default_avatar.png';
+import avatarDefault from '../res/img/user1.png';
 
 class Sellers extends React.Component{
   state={
@@ -109,8 +109,10 @@ class Sellers extends React.Component{
     $("#panel_"+index).slideToggle();
   }
 
-  addToCart( listingId ) {
-    this.props.dispatch(buyerActions.addListingToCart(listingId));
+  addToCart( _listingId, _sellerId ) {
+    var localcart = localStorage.getItem('cart');
+    var cur_cart_id = this.props.current_cart ? this.props.current_cart.id : localcart.id;
+    this.props.dispatch(buyerActions.addListingToCart(cur_cart_id, _listingId, _sellerId));
   }
 
   render(){
@@ -321,7 +323,7 @@ class Sellers extends React.Component{
                                                              />
                                                           </div>
                                                         <div className="col-sm-4 action">
-                                                          <Link to="/cart" onClick={this.addToCart.bind(this, list.id)}>
+                                                          <Link to="/cart" onClick={this.addToCart.bind(this, list.id, list.AdzaProfileId)}>
                                                               ${list.price} <i className="fa fa-cart-plus"></i>
                                                           </Link>
                                                         </div>
@@ -388,13 +390,15 @@ class Sellers extends React.Component{
 const mapStateToProps = state => {
     const { user } = state.authentication;
     const { sellerprofile, sellerinfo, buyer_sellerview, AdzaprofileId } = state.seller;
+    const { current_cart } = state.buyer;
 
   return {
     user,
     sellerprofile,
     sellerinfo,
     buyer_sellerview,
-    AdzaprofileId
+    AdzaprofileId,
+    current_cart
   };
 };
 

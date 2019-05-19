@@ -81,6 +81,27 @@
     margin: 1.066rem;
     font-size: 12px;
   }
+  .infoflowPage .post_checkout2 .table_camp .table .add_date i{
+    position: absolute;
+    left: 28px;
+    top: 17px;
+  }
+  .infoflowPage .post_checkout2 .table_camp .table .add_date .react-datepicker__input-container input{
+    background: unset;
+    border: none;
+    font-size: 14px;
+    font-family: 'Thasadith-Bold';
+    padding: 5px 8px;
+  }
+  .infoflowPage .post_checkout2 .table_camp .table .add_date div.react-datepicker-wrapper, .search_page .datetime div.react-datepicker-wrapper div{
+    width: 100%;
+    z-index: 2;
+    background: transparent;
+  }
+  .infoflowPage .post_checkout2 .table_camp .table .add_date .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name{
+    margin: 1.066rem;
+    font-size: 12px;
+  }
   .infoflowPage .cartPart .table_camp .table thead tr, .infoflowPage .post_checkout2 .table_camp .table thead tr, .infoflowPage .upload_files .table_camp .table thead tr {
     background: #f1f6f9; }
   .infoflowPage .cartPart .table_camp .table > tbody > tr > td, .infoflowPage .post_checkout2 .table_camp .table > tbody > tr > td, .infoflowPage .upload_files .table_camp .table > tbody > tr > td {
@@ -193,6 +214,7 @@
         border-radius: 5px; }
     .infoflowPage .checkout .chk_info .summary .divider{
       border-bottom: 1px solid #dadada;
+      width: 100%;
     }
     .infoflowPage .checkout .chk_info .summary .amount_title{
       font-family: "Muli-Light";

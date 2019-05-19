@@ -77,4 +77,19 @@ db.Cart.belongsTo(db.Campaign);
 db.Buyer_Profile.hasOne(db.Cart);
 db.Cart.belongsTo(db.Buyer_Profile);
 
+db.Buyer_Profile.hasMany(db.Order);
+db.Order.belongsTo(db.Buyer_Profile);
+
+db.Campaign_Listing.hasOne(db.Order);
+db.Order.belongsTo(db.Campaign_Listing);
+
+db.Order.hasMany(db.Order_History);
+db.Order_History.belongsTo(db.Order);
+
+db.Adza_Profile.hasMany(db.Campaign_Listing)
+db.Campaign_Listing.belongsTo(db.Adza_Profile)
+
+db.User.hasOne(db.Buyer_Profile)
+db.Buyer_Profile.belongsTo(db.User)  
+
 module.exports = db;

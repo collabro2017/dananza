@@ -15,6 +15,12 @@
   margin-right: 10px;
 }
 
+.buyer_profile .avatar_preview img{
+  width: 120px;
+  height: 120px;
+  margin-right: 50px;
+}
+
 .buyer_profile .btn-radius {
   border-radius: 5px !important;
 }

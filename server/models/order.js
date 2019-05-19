@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define('Order', {
     BuyerProfileId: DataTypes.INTEGER,
-    CampaignId: DataTypes.INTEGER,
+    CampaignListingId: DataTypes.INTEGER,
     order_status: DataTypes.STRING,
     order_date: DataTypes.DATE
   }, {});

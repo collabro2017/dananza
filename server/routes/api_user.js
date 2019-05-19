@@ -4,6 +4,7 @@ const passport = require('passport');
 const router = express.Router();
 require('../config/passport')(passport);
 const User = require('../models').User;
+var bcrypt = require('bcrypt-nodejs');
 
 // Get User Info By JWT Token
 router.get('/', passport.authenticate('jwt', { session: false}), function(req, res) {
@@ -33,18 +34,19 @@ router.put('/', passport.authenticate('jwt', { session: false}), function(req, r
 
 // Change Password
 router.put('/change_pwd', passport.authenticate('jwt', { session: false}), function(req, res) {
-  var token = getToken(req.headers);
-  var auth_user = req.user;
-  if (token) {
-    auth_user
-      .update({
-        password: req.body.password,
-      })
-      .then((user) => res.status(201).send({success: true, message: 'Updated.'}))
-      .catch((error) => res.status(400).send({success: false, message: error }));
-  } else {
-    return res.status(403).send({success: false, message: 'Unauthorized.'});
-  }
+    var auth_user = req.user;
+    bcrypt.compare(req.body.currentpwd, auth_user.password, function (err, isMatch) {
+        if (isMatch) {
+          auth_user
+            .update({
+              password: req.body.newpwd
+            })
+            .then((user) => res.status(201).send({success:true}))
+            .catch((error) => res.status(400).send({success: false, message: error }));
+        }else{
+          res.status(201).send({success:false});
+        }
+    });
 });
 
 getToken = function (headers) {

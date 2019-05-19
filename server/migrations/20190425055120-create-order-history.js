@@ -19,6 +19,12 @@ module.exports = {
       },
       update_time: {
         type: Sequelize.DATE
+      },
+      order_type: {
+        type: Sequelize.STRING
+      },
+      order_attachment: {
+        type: Sequelize.JSON
       }
     });
   },

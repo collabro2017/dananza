@@ -36,6 +36,10 @@
 	height: 56px;
 	margin: 0px 15px;
 }
+.seller_calendar .upcoming-box .user-profile img{
+	width: 56px;
+	height: 56px;
+}
 .seller_calendar .upcoming-box .content{
 	width: 100%;
 	padding:10px;
@@ -111,7 +115,7 @@
 	box-shadow: 0px 0px 10px 5px #dadada !important;
 	color: #dadada;
 	font-size: 20px;
-	font-family: inherit;
+	font-family: 'Coves-Bold';
 	vertical-align: text-top;
 	padding: 0;
 	margin-top: 4px;
@@ -137,28 +141,69 @@
 	border-bottom: 3px solid #2ab7c9;
 	font-weight: bold !important;
 }
-.seller_calendar .calendar{
+.seller_calendar .rbc-calendar .rbc-header + .rbc-header {
+ 	border-left: none;
+}
+.seller_calendar .rbc-calendar .rbc-row-bg .rbc-day-bg:first-child, .seller_calendar .rbc-calendar .rbc-row-bg .rbc-day-bg:last-child{
+	background: #f7f7f7;
+}
+.seller_calendar .rbc-month-view, .seller_calendar .rbc-day-view, .seller_calendar .rbc-time-view{
 	background-color: white;
     margin-bottom: 30px;
+    font-size: 14px;
 }
-.seller_calendar .calendar .row-week{
+.seller_calendar .rbc-month-view .rbc-month-header{
+	border-bottom: 1px solid #dadada;
 	display: flex;
 }
-.seller_calendar .calendar .col-week{
+.seller_calendar .rbc-month-view .rbc-header{
 	width: 14.29%;
 	text-align: right;
 	padding-top: 20px;
 	padding-bottom: 16px;
 	padding-right: 10px;
 	border-bottom: 1px solid #dadada;
+	font-size: 14px;
 }
-.seller_calendar .calendar .col-day{
+.seller_calendar .rbc-month-view .rbc-day-bg + .rbc-day-bg{
+	border-left: 2px solid #dadada;
+}
+.seller_calendar .rbc-month-view .rbc-month-row + .rbc-month-row {
+	border-top: 2px solid #dadada;
+}
+.seller_calendar .rbc-month-view .rbc-off-range{
+	color: #c4c4c4;
+}
+.seller_calendar .rbc-month-view .rbc-off-range-bg{
+	background: white;
+}
+.seller_calendar .rbc-month-view .rbc-date-cell{
+	padding-top: 8px;
+	padding-right: 8px;
+}
+.seller_calendar .rbc-month-view .rbc-date-cell a {
+	float: right;
+	width: 25px;
+	height: 25px;
+	text-align: center;
+	padding-top: 3px;
+}
+.seller_calendar .rbc-month-view .rbc-date-cell.rbc-off-range a{
+	color: #c4c4c4;
+}
+.seller_calendar .rbc-month-view .rbc-date-cell.rbc-now a {
+	border-radius: 50% !important;
+	background: #2ab7c9;
+	color: white;
+    text-align: center;
+}
+.seller_calendar .rbc-month-view .col-day{
 	position: relative;
     width: 14.29%;
     padding-bottom: 14.29%;
     border: 1px solid #dadada;
 }
-.seller_calendar .calendar .col-day .date{
+.seller_calendar .rbc-month-view .col-day .date{
 	position: absolute;
 	width: 25px;
 	height: 25px;
@@ -166,29 +211,39 @@
     right: 13%;
     top: 11%;
 }
-.seller_calendar .calendar .col-day .date.active{
+.seller_calendar .rbc-month-view .col-day .date.active{
 	border-radius: 50% !important;
 	background: #2ab7c9;
 	color: white;
     
     text-align: center;
 }
-.seller_calendar .calendar .col-day .events{
+.seller_calendar .rbc-month-view .col-day .events{
 	position: absolute;
 	display: block;
     top: 30%;
     padding-left: 10px;
 }
-.seller_calendar .calendar .col-day .events img{
+.seller_calendar .rbc-month-view .col-day .events img{
 	width: 17.9%;
 	height: 17.9%;
 	margin-right: 4.2%;
 }
-.seller_calendar .calendar .grey{
+.seller_calendar .rbc-month-view .grey{
 	color: #c4c4c4;
 }
-.seller_calendar .calendar .back-grey{
+.seller_calendar .rbc-month-view .back-grey{
 	background-color: #f7f7f7;
+}
+
+.seller_calendar .rbc-calendar img{
+	width: 20px;
+	height: 20px;
+	border-radius: 50% !important;
+	margin-left: 2px;
+	margin-right: 2px;
+	margin-top: 1px;
+	margin-bottom: 1px;
 }
 .seller_calendar .f-24{
 	font-size: 24px !important;

@@ -93,6 +93,7 @@ class Home extends React.Component{
                   <ReactTags
                     placeholder="Type any keyword (maximum of 5 keywords)"
                     inputAttributes={{ maxLength: 15 }}
+                    autofocus={false}
                     allowNew={true}
                     tags={this.state.tags}
                     suggestions={this.state.suggestions}

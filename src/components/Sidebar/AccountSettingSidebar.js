@@ -26,13 +26,13 @@ const AccountSettingSidebar = props => {
                   <input type="radio" className="toggle"/> Account
                 </label>
               </Link>
-              <Link to="/account_setting_account">
+              <Link to="/account_setting_security">
                 <label className={navitem=="security"?"btn btn-default active":"btn btn-default"}>
                   <img src={require('../../res/img/sidebar_security.png')} alt=""/>
                   <input type="radio" className="toggle"/> Security
                 </label>
               </Link>
-              <Link to="/account_setting_account">
+              <Link to="/account_setting_billing">
                 <label className={navitem=="billing"?"btn btn-default active":"btn btn-default"}>
                   <img src={require('../../res/img/sidebar_billing.png')} alt=""/>
                   <input type="radio" className="toggle"/> Billing

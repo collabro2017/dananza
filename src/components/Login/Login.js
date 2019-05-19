@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
-import { userActions } from '../../store/actions';
+import { userActions, buyerActions } from '../../store/actions';
 import $ from 'jquery';
 
 import "../../res/bootstrap/css/bootstrap.min.css"
@@ -14,13 +14,10 @@ import "../../res/css/layout.min.css"
 import "../../res/css/login.min.css";
 
 class Login extends React.Component{
-
+    login = false;
     constructor(props) {
       super(props);
       this.routeChange = this.routeChange.bind(this);
-
-      // reset login status
-      // this.props.dispatch(userActions.logout());
 
       this.state = {
           email: '',
@@ -34,7 +31,19 @@ class Login extends React.Component{
 
     routeChange()
     {
-      this.props.history.push("/buyer_landing");
+      this.login = true;
+    }
+
+    componentWillReceiveProps(nextprops)
+    {
+      if (nextprops.profile != undefined && this.login == true)
+      {
+          this.login = false;
+          if (nextprops.profile.has_seller_acct == true)
+            this.props.history.push("/seller_dashboard");
+          else
+            this.props.history.push("/buyer_landing");
+      }
     }
 
     handleChange(e) {
@@ -115,10 +124,12 @@ class Login extends React.Component{
 function mapStateToProps(state) {
     const { loggingIn, loggedIn } = state.authentication;
     const { alert } = state;
+    const { profile } = state.buyer;
 
     return {
         loggingIn,
         loggedIn,
+        profile,
         alert
     };
 }

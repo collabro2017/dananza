@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import classNames from "classnames";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
@@ -9,6 +11,7 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import SettingsIcon from "@material-ui/icons/Settings";
 import { Link } from "react-router-dom";
 import Knob from 'react-canvas-knob';
+import avatarDefault from '../../res/img/default_avatar.png';
 
 import "../../res/css/SellerSidebar.css"
 
@@ -17,12 +20,19 @@ const drawerWidth = 240;
 
 const SellerSidebar = props => {
   const { open, classes, navitem } = props;
+  let avatar;
+  try{
+    avatar = <img className="profile" src={require("../../uploads/adza_avatar/"+props.user.user_info.id+".png")}/>
+  }catch(e){
+    avatar = <img className="profile" src={ avatarDefault }/>
+  }
+  
   return (
         <div className="page-sidebar">
           <div className="section target-tree">
             <div className="image">
-              <img src={require("../../res/img/profile_photo.png")} alt=""/>
-              <h1> Target Tree </h1>
+              {avatar}
+              <h1> {props.user.user_info.f_name + " " + props.user.user_info.l_name} </h1>
             </div>
             <div className="dial">
               <Knob
@@ -121,4 +131,17 @@ const SellerSidebar = props => {
   );
 };
 
-export default (SellerSidebar);
+const mapStateToProps = state => {
+  const { user } = state.authentication;
+
+  return { user };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {dispatch};
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(SellerSidebar));

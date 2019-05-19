@@ -3,6 +3,7 @@ import { userInfo } from '../helpers';
 import { apiConfig } from '../config';
 
 export const sellerService = {
+    createProfile,
     setProfile,
     getProfile,
     createChannel,
@@ -13,13 +14,30 @@ export const sellerService = {
     deleteAdlist,
     getAdlist,
     getAllProfile,
-    getSearchResult
+    getSearchResult,
+    getOrderHistory,
+    updateOrderHistory,
+    addOrderHistory,
+    getLatestOrderHistory,
+    createOrder,
+    getSellerOrders,
+    getSellerSchedule
 };
 
 const apiRoot = apiConfig.apiRoot;
 
+function createProfile(user) {
+    let requestOptions = {
+        method: 'POST',
+        headers: { ...authHeader() }
+    };
+
+    return fetch( apiRoot + `/adza/${user.id}`, requestOptions)
+        .then(handleResponse)
+}
+
 function setProfile(sellerprofile) {
-    const requestOptions = {
+    let requestOptions = {
         method: 'POST',
         headers: { ...authHeader() }
     };
@@ -27,12 +45,10 @@ function setProfile(sellerprofile) {
     return fetch( apiRoot + `/adza`, requestOptions)
         .then(handleResponse)
         .then(seller => {
-
             var formData = new FormData();
 
             var jsonData = JSON.stringify(sellerprofile);
             formData.append('sellerprofile', jsonData );
-
             // Process Images
             for (var i = 0; i < sellerprofile.image_gallery.length; i++) {
                 formData.append('image_gallery', sellerprofile.image_gallery[i], sellerprofile.image_gallery[i].name);
@@ -145,6 +161,79 @@ function getSearchResult(){
     };
 
     return fetch( apiRoot + `/search`, requestOptions)
+        .then(handleResponse);
+}
+
+function createOrder(_listing){
+    const requestOptions = {
+        method: 'POST',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({listings:_listing})
+    };
+
+    return fetch( apiRoot + `/order`, requestOptions)
+        .then(handleResponse);
+}
+
+function getOrderHistory(orderId){
+    const requestOptions = {
+        method: 'GET',
+        headers: { ...authHeader() }
+    };
+
+    return fetch( apiRoot + `/order/${orderId}`, requestOptions)
+        .then(handleResponse);
+}
+
+function updateOrderHistory(order){
+    const requestOptions = {
+        method: 'PUT',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({order})
+    };
+
+    return fetch( apiRoot + `/order`, requestOptions)
+        .then(handleResponse);
+}
+
+function addOrderHistory(OrderId,order_status,order_type,order_comment,order_attachment){
+    const requestOptions = {
+        method: 'POST',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({OrderId,order_status,order_type,order_comment,order_attachment})
+    };
+
+    return fetch( apiRoot + `/order/${OrderId}`, requestOptions)
+        .then(handleResponse);
+}
+
+function getLatestOrderHistory( _ordorId ) {
+    const requestOptions = {
+        method: 'GET',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    };
+
+    return fetch( apiRoot + `/order/${_ordorId}/status`, requestOptions)
+        .then(handleResponse);
+}
+
+function getSellerOrders() {
+    const requestOptions = {
+        method: 'GET',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    };
+
+    return fetch( apiRoot + `/order`, requestOptions)
+        .then(handleResponse);
+}
+
+function getSellerSchedule(){
+    const requestOptions = {
+        method: 'GET',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    };
+
+    return fetch( apiRoot + `/order`, requestOptions)
         .then(handleResponse);
 }
 

@@ -9,7 +9,8 @@ export const userService = {
     getById,
     update,
     handleResponse,
-    delete: _delete
+    delete: _delete,
+    updatePassword
 };
 
 const apiRoot = apiConfig.apiRoot;
@@ -43,6 +44,9 @@ function login(email, password, isSocial=false) {
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
+
+    // remove cart
+     localStorage.removeItem('cart');
 }
 
 function getAll() {
@@ -51,7 +55,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`/users`, requestOptions).then(handleResponse);
+    return fetch(apiRoot + `/user`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
@@ -60,7 +64,7 @@ function getById(id) {
         headers: authHeader()
     };
 
-    return fetch(`/users/${id}`, requestOptions).then(handleResponse);
+    return fetch(apiRoot + `/user/${id}`, requestOptions).then(handleResponse);
 }
 
 function update(user) {
@@ -70,7 +74,26 @@ function update(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`/users/${user.id}`, requestOptions).then(handleResponse);;
+    return fetch(apiRoot + `/user`, requestOptions)
+        .then(handleResponse)
+        .then(user1 => {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            var tmp = JSON.parse(localStorage.getItem('user'));
+            tmp.user_info = user;
+            localStorage.setItem('user', JSON.stringify(tmp));
+            return user1;
+        });;
+}
+
+function updatePassword(pwd) {
+    const requestOptions = {
+        method: 'PUT',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(pwd)
+    };
+
+    return fetch(apiRoot + `/user/change_pwd`, requestOptions)
+        .then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -80,7 +103,7 @@ function _delete(id) {
         headers: authHeader()
     };
 
-    return fetch(`/users/${id}`, requestOptions).then(handleResponse);
+    return fetch(apiRoot + `/user/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

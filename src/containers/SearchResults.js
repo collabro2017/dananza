@@ -44,7 +44,7 @@ const styles = theme => ({
 class SearchResults extends React.Component{
 
   state={
-  		'headerType': "",
+  		'headerType': "buyer",
   		'search_option':{
   			'relevance': 'relevance',
 	  		'reach_start': 0,
@@ -52,7 +52,7 @@ class SearchResults extends React.Component{
 	  		'gender_percent' : 0,
 	  		'age_start': 0,
 	  		'age_end': 60,
-	  		'searchText':'Social Media',
+	  		'searchText':'',
 	  		'startDate': null,
 			'locations' : [],
 			'interests': [],
@@ -88,6 +88,7 @@ class SearchResults extends React.Component{
 			"#99cccc"
 		]
   };
+  first = false;
 
   constructor(props) {
     super(props);
@@ -105,13 +106,26 @@ class SearchResults extends React.Component{
   };
   componentWillMount()
   {
-  	const { dispatch } = this.props;
+    const { dispatch } = this.props;
+	let path = this.props.location.pathname.split('/');
+    this.setState({search_option:{...this.state.search_option,searchText:path[2]}});
+    this.state.search_option.searchText = path[2];
+    this.filter();
+
   	dispatch(sellerActions.getSearchResult());
   }
 
   componentWillReceiveProps(props)
   {
-  	if (props.allAdlist != undefined)
+    let path = props.location.pathname.split('/');
+    this.setState({search_option:{...this.state.search_option,searchText:path[2]}});
+    if (props.location.pathname != this.props.location.pathname) {
+    	this.state.search_option.searchText = path[2];
+    	this.filter();
+    	this.first = false;
+    }
+
+  	if (props.allAdlist != this.props.allAdlist)
   	{
   		this.setState({allAdlist:props.allAdlist});
   		this.state.allAdlist = props.allAdlist;
@@ -290,10 +304,24 @@ class SearchResults extends React.Component{
 	  		audience_male_percent,
 	  		audience_locations,
 	  		audience_interests} = item.Adza_Profile;
-	  	const {price} = item;
-	  	const {follows} = item.Channel;
+	  	const {price, title, description} = item;
+	  	const {follows, username, linked_channel} = item.Channel;
 		var launchDate = new Date(item.insert_date);
 	  	let flag = false;
+
+	  	if (item.media_type.search(searchText) == -1
+	  		&& title.search(searchText) == -1
+	  		&& description.search(searchText) == -1
+	  		&& username.search(searchText) == -1
+	  		&& linked_channel.search(searchText) == -1)
+	  	{
+	  		continue;
+	  	}
+	  	else if (this.first == false) {
+	  		resultcount ++;
+	  		searchResult.push(item);
+	  		continue;
+	  	}
 
 	  	if (audience_age_max < age_start || age_end < audience_age_min)
 	  		continue;
@@ -337,14 +365,17 @@ class SearchResults extends React.Component{
 		resultcount ++;
 	  	searchResult.push(item);
 	}
+
+	this.first = true;
 	pages = [];
 	for (var i = 0; i < Math.ceil(resultcount/this.state.itemPerPage) ; i++)
 		pages.push(i+1);
 	this.setState({searchResult,resultcount,page:1,pages});
   }
 
-  addToCart( listingId ) {
-	this.props.dispatch(buyerActions.addListingToCart(listingId));
+  addToCart( _listingId, _sellerId ) {
+  	var currentCart = localStorage.getItem('cart');
+	this.props.dispatch(buyerActions.addListingToCart(this.props.current_cart ? this.props.current_cart.id : currentCart.id, _listingId, _sellerId));
   }
 
 
@@ -752,7 +783,7 @@ class SearchResults extends React.Component{
 														<div className="price">
 															<span className="small"> Starting at </span>
 															<span className="value"> ${item.price} </span>
-															<a onClick={ this.addToCart.bind(this, item.id) }>+</a>
+															<a onClick={ this.addToCart.bind(this, item.id, item.AdzaProfileId) }>+</a>
 														</div>
 													</div>
 												</div>
@@ -806,10 +837,11 @@ class SearchResults extends React.Component{
 const mapStateToProps = state => {
   	const { user } = state.authentication;
   	const { allAdlist } = state.seller;
-
+  	const { current_cart } = state.buyer;
 	return {
 		user,
 		allAdlist,
+		current_cart
 	};
 };
 

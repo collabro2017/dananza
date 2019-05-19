@@ -5,7 +5,6 @@ const router = express.Router();
 require('../config/passport')(passport);
 const msg = require('../config/msg');
 var multer = require('multer');
-var fs = require('fs');
 
 const Adza_Profile = require('../models').Adza_Profile;
 const Buyer_Profile = require('../models').Buyer_Profile;
@@ -53,6 +52,29 @@ router.get('/:id', passport.authenticate('jwt', {session: false}), function(req,
   	.catch((error) => res.status(400).send({success: false, message: error }));
 });
 
+// create adza profile with buyer profile
+router.post('/:id', function(req, res) {
+  var UserId = req.params.id;
+
+  Buyer_Profile
+  .findOrCreate({
+    where: {UserId: UserId}, 
+    defaults: {
+      UserId: UserId,
+      profile_description: null,
+      job_type: null,
+      locations: [],
+      linkedAccounts: [],
+      accounts: [],
+      has_seller_acct: true,
+      signup_date: new Date()
+  }})
+  .then((profile, created) => {
+    res.status(201).send(profile)
+  })
+  .catch((error) => res.status(400).send({success: false, message: error }));
+
+});
 
 // create adza profile first time
 router.post('/', passport.authenticate('jwt', {session: false}), function(req, res) {
@@ -83,22 +105,32 @@ router.post('/', passport.authenticate('jwt', {session: false}), function(req, r
 });
 
 // Update Adza profile
-router.put('/', passport.authenticate('jwt', {session: false}), upload.array('image_gallery'), function(req, res, next) {
+router.put('/', passport.authenticate('jwt', {session: false}), upload.array('image_gallery'), function(req, res) {
   var auth_user = req.user;
   var UserId = auth_user.id;
-  var requestProfile = JSON.parse(req.body.sellerprofile);
-
-  // process uploaded images
+  var sellerprofile = JSON.parse(req.body.sellerprofile);
+  var fs = require('fs');
+// process uploaded images
   var image_gallery = req.files;  	var arrImages = [];
+
+  if (!fs.existsSync( "../src/uploads/" ))
+    fs.mkdirSync( "../src/uploads/" );
+
+  if (!fs.existsSync( "../src/uploads/image_gallery/" ))
+    fs.mkdirSync( "../src/uploads/image_gallery/" );
+  
+  if (!fs.existsSync( "../src/uploads/image_gallery/"+UserId+"/" ))
+    fs.mkdirSync( "../src/uploads/image_gallery/"+UserId+"/" );
+  
+  if (!fs.existsSync( "../src/uploads/adza_avatar/" ))
+    fs.mkdirSync( "../src/uploads/adza_avatar/" );
+
   for (var i = 0; i < image_gallery.length; i++) {
   	var timeStamp = (new Date()).getTime();
   	var file_name = timeStamp+"-"+image_gallery[i].originalname;
-  	var dest_path = "../src/assets/img/"+UserId+"/" + file_name;
+  	var dest_path = "../src/uploads/image_gallery/"+UserId+"/" + file_name;
   	var src_path = "./uploads/"+ image_gallery[i].originalname;
-
-	if (!fs.existsSync( "../src/assets/img/"+UserId+"/" )){
-	    fs.mkdirSync( "../src/assets/img/"+UserId+"/" );
-	}
+	
   	fs.rename(src_path, dest_path, function (err) {
         if (err) {
             if (err.code === 'EXDEV') {
@@ -112,16 +144,30 @@ router.put('/', passport.authenticate('jwt', {session: false}), upload.array('im
 
   	arrImages.push( file_name );
   }
-  requestProfile.image_gallery = arrImages;
+  sellerprofile.image_gallery = arrImages;
+
+  if (sellerprofile.profile_photo)
+  {
+  	var matches = sellerprofile.profile_photo.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+  	var buffer;
+
+  	if (matches.length !== 3)
+  		return res.status(500).send({success: false, message: "error" });
+
+  	buffer = new Buffer(matches[2], 'base64').toString('binary');
+  	fs.writeFile("../src/uploads/adza_avatar/"+UserId+".png",buffer,'binary',function(e){console.log(e)});
+  	sellerprofile.profile_photo = null;
+  }
 
   Adza_Profile
 	.findOne({ where: {UserId: UserId} })
 	.then(function(profile) {
+		
 		profile.update({
-			...requestProfile,
+			...sellerprofile,
 			update_time: new Date()
 		})
-		.then((profile)=>res.status(201).send({success: true, message: msg.updatedSuccess }))
+		.then((profile)=>res.status(201).send({success: true, message: msg.updatedSuccess}))
 		.catch((error) => res.status(500).send(error));
 	})
 	.catch((error) => res.status(400).send({success: false, message: error }));
@@ -149,5 +195,6 @@ router.get('/:id/adzainfo', passport.authenticate('jwt', {session: false}), func
 	})
   	.catch((error) => res.status(400).send({success: false, message: error }));
 });
+
 
 module.exports = router;

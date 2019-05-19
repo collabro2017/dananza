@@ -9,32 +9,44 @@ const Buyer_Profile = require('../models').Buyer_Profile;
 const Campaign = require('../models').Campaign;
 const Campaign_Listing = require('../models').Campaign_Listing;
 const Listing = require('../models').Listing;
+const Channel = require('../models').Channel;
+const Cart = require('../models').Cart;
+const Order = require('../models').Order;
+const Order_History = require('../models').Order_History;
 
 // Get all campaigns
 router.get('/', passport.authenticate('jwt', {session: false}), async function(req, res) {
 	var auth_user = req.user;
 	var UserId = auth_user.id;
 
-	console.log('userid/auth_user = ', auth_user, UserId);
-	console.log('user id = ', UserId);
+	var buyer = await Buyer_Profile.getBuyerFromUserID( UserId, function(err, profile ){
+		if( !err )
+			return profile;
+		else
+			return res.status(400).send( {success: false, message: err });
+	});
 
-	// var buyer = await Buyer_Profile.getBuyerFromUserID( UserId, function(err, profile ){
-	// 	if( !err )
-	// 		return profile;
-	// 	else
-	// 		return res.status(400).send( {success: false, message: err });
-
-	// });
-	// console.log('buyer = ', buyer);
 	Campaign
 		.findAll({
-			where:{BuyerProfileId: UserId}, 
+			where:{BuyerProfileId: buyer.id}, 
 			include:
 			[{
 				model: Campaign_Listing,
 				include: 
 				[{
-					model: Listing
+					model: Listing,
+					include: 
+					[{
+						model: Channel
+					}]
+				 },
+				 {
+					model: Order,
+					include: 
+					[{
+						model: Order_History
+					}]
+
 				}]
 			}]
 		})
@@ -42,7 +54,7 @@ router.get('/', passport.authenticate('jwt', {session: false}), async function(r
 			if( campaigns.length )
 				return res.status(201).send(campaigns);
 			else
-				return res.status(201).send({success: true, message: msg.noResult });
+				return res.status(304).send({success: false, message: msg.noResult });
 		})
 		.catch((error) => res.status(500).send({success: false, message: error }))
 });
@@ -51,6 +63,8 @@ router.get('/', passport.authenticate('jwt', {session: false}), async function(r
 router.post('/', passport.authenticate('jwt', {session: false}), async function(req, res) {
 	var auth_user = req.user;
 	var UserId = auth_user.id;
+	var cartid = req.body.cartid;
+	var cartinfo = req.body.info;
 
 	var buyer = await Buyer_Profile.getBuyerFromUserID( auth_user.id, function(err, profile ){
 		if( !err )
@@ -59,20 +73,54 @@ router.post('/', passport.authenticate('jwt', {session: false}), async function(
 			return res.status(400).send( {success: false, message: err });
 	} );
 
-	var name = req.body.campaign_name;
-
 	Campaign
 		.findOrCreate({
-			where:{BuyerProfileId: buyer.id, campaign_status:"open"}, 
-			defaults: { BuyerProfileId: buyer.id, campaign_name: name, campaign_status: "open" }
+			where: { BuyerProfileId: buyer.id, CartId: cartid },
+			default: 
+			{
+				BuyerProfileId: buyer.id,
+				campaign_name: cartinfo.camp_name,
+				campaign_status: 'open',
+				campaign_price: cartinfo.subtotal,
+				CartId: cartid,
+				created_at: new Date()
+			}
 		})
-		.spread(function(campaign, created){
+		.spread(function(camp, created){
 			if( created )
-				return res.status(201).send({success: true, message: msg.createdSuccess });
-			else
-				return res.status(403).send({success: false, message: msg.campaignExist });
+			{
+				res.status(201).send({success: true, message: msg.addedSuccess});
+			}
+			else 
+			{
+				camp	
+					.update({
+						BuyerProfileId: buyer.id,
+						campaign_name: cartinfo.camp_name,
+						campaign_status: 'open',
+						campaign_price: cartinfo.subtotal,
+						CartId: cartid,
+						created_at: new Date()
+					})
+					.then(res.status(201).send({success: true, message: msg.updatedSuccess }))
+			}
+
+			//update current cart info
+			Cart
+				.findByPk(cartid)
+				.then(function (cart) 
+				{
+					if(cart)
+					{
+						cart.update({
+							CampaignId: camp.id,
+							subtotal: cartinfo.subtotal
+						})
+					}
+				})
+				.then(res.status(201).send({success: true, message: "Current Cart Updated!"}))
 		})
-		.catch((error) => res.status(500).send({success: false, message: error }))
+		.catch((error) => res.status(500).send({success: false, message: error}))
 }); 
 
 // Update Campaign Info
@@ -97,7 +145,8 @@ router.put('/:id', passport.authenticate('jwt', {session: false}), async functio
 					campaign_name: req.body.campaign_name,
 					campaign_status: req.body.campaign_status,
 					campaign_price: req.body.campaign_price,
-					OrderId: req.body.OrderId
+					OrderId: req.body.OrderId,
+					created_at: new Date()
 				})
 				.then((campaign)=>res.status(201).send({success: true, message: msg.updatedSuccess}))
 				.catch((error) => res.status(500).send(error));
@@ -130,6 +179,7 @@ router.delete('/:id', passport.authenticate('jwt', {session: false}), async func
 	    })
 	    .catch((error) => { res.status(400).send({success: false, message: error }); });
 });
+
 // get listings by campaign ID
 router.get('/:id/listing', passport.authenticate('jwt', {session: false}), async function(req, res) {
 	var CampaignId = req.params.id;
@@ -181,4 +231,46 @@ router.delete('/:id/remove/:lid', passport.authenticate('jwt', {session: false})
 	    })
 	    .catch((error) => { res.status(400).send({success: false, message: error }); });
 });
+
+//get latest Campaign
+router.get('/latest', passport.authenticate('jwt', {session: false}), async function(req, res) {
+	var auth_user = req.user;
+	var UserId = auth_user.id;
+
+	var buyer = await Buyer_Profile.getBuyerFromUserID( UserId, function(err, profile ){
+		if( !err )
+			return profile;
+		else
+			return res.status(400).send( {success: false, message: err });
+	});
+
+	Campaign
+		.findAll({
+			where:{ BuyerProfileId: buyer.id}, 
+			include:
+			[{
+				model: Campaign_Listing,
+				include: 
+				[{
+					model: Listing,
+					include: 
+					[{
+						model: Channel
+					}]
+				 },
+				 {
+					model: Order,
+					include: 
+					[{
+						model: Order_History
+					}]
+
+				}]
+			}],
+			order: [[ 'id', 'DESC']]
+		})
+		.then((campaign) => res.status(201).send(campaign[0]))
+		.catch((error) => res.status(500).send({success: false, message: error }));
+});
+
 module.exports = router;

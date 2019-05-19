@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     campaign_name: DataTypes.STRING,
     campaign_status: DataTypes.STRING,
     campaign_price: DataTypes.FLOAT,
-    OrderId: DataTypes.INTEGER
+    created_at: DataTypes.DATE,
+    CartId: DataTypes.INTEGER
   }, {});
   Campaign.associate = function(models) {
     // associations can be defined here

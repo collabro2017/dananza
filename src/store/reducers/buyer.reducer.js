@@ -10,35 +10,59 @@ export function buyer(state={}, action)
 			};
 		case buyerConstants.READ_BUYPER_PROFILE:
 			return	{
+				...state,
 				profile: action.data,
 			};
 		case buyerConstants.UPDATE_BUYPER_PROFILE:
 			return 	{
 				...state,
-				updated: action.data
+				updated: action.data.message
 			};
 		case buyerConstants.DELETE_BUYPER_PROFILE:
-			return 	{
-
-			};
+			return state;
 		case buyerConstants.CREAT_CAMPAIGN:
 			return {
-
+				...state,
+				campaign_created: true
 			}
 		case buyerConstants.GET_ALL_CAMPAIGN:
 			return {
+				...state,
 				campaigns: action.data
 			}
 		case buyerConstants.UPDATE_CAMPAIGN: 
-			return {
-
-			}
+			return state;
 		case buyerConstants.DELETE_CAMPAIGN:
+			return state;
+		case buyerConstants.LATEST_CAMPAIGN:
 			return {
-
+				...state,
+				latest_campaign: action.data
+			}
+		case buyerConstants.CREAT_NEW_CART:
+			return {
+				...state,
+				current_cart: action.data
+			}
+		case buyerConstants.ADDLISTTOCART:
+			return {
+				...state,
+				message: action.data
 			}	
+		case buyerConstants.GET_CURRENT_CART_LISTINGS:
+			return {
+				...state,
+				cartListings: action.data
+			}
+		case buyerConstants.CANCEL_LISTING_IN_CART:
+			return {
+				...state,
+				cartListings: action.data,
+				cancel_listing_msg: "Successfully Cancel Listing from cart"
+			}
 		case buyerConstants.ERROR:
 			return 	{
+				...state,
 				error: action.data
 			};
 

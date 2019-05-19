@@ -17,9 +17,6 @@ module.exports = {
       profile_description: {
         type: Sequelize.STRING
       },
-      profile_location: {
-        type: Sequelize.STRING
-      },
       signup_date: {
         type: Sequelize.DATE
       },

@@ -1,7 +1,10 @@
 import { sellerConstants } from '../config';
 import { sellerService } from '../services';
+import {alertActions} from './';
+
 
 export const sellerActions = {
+    createProfile,
     setProfile,
     getProfile,
     createChannel,
@@ -15,8 +18,34 @@ export const sellerActions = {
     moveSellerPage,
     moveMySellerPage,
     moveSellerPagePreview,
-    getSearchResult
+    getSearchResult,
+    getOrderHistory,
+    updateOrderHistory,
+    addOrderHistory,
+    getLatestOrderHistory,
+    createOrder,
+    getSellerOrders
 };
+
+function createProfile(user){
+    return dispatch => {
+        dispatch(request());
+
+        sellerService.createProfile(user)
+            .then(
+                sellerprofile => { 
+                    dispatch(success(sellerprofile));
+                },
+                error => {
+                    dispatch(failure(error));
+                }
+            );
+    }
+
+    function request() { return { type: sellerConstants.CREATE_SELLER_PROFILE_REQUEST } }
+    function success() { return { type: sellerConstants.CREATE_SELLER_PROFILE_SUCCESS }; }
+    function failure(error) { return { type: sellerConstants.CREATE_SELLER_PROFILE_FAILURE, error } }
+}
 
 function setProfile(sellerprofile) {
     return dispatch => {
@@ -27,9 +56,11 @@ function setProfile(sellerprofile) {
                 sellerprofile => { 
                     dispatch(getProfile());
                     dispatch(success(sellerprofile));
+                    dispatch(alertActions.success('Succeed setting profile!'));
                 },
                 error => {
                     dispatch(failure(error));
+                    dispatch(alertActions.error('Failed setting profile!'));
                 }
             );
     }
@@ -69,9 +100,12 @@ function createChannel(channel) {
                 channel => {
                     dispatch(success());
                     dispatch(getChannel());
+                    dispatch(alertActions.success('Succeed creating channel!'));
+                    
                 },
                 error => {
                     dispatch(failure(error));
+                    dispatch(alertActions.error('Failed creating channel!'));
                 }
             );
     }
@@ -90,9 +124,11 @@ function deleteChannel(channelID) {
                 message => { 
                     dispatch(success());
                     dispatch(getChannel());
+                    dispatch(alertActions.success('Succeed deleting channel!'));
                 },
                 error => {
                     dispatch(failure(error));
+                    dispatch(alertActions.success('Failed deleting channel!'));
                 }
             );
     }
@@ -134,9 +170,11 @@ function createAdlist(adlist) {
                 adlist => { 
                     dispatch(success());
                     dispatch(getAdlist());
+                    dispatch(alertActions.success('Succeed creating Ad list!'));
                 },
                 error => {
                     dispatch(failure(error));
+                    dispatch(alertActions.success('Failed creating Ad list!'));
                 }
             );
     }
@@ -155,9 +193,11 @@ function updateAdlist(adlist) {
                 adlist => { 
                     dispatch(success());
                     dispatch(getAdlist());
+                    dispatch(alertActions.success('Succeed update Ad list!'));
                 },
                 error => {
                     dispatch(failure(error));
+                    dispatch(alertActions.success('Failed update Ad list!'));
                 }
             );
     }
@@ -176,9 +216,11 @@ function deleteAdlist(id) {
                 adlist => { 
                     dispatch(success());
                     dispatch(getAdlist());
+                    dispatch(alertActions.success('Succeed deleting Ad list!'));
                 },
                 error => {
                     dispatch(failure(error));
+                    dispatch(alertActions.success('Failed deleting Ad list!'));
                 }
             );
     }
@@ -262,8 +304,7 @@ function moveMySellerPage(){
             .then(
                 seller => {
                     if(seller != "No Result") {
-                        dispatch(success(seller));
-                        dispatch(moveSellerPage(seller.id));
+                        dispatch(success(seller.id));
                     }
                 },
                 error => {
@@ -272,9 +313,9 @@ function moveMySellerPage(){
             );
     }
 
-    function request() { return { type: sellerConstants.GET_SELLER_PROFILE_REQUEST } }
-    function success(sellerprofile) { return { type: sellerConstants.GET_SELLER_PROFILE_SUCCESS, sellerprofile }; }
-    function failure(error) { return { type: sellerConstants.GET_SELLER_PROFILE_FAILURE, error } }
+    function request() { return { type: sellerConstants.MOVE_MY_SELLER_PAGE_REQUEST } }
+    function success(adzaId) { return { type: sellerConstants.MOVE_MY_SELLER_PAGE_SUCCESS, adzaId }; }
+    function failure(error) { return { type: sellerConstants.MOVE_MY_SELLER_PAGE_FAILURE, error } }
 }
 
 function moveSellerPage(id){
@@ -288,3 +329,137 @@ function moveSellerPagePreview(sellerprofile){
         dispatch({ type: sellerConstants.MOVE_TO_SELLER_PAGE_PREVIEW, sellerprofile });
     }
 }
+
+function createOrder( _listing ){
+    return dispatch => {
+        dispatch(request());
+
+        sellerService.createOrder( _listing )
+            .then(
+                data => {
+                        dispatch(addOrderHistory(data.id,'order', 'accept', null, { listingname:_listing.Listing.title, price: _listing.Listing.price}));
+                        dispatch(addOrderHistory(data.id,'mediaupload','accept',"uygyugyuguy",{image:"item1"}));
+                        dispatch(addOrderHistory(data.id,'orderaccept','pending'));
+                        dispatch(success(data.Order_History))
+                },
+                error => {
+                    dispatch(failure());
+                }
+            );
+    }
+
+    function request() { return { type: sellerConstants.CREATE_ORDER_REQUEST } }
+    function success(Order_History) { return { type: sellerConstants.CREATE_ORDER_SUCCESS, Order_History}; }
+    function failure(error) { return { type: sellerConstants.CREATE_ORDER_FAILURE, error } }
+}
+
+function getOrderHistory(orderId){
+    return dispatch => {
+        dispatch(request());
+
+        sellerService.getOrderHistory(orderId)
+            .then(
+                data => {
+                    if(data.order != undefined){
+                        data.order.Order_Histories.sort(function(a,b){return a.id-b.id;});
+                        dispatch(success(data.order));
+                    }
+                    else{
+                        dispatch(failure());
+                    }
+                },
+                error => {
+                    dispatch(failure());
+                }
+            );
+    }
+
+    function request() { return { type: sellerConstants.GET_ORDER_STATE_REQUEST } }
+    function success(orderHistory) { return { type: sellerConstants.GET_ORDER_STATE_SUCCESS, orderHistory }; }
+    function failure(error) { return { type: sellerConstants.GET_ORDER_STATE_FAILURE, error } }
+}
+
+function updateOrderHistory(order){
+    return dispatch => {
+        dispatch(request());
+
+        sellerService.updateOrderHistory(order)
+            .then(
+                data => {
+                    dispatch(success());
+                    dispatch(getOrderHistory(order.OrderId));
+                },
+                error => {
+                    dispatch(failure());
+                }
+            );
+    }
+
+    function request() { return { type: sellerConstants.UPDATE_ORDER_STATE_REQUEST } }
+    function success() { return { type: sellerConstants.UPDATE_ORDER_STATE_SUCCESS }; }
+    function failure(error) { return { type: sellerConstants.UPDATE_ORDER_STATE_FAILURE, error } }
+}
+
+function addOrderHistory(orderId,order_type,order_status,order_comment=null,order_attachment={}){
+    return dispatch => {
+        dispatch(request());
+
+        sellerService.addOrderHistory(orderId,order_status,order_type,order_comment,order_attachment)
+            .then(
+                data => {
+                    dispatch(success());
+                    dispatch(getOrderHistory(orderId));
+                },
+                error => {
+                    dispatch(failure());
+                }
+            );
+    }
+
+    function request() { return { type: sellerConstants.ADD_ORDER_STATE_REQUEST } }
+    function success() { return { type: sellerConstants.ADD_ORDER_STATE_SUCCESS }; }
+    function failure(error) { return { type: sellerConstants.ADD_ORDER_STATE_FAILURE, error } }
+}
+
+
+function getLatestOrderHistory( _orderId, index = 0 ){
+    return dispatch => {
+        dispatch(request());
+
+        sellerService.getLatestOrderHistory( _orderId )
+            .then(
+                data => {
+                    dispatch(success(data.data, index));
+                },
+                error => {
+                    dispatch(failure());
+                }
+            );
+    }
+
+    function request() { return { type: sellerConstants.LATEST_HISTORY_ORDER_REQUEST } }
+    function success( latest_history, index ) { return { type: sellerConstants.LATEST_HISTORY_SUCCESS, latest_history, camp_index:index }; }
+    function failure(error) { return { type: sellerConstants.LATEST_HISTORY_FAILURE, error } }
+}
+
+function getSellerOrders(){
+    return dispatch => {
+        dispatch(request());
+
+        sellerService.getSellerOrders()
+            .then(
+                data => {
+                    dispatch(success(data.data));
+                },
+                error => {
+                    dispatch(failure());
+                }
+            );
+    }
+
+    function request() { return { type: sellerConstants.GET_SELLER_ORDER_REQUEST } }
+    function success( orders ) { return { type: sellerConstants.GET_SELLER_ORDER_SUCCESS, orders }; }
+    function failure(error) { return { type: sellerConstants.GET_SELLER_ORDER_FAILURE, error } }
+}
+
+

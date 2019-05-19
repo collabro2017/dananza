@@ -36,6 +36,17 @@ class SellerDashboard extends React.Component{
 			{ name: "Lemonfefes" },
 			{ name: "Apricots"}
 		],
+    sellerprofile: {
+      'profile_photo': null,
+      'profile_description': "",
+      'profile_location': "",
+      'image_gallery':[],
+      'audience_age_min': 0,
+      'audience_age_max': 60,
+      'audience_male_percent' : 0,
+      'audience_locations' : [],
+      'audience_interests' : [],  
+    },
 		channels: [],
 		new_channel:{},
 		adlist: [],
@@ -58,8 +69,6 @@ class SellerDashboard extends React.Component{
     this.onCrop = this.onCrop.bind(this)
     this.onClose = this.onClose.bind(this)
     this.onBeforeFileLoad = this.onBeforeFileLoad.bind(this)
-
-    this.state.sellerprofile = props.sellerprofile;
   }
 
   componentDidMount()
@@ -87,14 +96,7 @@ class SellerDashboard extends React.Component{
   {
   	if (props.sellerprofile != undefined)
   	{
-  		var profile_photo;
-  		try{
-  			profile_photo = require("../res/img/"+props.sellerprofile.profile_photo+".png");
-  			profile_photo = props.sellerprofile.profile_photo;
-  		}catch(e){
-  			profile_photo = "profile_photo";
-  		}
-  		this.setState({sellerprofile:{...props.sellerprofile,profile_photo},has_adza: true});
+  		this.setState({sellerprofile:{...props.sellerprofile},has_adza: true});
   	}
   	if (props.channel != undefined)
   	{
@@ -102,6 +104,7 @@ class SellerDashboard extends React.Component{
   	}
   	if (props.adlist != undefined)
   	{
+  		console.log(props.adlist);
   		this.setState({adlist:props.adlist,
   						adlist_edit:(props.adlist.map(item=>({...item}))) });
   	}
@@ -317,6 +320,9 @@ class SellerDashboard extends React.Component{
   {
   	const { sellerprofile, channels, adlist } = this.state;
   	const { dispatch } = this.props;
+
+    if(this.state.preview != null)
+      sellerprofile.profile_photo = this.state.preview;
   	dispatch(sellerActions.setProfile(sellerprofile));
   }
 
@@ -381,11 +387,12 @@ class SellerDashboard extends React.Component{
   	const uploader_button = <div className="input-icon"><i className="fa fa-file-image-o"></i><span>Drag files to upload or select files from your library</span></div>
 
   	let preview_image;
-  	if( profile_photo )
-  		preview_image = <img className="profile" src={require("../res/img/"+profile_photo+".png")}/>
-  	else
-  		preview_image = <img className="profile" src={ avatarDefault }/>
 
+    try{
+      preview_image = <img className="profile" src={require("../uploads/adza_avatar/"+this.state.sellerprofile.UserId+".png")}/>
+    }catch(e){
+      preview_image = <img className="profile" src={ avatarDefault }/>
+    }
   	if ( this.state.preview ) {
       	preview_image =  <img src={this.state.preview} alt="Preview" />
     } 
@@ -398,7 +405,6 @@ class SellerDashboard extends React.Component{
 					<div className="page-result">
 						<label className="title">Edit Your Profile Page</label>						
 						<label className="subtitle">Seller’s Description</label>
-						<label className="warning"> {this.props.sellerProfileMSG} </label>
 
 						<div className="control-list">
 							<div className="formcontrol row">
@@ -408,12 +414,14 @@ class SellerDashboard extends React.Component{
 			                          { preview_image }
 			                        </div>
 			                        <Avatar
+                                ref="avatar"
 			                          width={390}
 			                          height={295}
 			                          onCrop={this.onCrop}
 			                          onClose={this.onClose}
 			                          onBeforeFileLoad={this.onBeforeFileLoad}
 			                          src={this.state.avatar_src}
+                                mimeTypes={'image/jpeg,image/png,image/bmp'}
 			                        />
 								</div>
 							</div>
@@ -451,7 +459,6 @@ class SellerDashboard extends React.Component{
 						                imgExtension={['.jpg', '.gif', '.png', '.gif']}
 						                maxFileSize={5242880}
 						                withPreview={true}
-                            name="image_gallery"
 						            />
 								</div>
 							</div>

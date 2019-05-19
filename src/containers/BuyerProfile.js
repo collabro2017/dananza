@@ -14,10 +14,6 @@ import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
 import 'icheck/skins/all.css';
 import {Checkbox, Radio, RadioGroup} from 'react-icheck';
 
-import CloseIcon from '@material-ui/icons/Close';
-import IconButton from '@material-ui/core/IconButton';
-import Snackbar from '@material-ui/core/Snackbar';
-
 import "../res/icheck/skins/ltblue.css"
 import "../res/css/components/tag.css"
 import "../res/css/BuyerProfile.css"
@@ -33,10 +29,7 @@ class BuyerProfile extends React.Component{
             locations: [],
             linkedAccounts:{},
             accounts: [],
-            updated: {},
-            preview: null,
-            profile_photo: null,
-            openAlert: false
+            updated: {}
           }
           
   constructor(props) {
@@ -44,7 +37,6 @@ class BuyerProfile extends React.Component{
     props.changeHeaderType("buyer");
 
     this.props.dispatch(buyerActions.getBuyerProfile());
-    this.handleJobType = this.handleJobType.bind(this);
 
     // Avatar
     this.onCrop = this.onCrop.bind(this)
@@ -52,25 +44,15 @@ class BuyerProfile extends React.Component{
     this.onBeforeFileLoad = this.onBeforeFileLoad.bind(this)
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps (nextprops) {
 
-    const { profile } = nextProps;
+    const { profile } = nextprops;
     if(profile)
     {
       this.setState ({
-        ...nextProps.profile,
+        ...nextprops.profile,
       });
     }
-   
-    const { updated } = nextProps;
-    if( updated !== undefined )
-    {
-      if(nextProps.updated!==this.props.updated){
-        this.setState({ openAlert: true });
-        this.setState({ updated: updated });
-      }
-    }
-    
   }
 
   handleJobType(e) {
@@ -79,8 +61,13 @@ class BuyerProfile extends React.Component{
 
   handleSubmit() {
     const { dispatch } = this.props;
+
+    this.state.profile_photo = null;
+    if(this.state.preview != null)
+      this.state.profile_photo = this.state.preview;
+
+    this.state.preview = null;
     dispatch(buyerActions.updateBuyerProfile(this.state));
-    // dispatch(buyerActions.getBuyerProfile());
   }
 
   getDescriptionValue (e) {
@@ -104,7 +91,6 @@ class BuyerProfile extends React.Component{
 
   componentDidMount(){
     document.title = "Buyer Profile"
-    console.log('state = ', this.state);
   }
 
   addAccount(){
@@ -137,10 +123,7 @@ class BuyerProfile extends React.Component{
  
   onBeforeFileLoad(elem) {
     if(elem.target.files[0].size > 71680){
-      
-      this.setState({ openAlert: true });
-      this.setState({ updated: {"success":false, "message":"Image size is too big!"} });
-
+      alert("File is too big!");
       elem.target.value = "";
     };
   }
@@ -149,65 +132,21 @@ class BuyerProfile extends React.Component{
     this.setState({ linkedAccounts: {...this.state.linkedAccounts, [e.target.name]: e.target.value } })
   }
 
-  handleCloseSnack = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    this.setState({ openAlert: false });
-  };
-
   render(){
-    const { profile } = this.props;
-    const { profile_photo, updated } = this.state;
+    const { profile, user } = this.props;
+    let preview_image = "";
 
-    let preview_image;
-    if( profile_photo )
-      preview_image = <img className="profile" src={require("../assets/avatar/"+profile.profile_photo)} alt=""/>
-    else
-      preview_image = <img className="profile" src={ avatarDefault } alt=""/>
-
+    try{
+      preview_image =  <img src={require("../uploads/buyer_avatar/"+user.user_info.id+".png")}/>;
+    }catch{
+      preview_image =  <img src={avatarDefault}/>;
+    }
     if ( this.state.preview ) {
         preview_image =  <img src={this.state.preview} alt="Preview" />
     } 
 
-    let alertClass = "snackAlert";
-    if( updated !== undefined )
-    {
-      if( updated.success === true )
-        alertClass += " success"
-      else
-        alertClass += " error"
-    }
-
     return (
       <div className="buyer_landing buyer_profile">
-
-      { this.state.openAlert ?
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        className={alertClass}
-        open={this.state.openAlert}
-        onClose={this.handleCloseSnack}
-        message={this.state.updated.message}
-        autoHideDuration={6000}
-        action={[
-        <IconButton
-          key="close"
-          aria-label="Close"
-          color="inherit"
-          onClick={this.handleCloseSnack}
-        >
-          <CloseIcon />
-        </IconButton>
-      ]}
-      />
-      : null
-      }
-
         <div className="page-container">
            <div className="page-content">
               <BuyerSidebar navitem={"edit_profile"}/>
@@ -222,6 +161,12 @@ class BuyerProfile extends React.Component{
                 </div>
                 <hr className="divider-line" />
                 <div className="page-main-content pd-bottom row">
+                { this.props.updated ?
+                  <div className="alert_msg">
+                    <p>{ this.props.updated }</p>
+                  </div> 
+                  : null
+                }
                 <form role="form" className="form-horizontal">
                   <div className="form-body" ref="formbody">
                     <div className="formcontrol row">
@@ -482,8 +427,10 @@ class BuyerProfile extends React.Component{
 }
 
 const mapStateToProps = state => {
+  const { user } = state.authentication;
   const { profile, updated } = state.buyer
   return {
+    user,
     profile,
     updated
   };

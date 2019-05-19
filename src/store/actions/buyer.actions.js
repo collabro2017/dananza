@@ -7,8 +7,12 @@ export const buyerActions = {
     updateBuyerProfile,
     controlAction,
     getAllCampaigns,
-    createNewCampaign,
+    createCampaign,
+    getLatestCampaign,
+    createNewCart,
     addListingToCart,
+    getCurrentCartListings,
+    cancelListingInCart,
     delete: _deleteBuyerProfile
 };
 
@@ -51,7 +55,6 @@ function updateBuyerProfile ( _newData )
 
 function _deleteBuyerProfile() 
 {
-
 }
 
 function getAllCampaigns () 
@@ -65,21 +68,42 @@ function getAllCampaigns ()
     }
 }
 
-function createNewCampaign () 
+function createCampaign ( _cartid, _info ) 
 {
     return dispatch => {
-        buyerService.create_new_campaign()
+        buyerService.create_new_campaign( _cartid, _info )
             .then(
-                campaign => dispatch(controlAction(buyerConstants.CREAT_CAMPAIGN), campaign),
+                message => dispatch(controlAction(buyerConstants.CREAT_CAMPAIGN), message),
                 error => dispatch(controlAction(buyerConstants.ERROR, error))  
             )
     }
 }
 
-function addListingToCart( _newListingId ) 
+function  getLatestCampaign () {
+    return dispatch => {
+        buyerService.get_latest_campaign()
+            .then(
+                campaign => dispatch(controlAction(buyerConstants.LATEST_CAMPAIGN, campaign)),
+                error => dispatch(controlAction(buyerConstants.ERROR, error))
+            )
+    }
+}
+
+function createNewCart()
 {
     return dispatch => {
-        buyerService.add_list_to_cart( _newListingId )
+        buyerService.create_new_cart()
+            .then(
+                cart => dispatch(controlAction(buyerConstants.CREAT_NEW_CART, cart)),
+                error => dispatch(controlAction(buyerConstants.ERROR, error)) 
+            )
+    }
+}
+
+function addListingToCart( _current_cart, _newListingId, _sellerId ) 
+{
+    return dispatch => {
+        buyerService.add_list_to_cart( _current_cart, _newListingId, _sellerId )
             .then(
                 msg => dispatch(controlAction(buyerConstants.ADDLISTTOCART, msg)),
                 error => dispatch(controlAction(buyerConstants.ERROR, error)) 
@@ -87,7 +111,29 @@ function addListingToCart( _newListingId )
     }
 }
 
-function controlAction ( type, data ) 
+function getCurrentCartListings( _cartid ) 
+{
+    console.log('fetch all carts');
+    return dispatch => {
+        buyerService.get_current_cart_listings( _cartid )
+            .then(
+                listings => dispatch(controlAction(buyerConstants.GET_CURRENT_CART_LISTINGS, listings)),
+                error => dispatch(controlAction(buyerConstants.ERROR, error))
+            )
+    }
+}
+
+function cancelListingInCart( _cartid, _listingId ) {
+    return dispatch => {
+        buyerService.cancel_listing_in_cart( _cartid, _listingId )
+            .then(
+                message => dispatch(controlAction(buyerConstants.CANCEL_LISTING_IN_CART, message)),
+                error => dispatch(controlAction(buyerConstants.ERROR, error))
+            )
+    }
+}
+
+function controlAction( type, data ) 
 {
     return {
         type:   type,

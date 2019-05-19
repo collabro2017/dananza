@@ -9,7 +9,11 @@ export const buyerService = {
     update_buyer_profile,
     get_all_campaigns,
     create_new_campaign,
+    get_latest_campaign,
+    create_new_cart,
     add_list_to_cart,
+    get_current_cart_listings,
+    cancel_listing_in_cart,
     delete_buyer_profile: _delete_buyer_profile,
     fetchSavedAdza
 };
@@ -18,7 +22,6 @@ const apiRoot = apiConfig.apiRoot;
 
 function create_buyer_profile ( _newBuyer )
 {
-    console.log('userid = ', _newBuyer);
     const requestOptions = 
     {
         method: 'POST',
@@ -29,11 +32,7 @@ function create_buyer_profile ( _newBuyer )
     return fetch( apiRoot + `/buyer`, requestOptions )
         .then( userService.handleResponse )
         .then( message => {
-            
-            console.log('successful creating', message);
-
             return message
-           
         });
 }
 
@@ -85,32 +84,93 @@ function get_all_campaigns()
         });
 }
 
-function create_new_campaign() 
+function create_new_campaign( _cartid, _info ) 
 {
     const reqOpt = {
         method: 'POST',
         headers: { ...authHeader(), "Content-Type": "application/json" },
-        body: { campaign_name: 'MyCamp'}
+        body: JSON.stringify( {info: _info, cartid: _cartid })
     }
 
-    return fetch( apiRoot + `/campaign/`, reqOpt )
+    return fetch( apiRoot + `/campaign`, reqOpt )
         .then( userService.handleResponse )
         .then( message =>{
             return message
     });
 }
 
-function add_list_to_cart ( _newListingId ) 
+function get_latest_campaign() 
 {
     const reqOpt = {
-        method: 'POST',
+        method: 'GET',
         headers: { ...authHeader(), "Content-Type": "application/json" }
     }
 
-    return fetch( apiRoot + `/cart/${_newListingId}`, reqOpt )
+    return fetch( apiRoot + `/campaign/latest`, reqOpt )
+        .then( userService.handleResponse )
+        .then( campaign =>{
+            return campaign
+    });
+}
+
+function create_new_cart () 
+{
+    const reqOpt = {
+        method: 'POST',
+        headers: { ...authHeader(), "Content-Type": "application/json" },
+    }
+
+    return fetch( apiRoot + `/cart`, reqOpt )
+        .then( userService.handleResponse )
+        .then( cart => {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            return cart;
+    });
+}
+
+function add_list_to_cart ( _cur_cart_id, _newListingId, _sellerId ) 
+{
+    const reqOpt = {
+        method: 'POST',
+        headers: { ...authHeader(), "Content-Type": "application/json" },
+        body: JSON.stringify({ cartid: _cur_cart_id, newlisting: _newListingId, sellerid: _sellerId })
+    }
+
+    return fetch( apiRoot + `/cart/addListing`, reqOpt )
         .then( userService.handleResponse )
         .then( message =>{
             return message
+    });
+}
+
+function get_current_cart_listings( _cartId ) 
+{
+    const reqOpt = {
+        method: "POST",
+        headers: { ...authHeader(), "Content-Type": "application/json" },
+        body: JSON.stringify({cartid: _cartId})
+    };
+
+    return fetch(apiRoot + `/cart/cartListings`, reqOpt)
+        .then( userService.handleResponse )
+        .then( listings => {
+            return listings;
+        });
+}
+
+function cancel_listing_in_cart( _cartid, _lisingId )
+{
+    const reqOpt = {
+        method: "POST",
+        headers: { ...authHeader(), "Content-Type": "application/json" },
+        body: JSON.stringify({cartid: _cartid})
+    }
+
+    return fetch(apiRoot + `/cart/${_lisingId}`, reqOpt)
+    .then( userService.handleResponse )
+    .then( message => 
+        {
+            return get_current_cart_listings();
     });
 }
 

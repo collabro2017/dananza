@@ -198,6 +198,9 @@
 .seller_order .pagination label{
 	border: none;
 }
+.dashboard_seller .page-result-wrapper .page-result {
+	min-height: 623px;
+}
 /* mobile */
 @media(min-width: 1230px){
 

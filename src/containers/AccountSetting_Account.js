@@ -11,6 +11,7 @@ import {Collapse} from 'react-bootstrap'
 import $ from "jquery";
 
 import { sellerActions } from '../store/actions';
+import { userActions } from '../store/actions';
 
 import AccountSettingSidebar from "../components/Sidebar/AccountSettingSidebar";
 
@@ -23,7 +24,13 @@ import "../res/css/components/select.css"
 
 class AccountSettingAccount extends React.Component{
 
-  state={'headerType': "buyer"
+  state={
+    'headerType': "buyer",
+    'account':{
+      fullname:"",
+      email: "",
+      onlinestatus: "Be Online on Login"
+    }
   }
 
   constructor(props)
@@ -35,10 +42,41 @@ class AccountSettingAccount extends React.Component{
 
   componentDidMount()
   {
-    document.title = "Seller Dashboard";
+    document.title = "AccountSetting_Account";
+  }
+
+  componentWillReceiveProps(nextprops)
+  {
+    console.log(nextprops);
+    if (nextprops.items != undefined) {
+      this.setState({account:{...this.state.account,
+        ...nextprops.items.info,
+        fullname:nextprops.items.info.f_name+" "+nextprops.items.info.l_name}});
+    }
+  }
+
+  componentWillMount()
+  {
+    const {dispatch} = this.props;
+    dispatch(userActions.getAll());
+  }
+
+  onChangeEdit(name,event)
+  {
+    this.setState({account:{...this.state.account,[name]:event.target.value}});
+  }
+
+  onSubmit(event)
+  {
+    event.preventDefault();
+    const {dispatch} = this.props;
+    this.state.account.firstName = this.state.account.fullname.split(' ')[0];
+    this.state.account.lastName = this.state.account.fullname.split(' ')[1];
+    dispatch(userActions.updateUserInfo(this.state.account));  
   }
 
   render(){
+    const {fullname,email,onlinestatus} = this.state.account;
     return (
     	<div className="account_setting">
 	    	<div className="page-content account_tab">
@@ -53,13 +91,13 @@ class AccountSettingAccount extends React.Component{
               </div>
             </div>
             <hr/>
-            <form className="form">
+            <form className="form" onSubmit={(event)=>{this.onSubmit(event)}}>
               <div className="row">
                 <div className="col-sm-3 control-label">
                   Full Name
                 </div>
                 <div className="col-sm-9">
-                  <input className="form-control" value="Alyssa Edwards"/>
+                  <input className="form-control" value={fullname} onChange={(e)=>this.onChangeEdit("fullname",e)}/>
                   <img className="show-icon" src={require('../res/img/username.png')} alt=""/>
                 </div>
               </div>
@@ -68,7 +106,7 @@ class AccountSettingAccount extends React.Component{
                   Email
                 </div>
                 <div className="col-sm-9">
-                  <input className="form-control" value="alyssa_Ee@gmail.com"/>
+                  <input type="email" className="form-control" value={email} onChange={(e)=>this.onChangeEdit("email",e)}/>
                   <img className="show-icon" src={require('../res/img/envelope2.png')} alt=""/>
                 </div>
               </div>
@@ -157,14 +195,10 @@ class AccountSettingAccount extends React.Component{
 }
 const mapStateToProps = state => {
   	const { user } = state.authentication;
-  	const { sellerProfileMSG, sellerprofile, channel, adlist } = state.seller;
+  	const { items } = state.users;
 
 	return {
-		user,
-		sellerProfileMSG,
-		sellerprofile,
-		channel,
-		adlist
+		items
 	};
 };
 

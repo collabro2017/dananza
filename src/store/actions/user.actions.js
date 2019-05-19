@@ -1,16 +1,19 @@
 import { userConstants } from '../config';
 import { userService } from '../services';
-import { alertActions, buyerActions } from './';
+import { alertActions, buyerActions, sellerActions } from './';
 //import { history } from '../helpers'
 
 export const userActions = {
     login,
     logout,
     register,
+    registerAsSeller,
     getAll,
     delete: _delete,
     switchToSeller,
-    switchToBuyer
+    switchToBuyer,
+    updateUserInfo,
+    updatePassword
 };
 
 function login(email, password, isSocial="false") {
@@ -21,6 +24,8 @@ function login(email, password, isSocial="false") {
             .then(
                 user => { 
                     dispatch(success(user));
+                    dispatch(buyerActions.getBuyerProfile());
+                    dispatch(buyerActions.createNewCart());
                 },
                 error => {
                     dispatch(failure(error));
@@ -40,6 +45,29 @@ function logout() {
 }
 
 function register(user) {
+
+    return dispatch => {
+        dispatch(request(user));
+
+        userService.register(user)
+            .then(
+                user => { 
+                    dispatch(success(user));
+                    dispatch(buyerActions.createBuyerProfile(user));
+                },
+                error => {
+                    dispatch(failure(error));
+                    dispatch(alertActions.error(error));
+                }
+            );
+    };
+
+    function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
+    function success(user) { return { type: userConstants.REGISTER_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
+}
+
+function registerAsSeller(user){
     return dispatch => {
         dispatch(request(user));
 
@@ -48,14 +76,12 @@ function register(user) {
                 user => { 
                     dispatch(success());
                     
-                    //creat new buyer profile
-                    dispatch(buyerActions.createBuyerProfile(user));
+                    dispatch(sellerActions.createProfile(user));
 
                     dispatch(alertActions.success('Registration successful'));
                 },
                 error => {
                     dispatch(failure(error));
-                    dispatch(alertActions.error(error));
                 }
             );
     };
@@ -81,6 +107,40 @@ function getAll() {
     function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }
 }
 
+function updateUserInfo(info){
+    return dispatch => {
+        dispatch(request());
+
+        userService.update(info)
+            .then(
+                users => dispatch(success()),
+                error => dispatch(failure(error))
+            );
+    };
+
+    function request() { return { type: userConstants.UPDATE_USERINFO_REQUEST } }
+    function success() { return { type: userConstants.UPDATE_USERINFO_SUCCESS } }
+    function failure(error) { return { type: userConstants.UPDATE_USERINFO_FAILURE, error } }
+}
+
+function updatePassword(pwd){
+    return dispatch => {
+        dispatch(request());
+
+        userService.updatePassword(pwd)
+            .then(
+                data => {
+                    dispatch(success(data.success))
+                },
+                error => dispatch(failure(error))
+            );
+    };
+
+    function request() { return { type: userConstants.UPDATE_PWD_REQUEST } }
+    function success(res) { return { type: userConstants.UPDATE_PWD_SUCCESS, result:res } }
+    function failure(error) { return { type: userConstants.UPDATE_PWD_FAILURE, error } }
+}
+
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
     return dispatch => {
@@ -102,6 +162,7 @@ function _delete(id) {
     function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
 }
 
+
 function switchToSeller(){
     return { type: userConstants.USERTYPE, user_type: "seller" };
 }
@@ -109,4 +170,3 @@ function switchToSeller(){
 function switchToBuyer(){
     return { type: userConstants.USERTYPE, user_type: "buyer" };
 }
-

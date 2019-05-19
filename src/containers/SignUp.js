@@ -1,7 +1,9 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { userActions } from '../store/actions';
 
 import $ from "jquery";
 
@@ -9,7 +11,18 @@ import "../res/css/Adza_Signup_Dananza.css"
 
 class SignUp extends React.Component{
 
-  state={'headerType': "homepage","preview":require("../res/img/image_dashboard_order.png")}
+  state={
+  	'headerType': "homepage",
+  	"preview":require("../res/img/image_dashboard_order.png"),
+  	"user":{
+  		firstName: '',
+        lastName: '',
+        businessName: '',
+        email: '',
+        password: '',
+        cfm_password: ''
+  	}
+  };
 
   constructor(props) {
     super(props);
@@ -24,13 +37,27 @@ class SignUp extends React.Component{
   	this.setState({"preview":tmp});
   }
 
+  onChangeEdit(e, name){
+  	this.setState({ user:{...this.state.user,[name]:e.target.value} });
+  }
+
+  onSubmit(e){
+  	e.preventDefault();
+  	const { user } = this.state;
+    const { dispatch } = this.props;
+    if (user.firstName && user.lastName && user.email && user.password && user.businessName && user.password === user.cfm_password ) {
+        dispatch(userActions.registerAsSeller(user));
+    }
+  }
+
   render(){
+  	const {firstName, lastName, businessName, email, password, cfm_password} = this.state.user;
     return (
       	<div className="adza_signup_section">
 			<div className="full_container">
 				<div className="row heroblog">
 					<div className="image">
-						<img src={require("../res/img/Heroimage1.png")}/>
+						<img src={require("../res/img/Heroimage1.png")} alt=""/>
 						<div className="col-sm-6">
 						</div>
 						<div className="col-sm-6 mk_adv_smp color-title">
@@ -48,35 +75,49 @@ class SignUp extends React.Component{
 					<div className="col-sm-12 sub_title">
 						Sign Up Below & Let’s Make Advertising Simple
 					</div>
-					<div className="col-sm-12">
-						<input type="text" className="form-control" placeholder="Business Name"/>
-						<i className="fa fa-briefcase show-icon"></i>
-					</div>
-					<div className="col-sm-6">
-						<input type="text" className="form-control" placeholder="First Name"/>
-						<i className="fa fa-user show-icon"></i>
-					</div>
-					<div className="col-sm-6">
-						<input type="text" className="form-control" placeholder="Last Name"/>
-						<i className="fa fa-user show-icon"></i>
-					</div>
-					<div className="col-sm-12">
-						<input type="text" className="form-control"  placeholder="Enter Your Email"/>
-						<i className="fa fa-envelope-o show-icon"></i>
-					</div>
-					<div className="col-sm-6">
-						<input type="text" className="form-control"  placeholder="Your Password"/>
-						<i className="fa fa-key show-icon"></i>
-					</div>
-					<div className="col-sm-6">
-						<input type="text" className="form-control"  placeholder="Confirm Password"/>
-						<i className="fa fa-key show-icon"></i>
-					</div>
-					<div className="col-sm-12 align-center">
-						<button className="form-button">
-							Next<i className="fa fa-long-arrow-right"></i>
-						</button>
-					</div>
+					<form onSubmit={(e)=>this.onSubmit(e)}>
+						<div className="col-sm-12">
+							<input type="text" className="form-control"
+								value={businessName} onChange={(e)=>this.onChangeEdit(e,'businessName')}
+								 placeholder="Business Name" required/>
+							<i className="fa fa-briefcase show-icon"></i>
+						</div>
+						<div className="col-sm-6">
+							<input type="text" className="form-control"
+								value={firstName} onChange={(e)=>this.onChangeEdit(e,'firstName')}
+								placeholder="First Name" required/>
+							<i className="fa fa-user show-icon"></i>
+						</div>
+						<div className="col-sm-6">
+							<input type="text" className="form-control" 
+								value={lastName} onChange={(e)=>this.onChangeEdit(e,'lastName')}
+								placeholder="Last Name" required/>
+							<i className="fa fa-user show-icon"></i>
+						</div>
+						<div className="col-sm-12">
+							<input type="email" className="form-control"  
+								value={email} onChange={(e)=>this.onChangeEdit(e,'email')}
+								placeholder="Enter Your Email" required/>
+							<i className="fa fa-envelope-o show-icon"></i>
+						</div>
+						<div className="col-sm-6">
+							<input type="password" className="form-control" 
+								value={password} onChange={(e)=>this.onChangeEdit(e,'password')}
+								placeholder="Your Password" required/>
+							<i className="fa fa-key show-icon"></i>
+						</div>
+						<div className="col-sm-6">
+							<input type="password" className="form-control"
+								value={cfm_password} onChange={(e)=>this.onChangeEdit(e,'cfm_password')}
+								placeholder="Confirm Password" required/>
+							<i className="fa fa-key show-icon"></i>
+						</div>
+						<div className="col-sm-12 align-center">
+							<button className="form-button">
+								Next<i className="fa fa-long-arrow-right"></i>
+							</button>
+						</div>
+					</form>
 				</div>
 				<div className="row how_works">
 					<div className="col-sm-12 info_title">
@@ -181,22 +222,20 @@ class SignUp extends React.Component{
   }
 }
 
-const mapStateToProps = state => {
-  return {
+function mapStateToProps(state) {
+    const { registering } = state.registration;
+    const { alert } = state;
 
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-
-    },
-    dispatch
-  );
-};
+    return {
+        registering,
+        alert
+    };
+}
+function mapDispatchToProps(dispatch){
+	return {dispatch};
+}
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SignUp);
+)(withRouter(SignUp));

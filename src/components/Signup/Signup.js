@@ -25,7 +25,7 @@ import "../../res/css/login.min.css";
 
 class Signup extends React.Component{
     state = {"mode":""};
-
+    register = false;
     constructor(props) {
       super(props);
 
@@ -63,16 +63,24 @@ class Signup extends React.Component{
         });
     }
 
-    handleSubmit(event) {
+    handleSubmit(event) 
+    {
         event.preventDefault();
-
+  
         this.setState({ submitted: true });
         const { user } = this.state;
         const { dispatch } = this.props;
-        if (user.firstName && user.lastName && user.email && user.password && user.businessName && user.password === user.cfm_password ) {
-            dispatch(userActions.register(user));
+        if (user.firstName 
+            && user.lastName 
+            && user.email 
+            && user.password 
+            && user.businessName 
+            && user.password === user.cfm_password 
+          ) 
+        {
+          dispatch(userActions.register(user));
         }
-    };
+    }
 
     responseFacebook(response){
       console.log(response);
@@ -99,15 +107,37 @@ class Signup extends React.Component{
               firstName: response.profileObj.givenName,
               lastName: response.profileObj.familyName,
               businessName: response.profileObj.name,
-              email: response.profileObj.email
+              email: response.profileObj.email,
+              type: 'google'
             }
         dispatch(userActions.register(user));
         dispatch(userActions.login(response.profileObj.email, "", true));
       }
     };
 
+    componentWillReceiveProps(nextprops) {
+      const { registered, loggedIn } = nextprops;
+      const { user } = this.state;
+
+      if(registered)
+        this.props.dispatch(userActions.login(user.email, user.password));
+
+      if ( nextprops.profile != undefined && loggedIn && !this.register)
+      {
+        this.register = true;
+        if (nextprops.profile.has_seller_acct == true)
+        {
+          this.props.history.push("/seller_dashboard");
+        }
+        else
+        {
+          this.props.history.push("/buyer_landing");
+        }
+      }
+    }
+
     render(){
-      const { registering, alert } = this.props;
+      const { registered, alert } = this.props;
       const { user, submitted } = this.state;
       const google_clientID = process.env.REACT_APP_GOOGLE_CLIENTID;
       const facebook_appID = process.env.REACT_APP_FACEBOOK_APPID;
@@ -245,12 +275,15 @@ class Signup extends React.Component{
 };
 
 function mapStateToProps(state) {
-    const { registering } = state.registration;
+    const { registered, loggedIn } = state.authentication;
     const { alert } = state;
+    const { profile } = state.buyer;
 
     return {
-        registering,
-        alert
+        registered,
+        loggedIn,
+        alert,
+        profile
     };
 }
 

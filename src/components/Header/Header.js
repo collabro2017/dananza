@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { userActions, sellerActions, buyerActions } from '../../store/actions';
 import { withRouter } from "react-router-dom";
 import avatarDefault from '../../res/img/default_avatar.png';
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
+import Snackbar from '@material-ui/core/Snackbar';
 
 import "../../res/bootstrap/css/bootstrap.min.css"
 import "../../res/font-awesome/css/font-awesome.min.css"
@@ -23,11 +26,14 @@ class Header extends React.Component{
     headerType: "",
     show_search: true,
     user_type: "buyer",
-    has_seller_acct: false
+    has_seller_acct: false,
+    openAlert: false,
+    alertmsg: "",
+    alertType: "",
+    searchinput: ""
   };
   toggleflag = 0;
-  goAdza = false;
-
+  goMyAdzaPage = false;
   constructor(props) {
     super(props);
 
@@ -43,9 +49,20 @@ class Header extends React.Component{
     const bootstrap = require('bootstrap');
     const { loggedIn, type, user, profile, user_type } = nextProps;
 
-    if (this.goAdza == true && nextProps.AdzaprofileId !== undefined) {
-      this.props.history.push("/seller_page/"+nextProps.AdzaprofileId);
-      this.goAdza = false;
+    if (this.goMyAdzaPage == true && nextProps.adzaId != undefined) {
+      this.props.history.push("/seller_page/"+nextProps.adzaId);
+      this.goMyAdzaPage = false;
+    }
+
+    if (nextProps.alert != this.props.alert) {
+      var alertType = "";
+      if (nextProps.alert.type == 'alert-success') {
+        alertType = "success";
+      }
+      else if (nextProps.alert.type == 'alert-danger') {
+        alertType = "success";
+      }
+      this.setState({openAlert:true,alertmsg:nextProps.alert.message,alertType});
     }
 
     if( profile !== undefined ){
@@ -54,7 +71,7 @@ class Header extends React.Component{
 
     this.setState({headerType: nextProps.type}) 
 
-    // Handle Search Box on Header
+      // Handle Search Box on Header
     if( window.location.pathname === '/' || window.location.pathname === '/signup' )
        this.setState({ show_search: false});
     else
@@ -64,7 +81,7 @@ class Header extends React.Component{
       this.setState({ user_type: "seller" }) 
     else
       this.setState({ user_type: "buyer" }) 
-
+    
     // Handle Header Type for Buyer and Seller
     if( loggedIn !== undefined )
     {
@@ -87,13 +104,11 @@ class Header extends React.Component{
 
   componentDidMount() {
     this.setState({headerType: this.props.type});
-
-    const { dispatch, loggedIn } = this.props;
-    if( loggedIn !== undefined )
-    {
-      dispatch( buyerActions.getBuyerProfile() );
-    }
   };
+
+  componentWillUpdate() {
+
+  }
 
   componentDidUpdate(prevProps,prevState,prevContext){
     if(prevState.headerType !== "seller" && prevState.headerType !== "buyer" && prevState.headerType !== "static"){
@@ -130,14 +145,14 @@ class Header extends React.Component{
 
   logout()
   {
-    const { dispatch } = this.props;
-    dispatch( userActions.logout() )
+    this.setState({has_seller_acct:false});
+    this.props.dispatch(userActions.logout());
   }
 
   showSellerProfile()
   {
     const { dispatch } = this.props;
-    this.goAdza = true;
+    this.goMyAdzaPage = true;
     dispatch(sellerActions.moveMySellerPage());
   }
 
@@ -145,15 +160,14 @@ class Header extends React.Component{
   {
     const { loggedIn, type } = nextProps;
 
-    if( (!loggedIn || loggedIn === undefined ) 
-        && window.location.pathname !== '/' 
-        && window.location.pathname !== '/about'
-        && window.location.pathname !== '/help'
-        && window.location.pathname !== '/cart'
-        && window.location.pathname !== '/checkout'
-        && window.location.pathname !== '/blogs'
-        && window.location.pathname !== '/signup'
-        && window.location.pathname !== '/results'
+    if( (!loggedIn || loggedIn == "undefined") 
+        && window.location.pathname != '/' 
+        && window.location.pathname != '/about'
+        && window.location.pathname != '/help'
+        && window.location.pathname != '/cart'
+        && window.location.pathname != '/checkout'
+        && window.location.pathname != '/uploadfiles'
+        && window.location.pathname != '/signup'
       )
     {  
         this.props.history.push('/');
@@ -172,6 +186,19 @@ class Header extends React.Component{
 
     this.props.history.push('/buyer_landing');
   }
+  handleCloseSnack = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({ openAlert: false });
+  };
+  onChangeSearch(e){
+    this.setState({searchinput:e.target.value});
+  }
+  onSearch(){
+    this.props.history.push('/results/'+this.state.searchinput);
+  }
   /*
     header types:
       static : for general pages such as About, Help & Support
@@ -181,18 +208,48 @@ class Header extends React.Component{
   */
   renderSwitchHeader(){
 
-    const {profile} = this.props;
+    const {profile,user} = this.props;
 
-    let BuyerAvatar;
-    if( profile !== undefined && profile.profile_photo !== undefined && profile.profile_photo !== null)
-      BuyerAvatar = <img className="profile" src={require("../../assets/avatar/"+profile.profile_photo)} alt=""/>
-    else
+    let BuyerAvatar, SellerAvatar;
+    let alert;
+
+    try{
+      BuyerAvatar = <img className="profile" src={require("../../uploads/buyer_avatar/"+user.user_info.id+".png")}/>
+    } catch{
       BuyerAvatar = <img className="profile" src={ avatarDefault } alt=""/>
+    }
+    try{
+      SellerAvatar = <img className="profile" src={require("../../uploads/adza_avatar/"+user.user_info.id+".png")}/>
+    } catch{
+      SellerAvatar = <img className="profile" src={ avatarDefault } alt=""/>
+    }
 
-    if( this.state.headerType === 'seller' ) // Seller Pages
+    alert = (<Snackbar
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            className={this.state.alertType+" snackAlert"}
+            open={this.state.openAlert}
+            onClose={this.handleCloseSnack}
+            message={this.state.alertmsg}
+            autoHideDuration={6000}
+            action={[
+            <IconButton
+              key="close"
+              aria-label="Close"
+              color="inherit"
+              onClick={this.handleCloseSnack}
+            >
+              <CloseIcon />
+            </IconButton>
+          ]}
+          />);
+    if( this.state.headerType == 'seller' ) // Seller Pages
     {
         return (
           <div className="header_search seller_header">
+          {alert}
             <div className="nav_bar">
               <div className="logo">
                 <Link to="/"><img src={logoUrl}  alt=""/></Link>
@@ -200,8 +257,8 @@ class Header extends React.Component{
               { this.state.show_search  > 0 &&
               <div className="input-icon">
                 <i className="fa fa-search input"></i>
-                <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?"/>
-                <Link to="/results" className="btn green search-but">Search</Link>
+                <input type="text" className="form-control search-input" value={this.state.searchinput} onChange={(e)=>this.onChangeSearch(e)} placeholder="Where do you want to see your ad?"/>
+                <button onClick={this.onSearch.bind(this)} className="btn green search-but">Search</button>
               </div>
               }
               <div className="nav_menu">
@@ -221,37 +278,29 @@ class Header extends React.Component{
                         data-hover="dropdown" 
                         data-close-others="false"
                     >
-                      {<img className="img-circle seller_toggle" src={require("../../res/img/drop_menu_profile.png")} alt="" />}
+                      {SellerAvatar}
                       <i className="fa fa-angle-down"></i>
                     </a>
                     <ul className="dropdown-menu dropdown-menu-default seller ">
                         <li>
                             <Link to="/seller_page">
-                              <a href="#">
-                                  My Profile 
-                              </a>
+                                My Profile 
                             </Link>
                         </li>
                         <li>
                             <Link to="/seller_dashboard">
-                              <a href="#">
                                   My Dashboard 
-                              </a>
                             </Link>
                         </li>
                         <li>
                             <Link to="/account_setting_account">
-                              <a href="#">
                                   Account Settings
-                              </a>
                             </Link>
                         </li>
                         <li class="divider"> </li>
                         <li>
                             <Link to="/">
-                              <a href="#">
                                   Login to Other Accounts<img  className="menu_icon" src={require("../../res/img/drop_menu_icon_user.png")}/>
-                              </a>
                             </Link>
                         </li>
                         <li class="other_act_img">
@@ -279,15 +328,13 @@ class Header extends React.Component{
                         </li>
                         <li>
                             <Link to="/help">
-                              <a href="#">
                                   Help <img src={require("../../res/img/drop_menu_icon_help.png")}  alt=""/>
-                              </a>
                              </Link>
                         </li>
                         <li>
-                            <a href="#" onClick={ this.logout }>
-                                Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}  alt=""/>
-                            </a>
+                            <Link to="/" onClick={ this.logout }>
+                                  Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}  alt=""/>
+                            </Link>
                         </li>
                     </ul>
                   </li>
@@ -302,8 +349,8 @@ class Header extends React.Component{
                   <li>
                     <div className="input-icon">
                       <i className="fa fa-search input"></i>
-                      <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
-                      <Link to="/results"><button className="btn green search-but">Search</button></Link>
+                      <input type="text" className="form-control search-input" value={this.state.searchinput} onChange={(e)=>this.onChangeSearch(e)} placeholder="Where do you want to see your ad?" />
+                      <button onClick={this.onSearch.bind(this)} className="btn green search-but">Search</button>
                     </div>
                   </li>
                   }
@@ -374,9 +421,9 @@ class Header extends React.Component{
                             </Link>
                         </li>
                         <li>
-                            <a href="#" onClick={ this.logout }>
-                                Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}  alt=""/>
-                            </a>
+                            <Link to="/" onClick={ this.logout }>
+                                  Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}  alt=""/>
+                            </Link>
                         </li>
                     </ul>
                   </li>
@@ -387,20 +434,20 @@ class Header extends React.Component{
 
         );
     }
-    else if( this.state.headerType === 'buyer' ) // Buyer Pages
+    else if( this.state.headerType == 'buyer' ) // Buyer Pages
     {
         return ( 
           <div className="header_search buyer_header">
+          {alert}
             <div className="nav_bar">
               <div className="logo">
                 <Link to="/"><img src={logoUrl}/></Link>
               </div>
-
               { this.state.show_search  > 0 &&
               <div className="input-icon">
                 <i className="fa fa-search input"></i>
-                <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
-                <Link to="/results"><button className="btn green search-but">Search</button></Link>
+                <input type="text" className="form-control search-input" value={this.state.searchinput} onChange={(e)=>this.onChangeSearch(e)} placeholder="Where do you want to see your ad?" />
+                <button onClick={this.onSearch.bind(this)} className="btn green search-but">Search</button>
               </div>
               }
               <div className="nav_menu">
@@ -452,9 +499,10 @@ class Header extends React.Component{
                             </Link>
                         </li>
                         <li>
-                            <a href="#" onClick={ this.logout }>
-                                Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}  alt=""/>
-                            </a>
+                            <Link to="/" onClick={ this.logout }>
+                              logout
+                                <img src={require("../../res/img/logout.png")} alt=""/>
+                            </Link>
                         </li>
                     </ul>
                   </li>
@@ -469,8 +517,8 @@ class Header extends React.Component{
                   <li>
                     <div className="input-icon">
                       <i className="fa fa-search input"></i>
-                      <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
-                      <Link to="/results"><button className="btn green search-but">Search</button></Link>
+                      <input type="text" className="form-control search-input" value={this.state.searchinput} onChange={(e)=>this.onChangeSearch(e)} placeholder="Where do you want to see your ad?" />
+                      <button onClick={this.onSearch.bind(this)} className="btn green search-but">Search</button>
                     </div>
                   </li>
                   }
@@ -521,9 +569,10 @@ class Header extends React.Component{
                             </Link>
                         </li>
                         <li>
-                            <a href="#" onClick={ this.logout }>
-                                Log Out<img src={require("../../res/img/drop_menu_icon_logout.png")}  alt=""/>
-                            </a>
+                            <Link to="/">
+                              Log Out
+                                <img src={require("../../res/img/logout.png")}  alt=""/>
+                            </Link>
                         </li>
                     </ul>
                   </li>
@@ -533,10 +582,11 @@ class Header extends React.Component{
           </div>
         );
     }
-    else if( this.state.headerType === 'homepage' ) // Homepage
+    else if( this.state.headerType == 'homepage' ) // Homepage
     {
         return (
           <div className="header_section">
+          {alert}
             <div className="nav_bar">
               <div className="logo">
                 <Link to="/"><img src={logoUrl} alt=""/></Link>
@@ -596,6 +646,7 @@ class Header extends React.Component{
     {
       return ( 
         <div className="header_search">
+        {alert}
             <div className="nav_bar">
                 <div className="logo">
                     <Link to="/"><img src={logoUrl} alt=""/></Link>
@@ -603,8 +654,8 @@ class Header extends React.Component{
                 { this.state.show_search  > 0 &&
                 <div className="input-icon">
                     <i className="fa fa-search input"></i>
-                    <input type="text" className="form-control search-input" placeholder="Where do you want to see your ad?" />
-                    <Link to="/results" className="btn bg-blue search-but color-white">Search</Link>
+                    <input type="text" className="form-control search-input" value={this.state.searchinput} onChange={(e)=>this.onChangeSearch(e)} placeholder="Where do you want to see your ad?" />
+                    <button onClick={this.onSearch.bind(this)} className="btn bg-blue search-but color-white">Search</button>
                 </div>
                 }
                 <div className="nav_menu">
@@ -659,16 +710,19 @@ class Header extends React.Component{
 };
 
 const mapStateToProps = state => {
+  const { adzaId, goMyAdzaPage} = state.seller;
   const { loggedIn, user, user_type } = state.authentication;
-  const { AdzaprofileId} = state.seller;
   const { profile } = state.buyer;
+  const alert = state.alert;
 
   return {
-    loggedIn,
     user,
-    AdzaprofileId,
+    loggedIn,
+    adzaId,
+    user_type,
     profile,
-    user_type
+    goMyAdzaPage,
+    alert
   };
 };
 

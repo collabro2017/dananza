@@ -4,7 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     OrderId: DataTypes.INTEGER,
     order_comment: DataTypes.STRING,
     order_status: DataTypes.STRING,
-    update_time: DataTypes.DATE
+    update_time: DataTypes.DATE,
+    order_type: DataTypes.STRING,
+    order_attachment: DataTypes.JSON
   }, {});
   Order_History.associate = function(models) {
     // associations can be defined here

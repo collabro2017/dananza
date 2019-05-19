@@ -65,6 +65,7 @@
 	border-top: 0.5px solid #dadada;
 	border-bottom: 0.5px solid #dadada;
 	margin-top: -1px;
+	border-radius: 0px !important;
 }
 .account_setting .page-sidebar .section .btn-group label img{
 	margin-left: 30px;

@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import classNames from "classnames";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
@@ -8,41 +10,28 @@ import ListItemText from "@material-ui/core/ListItemText";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import SettingsIcon from "@material-ui/icons/Settings";
 import { Link } from "react-router-dom";
-import { connect } from 'react-redux';
-import { buyerActions } from '../../store/actions';
 import avatarDefault from '../../res/img/default_avatar.png';
 
 import "../../res/css/BuyerSidebar.css"
 
 const drawerWidth = 240;
 
-class BuyerSidebar extends React.Component{
 
-  state={'headerType': "buyer"}
-
-  constructor(props) {
-    super(props);
-
-    this.props.dispatch(buyerActions.getBuyerProfile());
+const BuyerSidebar = props => {
+  const { open, classes, navitem } = props;
+  let avatar;
+  try{
+    avatar = <img className="profile" src={require("../../uploads/buyer_avatar/"+props.user.user_info.id+".png")}/>
+  }catch(e){
+    avatar = <img className="profile" src={ avatarDefault }/>
   }
-
-  render(){
-  const { open, classes, navitem } = this.props;
-  const { profile, profile_photo } = this.props;
-
-  let BuyerAvatar;
-  if( profile !== undefined && profile.profile_photo !== undefined && profile.profile_photo !== null)
-    BuyerAvatar = <img className="profile" src={require("../../assets/avatar/"+profile.profile_photo)} alt=""/>
-  else
-    BuyerAvatar = <img className="profile" src={ avatarDefault } alt=""/>
-
   return (
     <div className="page-sidebar buyer-sidebar">
         <div className="section target-tree">
           <div className="image">
-            {BuyerAvatar}
-            <h1 className="buyer-name">Michaela Seyra</h1>
-            <h5 className="buyer-mail">@michaela_Syr</h5>
+            {avatar}
+            <h1 className="buyer-name">{props.user.user_info.f_name + " " + props.user.user_info.l_name}</h1>
+            <h5 className="buyer-mail">{props.user.user_info.business_name}</h5>
           </div>
         </div>
         <div className="section">
@@ -74,25 +63,21 @@ class BuyerSidebar extends React.Component{
             </div>
         </div>
       </div>
-    );
-  }
-}
+    
+  );
+};
 
 const mapStateToProps = state => {
-  const { profile } = state.buyer
-  return {
-    profile
-  };
+  const { user } = state.authentication;
+
+  return { user };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    dispatch
-  }
+  return {dispatch};
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BuyerSidebar);
-
+)(withRouter(BuyerSidebar));
