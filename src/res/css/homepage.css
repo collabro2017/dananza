@@ -32,6 +32,9 @@
   margin-top: 7%;
   padding-top: calc((13.1% - 185px));
 }
+.homepage_section .row.heroblog .mk_adv_smp > div.action{
+  margin-top: 58px;
+}
 .homepage_section .row.heroblog .mk_adv_smp > div a.btn{
   padding-left: 50px;
   padding-right: 50px;
@@ -272,8 +275,8 @@
   width: 100%;
 }
 .homepage_section .finding_ad_input .react-tags .react-tags__selected{
-    top: 13px;
-    left: 18px;
+    top: 50px;
+    left: 0px;
 }
 
 .homepage_section .finding_ad_select > div{
