@@ -60,7 +60,7 @@ class Header extends React.Component{
         alertType = "success";
       }
       else if (nextProps.alert.type == 'alert-danger') {
-        alertType = "success";
+        alertType = "error";
       }
       this.setState({openAlert:true,alertmsg:nextProps.alert.message,alertType});
     }

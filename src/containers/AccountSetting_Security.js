@@ -29,7 +29,9 @@ class AccountSettingSecurity extends React.Component{
     security:{
       currentpwd:"",
       newpwd:"",
-      confirmpwd:""
+      confirmpwd:"",
+      'secure_question': "",
+      'secure_answer' : ""
     },
     warning: ""
   }
@@ -54,11 +56,11 @@ class AccountSettingSecurity extends React.Component{
 
   componentWillReceiveProps(nextprops)
   {
-    if (nextprops.pwd_change != this.props.pwd_change) {
-      if (nextprops.pwd_change == false) {
+    if (nextprops.pwd_change !== this.props.pwd_change) {
+      if (nextprops.pwd_change === false) {
         this.setState({warning:"Wrong Password!",security:{...this.state.security,currentpwd:""}});
       }else {
-        this.setState({warning:"Success!",security:{currentpwd:"",newpwd:"",confirmpwd:""}});
+        this.setState({warning:"",security:{currentpwd:"",newpwd:"",confirmpwd:""}});
       }
     }
   }
@@ -72,19 +74,36 @@ class AccountSettingSecurity extends React.Component{
   {
     event.preventDefault();
     const {dispatch} = this.props;
-    if (this.state.security.newpwd != this.state.security.confirmpwd) {
-      this.setState({warning:"Type password correctly."});
+    if (this.state.security.newpwd !== this.state.security.confirmpwd) {
+      this.setState({warning:"Please type password correctly."});
     }
     else if(this.state.security.newpwd.length < 6){
       this.setState({warning:"Please input at least 6 characters. Special characters are not allowed."});
     }
     else{
+      this.setState({warning:""});
       dispatch(userActions.updatePassword(this.state.security));
     }
   }
 
+  onSaveQA(event){
+    event.preventDefault();
+    const {dispatch} = this.props;
+    console.log( this.state )
+  }
+
+  changeSecureQuestion(e)
+  {
+    this.setState({security:
+      {...this.state.security,
+        'secure_question':e.target.value,
+        'secure_answer':''}
+    });
+  }
+
   render(){
-    const {currentpwd, newpwd, confirmpwd} = this.state.security;
+    const {currentpwd, newpwd, confirmpwd, secure_question, secure_answer} = this.state.security;
+
     return (
     	<div className="account_setting">
 	    	<div className="page-content security_tab">
@@ -131,39 +150,47 @@ class AccountSettingSecurity extends React.Component{
               </div>
             </form>
             <hr/>
-            <div className="form row">
-              <div className="col-sm-3 control-label">
-                Security Question
+            <form className="form" onSubmit={(event)=>{this.onSaveQA(event)}}>
+              <div className="form row">
+                <div className="col-sm-3 control-label">
+                  Security Question
+                </div>
+                <div className="col-sm-9 material-select">
+                  <FormControl>
+                    <Select
+                      placeholder="Choose a reason"
+                      inputProps={{
+                        name: 'material',
+                        id: 'material-simple'
+                      }}
+                      onChange={this.changeSecureQuestion.bind(this)}
+                      value={secure_question}
+                    >
+                      <MenuItem value={'favorite_color'}>
+                        What colour do you like?
+                      </MenuItem>
+                      <MenuItem value={'favorite_animal'}>
+                        What animal do you like?
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+                </div>
               </div>
-              <div className="col-sm-9 material-select">
-                <FormControl>
-                  <Select
-                    placeholder="Choose a reason"
-                    inputProps={{
-                      name: 'material',
-                      id: 'material-simple',
-                      placeholder: 'Choose a reason'
-                    }}
-                  >
-                    <MenuItem value={'Be Online on Login'}>
-                      Be Online on Login
-                    </MenuItem>
-                    <MenuItem value={'Be Online on Login'}>
-                      Be Online on Login
-                    </MenuItem>
-                  </Select>
-                </FormControl>
+              <div className="form row">
+                <div className="col-sm-3 control-label">
+                  
+                </div>
+                <div className="col-sm-9">
+                    <input className="form-control" value={secure_answer} onChange={(e)=>this.onChangeEdit("secure_answer",e)} required/>
+                    <img className="show-icon" src={require('../res/img/edit_message.png')} alt=""/>
+                </div>
               </div>
-            </div>
-            <div className="form row">
-              <div className="col-sm-3 control-label">
-                
+              <div className="row action">
+                <div className="col-sm-12">
+                  <button className="btn btn-blue right">Save</button>
+                </div>
               </div>
-              <div className="col-sm-9">
-                  <input className="form-control"/>
-                  <img className="show-icon" src={require('../res/img/edit_message.png')} alt=""/>
-              </div>
-            </div>
+            </form>
 					</div>
 				</div>
 			</div>

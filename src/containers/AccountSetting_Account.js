@@ -30,7 +30,8 @@ class AccountSettingAccount extends React.Component{
       fullname:"",
       email: "",
       onlinestatus: "Be Online on Login"
-    }
+    },
+    'leave_reason': ''
   }
 
   constructor(props)
@@ -64,6 +65,13 @@ class AccountSettingAccount extends React.Component{
   onChangeEdit(name,event)
   {
     this.setState({account:{...this.state.account,[name]:event.target.value}});
+  }
+
+  changeLeaveReason(e)
+  {
+    var temp = e.target.value
+    console.log('camp status = ', temp, e.target.value);
+    this.setState({ leave_reason: e.target.value });  
   }
 
   onSubmit(event)
@@ -128,18 +136,6 @@ class AccountSettingAccount extends React.Component{
                         <img className="select-icon" src={require('../res/img/online.png')}  alt=""/>
                         Be Online on Login
                       </MenuItem>
-                      <MenuItem value={'Be Online on Login'}>
-                         <img className="select-icon" src={require('../res/img/online.png')}  alt=""/>
-                        Be Online on Login
-                      </MenuItem>
-                      <MenuItem value={'Be Online on Login'}>
-                        <img className="select-icon" src={require('../res/img/online.png')}  alt=""/>
-                        Be Online on Login
-                      </MenuItem>
-                      <MenuItem value={'Be Online on Login'}>
-                        <img className="select-icon" src={require('../res/img/online.png')}  alt=""/>
-                        Be Online on Login
-                      </MenuItem>
                     </Select>
                   </FormControl>
                 </div>
@@ -173,14 +169,19 @@ class AccountSettingAccount extends React.Component{
               <div className="col-sm-9 material-select">
                 <FormControl>
                   <Select
-                    placeholder="Choose a reason"
+                    value={this.state.leave_reason}
+                    onChange={this.changeLeaveReason.bind(this)}
                     inputProps={{
                       name: 'material',
                       id: 'material-simple',
                     }}
+                    placeholder="Choose a reason"
                   >
-                    <MenuItem value={'Be Online on Login'}>
-                      Be Online on Login
+                    <MenuItem value={'personal'}>
+                      Having a personal Problem.
+                    </MenuItem>
+                    <MenuItem value={'dontlike'}>
+                      I don't like.
                     </MenuItem>
                   </Select>
                 </FormControl>

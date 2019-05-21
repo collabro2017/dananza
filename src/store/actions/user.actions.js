@@ -113,8 +113,14 @@ function updateUserInfo(info){
 
         userService.update(info)
             .then(
-                users => dispatch(success()),
-                error => dispatch(failure(error))
+                users => {
+                    dispatch(success());
+                    dispatch(alertActions.success('Updated Successfully'));
+                },
+                error => {
+                    dispatch(failure(error))
+                    dispatch(alertActions.error('Error: Can\t update your setting.'));
+                }
             );
     };
 
@@ -131,6 +137,10 @@ function updatePassword(pwd){
             .then(
                 data => {
                     dispatch(success(data.success))
+                    if( data.success === true )
+                        dispatch(alertActions.success('Updated Successfully'));
+                    else
+                        dispatch(alertActions.error('Old Password isn\'t correct!'));
                 },
                 error => dispatch(failure(error))
             );
