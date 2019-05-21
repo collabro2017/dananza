@@ -26,6 +26,10 @@
 	text-align: center;
 	width: 100%;
 }
+.dashboard_seller .page-sidebar .target-tree .image img{
+	width: 120px;
+	height: 120px;
+}
 .dashboard_seller .page-sidebar .target-tree .image h1{
 	font-family: 'Coves-Bold' !important;
 }

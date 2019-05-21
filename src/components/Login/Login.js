@@ -38,11 +38,12 @@ class Login extends React.Component{
     {
       if (nextprops.profile != undefined && this.login == true)
       {
-          this.login = false;
-          if (nextprops.profile.has_seller_acct == true)
-            this.props.history.push("/seller_dashboard");
-          else
-            this.props.history.push("/buyer_landing");
+        console.log('test login');
+        this.login = false;
+        if (nextprops.profile.has_seller_acct == true)
+          this.props.history.push("/seller_dashboard");
+        else
+          this.props.history.push("/buyer_landing");
       }
     }
 
@@ -89,12 +90,6 @@ class Login extends React.Component{
             </div>
             <div className="modal-body">
               <form name="form" onSubmit={this.handleSubmit}>
-                { alert.message != null ?
-                  <div className="form-group col-md-12 has-error">
-                    <p>{alert.message}</p>
-                  </div> 
-                  : null
-                }
                 <div className={"form-group col-md-12" + (submitted && !email ? ' has-error' : '')}>
                   <input className="form-control form-control-solid placeholder-no-fix input-custom"
                           type="text" autoComplete="off" placeholder="Email Address" name="email" value={email} onChange={this.handleChange} />

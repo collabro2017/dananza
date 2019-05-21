@@ -2,11 +2,14 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import Signup from "../Signup";
 import Login from "../Login";
+import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom";
 
 import "../../res/css/footer.css"
 
 const Footer = props => {
   const { classes, handleToggleDrawer } = props;
+  let searchinput;
   return (
       <div className="footer_section">
         <div className="footer_info">
@@ -47,10 +50,10 @@ const Footer = props => {
               <div className="col-md-4 col-sm-4">
                 <div className="footer_info_title">Search for Adzas</div>
                 <div className="input-group input-group-lg">
-                  <input type="text" className="form-control input-lg"/>
+                  <input ref={(node)=>{searchinput = node}} type="text" className="form-control input-lg"/>
                   <i className="fa fa-search"></i>
                     <span className="input-group-btn">
-                        <Link to="/results" className="btn bg-blue color-white" type="button">Search</Link>
+                        <button onClick={function(){props.history.push('/results?'+searchinput.value); searchinput.value="";}} className="btn bg-blue color-white" type="button">Search</button>
                     </span>
                 </div>
               </div>
@@ -90,4 +93,19 @@ const Footer = props => {
   );
 };
 
-export default Footer;
+const mapStateToProps = state => {
+  return {
+  };
+};
+
+const mapDispatchToProps = dispatch =>
+{
+  return { 
+    dispatch,
+  }
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Footer));

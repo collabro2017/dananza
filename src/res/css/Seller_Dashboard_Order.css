@@ -21,6 +21,7 @@
 }
 .seller_order .page-result-content{
 	margin: 20px auto;
+	display: block;
 }
 .seller_order .page-result-content .order{
 	position: relative;
@@ -168,9 +169,12 @@
 	margin-right: 9px;
 }
 .seller_order .pagination{
-	padding: 0px 100px 90px 100px;
 	font-family: "Thasadith-Bold";
 	display: inline-flex;
+	justify-content: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	width: 100%;
 }
 .seller_order .pagination .btn-group{
 	display: inline-flex;

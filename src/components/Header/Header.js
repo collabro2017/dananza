@@ -106,8 +106,10 @@ class Header extends React.Component{
     this.setState({headerType: this.props.type});
   };
 
-  componentWillUpdate() {
-
+  componentWillMount() {
+    if (this.props.loggedIn == true) {
+      this.props.dispatch(buyerActions.getBuyerProfile());
+    }
   }
 
   componentDidUpdate(prevProps,prevState,prevContext){
@@ -168,6 +170,7 @@ class Header extends React.Component{
         && window.location.pathname != '/checkout'
         && window.location.pathname != '/uploadfiles'
         && window.location.pathname != '/signup'
+        && window.location.pathname != '/results'
       )
     {  
         this.props.history.push('/');
@@ -197,7 +200,7 @@ class Header extends React.Component{
     this.setState({searchinput:e.target.value});
   }
   onSearch(){
-    this.props.history.push('/results/'+this.state.searchinput);
+    this.props.history.push('/results?'+this.state.searchinput);
   }
   /*
     header types:
@@ -234,6 +237,7 @@ class Header extends React.Component{
             onClose={this.handleCloseSnack}
             message={this.state.alertmsg}
             autoHideDuration={6000}
+            style={{'z-index': '100000'}}
             action={[
             <IconButton
               key="close"

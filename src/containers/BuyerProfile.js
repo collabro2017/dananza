@@ -161,12 +161,6 @@ class BuyerProfile extends React.Component{
                 </div>
                 <hr className="divider-line" />
                 <div className="page-main-content pd-bottom row">
-                { this.props.updated ?
-                  <div className="alert_msg">
-                    <p>{ this.props.updated }</p>
-                  </div> 
-                  : null
-                }
                 <form role="form" className="form-horizontal">
                   <div className="form-body" ref="formbody">
                     <div className="formcontrol row">

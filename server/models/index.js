@@ -46,6 +46,8 @@ db.Order = require('./order.js')(sequelize, Sequelize);
 db.Order_History = require('./order_history.js')(sequelize, Sequelize); 
 db.Review = require('./review.js')(sequelize, Sequelize); 
 db.Cart = require('./cart.js')(sequelize, Sequelize); 
+db.Message = require('./messages.js')(sequelize, Sequelize);
+db.Message_Contact = require('./message_contacts.js')(sequelize, Sequelize);
 
 db.Adza_Profile.hasMany(db.Saved_Adza)
 db.Saved_Adza.belongsTo(db.Adza_Profile)
@@ -91,5 +93,14 @@ db.Campaign_Listing.belongsTo(db.Adza_Profile)
 
 db.User.hasOne(db.Buyer_Profile)
 db.Buyer_Profile.belongsTo(db.User)  
+
+db.Message_Contact.hasMany(db.Message)
+db.Message.belongsTo(db.Message_Contact)
+
+db.Buyer_Profile.hasMany(db.Message_Contact);
+db.Message_Contact.belongsTo(db.Buyer_Profile);
+
+db.Adza_Profile.hasMany(db.Message_Contact);
+db.Message_Contact.belongsTo(db.Adza_Profile);
 
 module.exports = db;

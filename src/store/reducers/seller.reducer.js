@@ -95,7 +95,7 @@ export function seller(state = initialState, action) {
       return {...state, sellerinfo: undefined};
 
     case sellerConstants.GET_ORDER_STATE_REQUEST:
-      return state;
+      return {...state, orderHistory: undefined};
     case sellerConstants.GET_ORDER_STATE_SUCCESS:
       return { ...state, orderHistory: action.orderHistory};
     case sellerConstants.GET_ORDER_STATE_FAILURE:

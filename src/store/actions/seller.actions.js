@@ -361,7 +361,7 @@ function getOrderHistory(orderId){
             .then(
                 data => {
                     if(data.order != undefined){
-                        data.order.Order_Histories.sort(function(a,b){return a.id-b.id;});
+                        data.order.Order_Histories.sort(function(a,b){return (new Date(a.update_time))-(new Date(b.update_time));});
                         dispatch(success(data.order));
                     }
                     else{

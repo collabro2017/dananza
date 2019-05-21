@@ -5,16 +5,18 @@ const initialState = user ? { loggedIn: true, user } : {};
 
 export function authentication(state = initialState, action) {
   switch (action.type) {
-    case userConstants.REGISTER_REQUEST:
-      return {
-        registering: true,
-        user: action.user
-      }
-    case userConstants.REGISTER_SUCCESS:
-      return {
-        registered: true,
-        user: action.user
-      }
+     case userConstants.REGISTER_REQUEST:
+       return {
+         registering: true,
+         user_login: action.user
+       }
+     case userConstants.REGISTER_SUCCESS:
+       return {
+         registered: true,
+         user: action.user,
+         user_login: state.user_login
+       }
+
     case userConstants.REGISTER_FAILURE:
       return {
 

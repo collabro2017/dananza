@@ -337,6 +337,7 @@
   overflow: hidden;
   position: relative;
   margin-top: 2.5%;
+  min-height: 17px;
 }
 .search_page .page-result-content .item .hide-end {
   position: absolute;

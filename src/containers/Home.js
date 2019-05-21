@@ -102,7 +102,15 @@ class Home extends React.Component{
                     classNames = {{root:"inner-tag react-tags"}} />
                 </div>
                 <div className="action">
-                  <Link to="results" className="btn bg-yellow color-dark btn-small">Find Adzas</Link>
+                  <Link to=
+                        {{
+                            "pathname" : "/results", 
+                            searchOption: 
+                            { 
+                              media_type: this.state.advertise,
+                              keyword: this.state.tags
+                            } 
+                        }} className="btn bg-yellow color-dark btn-small">Find Adzas</Link>
                 </div>
               </div>
               <div className="col-sm-6 col-md-6 pull-right">

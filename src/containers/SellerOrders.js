@@ -18,10 +18,13 @@ import "../res/css/components/select.css"
 class SellerOrders extends React.Component{
 
   state={'headerType': "seller",
-      "orderby":"all",
+      "orderby":1,
       "orders":[],
       "orderhistories":[],
       "showResult":[],
+      "page": 1,
+      "itemPerPage": 3,
+      "pages": [],
       "flag": false}
 
   constructor(props) {
@@ -55,7 +58,10 @@ class SellerOrders extends React.Component{
         item = seller_orders[index];
         showResult[latest_history[index].length].push({item,orderhistories:latest_history[index]});
       }
-      this.setState({showResult});
+      let pages = [];
+      for (var i = 0; i < Math.ceil(seller_orders.length/this.state.itemPerPage) ; i++)
+        pages.push(i+1);
+      this.setState({showResult,pages});
     }
   }
 
@@ -63,134 +69,20 @@ class SellerOrders extends React.Component{
     this.setState({'orderby': event.target.value });
   };
 
-  drawOrder(limit,orders,orderhistories,status){
-    return orders.length != orderhistories.length?"":
-            orders.map(
-              (item,index)=>{
-                if(orderhistories[index][limit]==undefined && orderhistories[index][limit-1]!=undefined)
-                {
-                  return (
-                    <div className={"order "+status}>
-                      <img src={require("../res/img/order1.png")} />
-                      <div className="order-content">
-                        <div className="content-header">
-                          <span className="header-left">
-                            <img src={require("../res/img/"+item.Listing.media_type+"_sq.png")} />
-                            <span>{item.Listing.title}</span>
-                            <a>{item.Order.Buyer_Profile.User.f_name+' '+item.Order.Buyer_Profile.User.l_name}</a>
-                          </span>
-                          <span className="header-right">
-                            <span className="price">${item.Listing.price}</span>
-                            <Link to="/seller_messages"><img src={require("../res/img/message.png")} />Message</Link>
-                          </span>
-                        </div>
-                        <div className="content-body">
-                          <div className="order-timeline">
-                            <div className={ (orderhistories[index][0].order_status === "accept" ? "active" : '') + " step first"}>
-                              <div className="step-button">
-                                <hr className="left" />
-                                <hr className="right" />
-                                <a className="circle">
-                                  <img src={require('../res/img/check.png')} alt=""/>
-                                </a>
-                              </div>
-                              <div className="step-label">Order Date</div>
-                              <div className="step-label">{ orderhistories.length ? moment(orderhistories[index][0].update_time).format('DD/MM'):''}</div>
-                            </div>
-                            <div className={ (orderhistories[index][1].order_status === "accept" ? "active" : '') + " step"}>
-                              <div className="step-button">
-                                <a className="circle">
-                                  <img src={require('../res/img/check.png')} alt=""/>
-                                </a>
-                                <hr className="left" />
-                                <hr className="right" />
-                              </div>
-                              <div className="step-label">Media Uploaded</div>
-                              <div className="step-label">{ orderhistories.length ? moment(orderhistories[index][1].update_time).format('DD/MM'):''}</div>
-                            </div>
-                            <div className={ (orderhistories[index][2] && orderhistories[index][2].order_status === "accept" ? "active" : '') + " step"}>
-                              <div className="step-button">
-                                <a className="circle">
-                                  <img src={require('../res/img/check.png')} alt=""/>
-                                </a>
-                                <hr className="left" />
-                                <hr className="right" />
-                              </div>
-                              <div className="step-label">Order Accepted</div>
-                              <div className="step-label">{ orderhistories.length && orderhistories[index][2] ? moment(orderhistories[index][2].update_time).format('DD/MM'):''}</div>
-                            </div>
-                            <div className={ (orderhistories[index][3] && orderhistories[index][3].order_status === "accept" ? "active" : '') + " step"}>
-                              <div className="step-button">
-                                <a className="circle">
-                                  <img src={require('../res/img/check.png')} alt=""/>
-                                </a>
-                                <hr className="left" />
-                                <hr className="right" />
-                              </div>
-                              <div className="step-label">Ad Launched</div>
-                              <div className="step-label">{ orderhistories.length && orderhistories[index][3] ? moment(orderhistories[index][3].update_time).format('DD/MM'):''}</div>
-                            </div>
-                            <div className={ (orderhistories[index][4] && orderhistories[index][4].order_status === "accept" ? "active" : '') + " step last"}>
-                              <div className="step-button">
-                                <a className="circle">
-                                  <img src={require('../res/img/check.png')} alt=""/>
-                                </a>
-                                <hr className="left" />
-                                <hr className="right" />
-                              </div>
-                              <div className="step-label">Buyer Approved</div>
-                              <div className="step-label">{ orderhistories.length && orderhistories[index][4] ? moment(orderhistories[index][4].update_time).format('DD/MM'):''}</div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="content-footer">
-                          <Link to={{"pathname" : "/neworder_seller", orderInfo: { OrderId: item.Order.id, SellerName: item.Listing.Channel.username, CampName: item.Campaign.campaign_name} }}
-                              className={"btn btn-default btn-radius " + (limit==5?"btn-transparent":"btn-yellow")}>
-                            {
-                              function(){
-                                switch (limit) {
-                                  case 2:
-                                    return (
-                                      <span>
-                                        <img src={require("../res/img/review.png")} />
-                                        Review Media
-                                      </span>
-                                    );
-                                  case 3:
-                                    return (
-                                      <span>
-                                        <img src={require("../res/img/launch.png")} />
-                                        Launch Ad
-                                      </span>
-                                    );
-                                  case 4:
-                                    return (
-                                      <span>
-                                        <img src={require("../res/img/clock.png")} />
-                                        Check Status
-                                      </span>
-                                    );
-                                  default:
-                                    return (
-                                      <span>
-                                        <img src={require("../res/img/eye.png")} />
-                                        View This Ad
-                                      </span>
-                                    );
-                                }
-                              }()
-                            }
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                }
-              }
-            )
+  isShowThisClass(count,length){
+    const {page, itemPerPage} = this.state;
+    let start = parseInt(count / itemPerPage);
+    let end = parseInt((count+length-1) / itemPerPage)
+    if (length ==0)
+      return false;
+    if (start<=(page-1) && end>=(page-1))
+      return true;
+    return false;
   }
 
   render(){
+    const {pages, page, itemPerPage, orderby} = this.state;
+    let count = 0;
     return (
       <div className="dashboard_seller">
         <div className="page-content seller_order">
@@ -207,11 +99,11 @@ class SellerOrders extends React.Component{
                           name: 'material',
                           id: 'material-simple',
                         }}>
-                      <MenuItem value={'all'}>All Orders</MenuItem>
-                      <MenuItem value={'order1'}>Order1</MenuItem>
-                      <MenuItem value={'order2'}>Order2</MenuItem>
-                      <MenuItem value={'order3'}>Order3</MenuItem>
-                      <MenuItem value={'order4'}>Order4</MenuItem>
+                      <MenuItem value={1}>All Orders</MenuItem>
+                      <MenuItem value={2}>Needs Your Approval</MenuItem>
+                      <MenuItem value={3}>Ready for Launch</MenuItem>
+                      <MenuItem value={4}>Waiting for Buyer Approval</MenuItem>
+                      <MenuItem value={5}>Completed Orders</MenuItem>
                     </Select>
                   </FormControl>
                   <Link to="/neworder_seller" className="add-channel">+ Add Order</Link>
@@ -220,165 +112,174 @@ class SellerOrders extends React.Component{
                   {
                     this.state.showResult.map(
                       (orders,index)=>(
+                        (orderby!=index && orderby!=1)?"":
                         <div>
                         {
-                          orders.length==0?"":
+                          !this.isShowThisClass(count,orders.length)?"":
                           index==2?<label className="subtitle">Needs Your Approval</label>:
                           index==3?<label className="subtitle">Ready for Launch</label>:
                           index==4?<label className="subtitle">Waiting for Buyer Approval</label>:
                           index==5?<label className="subtitle">Completed Orders</label>:""
                         }
                         {
-                        orders.map((order,ordInd)=>(
-                          <div className={"order "+(index<5?"active":"")}>
-                            <img src={require("../res/img/order1.png")} />
-                            <div className="order-content">
-                              <div className="content-header">
-                                <span className="header-left">
-                                  <img src={require("../res/img/"+order.item.Listing.media_type+"_sq.png")} />
-                                  <span>{order.item.Listing.title}</span>
-                                  <a>{order.item.Order.Buyer_Profile.User.f_name+' '+order.item.Order.Buyer_Profile.User.l_name}</a>
-                                </span>
-                                <span className="header-right">
-                                  <span className="price">${order.item.Listing.price}</span>
-                                  <Link to="/seller_messages"><img src={require("../res/img/message.png")} />Message</Link>
-                                </span>
-                              </div>
-                              <div className="content-body">
-                                <div className="order-timeline">
-                                  <div className={ (order.orderhistories[0].order_status === "accept" ? "active" : '') + " step first"}>
-                                    <div className="step-button">
-                                      <hr className="left" />
-                                      <hr className="right" />
-                                      <a className="circle">
-                                        <img src={require('../res/img/check.png')} alt=""/>
-                                      </a>
-                                    </div>
-                                    <div className="step-label">Order Date</div>
-                                    <div className="step-label">{ order.orderhistories[0] ? moment(order.orderhistories[0].update_time).format('DD/MM'):''}</div>
+                          orders.map((order,ordInd)=>{
+                            return parseInt(count++ / itemPerPage)==page-1?
+                            (
+                              <div className={"order "+(index<5?"active":"")}>
+                                <img src={require("../res/img/order1.png")} />
+                                <div className="order-content">
+                                  <div className="content-header">
+                                    <span className="header-left">
+                                      <img src={require("../res/img/"+order.item.Listing.media_type+"_sq.png")} />
+                                      <span>{order.item.Listing.title}</span>
+                                      <a>{order.item.Order.Buyer_Profile.User.business_name}</a>
+                                    </span>
+                                    <span className="header-right">
+                                      <span className="price">${order.item.Listing.price}</span>
+                                      <Link to="/seller_messages"><img src={require("../res/img/message.png")} />Message</Link>
+                                    </span>
                                   </div>
-                                  <div className={ (order.orderhistories[1].order_status === "accept" ? "active" : '') + " step"}>
-                                    <div className="step-button">
-                                      <a className="circle">
-                                        <img src={require('../res/img/check.png')} alt=""/>
-                                      </a>
-                                      <hr className="left" />
-                                      <hr className="right" />
+                                  <div className="content-body">
+                                    <div className="order-timeline">
+                                      <div className={ (order.orderhistories[0].order_status === "accept" ? "active" : '') + " step first"}>
+                                        <div className="step-button">
+                                          <hr className="left" />
+                                          <hr className="right" />
+                                          <a className="circle">
+                                            <img src={require('../res/img/check.png')} alt=""/>
+                                          </a>
+                                        </div>
+                                        <div className="step-label">Order Date</div>
+                                        <div className="step-label">{ order.orderhistories[0] ? moment(order.orderhistories[0].update_time).format('DD/MM'):''}</div>
+                                      </div>
+                                      <div className={ (order.orderhistories[1].order_status === "accept" ? "active" : '') + " step"}>
+                                        <div className="step-button">
+                                          <a className="circle">
+                                            <img src={require('../res/img/check.png')} alt=""/>
+                                          </a>
+                                          <hr className="left" />
+                                          <hr className="right" />
+                                        </div>
+                                        <div className="step-label">Media Uploaded</div>
+                                        <div className="step-label">{ order.orderhistories[1] ? moment(order.orderhistories[1].update_time).format('DD/MM'):''}</div>
+                                      </div>
+                                      <div className={ (order.orderhistories[2] && order.orderhistories[2].order_status === "accept" ? "active" : '') + " step"}>
+                                        <div className="step-button">
+                                          <a className="circle">
+                                            <img src={require('../res/img/check.png')} alt=""/>
+                                          </a>
+                                          <hr className="left" />
+                                          <hr className="right" />
+                                        </div>
+                                        <div className="step-label">Order Accepted</div>
+                                        <div className="step-label">{ order.orderhistories[2] ? moment(order.orderhistories[2].update_time).format('DD/MM'):''}</div>
+                                      </div>
+                                      <div className={ (order.orderhistories[3] && order.orderhistories[3].order_status === "accept" ? "active" : '') + " step"}>
+                                        <div className="step-button">
+                                          <a className="circle">
+                                            <img src={require('../res/img/check.png')} alt=""/>
+                                          </a>
+                                          <hr className="left" />
+                                          <hr className="right" />
+                                        </div>
+                                        <div className="step-label">Ad Launched</div>
+                                        <div className="step-label">{ order.orderhistories[3] ? moment(order.orderhistories[3].update_time).format('DD/MM'):''}</div>
+                                      </div>
+                                      <div className={ (order.orderhistories[4] && order.orderhistories[4].order_status === "accept" ? "active" : '') + " step last"}>
+                                        <div className="step-button">
+                                          <a className="circle">
+                                            <img src={require('../res/img/check.png')} alt=""/>
+                                          </a>
+                                          <hr className="left" />
+                                          <hr className="right" />
+                                        </div>
+                                        <div className="step-label">Buyer Approved</div>
+                                        <div className="step-label">{ order.orderhistories[4] ? moment(order.orderhistories[4].update_time).format('DD/MM'):''}</div>
+                                      </div>
                                     </div>
-                                    <div className="step-label">Media Uploaded</div>
-                                    <div className="step-label">{ order.orderhistories[1] ? moment(order.orderhistories[1].update_time).format('DD/MM'):''}</div>
                                   </div>
-                                  <div className={ (order.orderhistories[2] && order.orderhistories[2].order_status === "accept" ? "active" : '') + " step"}>
-                                    <div className="step-button">
-                                      <a className="circle">
-                                        <img src={require('../res/img/check.png')} alt=""/>
-                                      </a>
-                                      <hr className="left" />
-                                      <hr className="right" />
-                                    </div>
-                                    <div className="step-label">Order Accepted</div>
-                                    <div className="step-label">{ order.orderhistories[2] ? moment(order.orderhistories[2].update_time).format('DD/MM'):''}</div>
-                                  </div>
-                                  <div className={ (order.orderhistories[3] && order.orderhistories[3].order_status === "accept" ? "active" : '') + " step"}>
-                                    <div className="step-button">
-                                      <a className="circle">
-                                        <img src={require('../res/img/check.png')} alt=""/>
-                                      </a>
-                                      <hr className="left" />
-                                      <hr className="right" />
-                                    </div>
-                                    <div className="step-label">Ad Launched</div>
-                                    <div className="step-label">{ order.orderhistories[3] ? moment(order.orderhistories[3].update_time).format('DD/MM'):''}</div>
-                                  </div>
-                                  <div className={ (order.orderhistories[4] && order.orderhistories[4].order_status === "accept" ? "active" : '') + " step last"}>
-                                    <div className="step-button">
-                                      <a className="circle">
-                                        <img src={require('../res/img/check.png')} alt=""/>
-                                      </a>
-                                      <hr className="left" />
-                                      <hr className="right" />
-                                    </div>
-                                    <div className="step-label">Buyer Approved</div>
-                                    <div className="step-label">{ order.orderhistories[4] ? moment(order.orderhistories[4].update_time).format('DD/MM'):''}</div>
+                                  <div className="content-footer">
+                                    <Link to={"/neworder_seller?"+order.item.Order.id}
+                                        className={"btn btn-default btn-radius " + (index==5?"btn-transparent":"btn-yellow")}>
+                                      {
+                                        function(){
+                                          switch (index) {
+                                            case 2:
+                                              return (
+                                                <span>
+                                                  <img src={require("../res/img/review.png")} />
+                                                  Review Media
+                                                </span>
+                                              );
+                                            case 3:
+                                              return (
+                                                <span>
+                                                  <img src={require("../res/img/launch.png")} />
+                                                  Launch Ad
+                                                </span>
+                                              );
+                                            case 4:
+                                              return (
+                                                <span>
+                                                  <img src={require("../res/img/clock.png")} />
+                                                  Check Status
+                                                </span>
+                                              );
+                                            default:
+                                              return (
+                                                <span>
+                                                  <img src={require("../res/img/eye.png")} />
+                                                  View This Ad
+                                                </span>
+                                              );
+                                          }
+                                        }()
+                                      }
+                                    </Link>
                                   </div>
                                 </div>
                               </div>
-                              <div className="content-footer">
-                                <Link to={{"pathname" : "/neworder_seller", orderInfo: { OrderId: order.item.Order.id, SellerName: order.item.Listing.Channel.username, CampName: order.item.Campaign.campaign_name} }}
-                                    className={"btn btn-default btn-radius " + (index==5?"btn-transparent":"btn-yellow")}>
-                                  {
-                                    function(){
-                                      switch (index) {
-                                        case 2:
-                                          return (
-                                            <span>
-                                              <img src={require("../res/img/review.png")} />
-                                              Review Media
-                                            </span>
-                                          );
-                                        case 3:
-                                          return (
-                                            <span>
-                                              <img src={require("../res/img/launch.png")} />
-                                              Launch Ad
-                                            </span>
-                                          );
-                                        case 4:
-                                          return (
-                                            <span>
-                                              <img src={require("../res/img/clock.png")} />
-                                              Check Status
-                                            </span>
-                                          );
-                                        default:
-                                          return (
-                                            <span>
-                                              <img src={require("../res/img/eye.png")} />
-                                              View This Ad
-                                            </span>
-                                          );
-                                      }
-                                    }()
-                                  }
-                                </Link>
-                              </div>
-                            </div>
-                          </div>
-                        )
+                            ):"";
+                          }
                         )
                         }
                         </div>
                       )
                     )
                   }
+                  {pages.length>1?(
+                    <div className="pagination">
+                      <a className={"btn btn-default "+(page == 1 ?"disabled":"")}
+                        onClick={()=>{ this.setState({page:page-1}) }}> {'<'} </a>
+                      <div className="btn-group" data-toggle="buttons" id="pages">
+                        {
+                          pages.map(
+                            (item,index) =>
+                            {
+                              let bef = Math.min(4,page-1),
+                                aft = Math.min(4,pages.length - page);
+                              const before = Math.max(bef, 8-aft), after =Math.max(aft, 8-bef);
 
+                              if((item < page-before) || (item > page+after))
+                                return "";
+                              return (
+                                <label className={"btn btn-default "+(item == page?"active":"")}
+                                  onClick={()=>{ this.setState({page:item}) }}>
+                                                  <input type="radio" className="toggle"/>
+                                                  {item}
+                                                </label>
+                                              );
+                            }
+                          )
+                        }
+                      </div>
+                      <a className={"btn btn-default "+(page >= pages.length ?"disabled":"")}
+                        onClick={()=>{ this.setState({page:page+1}) }}> {'>'} </a>
+                    </div>
+                    ):""
+                  }
                 </div>
-                <div className="pagination">
-                  <a className="btn btn-default hidden" id="prev" hidden> &lt; </a>
-                  <div className="btn-group" data-toggle="buttons" id="pages">
-                    <label className="btn btn-page active">
-                        <input type="radio" className="toggle"/> 1 </label>
-                    <label className="btn btn-page">
-                        <input type="radio" className="toggle"/> 2 </label>
-                    <label className="btn btn-page">
-                        <input type="radio" className="toggle"/> 3 </label>
-                    <label className="btn btn-page">
-                        <input type="radio" className="toggle"/> 4 </label>
-                    <label className="btn btn-page">
-                        <input type="radio" className="toggle"/> 5 </label>
-                    <label className="btn btn-page">
-                        <input type="radio" className="toggle"/> 6 </label>
-                    <label className="btn btn-page">
-                        <input type="radio" className="toggle"/> 7 </label>
-                    <label className="btn btn-page">
-                        <input type="radio" className="toggle"/> 8 </label>
-                    <label className="btn btn-page">
-                        <input type="radio" className="toggle"/> 9 </label>
-                    <label className="btn btn-page">
-                        <input type="radio" className="toggle"/> 10 </label>
-                </div>
-                <a className="btn btn-default" id="next"> > </a>
-              </div>
+                
             </div>
           </div>
         </div>

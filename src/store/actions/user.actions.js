@@ -17,6 +17,55 @@ export const userActions = {
     updateQA
 };
 
+let socket;
+function createSocket(UserID){
+    return dispatch => {
+        socket = new WebSocket('ws://localhost:8989');
+        socket.onopen = () => {
+            socket.send(JSON.stringify({
+              type: userConstants.ADD_USER,
+              UserID
+            }));
+        }
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data)
+            switch (data.type) {
+              case userConstants.ADD_MESSAGE:
+                if (data.s_type == "buyer")
+                    dispatch({type:userConstants.ADD_BUYER_MESSAGE,data});
+                else if (data.s_type == "seller")
+                    dispatch({type:userConstants.ADD_SELLER_MESSAGE,data});
+                break;
+              default:
+                break;
+            }
+        }
+        socket.onclose = function onclose() {
+            socket.close();
+        };
+    };
+}
+
+function sendSellerMessage(message,authorId,readerId){
+    socket.send(JSON.stringify({
+      type: userConstants.ADD_MESSAGE,
+      message,
+      authorId,
+      readerId,
+      s_type: 'seller'
+    }));
+}
+
+function sendBuyerMessage(message,authorId,readerId){
+    socket.send(JSON.stringify({
+      type: userConstants.ADD_MESSAGE,
+      message,
+      authorId,
+      readerId,
+      s_type: 'buyer'
+    }));
+}
+
 function login(email, password, isSocial="false") {
     return dispatch => {
         dispatch(request({ email }));
@@ -75,14 +124,13 @@ function registerAsSeller(user){
         userService.register(user)
             .then(
                 user => { 
-                    dispatch(success());
-                    
+                    dispatch(success(user));
                     dispatch(sellerActions.createProfile(user));
-
-                    dispatch(alertActions.success('Registration successful'));
+                    dispatch(alertActions.success("Registeration with seller success! And you loggedin."));
                 },
                 error => {
                     dispatch(failure(error));
+                    dispatch(alertActions.error(error));
                 }
             );
     };

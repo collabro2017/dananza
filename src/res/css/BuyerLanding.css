@@ -456,6 +456,25 @@
     margin-left: 30px !important;
 }
 
+.buyer_landing .preview-media {
+  margin-right: 20px;
+  background-color: #ffd766;
+}
+
+.preview-media img
+{
+  margin-left: 0 !important;
+}
+.table td, th {
+  text-align: center;
+}
+
+.no_campaign {
+  font-family: "Thasadith-Bold";
+  font-size:18px;
+  text-align: center;
+}
+
 @media (max-width: 992px) {
   .buyer_landing .page_sidebar {
     width: 100% !important;

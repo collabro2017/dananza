@@ -66,6 +66,8 @@ router.post('/', passport.authenticate('jwt', {session: false}), async function(
 	var cartid = req.body.cartid;
 	var cartinfo = req.body.info;
 
+	console.log('_________________________________________', cartinfo);
+
 	var buyer = await Buyer_Profile.getBuyerFromUserID( auth_user.id, function(err, profile ){
 		if( !err )
 			return profile;
@@ -79,9 +81,9 @@ router.post('/', passport.authenticate('jwt', {session: false}), async function(
 			default: 
 			{
 				BuyerProfileId: buyer.id,
-				campaign_name: cartinfo.camp_name,
+				campaign_name: cartinfo.campName ? cartinfo.campName : cartinfo.camp_name,
 				campaign_status: 'open',
-				campaign_price: cartinfo.subtotal,
+				campaign_price: cartinfo.subTotal ? cartinfo.subTotal : cartinfo.subtotal,
 				CartId: cartid,
 				created_at: new Date()
 			}
@@ -96,9 +98,9 @@ router.post('/', passport.authenticate('jwt', {session: false}), async function(
 				camp	
 					.update({
 						BuyerProfileId: buyer.id,
-						campaign_name: cartinfo.camp_name,
+						campaign_name: cartinfo.campName ? cartinfo.campName : cartinfo.camp_name,
 						campaign_status: 'open',
-						campaign_price: cartinfo.subtotal,
+						campaign_price: cartinfo.subTotal ? cartinfo.subTotal : cartinfo.subtotal,
 						CartId: cartid,
 						created_at: new Date()
 					})
@@ -114,7 +116,7 @@ router.post('/', passport.authenticate('jwt', {session: false}), async function(
 					{
 						cart.update({
 							CampaignId: camp.id,
-							subtotal: cartinfo.subtotal
+							subtotal: cartinfo.subTotal
 						})
 					}
 				})

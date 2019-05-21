@@ -105,6 +105,10 @@ class SellerMessages extends React.Component{
     props.changeHeaderType( this.state.headerType )
   }
 
+  componentWillMount(){
+    
+  }
+
   componentDidMount(){
     document.title = "Seller Messages"
   }

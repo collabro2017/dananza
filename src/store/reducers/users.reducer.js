@@ -59,6 +59,14 @@ export function users(state = {}, action) {
       return {...state,qa_change:action.result};
     case userConstants.UPDATE_QA_FAILED:
       return {...state,qa_change:false};
+    case userConstants.ADD_SELLER_MESSAGE:
+      return { ...state, new_seller_msg: true };
+    case userConstants.ADD_BUYER_MESSAGE:
+      return { ...state, new_buyer_msg: true };
+    case userConstants.READ_SELLER_MESSAGE:
+      return { ...state, new_seller_msg: false }
+    case userConstants.READ_BUYER_MESSAGE:
+      return { ...state, new_buyer_msg: false }
     default:
       return state
   }

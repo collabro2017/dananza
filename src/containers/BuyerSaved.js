@@ -13,15 +13,14 @@ import Snackbar from '@material-ui/core/Snackbar';
 import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
 
 import "../res/css/BuyerSaved.css"
-
-import { buyerSavedActions } from '../store/actions';
+import { buyerActions } from '../store/actions';
 
 
 class BuyerSaved extends React.Component{
 
   state={
 	'headerType': "buyer", 
-	'openAlert' : false,
+	'openAlert' : true,
 	'searchText': '',
 	'adzas': []
 	}
@@ -38,11 +37,11 @@ class BuyerSaved extends React.Component{
   componentWillMount()
   {
   	const { dispatch } = this.props;
-  	dispatch( buyerSavedActions.fetch());
+  	dispatch( buyerActions.fetchSavedAdza());
   }
   componentWillReceiveProps(props)
   {
-  	this.setState({adzas:props.buyerSavedAdzas.adzas});
+  	this.setState({adzas:props.savedAdza});
   }
   handleSearchField( event ){
   	console.log( this.state.searchText )
@@ -68,27 +67,6 @@ class BuyerSaved extends React.Component{
 
     return (
     	<div className="buyer_saved">
-	    	<Snackbar
-	          anchorOrigin={{
-	            vertical: 'top',
-	            horizontal: 'right',
-	          }}
-	          className="info snackAlert"
-	          open={this.state.openAlert}
-	          onClose={this.handleCloseSnack}
-	          message="This is a success message!"
-	          autoHideDuration={6000}
-	          action={[
-		        <IconButton
-		          key="close"
-		          aria-label="Close"
-		          color="inherit"
-		          onClick={this.handleCloseSnack}
-		        >
-		          <CloseIcon />
-		        </IconButton>
-		      ]}
-	        />
 			<div className="page-container">
 				<div className="page-content">
 					<BuyerSidebar navitem={"saved"}/>
@@ -116,7 +94,7 @@ class BuyerSaved extends React.Component{
 									<div className="item active">
 										<div className="item-header">
 											<div className="title">
-												<Link to={ "/seller_profile/" + adza.AdzaProfileId }>{adza.Adza_Profile.User.business_name}</Link>
+												<Link to={ "/seller_profile/" + adza.AdzaProfileId }>{adza.Adza_Profile.User ? adza.Adza_Profile.User.business_name : ''}</Link>
 											</div>
 											<div className="sites">
 												<img src={require("../res/img/instagram.png")} alt=""/>
@@ -161,10 +139,10 @@ class BuyerSaved extends React.Component{
 }
 
 const mapStateToProps = state => {
-  	const { buyerSavedAdzas } = state;
+  	const { savedAdza } = state.buyer;
 
 	return {
-		buyerSavedAdzas
+		savedAdza
 	};
 };
 

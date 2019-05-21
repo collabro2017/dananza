@@ -29,6 +29,7 @@ const msg = {
     'campaignExist': "Already you have opened Campaign.",
     'alreadyInList': "Already you have it in the list.",
     'createdProfile': "New Buyer Profile Successfully Created",
+    'addedToContact': 'New Adza Added Into Your Contact',
 
     // Message Part
     'sentSuccess': "Message sent",

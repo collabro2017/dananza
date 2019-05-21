@@ -10,6 +10,7 @@ const Adza_Profile = require('../models').Adza_Profile;
 const Buyer_Profile = require('../models').Buyer_Profile;
 const Channel = require('../models').Channel;
 const Listing = require('../models').Listing;
+const User = require('../models').User;
 
 const storage = multer.diskStorage({
 
@@ -179,12 +180,18 @@ router.get('/:id/adzainfo', passport.authenticate('jwt', {session: false}), func
 
   Adza_Profile
   	.findOne({  where: {id: AdzaprofileId},
-  			    include:[{model:Channel,
+  			    include:[
+              {
+                model:Channel,
 		          	include: [
 		            {
 		              model: Listing
         		    }]
-        		}] })
+          		},
+              {
+                model:User
+              }
+            ] })
   	.then((adzas) => { 
 		if( adzas )
 		{

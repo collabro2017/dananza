@@ -302,6 +302,20 @@
   margin-right: 9px;
 }
 
+.preview-media img
+{
+  margin-left: 0 !important;
+}
+.table td, th {
+  text-align: center;
+}
+
+.no_campaign {
+  font-family: "Thasadith-Bold";
+  font-size:18px;
+  text-align: center;
+}
+
 @media(max-width: 992px){
   .buyer_campaign .slider-item {
     width: calc(( 100vw )*0.74445);

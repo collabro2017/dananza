@@ -40,7 +40,15 @@ class Checkout extends React.Component{
   			var cartInfo = this.props.location.info.cartInfo;
 	  		var subtotal = this.props.location.info.subTotal;
 	  		var qty = this.props.location.info.qty;
-	  		var camp_name = this.props.location.info.camp.camp_name;
+	  		var camp_name = this.props.location.info.campName;
+  		}
+  		else
+  		{
+  			var localCart = JSON.parse(localStorage.getItem('cart'))
+  			var cartInfo = localCart.cartInfo;
+	  		var subtotal = localCart.subTotal;
+	  		var qty = localCart.qty;
+	  		var camp_name = localCart.campName;
   		}
   		var seller = '';
 

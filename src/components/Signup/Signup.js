@@ -24,7 +24,11 @@ import "../../res/css/Confirm.css";
 import "../../res/css/login.min.css";
 
 class Signup extends React.Component{
-    state = {"mode":""};
+    state = 
+    {
+      "mode": "menu",
+      agreed: false
+    };
     register = false;
     constructor(props) {
       super(props);
@@ -117,23 +121,22 @@ class Signup extends React.Component{
 
     componentWillReceiveProps(nextprops) {
       const { registered, loggedIn } = nextprops;
-      const { user } = this.state;
+      const { user_login } = nextprops;
 
       if(registered)
-        this.props.dispatch(userActions.login(user.email, user.password));
+      {
+        this.props.dispatch(userActions.login(user_login.email, user_login.password));
+      }
 
       if ( nextprops.profile != undefined && loggedIn && !this.register)
       {
         this.register = true;
-        if (nextprops.profile.has_seller_acct == true)
-        {
-          this.props.history.push("/seller_dashboard");
-        }
-        else
-        {
-          this.props.history.push("/buyer_landing");
-        }
       }
+    }
+
+    getAgreed(e)
+    {  
+      this.setState({ agreed: !e.target.checked})
     }
 
     render(){
@@ -205,12 +208,6 @@ class Signup extends React.Component{
               </div>
               <div className="modal-body">
                 <form name="form" onSubmit={this.handleSubmit}>
-                  { alert.message != null ?
-                    <div className="col-md-12 has-error">
-                      <p>{alert.message}</p>
-                    </div> 
-                    : null
-                  }
                     <div className={"col-md-12" + (submitted && !user.businessName ? ' has-error' : '')}>
                       <input className="form-control" type="text" placeholder="Business Name" name="businessName" value={user.businessName} onChange={this.handleChange}/>
                       <img className="show-icon" src={require('../../res/img/briefcase.png')} alt=""/>
@@ -240,7 +237,18 @@ class Signup extends React.Component{
                     </div>
 
                     <div className="align-center col-md-12">
-                      <button className="form-button" disabled={!user.password || !user.email || !user.firstName || !user.lastName || !user.businessName || user.password != user.cfm_password}>Join</button>
+                      <button className="form-button" 
+                              disabled={   !user.password 
+                                        || !user.email 
+                                        || !user.firstName 
+                                        || !user.lastName 
+                                        || !user.businessName 
+                                        || user.password != user.cfm_password
+                                        || !this.state.agreed
+                                      }
+                      >
+                        Join
+                      </button>
                     </div>
                 </form>
                 <div className="agree">
@@ -249,6 +257,8 @@ class Signup extends React.Component{
                     increaseArea="20%"
                     label=""
                     className="icheck"
+                    onChange={this.getAgreed.bind(this)}
+                    checked={this.state.agreed}
                   />
                   <span>
                     By signing up you, agree with Dananza’s&nbsp;
@@ -261,6 +271,9 @@ class Signup extends React.Component{
                   <hr/>
                 </div>
                 <div className="footer">
+                  <span onClick={this.changeModeMenu.bind(this)} style={{'margin': '0 -50px 0 15px', 'float': 'left'}}>
+                    <i className="fa fa-arrow-left" > Back </i>
+                  </span>
                   Already a Member?&nbsp;
                   <a data-toggle="modal" data-target="#login" data-dismiss="modal">
                     Sign In
@@ -275,7 +288,7 @@ class Signup extends React.Component{
 };
 
 function mapStateToProps(state) {
-    const { registered, loggedIn } = state.authentication;
+    const { registered, loggedIn, user, user_login } = state.authentication;
     const { alert } = state;
     const { profile } = state.buyer;
 
@@ -283,7 +296,9 @@ function mapStateToProps(state) {
         registered,
         loggedIn,
         alert,
-        profile
+        profile,
+        user,
+        user_login
     };
 }
 

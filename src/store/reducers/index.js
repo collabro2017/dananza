@@ -13,7 +13,6 @@ const rootReducer = combineReducers({
   registration,
   users,
   alert,
-  buyerSavedAdzas,
   buyer,
   seller
 });

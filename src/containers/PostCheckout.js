@@ -18,21 +18,34 @@ class PostCheckout extends React.Component{
 	    document.title = "PostCheckout"
   	}
 
-	cancelListing( _listingId ) {
-  		console.log('cancel listing id = ', _listingId);
-  		this.props.dispatch(buyerActions.cancelListingInCart( _listingId ));
-  	}
-
   	createCampaign( _info ) {
-  		var cartid = this.props.current_cart.id
-  		console.log("campaign_info",_info);
-  		this.props.dispatch(buyerActions.createCampaign( cartid, _info ))
+  		var cartid = JSON.parse(localStorage.getItem('cart')).id
+  		this.props.dispatch(buyerActions.createCampaign( cartid, _info ));
+  		this.props.dispatch(buyerActions.cleanCart(cartid));
+
+  		_info.cartInfo.listings.map(
+  			(item, index) => 
+  			(
+  				this.props.dispatch(buyerActions.creatSavedAdza(item.AdzaProfileId))
+  			)
+  		)
   	}
 
   	render(){
+  		var info = {};
+  		if(this.props.location.info)
+	  		info = this.props.location.info;
+	  	else
+  		{
+  			var localCart = JSON.parse(localStorage.getItem('cart')),
+	  			cartInfo = localCart.cartInfo,
+		  		subtotal = localCart.subTotal,
+		  	    qty = localCart.qty,
+		  		campName = localCart.campName;
 
-	  	var info = this.props.location.info;
-	  		  	console.log('post info = ', info);
+	  		info = { cartInfo: cartInfo, subtotal: subtotal, qty: qty, campName: campName }
+  		}
+	  	
 	    return (
 			<div className="infoflowPage">
 				<div className="full_container">
@@ -104,7 +117,7 @@ class PostCheckout extends React.Component{
 							<div className="cart_des">Order Summary</div>
 							<div className="table_camp">
 								<h3 className="text">
-									{ info.camp_name }
+									{ info.campName }
 								</h3>
 								<table className="table table-striped table-hover">
 		                            <thead>
@@ -118,7 +131,7 @@ class PostCheckout extends React.Component{
 		                            </thead>
 		                            <tbody>
 	                            	{
-	                        			info.cartInfo.listings ? info.cartInfo.listings.map(
+	                        			info.cartInfo && info.cartInfo.listings ? info.cartInfo.listings.map(
 	                            			(item, index) => 
 		                            		(
 		                            			<tr>
@@ -168,14 +181,12 @@ class PostCheckout extends React.Component{
 										>
 										Proceed to Dashboard
 									</Link>
-								</div>
-								
+								</div>						
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		);
   	}
 }

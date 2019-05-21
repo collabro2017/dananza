@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 
 import { sellerActions } from '../store/actions';
+import avatarDefault from '../res/img/default_avatar.png';
 
 import "../res/css/NewOrderSeller.css"
 
@@ -11,8 +12,8 @@ import "../res/css/NewOrderSeller.css"
 class NewOrderSeller extends React.Component{
 
   state={'headerType': "static",
-         'orderId': this.props.location.orderInfo ? this.props.location.orderInfo.OrderId : 1,
-         'orderHistory':[],
+         'orderHistory':null,
+         'orderId':0,
          'ratingVal':1}
   resultEnd = false;
   gaveRate = 0;
@@ -29,12 +30,16 @@ class NewOrderSeller extends React.Component{
 
   componentWillMount(){
     const { dispatch } = this.props;
-    dispatch(sellerActions.getOrderHistory(this.state.orderId));
+    var orderId = parseInt(this.props.location.search.split("?")[1]);
+    if(orderId){
+      this.setState({orderId});
+      dispatch(sellerActions.getOrderHistory(orderId));
+    }
   }
 
   componentWillReceiveProps(props){
     if (props.orderHistory != undefined) {
-      this.setState({orderHistory:props.orderHistory.Order_Histories});
+      this.setState({orderHistory:props.orderHistory});
     }
   }
 
@@ -62,16 +67,45 @@ class NewOrderSeller extends React.Component{
     dispatch(sellerActions.updateOrderHistory(this.rateOrder));
   }
 
+  showSellerSender(){
+    var image;
+    const order = this.state.orderHistory;
+    try{
+      image = <img className="avatar" src={require("../uploads/adza_avatar/"+order.Campaign_Listing.Adza_Profile.UserId+".png")}/>
+    }catch{
+      image = <img className="avatar" src={avatarDefault}/>
+    }
+    return (
+      <div className="wrapper">
+        {image}
+        <span className="username">{order.Campaign_Listing.Adza_Profile.User.business_name}</span>
+      </div>
+    );
+  }
+
+  showBuyerSender(){
+    var image;
+    const order = this.state.orderHistory;
+    try{
+      image = <img className="avatar" src={require("../uploads/buyer_avatar/"+order.Buyer_Profile.UserId+".png")}/>
+    }catch{
+      image = <img className="avatar" src={avatarDefault}/>
+    }
+    return (
+      <div className="wrapper">
+        {image}
+        <span className="username">{order.Buyer_Profile.User.business_name}</span>
+      </div>
+    );
+  }
+
   showOrder(order)
   {
     if(order.order_type == 'order') {
       return (
         <div className="message buyer">
           <div className="sender">
-            <div className="wrapper">
-              <img className="avatar" src={require("../res/img/user1.png")}/>
-              <span className="username">user123</span>
-            </div>
+            {this.showBuyerSender(order)}
           </div>
           <div className="message-wrapper">
             <div className="message-content">
@@ -101,10 +135,7 @@ class NewOrderSeller extends React.Component{
       return (
         <div className="message buyer">
           <div className="sender">
-            <div className="wrapper">
-              <img className="avatar" src={require("../res/img/user1.png")}/>
-              <span className="username">user123</span>
-            </div>
+            {this.showBuyerSender(order)}
           </div>
           <div className="message-wrapper">
             <div className="message-content">
@@ -157,10 +188,7 @@ class NewOrderSeller extends React.Component{
               </div>
             </div>
             <div className="sender">
-              <div className="wrapper">
-                <img className="avatar" src={require("../res/img/user1.png")}/>
-                <span className="username">user123</span>
-              </div>
+              {this.showSellerSender(order)}
             </div>
           </div>
         );
@@ -190,10 +218,7 @@ class NewOrderSeller extends React.Component{
               </div>
             </div>
             <div className="sender">
-              <div className="wrapper">
-                <img className="avatar" src={require("../res/img/user1.png")}/>
-                <span className="username">user123</span>
-              </div>
+              {this.showSellerSender(order)}
             </div>
           </div>
         );
@@ -228,10 +253,7 @@ class NewOrderSeller extends React.Component{
               </div>
             </div>
             <div className="sender">
-              <div className="wrapper">
-                <img className="avatar" src={require("../res/img/user1.png")}/>
-                <span className="username">user123</span>
-              </div>
+              {this.showSellerSender(order)}
             </div>
           </div>
         );
@@ -261,10 +283,7 @@ class NewOrderSeller extends React.Component{
               </div>
             </div>
             <div className="sender">
-              <div className="wrapper">
-                <img className="avatar" src={require("../res/img/user1.png")}/>
-                <span className="username">user123</span>
-              </div>
+              {this.showSellerSender(order)}
             </div>
           </div>
         );
@@ -293,10 +312,7 @@ class NewOrderSeller extends React.Component{
               </div>
             </div>
             <div className="sender">
-              <div className="wrapper">
-                <img className="avatar" src={require("../res/img/user1.png")}/>
-                <span className="username">user123</span>
-              </div>
+              {this.showSellerSender(order)}
             </div>
           </div>
         );
@@ -311,10 +327,7 @@ class NewOrderSeller extends React.Component{
         return (
           <div className="message buyer action">
             <div className="sender">
-              <div className="wrapper">
-                <img className="avatar" src={require("../res/img/user1.png")}/>
-                <span className="username">user123</span>
-              </div>
+              {this.showBuyerSender(order)}
             </div>
             <div className="message-wrapper">
               <div className="message-content">
@@ -343,10 +356,7 @@ class NewOrderSeller extends React.Component{
         return (
           <div className="message buyer action">
             <div className="sender">
-              <div className="wrapper">
-                <img className="avatar" src={require("../res/img/user1.png")}/>
-                <span className="username">user123</span>
-              </div>
+                {this.showBuyerSender(order)}
             </div>
             <div className="message-wrapper">
               <div className="message-content">
@@ -375,10 +385,7 @@ class NewOrderSeller extends React.Component{
         return (
           <div className="message buyer action issue">
             <div className="sender">
-              <div className="wrapper">
-                <img className="avatar" src={require("../res/img/user1.png")}/>
-                <span className="username">user123</span>
-              </div>
+              {this.showBuyerSender(order)}
             </div>
             <div className="message-wrapper">
               <div className="message-content">
@@ -416,10 +423,7 @@ class NewOrderSeller extends React.Component{
       return (
         <div className="message buyer rating">
           <div className="sender">
-            <div className="wrapper">
-              <img className="avatar" src={require("../res/img/user1.png")}/>
-              <span className="username">user123</span>
-            </div>
+            {this.showBuyerSender(order)}
           </div>
           <div className="message-wrapper">
             <div className="message-content">
@@ -484,10 +488,7 @@ class NewOrderSeller extends React.Component{
               </div>
             </div>
             <div className="sender">
-              <div className="wrapper">
-                <img className="avatar" src={require("../res/img/user1.png")}/>
-                <span className="username">user123</span>
-              </div>
+              {this.showSellerSender(order)}
             </div>
           </div>
         );
@@ -500,8 +501,8 @@ class NewOrderSeller extends React.Component{
     if(this.resultEnd == true){
       return (
         <div className="result">
-          <span className="price"> ${this.state.orderHistory[0].order_attachment.price}</span>
-          has been added to your account
+          <span className="price"> ${this.state.orderHistory.Order_Histories[0].order_attachment.price}</span>
+          &nbsp;has been added to your account
         </div>
       );
     }
@@ -539,31 +540,37 @@ class NewOrderSeller extends React.Component{
   }
 
   render(){
-    const self = this;
+    const {orderHistory} = this.state;
     return (
       <div className="order-dashboard">
         <div className="page-content order-seller">
-          <div className="page-header">
-            <label className="title">Ad Campaign 1</label>
-            <div className="subtitle">Instagram Story from <Link to="seller_page">@seller123</Link></div>
-          </div>
           {
-            this.state.orderHistory.map(
+            !orderHistory?"":
+              <div className="page-header">
+                <label className="title">{orderHistory.Campaign_Listing.Campaign.campaign_name}</label>
+                <div className="subtitle">
+                  {orderHistory.Campaign_Listing.Listing.title}&nbsp;to&nbsp;
+                  <Link to="seller_messages">{orderHistory.Buyer_Profile.User.business_name}</Link></div>
+              </div>
+          }
+          {
+            !this.state.orderHistory?"":
+            this.state.orderHistory.Order_Histories.map(
               (order) => (
                 <div>
-                  {self.showOrder(order)}
-                  {self.showMediaUpload(order)}
-                  {self.showOrderAccept(order)}
-                  {self.showAdLaunch(order)}
-                  {self.showBuyerApprove(order)}
-                  {self.showRatingSellerGiven(order)}
-                  {self.showRatingBuyerGiven(order)}
+                  {this.showOrder(order)}
+                  {this.showMediaUpload(order)}
+                  {this.showOrderAccept(order)}
+                  {this.showAdLaunch(order)}
+                  {this.showBuyerApprove(order)}
+                  {this.showRatingSellerGiven(order)}
+                  {this.showRatingBuyerGiven(order)}
                 </div>
               )
             )
           }
-          {self.showOrderResult()}
-          {self.showRateBuyer()}
+          {this.showOrderResult()}
+          {this.showRateBuyer()}
         </div>
       </div>
     );

@@ -71,6 +71,16 @@ class UploadFiles extends React.Component{
 		var subtotal = this.props.location.info.subTotal;
 		var qty = this.props.location.info.qty;
 	}
+	else
+	{
+		var localCart = JSON.parse(localStorage.getItem('cart')),
+		cartInfo = localCart.cartInfo,
+  		subtotal = localCart.subTotal,
+  	    qty = localCart.qty,
+  		campName = localCart.campName;
+
+		info = { cartInfo: cartInfo, subtotal: subtotal, qty: qty, campName: campName }
+	}
 
     return (
 		<div className="infoflowPage">

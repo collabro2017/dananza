@@ -12,12 +12,12 @@ import $ from "jquery";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
-import avatarDefault from '../res/img/user1.png';
+import avatarDefault from '../res/img/default_avatar.png';
 
 class Sellers extends React.Component{
   state={
         "startDate":[],
-        "headerType":"seller",
+        "headerType":"buyer",
         "sellerprofile":{}};
 
   constructor(props) {
@@ -55,23 +55,23 @@ class Sellers extends React.Component{
       var profile_photo;
       if (props.buyer_sellerview === false)
       {
-        debugger;
         try{
-          profile_photo = require("../res/img/"+props.sellerprofile.profile_photo+".png");
-          profile_photo = props.sellerprofile.profile_photo;
-        }catch(e){
-          profile_photo = "profile_photo";
+          profile_photo = require("../uploads/adza_avatar/"+props.sellerinfo.UserId+".png");
+        }catch{
+          profile_photo = avatarDefault;
         }
-
+        if (props.sellerprofile.profile_photo) {
+          profile_photo = props.sellerprofile.profile_photo;
+        }
+        
         this.setState({sellerprofile:{...props.sellerinfo,...props.sellerprofile,profile_photo}});
       }
       else
       {
         try{
-          profile_photo = require("../res/img/"+props.sellerinfo.profile_photo+".png");
-          profile_photo = props.sellerinfo.profile_photo;
-        }catch(e){
-          profile_photo = "profile_photo";
+          profile_photo = require("../uploads/adza_avatar/"+props.sellerinfo.UserId+".png");
+        }catch{
+          profile_photo = avatarDefault;
         }
 
         this.setState({sellerprofile:{...props.sellerinfo,profile_photo}});
@@ -124,14 +124,14 @@ class Sellers extends React.Component{
         image_gallery,
         profile_description,
         profile_location,
-        profile_photo,Channels} = this.state.sellerprofile;
+        profile_photo,Channels,User,UserId} = this.state.sellerprofile;
     var str = "";
-    let preview_image = "";
+    let preview_image;
 
     if( profile_photo )
-      preview_image = <img className="profile" src={require("../res/img/"+profile_photo+".png")} alt=""/>
+      preview_image = <img className="profile" src={avatarDefault}/>
     else
-      preview_image = <img className="profile" src={ avatarDefault } alt=""/>
+      preview_image = <img className="profile" src={avatarDefault} alt=""/>
 
     return (
       <div className="dashboard_seller">
@@ -141,7 +141,7 @@ class Sellers extends React.Component{
               <div className="section target_tree">
                 <div className="image">
                   { preview_image }
-                  <div className="tree">Target Tree</div>
+                  <div className="tree">{User?User.f_name + ' ' + User.l_name:""}</div>
                     <i className="fa fa-star"></i>
                     <i className="fa fa-star"></i>
                     <i className="fa fa-star"></i>
@@ -149,10 +149,10 @@ class Sellers extends React.Component{
                     <i className="fa fa-star"></i>
                     <span className="reviews_star"> 5.0 (17 Reviews)</span>
                     <div className="official">
-                      Official Account of Target Tree Miami
+                      { profile_description }
                     </div>
                     <div className="msg">
-                      <Link to="/seller_messages" className="message_link">Message</Link>
+                      <Link to={this.props.buyer_sellerview?"/buyer_messages":"/seller_messages"} className="message_link">Message</Link>
                     </div>
                   <div className="divider"></div>
                 </div>
@@ -160,7 +160,7 @@ class Sellers extends React.Component{
               <div className="from_avg">
                 <div className="from">
                   <img class="channel_img" src={require("../res/img/map_maker.png")} alt=""/>From
-                  <span className="value">Miami</span>
+                  <span className="value">{profile_location}</span>
                 </div>
                 <div className="avg">
                   <img class="channel_img" src={require("../res/img/clock.png")} alt=""/>Avg. Response Time
@@ -170,9 +170,11 @@ class Sellers extends React.Component{
               <div className="channels">
                 <img class="channel_img" src={require("../res/img/play.png")} alt=""/>Channels
                 <span className="social_icons">
-                  <img src={require("../res/img/instagram.png")} alt=""/>
-                  <img src={require("../res/img/facebook.png")} alt=""/>
-                  <img src={require("../res/img/youtube.png")} alt=""/>
+                  {
+                    Channels.map(
+                      (item)=><img src={require("../res/img/"+item.media_type+".png")} alt=""/>
+                    )
+                  }
                 </span>
               </div>
               <div className="audience">
@@ -227,18 +229,27 @@ class Sellers extends React.Component{
             </div>
             <div className="sellers_content col-md-9">
               <div className="row slider">
-                {/*<img src={require("../res/img/sellers_slider1.png")} />*/}
                 <Carousel showThumbs={false}>
-                          <div>
-                              <img src={require("../res/img/sellers_slider1.png")} alt=""/>
-                          </div>
-                          <div>
-                              <img src={require("../res/img/sellers_slider1.png")} alt=""/>
-                          </div>
-                          <div>
-                              <img src={require("../res/img/sellers_slider1.png")} alt=""/>
-                          </div>
-                      </Carousel>
+                  {
+                    image_gallery.map(
+                      (item)=>(
+                        <div className="image-galleryitem">
+                          {
+                            function(){
+                              var image;
+                              try{
+                                image = <img src={require("../uploads/image_gallery/"+UserId+"/"+item)}/>
+                              }catch{
+                                image = <img src={avatarDefault}/>
+                              }
+                              return image;
+                            }()
+                          }
+                        </div>
+                      )
+                    )
+                  }
+                </Carousel>
               </div>
 
               <div className="row listings">

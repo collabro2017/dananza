@@ -2,6 +2,17 @@ import { buyerConstants } from '../config';
 
 export function buyer(state={}, action) 
 {
+	const initialState = 
+		{
+	      	buyerProfileMSG: "",
+		    buyerprofile: {
+		        'profile_photo': null,
+		        'profile_description': "",
+		        'profile_location': "",
+	      	},
+	      	latest_history:[]
+		};
+
 	switch(action.type)
 	{
 		case buyerConstants.CREATE_BUYPER_PROFILE: 
@@ -42,7 +53,8 @@ export function buyer(state={}, action)
 		case buyerConstants.CREAT_NEW_CART:
 			return {
 				...state,
-				current_cart: action.data
+				current_cart: action.data,
+				cleaned: false
 			}
 		case buyerConstants.ADDLISTTOCART:
 			return {
@@ -60,6 +72,40 @@ export function buyer(state={}, action)
 				cartListings: action.data,
 				cancel_listing_msg: "Successfully Cancel Listing from cart"
 			}
+		case buyerConstants.CLEANCART:
+			return {
+				...state,
+				cleaned: true
+			}
+		case buyerConstants.GET_CONTACT:
+			return {
+				...state,
+				info: action.data,
+			}
+		case buyerConstants.CREATE_CONTACT:
+			return {
+				...state,
+				init_contact: true,
+			}
+		case buyerConstants.SEND_MESSAGE:
+			return {
+				...state,
+				send: true
+			}
+		case buyerConstants.GET_MESSAGE:
+			return {
+				...state,
+				messages: action.data.messages
+			}
+		case buyerConstants.FETCH_SAVED_ADZA:
+			return {
+				...state,
+				savedAdza: action.data
+			}
+		case buyerConstants.SAVE_NEW_ADZA:
+			return {
+				...state
+			}
 		case buyerConstants.ERROR:
 			return 	{
 				...state,
@@ -71,14 +117,14 @@ export function buyer(state={}, action)
 	}
 }
 
-export function buyerSavedAdzas(state={}, action) 
-{
-	switch(action.type)
-	{
-		case buyerConstants.FETCH_SAVED_ADZA:
-			return { adzas: action.adzas };
-		default:
-			return state;
-	}
-}
+// export function buyerSavedAdzas(state={}, action) 
+// {
+// 	switch(action.type)
+// 	{
+// 		case buyerConstants.FETCH_SAVED_ADZA:
+// 			return { adzas: action.adzas };
+// 		default:
+// 			return state;
+// 	}
+// }
 

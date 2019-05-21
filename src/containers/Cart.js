@@ -14,17 +14,102 @@ class Cart extends React.Component{
   	{
   		headerType: "static",
   		"startDate":[],
-  		"qty":[],
+  		qty:[],
   		subTotal: 0,
-  		cartInfo: {},
-  		camp: {},
-  		cancel_listing_msg: ''
+  		campName: 'Campaign',
+  		cartInfo: {}
 	}
 
   	constructor(props) {
 	    super(props);
 	    props.changeHeaderType( this.state.headerType )
- 	}
+ 	}	
+
+  	componentWillMount () {
+  		var local_cart = JSON.parse(localStorage.getItem('cart'));
+  		
+  		if(local_cart)
+  			this.props.dispatch(buyerActions.getCurrentCartListings(local_cart.id));
+  	}
+
+  	componentWillReceiveProps( nextprops ) {
+
+	    var qty = [], subTotal = 0;
+
+		if(nextprops.cartListings.listings.length > 0)
+		{
+			nextprops.cartListings.listings.map(
+				(item, index) => {
+					qty[index] = item.Counts ? item.Counts : 1;
+					subTotal += item.Listing.price * qty[index]
+				}
+			)
+		}
+
+		this.setState({ cartInfo: nextprops.cartListings, subTotal: subTotal, qty: [ ...qty ], startDate: [new Date(),new Date()]});
+  	}
+
+  	componentDidMount(){
+	    document.title = "Cart"
+  	}
+
+  	componentDidUpdate() {
+  		if(this.state.cartInfo) {
+  			var temp = {};
+	  		temp = 
+		    	{ 
+		    		...JSON.parse(localStorage.getItem('cart')), 
+		    		qty: this.state.qty, 
+		    		subTotal: this.state.subTotal,
+		    		cartInfo: this.state.cartInfo, 
+		    		campName: this.state.campName
+		    	}
+
+		    localStorage.setItem('cart', JSON.stringify(temp));
+		}
+		console.log('this.state = ', this.state);
+  	}
+
+  	handlesubTotal(){
+  		var local_cart = JSON.parse(localStorage.getItem('cart'));
+
+  		var temp = 0;
+  		if(local_cart.cartInfo)
+  		{
+			local_cart.cartInfo.listings.map(
+				(item, index) => {
+					temp += item.Listing.price * this.state.qty[index]
+				}
+			)
+  		}
+
+  		this.setState({ subTotal: temp});
+  	}
+
+  	cancelListing( _listingId, _index ) {
+  		var localCart = JSON.parse(localStorage.getItem('cart'));
+  		this.props.dispatch(buyerActions.cancelListingInCart( localCart.id, localCart.cartInfo.listings[_index].id));
+  	}
+
+  	incQty(index){
+	  	var tmp = this.state.qty;
+	  	tmp[index] ++;
+	  	this.setState({"qty":[...tmp]});
+	  	this.handlesubTotal();
+  	}
+
+  	decQty(index){
+	  	var tmp = this.state.qty;
+	  	tmp[index] = tmp[index] > 1 ? tmp[index]-1 : tmp[index];
+	  	this.setState({"qty":[...tmp]});
+	  	this.handlesubTotal();
+  	}
+
+  	handleCampName(e) {
+	  	this.setState({
+	  		campName: e.target.value
+	  	});
+  	}
 
   	onChangeStartDate(date,event,i) {
 	    var temp = this.state.startDate.slice(0);
@@ -32,101 +117,10 @@ class Cart extends React.Component{
 	    this.setState({
 	      startDate: [...temp]
 	    });
-
   	};
 
-  	componentDidMount(){
-	    document.title = "Cart";
-
-	    this.setState({
-	      startDate: [new Date(),new Date()]
-	    })    	
-  	}
-
-  	componentWillMount () {
-  		var local_cart = localStorage.getItem('cart');
-  		this.props.dispatch(buyerActions.getCurrentCartListings(this.props.current_cart ? this.props.current_cart.id : local_cart.id));
-  	}
-
-  	incQty( _index, _price, _Listingid, _sellerId )
-  	{
-	  	var tmp = this.state.qty, tmp_total = this.state.subTotal;
-	  	tmp[_index] ++;
-	  	this.setState({ "qty": [...tmp]});
-	  	this.handlesubTotal( _Listingid, _sellerId);
-  	}
-
-  	decQty( _index, _price, _Listingid, _sellerId )
-  	{
-	  	var tmp = this.state.qty, tmp_total = this.state.subTotal;
-	  	tmp[_index] = tmp[_index] > 1 ? tmp[_index] - 1 : tmp[_index];
-	  	this.setState({ "qty" : [...tmp]});
-	  	this.handlesubTotal( _Listingid, _sellerId);
-  	}
-
-  	handlesubTotal( _id, _sellerId )
-  	{
-  		var temp = 0;
-  		if(this.state.cartInfo.listings)
-  		{
-			this.state.cartInfo.listings.map(
-				(item, index) => {
-					temp += item.Listing.price * this.state.qty[index]
-				}
-			)
-  		}
-  		this.props.dispatch(buyerActions.addListingToCart(this.props.current_cart.id, _id, _sellerId));
-  		this.setState({ subTotal: temp});
-  	}
-
-  	handleCartInfo() 
-  	{
-  		localStorage.setItem('cart', this.state);
-  	}
-
-  	handleCampName(e) {
-	  	this.setState({
-	  		camp: { ...this.state.camp, [e.target.name] : e.target.value }
-	  	});
-  	}
-
-  	componentWillReceiveProps( nextprops ) {
-	
-		var temp = [], total_price = 0;
-
-		if(nextprops.cartListings)
-		{
-			nextprops.cartListings.listings.map(
-				(item, index) => {
-					temp[index] = item.Counts ? item.Counts : 1;
-					total_price += item.Listing.price * temp[index]
-				}
-			)
-		}
-
-		this.setState(
-		{
-			qty: temp,
-			subTotal: total_price,
-			cancel_listing_msg: nextprops.cancel_listing_msg,
-			cartInfo: nextprops.cartListings
-		})
-  	}
-
-  	cancelListing( _listingId ) 
-  	{
-  		var local_cart = localStorage.getItem('cart');
-  		var cartid = this.props.current_cart ? this.props.current_cart.id : local_cart.id;
-  		this.props.dispatch(buyerActions.cancelListingInCart( cartid, _listingId ));
-  	}
-
-  	componentWillUnmount() {
-  		this.setState({
-  			...this.state
-  		})
-  	}
-
 	render(){
+		var local_cart = JSON.parse(localStorage.getItem('cart'));
 	    return (
 			<div className="infoflowPage">
 				<div className="full_container">
@@ -175,7 +169,7 @@ class Cart extends React.Component{
 		                            </thead>
 		                            <tbody>
 	                            	{
-	                        			this.state.cartInfo.listings ? this.state.cartInfo.listings.map(
+	                        			this.state.cartInfo && this.state.cartInfo.listings ? this.state.cartInfo.listings.map(
 	                            			(item, index) => 
 		                            		(
 		                            			<tr>
@@ -196,17 +190,17 @@ class Cart extends React.Component{
 				                                    <td className="qty"> 
 				                                    	<div className="qty_value">{this.state.qty[index]}</div> 
 				                                    	<div className="ctrl_value">
-				                                    		<button className="inc_value" onClick={()=>{this.incQty(index, item.Listing.price, item.Listings.id, item.AdzaProfileId)}}>
+				                                    		<button className="inc_value" onClick={()=>{this.incQty(index)}}>
 				                                    			<i className="fa fa-angle-up"></i>
 				                                    		</button>
-				                                    		<button className="dec_value" onClick={()=>{this.decQty(index, item.Listing.price, item.Listings.id, item.AdzaProfileId)}}>
+				                                    		<button className="dec_value" onClick={()=>{this.decQty(index)}}>
 				                                    			<i className="fa fa-angle-down"></i>
 				                                    		</button>
 				                                    	</div>
 				                                    </td>
 				                                    <td> { item.Listing.price } </td>
 				                                    <td className="del">
-				                                    	<button onClick={this.cancelListing.bind(this, item.id)}>
+				                                    	<button onClick={this.cancelListing.bind(this, item.id, index)}>
 				                                    		<i className="fa fa-close"></i>
 				                                    	</button>
 				                                    </td>
@@ -228,7 +222,7 @@ class Cart extends React.Component{
 		                        </table>
 							</div>
 							<div className="proceed_chk">
-								<div className="checkout" onClick={this.handleCartInfo.bind(this)}>
+								<div className="checkout">
 									<Link to={{pathname: '/checkout', info: this.state }} className="btn btn-mid bg-yellow color-dark">Proceed to Checkout</Link>
 								</div>
 								<div className="note">
@@ -241,15 +235,18 @@ class Cart extends React.Component{
 				</div>
 			</div>
 		);
-	  }
 	}
+	
+}
 
 const mapStateToProps = state => {
-	const { cartListings, cancel_listing_msg, current_cart } = state.buyer;
+	const { loggedIn } = state.authentication;
+	const { campaigns, cartListings } = state.buyer;
+  	
   	return {
-  		cartListings,
-  		cancel_listing_msg,
-  		current_cart
+  		loggedIn, 
+  		campaigns,
+  		cartListings
   	};
 };
 
@@ -257,6 +254,7 @@ const mapDispatchToProps = dispatch => {
 	return {
 		dispatch,
 	}
+
 };
 
 export default connect(

@@ -80,7 +80,34 @@ router.get('/:orderId', passport.authenticate('jwt', {session: false}), function
 				where: {id: orderId},
 				include: [
 					{
-						model:Order_History
+						model:Order_History,
+					},
+					{
+						model:Buyer_Profile,
+						include:[{
+							model:User,
+							attributes:['business_name']
+						}]
+					},
+					{
+						model:Campaign_Listing,
+						include:[
+							{
+								model: Listing,
+								attributes:['title']
+							},
+							{
+								model: Adza_Profile,
+								include:[{
+									model:User,
+									attributes:['business_name']
+								}]
+							},
+							{
+								model: Campaign,
+								attributes:['campaign_name']
+							}
+						]
 					}
 				] } )
 		.then(function( order ){
@@ -157,6 +184,8 @@ router.post('/:OrderId', passport.authenticate('jwt', {session: false}), functio
 	var order_comment = req.body.order_comment;
 	var order_attachment = req.body.order_attachment;
 	var OrderId = req.body.OrderId;
+	var tmp = new Date();
+	tmp = new Date(tmp.getTime()+1000);
 	
 	Order_History
 		.create({
@@ -165,7 +194,7 @@ router.post('/:OrderId', passport.authenticate('jwt', {session: false}), functio
 			order_type,
 			order_comment,
 			order_attachment,
-			update_time: new Date()
+			update_time: tmp
 		})
 		.then((order) => {
 			if (order_status == "accept" && order_type == "buyerapprove") {

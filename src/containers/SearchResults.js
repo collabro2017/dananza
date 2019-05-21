@@ -59,6 +59,7 @@ class SearchResults extends React.Component{
 			'media_type': [],
 			'price_start': 0,
 			'price_end': 0,
+			'keywords': []
   		},
 		suggestions: [
 			{ name: "Bananas" },
@@ -107,9 +108,29 @@ class SearchResults extends React.Component{
   componentWillMount()
   {
     const { dispatch } = this.props;
-	let path = this.props.location.pathname.split('/');
+	
+	let path = this.props.location.pathname.split('?');
+	if (!path[2]) {
+		path[2] = "";
+	}
     this.setState({search_option:{...this.state.search_option,searchText:path[2]}});
     this.state.search_option.searchText = path[2];
+    
+    if (this.props.location.searchOption) {
+    	if (this.props.location.searchOption.media_type){
+	    	this.state.search_option.media_type.push(this.props.location.searchOption.media_type);
+   			this.setState({search_option:{...this.state.search_option,media_type:this.state.search_option.media_type}});
+    	}
+    	if (this.props.location.searchOption.keyword){
+	    	this.state.search_option.locations = this.props.location.searchOption.keyword;
+	    	this.state.search_option.interests = this.props.location.searchOption.keyword;
+   			this.setState({search_option:{
+   				...this.state.search_option,
+   				locations:this.state.search_option.locations,
+   				interests:this.state.search_option.interests}});
+    	}
+    }
+	this.first = false;
     this.filter();
 
   	dispatch(sellerActions.getSearchResult());
@@ -117,12 +138,15 @@ class SearchResults extends React.Component{
 
   componentWillReceiveProps(props)
   {
-    let path = props.location.pathname.split('/');
+    let path = props.location.pathname.split('?');
+	if (!path[2]) {
+		path[2] = "";
+	}
     this.setState({search_option:{...this.state.search_option,searchText:path[2]}});
     if (props.location.pathname != this.props.location.pathname) {
     	this.state.search_option.searchText = path[2];
-    	this.filter();
     	this.first = false;
+    	this.filter();
     }
 
   	if (props.allAdlist != this.props.allAdlist)
@@ -289,12 +313,13 @@ class SearchResults extends React.Component{
 
   filter()
   {
-  	const {relevance, reach_start, reach_end,
+  	let {relevance, reach_start, reach_end,
 	  		gender_percent, age_start, age_end,
-	  		searchText,	startDate, locations, interests, media_type, price_start, price_end} = this.state.search_option;
+	  		searchText,	startDate, locations, interests, media_type, price_start, price_end, keywords} = this.state.search_option;
 	let searchResult = [];
 	let resultcount = 0;
 	let {pages} = this.state;
+
 	for(var item of this.state.allAdlist)
 	{
 		if(item.Adza_Profile == null)
@@ -722,10 +747,15 @@ class SearchResults extends React.Component{
 							<li> <i className="fa fa-circle"></i> Sponsored </li>
 							<div style={{'display': 'inline-flex', float:'right'}}>
 								{resultcount?
-									((page-1)*itemPerPage+1)+"-"+(page*itemPerPage<resultcount?page*itemPerPage:resultcount)+" of "+resultcount+" results "
+									((page-1)*itemPerPage+1)+"-"+(page*itemPerPage<resultcount?page*itemPerPage:resultcount)+" of "+resultcount+" result(s) "
 								:"No result "}
-								for&nbsp;
-								<span className="search_keyword color-dark"> "{searchText}" </span>
+								{
+									searchText==""||searchText==null?"":
+									<span>
+										&nbsp;for&nbsp;
+										<span className="search_keyword color-dark"> "{searchText}" </span>
+									</span>
+								}
 							</div>
 						</div>
 						<div className="page-result-content row">

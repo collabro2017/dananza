@@ -34,8 +34,6 @@ router.post('/cartListings', passport.authenticate('jwt', {session: false}), asy
 		.then((campaign) => { if( campaign ) return campaign; else return null })
 		.catch((error) => res.status(500).send({success: false, message: error }));
 
-		console.log('current cart id and buyer id  = ', opened_campaign.id);
-
 	// Get associated Listings
 	var listings = await Campaign_Listing
 		.findAll({
@@ -66,6 +64,7 @@ router.post('/cartListings', passport.authenticate('jwt', {session: false}), asy
 router.delete('/', passport.authenticate('jwt', {session: false}), async function(req, res) {
 	var auth_user = req.user;
 	var UserId = auth_user.id;
+	var cartid = req.body.cartid;
 
 	var buyer = await Buyer_Profile.getBuyerFromUserID( auth_user.id, function(err, profile ){
 		if( !err )
@@ -76,12 +75,12 @@ router.delete('/', passport.authenticate('jwt', {session: false}), async functio
 
 	// get current Campaign
 	var opened_campaign = await Campaign
-		.findOne({where:{BuyerProfileId: buyer.id, campaign_status:"open"}})
+		.findOne({ where:{ BuyerProfileId: buyer.id, CartId: cartid }})
 		.then((campaign) => { if( campaign ) return campaign; else return null })
 		.catch((error) => res.status(500).send({success: false, message: error }));
 
 	opened_campaign
-		.update({campaign_status: 'closed'});
+		.update({campaign_status: 'completed'});
 
 	var current_cart = await Cart
 		.findOne({where:{CampaignId: opened_campaign.id}})
@@ -104,6 +103,8 @@ router.post('/addListing', passport.authenticate('jwt', {session: false}), async
 	var newlisting = req.body.newlisting, 
 		sellerid = req.body.sellerid,
 		cartid = req.body.cartid;
+
+		console.log('cureent cart id = ======', cartid);
 
 	var buyer = await Buyer_Profile.getBuyerFromUserID( auth_user.id, function(err, profile ){
 		if( !err )
@@ -135,7 +136,21 @@ router.post('/addListing', passport.authenticate('jwt', {session: false}), async
 					OrderId: 0
 				}
 			)
-			.then((campaign) => { console.log('creating campagin');return campaign; })
+			.then((campaign) => 
+			{ 
+				console.log('creating campagin');
+				Cart
+					.findOne({
+						where: { id: cartid }
+					})
+					.then(function(cart) {
+						cart.update({
+							CampaignId: campaign.id
+						})
+					})
+					
+				return campaign; 
+			})
 			.catch((error) => res.status(500).send({success: false, message: error }))
 	}
 

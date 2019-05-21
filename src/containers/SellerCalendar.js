@@ -39,7 +39,7 @@ class BigCalendarEvent extends React.Component {
                 avatar = <img src={avatarDefault}/>
               }
               return (
-                <Link to="/seller_messages">
+                <Link to="/seller_orders">
                   {avatar}
                 </Link>);
             }
@@ -174,7 +174,7 @@ class SellerCalendar extends React.Component{
                               {this.showAvatar(listing.Order.Buyer_Profile.UserId)}
                             </div>
                             <div className="content">
-                              <div className="username">{listing.Order.Buyer_Profile.User.f_name +" "+ listing.Order.Buyer_Profile.User.l_name}</div>
+                              <div className="username">{listing.Order.Buyer_Profile.User.business_name}</div>
                               <div className="detail">
                                 <div>
                                   <img src={require("../res/img/"+listing.Listing.media_type+"_sq.png")} />

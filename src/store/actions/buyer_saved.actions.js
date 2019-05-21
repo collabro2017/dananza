@@ -8,7 +8,7 @@ export const buyerSavedActions = {
 function fetch()
 {
     return dispatch => {
-        buyerService.fetchSavedAdza()
+        buyerService.fetch_Saved_Adza()
             .then(
                 adzas => dispatch(fetchSuccess(adzas)),
                 error => dispatch(fail(error))
