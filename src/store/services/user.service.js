@@ -10,7 +10,8 @@ export const userService = {
     update,
     handleResponse,
     delete: _delete,
-    updatePassword
+    updatePassword,
+    updateQA
 };
 
 const apiRoot = apiConfig.apiRoot;
@@ -95,6 +96,18 @@ function updatePassword(pwd) {
     return fetch(apiRoot + `/user/change_pwd`, requestOptions)
         .then(handleResponse);
 }
+
+function updateQA( data ) {
+    const requestOptions = {
+        method: 'PUT',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    };
+
+    return fetch(apiRoot + `/user/change_qa`, requestOptions)
+        .then(handleResponse);
+}
+
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {

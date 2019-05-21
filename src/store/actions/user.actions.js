@@ -13,7 +13,8 @@ export const userActions = {
     switchToSeller,
     switchToBuyer,
     updateUserInfo,
-    updatePassword
+    updatePassword,
+    updateQA
 };
 
 function login(email, password, isSocial="false") {
@@ -149,6 +150,28 @@ function updatePassword(pwd){
     function request() { return { type: userConstants.UPDATE_PWD_REQUEST } }
     function success(res) { return { type: userConstants.UPDATE_PWD_SUCCESS, result:res } }
     function failure(error) { return { type: userConstants.UPDATE_PWD_FAILURE, error } }
+}
+
+function updateQA( data ){
+    return dispatch => {
+        dispatch(request());
+
+        userService.updateQA( data )
+            .then(
+                data => {
+                    dispatch(success(data.success))
+                    if( data.success === true )
+                        dispatch(alertActions.success(data.message));
+                    else
+                        dispatch(alertActions.error('An Error is occured!'));
+                },
+                error => dispatch(failure(error))
+            );
+    };
+
+    function request() { return { type: userConstants.UPDATE_QA_REQUEST } }
+    function success(res) { return { type: userConstants.UPDATE_QA_SUCCESS, result:res } }
+    function failure(error) { return { type: userConstants.UPDATE_QA_FAILURE, error } }
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript

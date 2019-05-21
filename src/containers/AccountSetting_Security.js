@@ -11,7 +11,7 @@ import {Collapse} from 'react-bootstrap'
 import $ from "jquery";
 
 import { sellerActions } from '../store/actions';
-import { userActions } from '../store/actions';
+import { userActions, alertActions } from '../store/actions';
 
 import AccountSettingSidebar from "../components/Sidebar/AccountSettingSidebar";
 
@@ -56,6 +56,7 @@ class AccountSettingSecurity extends React.Component{
 
   componentWillReceiveProps(nextprops)
   {
+    console.log( nextprops );
     if (nextprops.pwd_change !== this.props.pwd_change) {
       if (nextprops.pwd_change === false) {
         this.setState({warning:"Wrong Password!",security:{...this.state.security,currentpwd:""}});
@@ -90,6 +91,11 @@ class AccountSettingSecurity extends React.Component{
     event.preventDefault();
     const {dispatch} = this.props;
     console.log( this.state )
+    if( this.state.security.secure_answer === "" || this.state.security.secure_question === "" ){
+      dispatch(alertActions.error('Please input QA options correctly.'));
+    }
+    else 
+      dispatch(userActions.updateQA(this.state.security));
   }
 
   changeSecureQuestion(e)
@@ -200,11 +206,12 @@ class AccountSettingSecurity extends React.Component{
 }
 const mapStateToProps = state => {
     const { user } = state.authentication;
-    const { items,pwd_change } = state.users;
+    const { items,pwd_change, qa_change } = state.users;
 
   return {
     items,
-    pwd_change
+    pwd_change,
+    qa_change
   };
 };
 

@@ -53,6 +53,12 @@ export function users(state = {}, action) {
       return {...state,pwd_change:action.result};
     case userConstants.UPDATE_PWD_FAILED:
       return {...state,pwd_change:false};
+
+    case userConstants.UPDATE_QA_REQUEST:
+    case userConstants.UPDATE_QA_SUCCESS:
+      return {...state,qa_change:action.result};
+    case userConstants.UPDATE_QA_FAILED:
+      return {...state,qa_change:false};
     default:
       return state
   }
