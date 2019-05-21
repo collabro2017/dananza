@@ -13,19 +13,6 @@ module.exports = {
       'Adza_Profiles',
       'profile_location',
        Sequelize.STRING
-    ),queryInterface.addColumn(
-      'Order_Histories',
-      'order_attachment',
-       Sequelize.JSON
-    ),queryInterface.addColumn(
-      'Order_Histories',
-      'order_type',
-       Sequelize.STRING
-    ),queryInterface.renameColumn(
-      'Orders',
-      'CampaignId',
-      'Campaign_ListingId',
-       Sequelize.INTEGER
     );
   },
 
@@ -33,17 +20,6 @@ module.exports = {
     return queryInterface.removeColumn(
       'Adza_Profiles',
       'profile_location'
-    ),queryInterface.removeColumn(
-      'Order_Histories',
-      'order_attachment'
-    ),queryInterface.removeColumn(
-      'Order_Histories',
-      'order_type'
-    ),queryInterface.renameColumn(
-      'Orders',
-      'Campaign_ListingId',
-      'CampaignId',
-       Sequelize.INTEGER
     );
   }
 };
