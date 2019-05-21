@@ -54,18 +54,18 @@ router.put('/change_qa', passport.authenticate('jwt', { session: false}), functi
   var token = getToken(req.headers);
   var auth_user = req.user;
 
-  res.status(201).send({success: true, message: "Updated Successfully."});
-  // if (token) {
-  //   auth_user
-  //     .update({
-  //       secure_question: req.body.question,
-  //       secure_answer: req.body.answer
-  //     })
-  //     .then((user) => res.status(201).send(user))
-  //     .catch((error) => res.status(400).send({success: false, message: error }));
-  // } else {
-  //   return res.status(403).send({success: false, message: 'Unauthorized.'});
-  // }
+  // res.status(201).send({success: true, message: "Updated Successfully."});
+  if (token) {
+    auth_user
+      .update({
+        secure_question: req.body.secure_question,
+        secure_answer: req.body.secure_answer
+      })
+      .then((user) => res.status(201).send({success: true, message: "Updated Successfully."}))
+      .catch((error) => res.status(400).send({success: false, message: error }));
+  } else {
+    return res.status(403).send({success: false, message: 'Unauthorized.'});
+  }
 });
 
 getToken = function (headers) {
