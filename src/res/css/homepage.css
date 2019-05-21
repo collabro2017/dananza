@@ -278,7 +278,6 @@
     top: 50px;
     left: 0px;
 }
-
 .homepage_section .finding_ad_select > div{
   margin-bottom: 13px;
   margin-top: -4px;
@@ -286,6 +285,9 @@
   height: 50px;
   float: right;
   display: inline-flex;
+}
+.homepage_section .finding_ad_select svg{
+  right: 10px;
 }
 .homepage_section .finding_ad_select .MuiSelect-icon-7{
   right: 10px;
@@ -591,4 +593,8 @@
   
 }
 
+.homepage_section .inner-tag .react-tags__selected button{
+  font-size: 13px;
+  height: 20px;
+}
 /*# sourceMappingURL=homepage.css.map */
