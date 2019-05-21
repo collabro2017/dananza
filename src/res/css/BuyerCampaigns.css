@@ -1,5 +1,6 @@
 .buyer_campaign .page-main{
   overflow: hidden;
+  min-height: 500px;
 }
 .buyer_campaign .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
     background-color: #2ab7c9 !important;

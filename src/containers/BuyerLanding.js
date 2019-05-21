@@ -229,7 +229,7 @@ class BuyerLanding extends React.Component{
                       </div>
                     </div>
                   )
-                  : <div className="no_campaign"> You have any Campaign...</div>
+                  : <div className="no_campaign"> You haven't any Campaign...</div>
               }
               <div className="page-main-header">
                 <span className="headline-first">

@@ -47,9 +47,11 @@ class BuyerCampaigns extends React.Component{
       orderhistories[camp_index] = latest_history;
     }
     
-    this.setState({ allCampaigns: campaigns, 
-                    filteredCampaigns: campaigns.filter(camp => camp.campaign_status == 'open'), 
-                    orderhistories });
+    if( campaigns !== undefined ){
+      this.setState({ allCampaigns: campaigns, 
+                      filteredCampaigns: campaigns.filter(camp => camp.campaign_status == 'open'), 
+                      orderhistories });
+    }
 
     if(campaigns && this.state.flag == false)
     {
@@ -329,7 +331,7 @@ class BuyerCampaigns extends React.Component{
                     </div>
                   ) 
                   : 
-                  <div className="no_campaign"> You have any Campaign...</div>
+                  <div className="no_campaign"> You haven't any Campaign...</div>
                 }
                 <div className="third-title">Completed Campaigns</div>
                   <div className="page-result-content">
@@ -456,7 +458,7 @@ class BuyerCampaigns extends React.Component{
                         )
                       )
                     : 
-                    <div className="no_campaign"> You have any Completed Campaign...</div>
+                    <div className="no_campaign"> You haven't any Completed Campaign...</div>
                   }  
                   </div>
               </div>
