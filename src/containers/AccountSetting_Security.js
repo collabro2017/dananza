@@ -170,7 +170,7 @@ class AccountSettingSecurity extends React.Component{
                         What colour do you like?
                       </MenuItem>
                       <MenuItem value={'favorite_animal'}>
-                        What animal do you like?
+                        What is your favorite animal?
                       </MenuItem>
                     </Select>
                   </FormControl>

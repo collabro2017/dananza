@@ -21,7 +21,7 @@ class BuyerSaved extends React.Component{
 
   state={
 	'headerType': "buyer", 
-	'openAlert' : true,
+	'openAlert' : false,
 	'searchText': '',
 	'adzas': []
 	}

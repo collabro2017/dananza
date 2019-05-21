@@ -105,7 +105,7 @@
   color:#444;
 }
 .buyer_landing .adzas.row {
-  margin: 20px 115px 50px 85px;
+  margin: 20px calc(14.44% - 15px) 50px  calc( 11.11% - 15px );
 }
 .buyer_landing .adzas .item {
   margin: 12px auto;

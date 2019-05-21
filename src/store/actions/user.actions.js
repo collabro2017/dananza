@@ -140,7 +140,7 @@ function updatePassword(pwd){
                     if( data.success === true )
                         dispatch(alertActions.success('Updated Successfully'));
                     else
-                        dispatch(alertActions.error('Old Password isn\'t correct!'));
+                        dispatch(alertActions.error('Current password isn\'t correct!'));
                 },
                 error => dispatch(failure(error))
             );
