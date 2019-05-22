@@ -330,7 +330,7 @@ function moveSellerPagePreview(sellerprofile){
     }
 }
 
-function createOrder( _listing ){
+function createOrder( _listing, mediaupload = false ){
     return dispatch => {
         dispatch(request());
 
@@ -338,8 +338,12 @@ function createOrder( _listing ){
             .then(
                 data => {
                         dispatch(addOrderHistory(data.id,'order', 'accept', null, { listingname:_listing.Listing.title, price: _listing.Listing.price}));
-                        dispatch(addOrderHistory(data.id,'mediaupload','accept',"uygyugyuguy",{image:"item1"}));
-                        dispatch(addOrderHistory(data.id,'orderaccept','pending'));
+                        if (mediaupload == true) {
+                            dispatch(addOrderHistory(data.id,'mediaupload','accept',"uygyugyuguy",{image:"item1"}));
+                            dispatch(addOrderHistory(data.id,'orderaccept','pending'));
+                        }else{
+                            dispatch(addOrderHistory(data.id,'mediaupload','pending'));
+                        }
                         dispatch(success(data.Order_History))
                 },
                 error => {

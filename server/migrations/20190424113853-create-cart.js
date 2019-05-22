@@ -11,6 +11,9 @@ module.exports = {
       CampaignId: {
         type: Sequelize.INTEGER
       },
+      BuyerProfileId:{
+        type: Sequelize.INTEGER
+      },
       subtotal: {
         type: Sequelize.FLOAT
       }

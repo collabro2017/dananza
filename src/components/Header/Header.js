@@ -20,6 +20,8 @@ import "../../res/css/layout.min.css"
 import $ from "jquery";
 
 import logoUrl from '../../res/img/logo.png';
+import { apiConfig } from '../../store/config';
+const uploadRoot = apiConfig.uploadRoot;
 
 class Header extends React.Component{
   state = {
@@ -202,6 +204,10 @@ class Header extends React.Component{
   onSearch(){
     this.props.history.push('/results?'+this.state.searchinput);
   }
+
+  onError(e){
+    e.target.src = avatarDefault;
+  }
   /*
     header types:
       static : for general pages such as About, Help & Support
@@ -216,15 +222,10 @@ class Header extends React.Component{
     let BuyerAvatar, SellerAvatar;
     let alert;
 
-    try{
-      BuyerAvatar = <img className="profile" src={require("../../uploads/buyer_avatar/"+user.user_info.id+".png")}/>
-    } catch{
-      BuyerAvatar = <img className="profile" src={ avatarDefault } alt=""/>
-    }
-    try{
-      SellerAvatar = <img className="profile" src={require("../../uploads/adza_avatar/"+user.user_info.id+".png")}/>
-    } catch{
-      SellerAvatar = <img className="profile" src={ avatarDefault } alt=""/>
+    if (user && user.user_info) {
+      BuyerAvatar = <img className="profile" src={uploadRoot+"/buyer_avatar/"+user.user_info.id+".png?"+new Date()} onError={this.onError}/>
+
+      SellerAvatar = <img className="profile" src={uploadRoot+"/adza_avatar/"+user.user_info.id+".png?"+new Date()} onError={this.onError}/>
     }
 
     alert = (<Snackbar

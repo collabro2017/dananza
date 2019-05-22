@@ -57,7 +57,9 @@ class SignUp extends React.Component{
 			<div className="full_container">
 				<div className="row heroblog">
 					<div className="image">
-						<img src={require("../res/img/Heroimage1.png")} alt=""/>
+						<div className="heroimage-wrapper">
+							<img src={require("../res/img/Heroimage1.png")} alt=""/>
+						</div>
 						<div className="col-sm-6">
 						</div>
 						<div className="col-sm-6 mk_adv_smp color-title">

@@ -121,11 +121,11 @@ class Signup extends React.Component{
 
     componentWillReceiveProps(nextprops) {
       const { registered, loggedIn } = nextprops;
-      const { user_login, user } = nextprops;
+      const { user_login } = nextprops;
 
       if(registered)
       {
-        this.props.dispatch(userActions.login(user.email, user.password));
+        this.props.dispatch(userActions.login(user_login.email, user_login.password));
       }
 
       if ( nextprops.profile != undefined && loggedIn && !this.register)

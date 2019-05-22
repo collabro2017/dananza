@@ -20,7 +20,10 @@ module.exports = {
       campaign_price: {
         type: Sequelize.FLOAT
       },
-      OrderId: {
+      created_at: {
+        type: Sequelize.DATE
+      },
+      CartId: {
         type: Sequelize.INTEGER
       }
     });

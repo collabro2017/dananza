@@ -15,6 +15,9 @@ import { Link } from 'react-router-dom';
 
 import "../res/css/Seller_Dashboard_Order.css"
 import "../res/css/components/select.css"
+import { apiConfig } from '../store/config';
+const uploadRoot = apiConfig.uploadRoot;
+
 class SellerOrders extends React.Component{
 
   state={'headerType': "seller",
@@ -152,7 +155,7 @@ class SellerOrders extends React.Component{
                                         <div className="step-label">Order Date</div>
                                         <div className="step-label">{ order.orderhistories[0] ? moment(order.orderhistories[0].update_time).format('DD/MM'):''}</div>
                                       </div>
-                                      <div className={ (order.orderhistories[1].order_status === "accept" ? "active" : '') + " step"}>
+                                      <div className={ (order.orderhistories[1] && order.orderhistories[1].order_status === "accept" ? "active" : '') + " step"}>
                                         <div className="step-button">
                                           <a className="circle">
                                             <img src={require('../res/img/check.png')} alt=""/>

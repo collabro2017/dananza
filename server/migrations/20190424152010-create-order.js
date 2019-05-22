@@ -11,7 +11,7 @@ module.exports = {
       BuyerProfileId: {
         type: Sequelize.INTEGER
       },
-      Campaign_ListingId: {
+      CampaignListingId: {
         type: Sequelize.INTEGER
       },
       order_status: {

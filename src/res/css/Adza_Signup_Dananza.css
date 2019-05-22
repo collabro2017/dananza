@@ -38,10 +38,15 @@
   width: 100%;
   position: absolute;
 }
-.adza_signup_section .row.heroblog img{
+.adza_signup_section .row.heroblog .heroimage-wrapper{
   width: 100%;
   position: absolute;
   top: 91px;
+  overflow: hidden;
+}
+.adza_signup_section .row.heroblog img{
+  width: 100%;
+
 }
 .adza_signup_section .row.what_waiting {
   width: 47%;
@@ -253,14 +258,35 @@
     width: 50% !important;
     float: left;
   }
+  .adza_signup_section .row.heroblog{
+    margin-bottom: 471px;
+  }
   .adza_signup_section .row.what_waiting{
     width: 70%;
   }
   .adza_signup_section .row .info_title{
     font-size: 3.5rem !important;
   }
+  .adza_signup_section .row.heroblog .mk_adv_smp{
+    font-size: 30px;
+    width: 100% !important;
+    text-align: center;
+    padding-top: 246px;
+  }
+  .adza_signup_section .row.heroblog img{
+    width: 768px;
+    margin-left: calc((100vw - 768px)/2);
+  }
+  .adza_signup_section .row.heroblog .mk_adv_smp div.finding_best_ad{
+    font-size: 15px;
+    text-align: center;
+    width: 80%;
+    margin: 35px auto;
+  }
   .adza_signup_section .row.preview{
     display: block !important;
+    padding-left: 25px;
+    padding-right: 25px;
   }
   .adza_signup_section .row.preview>div{
     width: 100% !important;
@@ -272,12 +298,24 @@
   .adza_signup_section .row.preview .btn-group label i{
     font-size: 1.5rem !important;
   }
+  .adza_signup_section .row.how_works{
+    padding-left: 40px;
+    padding-right: 40px;
+  }
   .adza_signup_section .row.simple_convenient{
     display: block !important;
+    padding: 0px;
   }
   .adza_signup_section .row.simple_convenient>div{
     width: 100% !important;
     margin-bottom: 10px;
+  }
+  .adza_signup_section .row.simple_convenient .contents-panel{
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+  .adza_signup_section .row.simple_convenient .image-panel{
+    padding-right: 25px;
   }
   .adza_signup_section .row.simple_convenient .contents-panel .sub-content{
     font-size: 1.5rem !important;

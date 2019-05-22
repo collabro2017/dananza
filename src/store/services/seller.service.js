@@ -186,25 +186,41 @@ function getOrderHistory(orderId){
 }
 
 function updateOrderHistory(order){
+    var formData = new FormData();    
+    var jsonData = JSON.stringify(order);
+
+    formData.append('orderData', jsonData );
+    
+    if (order.order_attachment && order.order_attachment.image)
+        formData.append('uploadmedia', order.order_attachment.image, order.order_attachment.image.name);
+
     const requestOptions = {
         method: 'PUT',
-        headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify({order})
+        headers: { ...authHeader() },
+        body: formData
     };
-
     return fetch( apiRoot + `/order`, requestOptions)
-        .then(handleResponse);
+        .then(handleResponse)
+
 }
 
 function addOrderHistory(OrderId,order_status,order_type,order_comment,order_attachment){
+    var formData = new FormData();
+    var jsonData = JSON.stringify({OrderId,order_status,order_type,order_comment,order_attachment});
+
+    formData.append('orderData', jsonData );
+    
+    if(order_attachment.image)
+        formData.append('uploadmedia', order_attachment.image, order_attachment.image.name);
+
     const requestOptions = {
         method: 'POST',
-        headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify({OrderId,order_status,order_type,order_comment,order_attachment})
+        headers: { ...authHeader() },
+        body: formData
     };
-
     return fetch( apiRoot + `/order/${OrderId}`, requestOptions)
-        .then(handleResponse);
+        .then(handleResponse)
+
 }
 
 function getLatestOrderHistory( _ordorId ) {

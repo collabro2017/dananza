@@ -56,10 +56,11 @@ router.put('/', passport.authenticate('jwt', {session: false}), function(req, re
   var UserId = auth_user.id;
   var fs = require('fs');
 
-  if (!fs.existsSync( "../src/uploads/" ))
-    fs.mkdirSync( "../src/uploads/" );
-  if (!fs.existsSync( "../src/uploads/buyer_avatar/" ))
-    fs.mkdirSync( "../src/uploads/buyer_avatar/" );
+//TODO: You have to change permission
+  if (!fs.existsSync( "./public/" ))
+    fs.mkdirSync( "./public/" );
+  if (!fs.existsSync( "./public/buyer_avatar/" ))
+    fs.mkdirSync( "./public/buyer_avatar/" );
 
   if (req.body.profile_photo)
   {
@@ -70,7 +71,7 @@ router.put('/', passport.authenticate('jwt', {session: false}), function(req, re
   		return res.status(500).send({success: false, message: "error" });
 
   	buffer = new Buffer(matches[2], 'base64').toString('binary');
-  	fs.writeFile("../src/uploads/buyer_avatar/"+UserId+".png",buffer,'binary',function(e){console.log(e)});
+  	fs.writeFile("./public/buyer_avatar/"+UserId+".png",buffer,'binary',function(e){console.log(e)});
   }
 
   Buyer_Profile

@@ -127,7 +127,7 @@ class BuyerLanding extends React.Component{
                                             <div className="step-label">Order Date</div>
                                             <div className="step-label">{ orderhistories.length ? moment(orderhistories[l_indexdiv][0].update_time).format('DD/MM'):''}</div>
                                           </div>
-                                          <div className={ (orderhistories[l_indexdiv][1].order_status === "accept" ? "active" : '') + " step"}>
+                                          <div className={ (orderhistories[l_indexdiv][1] && orderhistories[l_indexdiv][1].order_status === "accept" ? "active" : '') + " step"}>
                                             <div className="step-button">
                                               <a className="circle">
                                                 <img src={require('../res/img/check.png')} alt=""/>
@@ -136,7 +136,7 @@ class BuyerLanding extends React.Component{
                                               <hr className="right" />
                                             </div>
                                             <div className="step-label">Media Uploaded</div>
-                                            <div className="step-label">{ orderhistories.length ? moment(orderhistories[l_indexdiv][1].update_time).format('DD/MM'):''}</div>
+                                            <div className="step-label">{ orderhistories.length && orderhistories[l_indexdiv][1] ? moment(orderhistories[l_indexdiv][1].update_time).format('DD/MM'):''}</div>
                                           </div>
                                           <div className={ (orderhistories[l_indexdiv][2] && orderhistories[l_indexdiv][2].order_status === "accept" ? "active" : '') + " step"}>
                                             <div className="step-button">

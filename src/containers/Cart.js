@@ -27,7 +27,7 @@ class Cart extends React.Component{
 
   	componentWillMount () {
   		var local_cart = JSON.parse(localStorage.getItem('cart'));
-  		
+
   		if(local_cart)
   			this.props.dispatch(buyerActions.getCurrentCartListings(local_cart.id));
   	}

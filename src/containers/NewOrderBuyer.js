@@ -7,6 +7,8 @@ import { sellerActions } from '../store/actions';
 import avatarDefault from '../res/img/default_avatar.png';
 
 import "../res/css/NewOrderBuyer.css"
+import { apiConfig } from '../store/config';
+const uploadRoot = apiConfig.uploadRoot;
 
 
 class NewOrderBuyer extends React.Component{
@@ -14,7 +16,8 @@ class NewOrderBuyer extends React.Component{
   state={'headerType': "static",
          'orderHistory':null,
          'orderId':0,
-         'ratingVal':1}
+         'ratingVal':1,
+         preview: null}
   resultEnd = false;
   lasttime = new Date();
 
@@ -42,11 +45,15 @@ class NewOrderBuyer extends React.Component{
     }
   }
 
+  onError(e){
+    e.target.src = avatarDefault;
+  }
+
   showSellerSender(){
     var image;
     const order = this.state.orderHistory;
     try{
-      image = <img className="avatar" src={require("../uploads/adza_avatar/"+order.Campaign_Listing.Adza_Profile.UserId+".png")}/>
+      image = <img className="avatar" src={uploadRoot+"/adza_avatar/"+order.Campaign_Listing.Adza_Profile.UserId+".png?"+new Date()} onError={this.onError}/>
     }catch{
       image = <img className="avatar" src={avatarDefault}/>
     }
@@ -62,7 +69,7 @@ class NewOrderBuyer extends React.Component{
     var image;
     const order = this.state.orderHistory;
     try{
-      image = <img className="avatar" src={require("../uploads/buyer_avatar/"+order.Buyer_Profile.UserId+".png")}/>
+      image = <img className="avatar" src={uploadRoot+"/buyer_avatar/"+order.Buyer_Profile.UserId+".png?"+new Date()} onError={this.onError}/>
     }catch{
       image = <img className="avatar" src={avatarDefault}/>
     }
@@ -72,6 +79,16 @@ class NewOrderBuyer extends React.Component{
         <span className="username">{order.Buyer_Profile.User.business_name}</span>
       </div>
     );
+  }
+
+  onMediaUpload(order){
+    order.order_status = 'accept';
+    order.order_attachment = {image:this.refs.file.files[0]};
+    order.order_comment = this.refs.comment.value;
+
+    const { dispatch } = this.props;
+    dispatch(sellerActions.updateOrderHistory(order));
+    dispatch(sellerActions.addOrderHistory(this.state.orderId, 'orderaccept', 'pending'));
   }
 
   onBuyerApprove(order){
@@ -128,33 +145,85 @@ class NewOrderBuyer extends React.Component{
     }
   }
 
+  onChangeMedia(e){
+    var preview = this.refs.preview;
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    var self = this;
+
+    reader.onload = function (e) {
+        // get loaded data and render thumbnail.
+        self.setState({preview: e.target.result});
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(file);
+
+  }
+
   showMediaUpload(order)
   {
     if(order.order_type == 'mediaupload'){
-      return (
-        <div className="message buyer">
-          <div className="sender">
-            {this.showBuyerSender(order)}
-          </div>
-          <div className="message-wrapper">
-            <div className="message-content">
-              <div className="date">
-                {new Date(order.update_time).toLocaleString()}
-              </div>
-              <div className="message-box">
-                <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
-                <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
-                <div className="para">
-                  {order.order_comment}
+      if (order.order_status == 'accept') {
+        return (
+          <div className="message buyer">
+            <div className="sender">
+              {this.showBuyerSender(order)}
+            </div>
+            <div className="message-wrapper">
+              <div className="message-content">
+                <div className="date">
+                  {new Date(order.update_time).toLocaleString()}
                 </div>
-                <div className="attachment">
-                  <img src={require("../res/img/"+order.order_attachment.image+".png")}/>
+                <div className="message-box">
+                  <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
+                  <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
+                  <div className="para">
+                    {order.order_comment}
+                  </div>
+                  <div className="attachment">
+                    <img src={uploadRoot+"/media_upload/"+order.order_attachment.image}/>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      );
+        );
+      }
+      else if (order.order_status == 'pending') {
+        const {preview} = this.state;
+        return (
+          <div className="message buyer upload">
+            <div className="sender">
+              {this.showBuyerSender(order)}
+            </div>
+            <div className="message-wrapper">
+              <div className="message-content">
+                <div className="date">
+                  Pending
+                </div>
+                <div className="message-box">
+                  <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
+                  <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
+                  <div className="para">
+                    <input ref="comment" className="message-response special" placeholder="Send your message with your response"/>
+                  </div>
+                  <div className="attachment">
+                    <input type="file" onChange={this.onChangeMedia.bind(this)} ref="file"/>
+                    <div className={"wrapper "+(preview?"noborder":"")}>
+                      <img className="preview" src={preview?preview:""} alt="" ref="preview"/>
+                    </div>
+                  </div>
+                  <div className="action">
+                    <button className="btn btn-accept" onClick={this.onMediaUpload.bind(this,order)}>Accept</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+      
     }
   }
 

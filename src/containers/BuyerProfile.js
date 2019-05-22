@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import { buyerActions } from '../store/actions';
+import { alertActions } from '../store/actions';
 
 import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
 import 'icheck/skins/all.css';
@@ -20,6 +21,9 @@ import "../res/css/BuyerProfile.css"
 
 import Avatar from 'react-avatar-edit'
 import avatarDefault from '../res/img/default_avatar.png';
+import { apiConfig } from '../store/config';
+const uploadRoot = apiConfig.uploadRoot;
+
 class BuyerProfile extends React.Component{
 
   state = {
@@ -122,8 +126,8 @@ class BuyerProfile extends React.Component{
   }
  
   onBeforeFileLoad(elem) {
-    if(elem.target.files[0].size > 71680){
-      alert("File is too big!");
+    if(elem.target.files[0].size > 131072){
+      this.props.dispatch(alertActions.error("Oops! Max image size is 128k."));
       elem.target.value = "";
     };
   }
@@ -132,15 +136,16 @@ class BuyerProfile extends React.Component{
     this.setState({ linkedAccounts: {...this.state.linkedAccounts, [e.target.name]: e.target.value } })
   }
 
+  onError(e){
+    e.target.src = avatarDefault;
+  }
+
   render(){
     const { profile, user } = this.props;
     let preview_image = "";
 
-    try{
-      preview_image =  <img src={require("../uploads/buyer_avatar/"+user.user_info.id+".png")}/>;
-    }catch{
-      preview_image =  <img src={avatarDefault}/>;
-    }
+    preview_image =  <img src={uploadRoot+"/buyer_avatar/"+user.user_info.id+".png?"+new Date()} onError={this.onError}/>;
+    
     if ( this.state.preview ) {
         preview_image =  <img src={this.state.preview} alt="Preview" />
     } 

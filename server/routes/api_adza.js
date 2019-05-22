@@ -113,23 +113,23 @@ router.put('/', passport.authenticate('jwt', {session: false}), upload.array('im
   var fs = require('fs');
 // process uploaded images
   var image_gallery = req.files;  	var arrImages = [];
+//TODO: You have to change permission
+  if (!fs.existsSync( "./public/" ))
+    fs.mkdirSync( "./public/" );
 
-  if (!fs.existsSync( "../src/uploads/" ))
-    fs.mkdirSync( "../src/uploads/" );
-
-  if (!fs.existsSync( "../src/uploads/image_gallery/" ))
-    fs.mkdirSync( "../src/uploads/image_gallery/" );
+  if (!fs.existsSync( "./public/image_gallery/" ))
+    fs.mkdirSync( "./public/image_gallery/" );
   
-  if (!fs.existsSync( "../src/uploads/image_gallery/"+UserId+"/" ))
-    fs.mkdirSync( "../src/uploads/image_gallery/"+UserId+"/" );
+  if (!fs.existsSync( "./public/image_gallery/"+UserId+"/" ))
+    fs.mkdirSync( "./public/image_gallery/"+UserId+"/" );
   
-  if (!fs.existsSync( "../src/uploads/adza_avatar/" ))
-    fs.mkdirSync( "../src/uploads/adza_avatar/" );
+  if (!fs.existsSync( "./public/adza_avatar/" ))
+    fs.mkdirSync( "./public/adza_avatar/" );
 
   for (var i = 0; i < image_gallery.length; i++) {
   	var timeStamp = (new Date()).getTime();
   	var file_name = timeStamp+"-"+image_gallery[i].originalname;
-  	var dest_path = "../src/uploads/image_gallery/"+UserId+"/" + file_name;
+  	var dest_path = "./public/image_gallery/"+UserId+"/" + file_name;
   	var src_path = "./uploads/"+ image_gallery[i].originalname;
 	
   	fs.rename(src_path, dest_path, function (err) {
@@ -156,7 +156,7 @@ router.put('/', passport.authenticate('jwt', {session: false}), upload.array('im
   		return res.status(500).send({success: false, message: "error" });
 
   	buffer = new Buffer(matches[2], 'base64').toString('binary');
-  	fs.writeFile("../src/uploads/adza_avatar/"+UserId+".png",buffer,'binary',function(e){console.log(e)});
+  	fs.writeFile("./public/adza_avatar/"+UserId+".png",buffer,'binary',function(e){console.log(e)});
   	sellerprofile.profile_photo = null;
   }
 

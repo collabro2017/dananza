@@ -13,6 +13,8 @@ import $ from "jquery";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import avatarDefault from '../res/img/default_avatar.png';
+import { apiConfig } from '../store/config';
+const uploadRoot = apiConfig.uploadRoot;
 
 class Sellers extends React.Component{
   state={
@@ -53,13 +55,11 @@ class Sellers extends React.Component{
     if (props.sellerinfo !== undefined)
     {
       var profile_photo;
+
+      
+      profile_photo = uploadRoot+"/adza_avatar/"+props.sellerinfo.UserId+".png?"+new Date();
       if (props.buyer_sellerview === false)
-      {
-        try{
-          profile_photo = require("../uploads/adza_avatar/"+props.sellerinfo.UserId+".png");
-        }catch{
-          profile_photo = avatarDefault;
-        }
+      { 
         if (props.sellerprofile.profile_photo) {
           profile_photo = props.sellerprofile.profile_photo;
         }
@@ -68,12 +68,6 @@ class Sellers extends React.Component{
       }
       else
       {
-        try{
-          profile_photo = require("../uploads/adza_avatar/"+props.sellerinfo.UserId+".png");
-        }catch{
-          profile_photo = avatarDefault;
-        }
-
         this.setState({sellerprofile:{...props.sellerinfo,profile_photo}});
       }
     }
@@ -115,6 +109,10 @@ class Sellers extends React.Component{
     this.props.dispatch(buyerActions.addListingToCart(cur_cart_id, _listingId, _sellerId));
   }
 
+  onError(e){
+    e.target.src = avatarDefault;
+  }
+
   render(){
     var {audience_age_max,
         audience_age_min,
@@ -128,10 +126,7 @@ class Sellers extends React.Component{
     var str = "";
     let preview_image;
 
-    if( profile_photo )
-      preview_image = <img className="profile" src={avatarDefault}/>
-    else
-      preview_image = <img className="profile" src={avatarDefault} alt=""/>
+    preview_image = <img className="profile" src={profile_photo} alt="" onError={this.onError}/>
 
     return (
       <div className="dashboard_seller">
@@ -237,11 +232,7 @@ class Sellers extends React.Component{
                           {
                             function(){
                               var image;
-                              try{
-                                image = <img src={require("../uploads/image_gallery/"+UserId+"/"+item)}/>
-                              }catch{
-                                image = <img src={avatarDefault}/>
-                              }
+                              image = <img src={uploadRoot+"/image_gallery/"+UserId+"/"+item} alt=""/>
                               return image;
                             }()
                           }

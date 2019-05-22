@@ -35,6 +35,8 @@ import "../res/css/nouislider.css"
 import "../res/css/components/tag.css"
 import "../res/css/components/slider.css"
 import "../res/css/components/select.css"
+import { apiConfig } from '../store/config';
+const uploadRoot = apiConfig.uploadRoot;
 
 
 const styles = theme => ({

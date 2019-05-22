@@ -10,6 +10,8 @@ import BuyerSidebar from "../components/Sidebar/BuyerSidebar";
 import avatarDefault from '../res/img/default_avatar.png';
 
 import "../res/css/BuyerMessages.css"
+import { apiConfig } from '../store/config';
+const uploadRoot = apiConfig.uploadRoot;
 
 class BuyerMessages extends React.Component{
 
@@ -192,12 +194,12 @@ class BuyerMessages extends React.Component{
     this.setState({ currentMsg: e.target.value })
   }
 
+  onError(e){
+    e.target.src = avatarDefault;
+  }
+
   showAvatar(id){
-    try{
-      return <img src={require("../uploads/adza_avatar/"+id+".png")} />
-    }catch{
-      return <img src={avatarDefault} />
-    }
+    return <img src={uploadRoot+"/adza_avatar/"+id+".png?"+new Date()} onError={this.onError}/>
   }
 
   render(){

@@ -17,6 +17,9 @@ module.exports = {
       ListingId: {
         type: Sequelize.INTEGER
       },
+      Counts: {
+        type: Sequelize.INTEGER
+      },
       add_time: {
         type: Sequelize.DATE
       }

@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import SellerSidebar from "../components/Sidebar/SellerSidebar";
 
 import "../res/css/Seller_Dashboard_Messages.css"
+import { apiConfig } from '../store/config';
+const uploadRoot = apiConfig.uploadRoot;
 
 class SellerMessages extends React.Component{
 

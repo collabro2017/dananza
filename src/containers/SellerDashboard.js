@@ -12,6 +12,7 @@ import ImageUploader from 'react-images-upload';
 import $ from "jquery";
 
 import { sellerActions } from '../store/actions';
+import { alertActions } from '../store/actions';
 
 import SellerSidebar from "../components/Sidebar/SellerSidebar";
 
@@ -24,6 +25,8 @@ import "../res/css/nouislider.css"
 import "../res/css/components/tag.css"
 import "../res/css/components/slider.css"
 import "../res/css/components/select.css"
+import { apiConfig } from '../store/config';
+const uploadRoot = apiConfig.uploadRoot;
 
 class SellerDashboard extends React.Component{
 
@@ -371,10 +374,14 @@ class SellerDashboard extends React.Component{
   }
  
   onBeforeFileLoad(elem) {
-    if(elem.target.files[0].size > 71680){
-      alert("File is too big!");
+    if(elem.target.files[0].size > 131072){
+      this.props.dispatch(alertActions.error("Oops! Max image size is 128k."));
       elem.target.value = "";
     };
+  }
+
+  onError(e){
+    e.target.src = avatarDefault;
   }
 
   render(){
@@ -388,11 +395,8 @@ class SellerDashboard extends React.Component{
 
   	let preview_image;
 
-    try{
-      preview_image = <img className="profile" src={require("../uploads/adza_avatar/"+this.state.sellerprofile.UserId+".png")}/>
-    }catch(e){
-      preview_image = <img className="profile" src={ avatarDefault }/>
-    }
+    preview_image = <img className="profile" src={uploadRoot+"/adza_avatar/"+this.state.sellerprofile.UserId+".png?"+new Date()} onError={this.onError}/>;
+
   	if ( this.state.preview ) {
       	preview_image =  <img src={this.state.preview} alt="Preview" />
     } 

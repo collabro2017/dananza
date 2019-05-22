@@ -14,6 +14,8 @@ import Knob from 'react-canvas-knob';
 import avatarDefault from '../../res/img/default_avatar.png';
 
 import "../../res/css/SellerSidebar.css"
+import { apiConfig } from '../../store/config';
+const uploadRoot = apiConfig.uploadRoot;
 
 const drawerWidth = 240;
 
@@ -21,11 +23,12 @@ const drawerWidth = 240;
 const SellerSidebar = props => {
   const { open, classes, navitem } = props;
   let avatar;
-  try{
-    avatar = <img className="profile" src={require("../../uploads/adza_avatar/"+props.user.user_info.id+".png")}/>
-  }catch(e){
-    avatar = <img className="profile" src={ avatarDefault }/>
+
+  let onError = function(e){
+    e.target.src = avatarDefault;
   }
+
+  avatar = <img className="profile" src={uploadRoot+"/adza_avatar/"+props.user.user_info.id+".png?"+new Date()} onError={onError}/>
   
   return (
         <div className="page-sidebar">

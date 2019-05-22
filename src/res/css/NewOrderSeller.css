@@ -100,6 +100,9 @@
 			    padding-left: 5px;
 			    padding-top: 10px;
 			}
+			.order-dashboard .order-seller .message .message-content .message-box .attachment img{
+				max-width: 100%;
+			}
 			.order-dashboard .order-seller .message .message-content .message-box .action{
 		        width: fit-content;
 		        height: fit-content;

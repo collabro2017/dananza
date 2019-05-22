@@ -18,11 +18,16 @@ import BigCalendar from 'react-big-calendar'
 import moment from 'moment'
 import { Link } from 'react-router-dom';
 import avatarDefault from '../res/img/default_avatar.png';
+import { apiConfig } from '../store/config';
+const uploadRoot = apiConfig.uploadRoot;
 
 class BigCalendarEvent extends React.Component {
   
   constructor(props) {
     super(props);
+  }
+  onError(e){
+    e.target.src = avatarDefault;
   }
   render(){
     console.log(this.props);
@@ -33,11 +38,7 @@ class BigCalendarEvent extends React.Component {
           this.props.event.resource.map(
             (userimage) => {
               var avatar;
-              try{
-                avatar = <img src={require("../uploads/buyer_avatar/"+userimage+".png")}/>
-              }catch{
-                avatar = <img src={avatarDefault}/>
-              }
+              avatar = <img src={uploadRoot + "/buyer_avatar/"+userimage+".png?"+new Date()} onError={this.onError}/>
               return (
                 <Link to="/seller_orders">
                   {avatar}
@@ -92,7 +93,8 @@ class SellerCalendar extends React.Component{
                 {title:"myEvent",start:new Date("May 14, 2019 11:13:00"),end:new Date("May 16, 2019 11:13:00"),resource:['user','user1']},
                 {title:"myEvent",start:new Date("May 1, 2019 11:13:00"),end:new Date("May 4, 2019 11:13:00"),resource:['user','user1']}
         ],
-        todaySchedule:[]};
+        todaySchedule:[],
+        showDetail:false};
   localizer = BigCalendar.momentLocalizer(moment);
 
   constructor(props) {
@@ -138,13 +140,12 @@ class SellerCalendar extends React.Component{
   calendarViewHandler(view){
     this.refs.big.handleViewChange(view);
   }
+  onError(e){
+    e.target.src = avatarDefault;
+  }
   showAvatar(userimage){
     var avatar;
-    try{
-      avatar = <img src={require("../uploads/buyer_avatar/"+userimage+".png")}/>
-    }catch{
-      avatar = <img src={avatarDefault}/>
-    }
+    avatar = <img src={uploadRoot + "/buyer_avatar/"+userimage+".png?"+new Date()} onError={this.onError}/>
     return avatar;
   }
   render(){
@@ -166,7 +167,7 @@ class SellerCalendar extends React.Component{
                   todaySchedule.map(
                     (listing,index)=>
                     (
-                      index ? "" :
+                      index && !this.state.showDetail ? "" :
                       <div className="row">
                         <div className="col-sm-12">
                           <div className="upcoming-box">
@@ -210,7 +211,7 @@ class SellerCalendar extends React.Component{
                   todaySchedule.length<2?"":
                   <div className="row">
                     <div className="col-sm-12">
-                      <button className="btn btn-default trans-select">
+                      <button className="btn btn-default trans-select" onClick={()=>this.setState({showDetail:true})}>
                         {todaySchedule.length-1} More...
                         <div>
                           <img src={require("../res/img/portlet-collapse-icon.png")}/>

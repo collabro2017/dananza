@@ -13,6 +13,8 @@ import { Link } from "react-router-dom";
 import avatarDefault from '../../res/img/default_avatar.png';
 
 import "../../res/css/BuyerSidebar.css"
+import { apiConfig } from '../../store/config';
+const uploadRoot = apiConfig.uploadRoot;
 
 const drawerWidth = 240;
 
@@ -20,11 +22,13 @@ const drawerWidth = 240;
 const BuyerSidebar = props => {
   const { open, classes, navitem } = props;
   let avatar;
-  try{
-    avatar = <img className="profile" src={require("../../uploads/buyer_avatar/"+props.user.user_info.id+".png")}/>
-  }catch(e){
-    avatar = <img className="profile" src={ avatarDefault }/>
+
+  let onError = function(e){
+    e.target.src = avatarDefault;
   }
+ 
+  avatar = <img className="profile" src={uploadRoot+"/buyer_avatar/"+props.user.user_info.id+".png?"+new Date()} onError={onError}/>
+ 
   return (
     <div className="page-sidebar buyer-sidebar">
         <div className="section target-tree">

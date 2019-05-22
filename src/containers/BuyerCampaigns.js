@@ -214,7 +214,7 @@ class BuyerCampaigns extends React.Component{
                                                   <div className="step-label">Order Date</div>
                                                   <div className="step-label">{ orderhistories.length ? moment(orderhistories[index][listingIdx][0].update_time).format('DD/MM'):''}</div>
                                                 </div>
-                                                <div className={ (orderhistories[index][listingIdx][1].order_status === "accept" ? "active" : '') + " step"}>
+                                                <div className={ (orderhistories[index][listingIdx][1] && orderhistories[index][listingIdx][1].order_status === "accept" ? "active" : '') + " step"}>
                                                   <div className="step-button">
                                                     <a className="circle">
                                                       <img src={require('../res/img/check.png')} alt=""/>
@@ -223,7 +223,7 @@ class BuyerCampaigns extends React.Component{
                                                     <hr className="right" />
                                                   </div>
                                                   <div className="step-label">Media Uploaded</div>
-                                                  <div className="step-label">{ orderhistories.length ? moment(orderhistories[index][listingIdx][1].update_time).format('DD/MM'):''}</div>
+                                                  <div className="step-label">{ orderhistories.length && orderhistories[index][listingIdx][1] ? moment(orderhistories[index][listingIdx][1].update_time).format('DD/MM'):''}</div>
                                                 </div>
                                                 <div className={ (orderhistories[index][listingIdx][2] && orderhistories[index][listingIdx][2].order_status === "accept" ? "active" : '') + " step"}>
                                                   <div className="step-button">

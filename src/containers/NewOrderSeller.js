@@ -7,6 +7,8 @@ import { sellerActions } from '../store/actions';
 import avatarDefault from '../res/img/default_avatar.png';
 
 import "../res/css/NewOrderSeller.css"
+import { apiConfig } from '../store/config';
+const uploadRoot = apiConfig.uploadRoot;
 
 
 class NewOrderSeller extends React.Component{
@@ -67,14 +69,14 @@ class NewOrderSeller extends React.Component{
     dispatch(sellerActions.updateOrderHistory(this.rateOrder));
   }
 
+  onError(e){
+    e.target.src = avatarDefault;
+  }
+
   showSellerSender(){
     var image;
     const order = this.state.orderHistory;
-    try{
-      image = <img className="avatar" src={require("../uploads/adza_avatar/"+order.Campaign_Listing.Adza_Profile.UserId+".png")}/>
-    }catch{
-      image = <img className="avatar" src={avatarDefault}/>
-    }
+    image = <img className="avatar" src={uploadRoot+"/adza_avatar/"+order.Campaign_Listing.Adza_Profile.UserId+".png?"+new Date()} onError={this.onError}/>
     return (
       <div className="wrapper">
         {image}
@@ -87,7 +89,7 @@ class NewOrderSeller extends React.Component{
     var image;
     const order = this.state.orderHistory;
     try{
-      image = <img className="avatar" src={require("../uploads/buyer_avatar/"+order.Buyer_Profile.UserId+".png")}/>
+      image = <img className="avatar" src={uploadRoot+"/buyer_avatar/"+order.Buyer_Profile.UserId+".png?"+new Date()} onError={this.onError}/>
     }catch{
       image = <img className="avatar" src={avatarDefault}/>
     }
@@ -132,30 +134,61 @@ class NewOrderSeller extends React.Component{
   showMediaUpload(order)
   {
     if(order.order_type == 'mediaupload'){
-      return (
-        <div className="message buyer">
-          <div className="sender">
-            {this.showBuyerSender(order)}
-          </div>
-          <div className="message-wrapper">
-            <div className="message-content">
-              <div className="date">
-                {new Date(order.update_time).toLocaleString()}
-              </div>
-              <div className="message-box">
-                <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
-                <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
-                <div className="para">
-                  {order.order_comment}
+      if(order.order_status == 'accept'){
+        return (
+          <div className="message buyer">
+            <div className="sender">
+              {this.showBuyerSender(order)}
+            </div>
+            <div className="message-wrapper">
+              <div className="message-content">
+                <div className="date">
+                  {new Date(order.update_time).toLocaleString()}
                 </div>
-                <div className="attachment">
-                  <img src={require("../res/img/"+order.order_attachment.image+".png")}/>
+                <div className="message-box">
+                  <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
+                  <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
+                  <div className="para">
+                    {order.order_comment}
+                  </div>
+                  <div className="attachment">
+                    <img src={uploadRoot+"/media_upload/"+order.order_attachment.image}/>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      );
+        );
+      }
+      else if(order.order_status == 'pending'){
+        return (
+          <div className="message buyer action">
+            <div className="sender">
+              {this.showBuyerSender(order)}
+            </div>
+            <div className="message-wrapper">
+              <div className="message-content">
+                <div className="date">
+                  Pending
+                </div>
+                <div className="message-box">
+                  <img className="arrow_send" src={require("../res/img/arrow_send.png")}/>
+                  <img className="arrow_receive" src={require("../res/img/arrow_receive.png")}/>
+                  <div className="action">
+                    <label className="btn state-awaiting">
+                      Awaiting Media Upload
+                    </label>
+                  </div>
+                  <div className="para">
+                    If the buyer doesn't upload media within 5 days, the order will be automatically rejected.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+      
     }
   }
 

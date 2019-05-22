@@ -79,7 +79,7 @@ function login(email, password, isSocial="false") {
                 },
                 error => {
                     dispatch(failure(error));
-                    dispatch(alertActions.error(error));
+                    dispatch(alertActions.error("Failed Login."));
                 }
             );
     };
