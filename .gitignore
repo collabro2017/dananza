@@ -31,3 +31,5 @@ config.json
 src/assets
 server/uploads
 server/public
+Backend/public
+.sequelizerc
