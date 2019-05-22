@@ -34,7 +34,10 @@ router.post('/signup', function(req, res) {
             });
         }
         else{
-            res.status(400).send({success: false, message: msg.authEmailExists})
+            if( req.body.type == "google" || req.body.type == "facebook" )
+              res.status(201).send(user)
+            else
+              res.status(400).send({success: false, message: msg.authEmailExists})
         }
       })
       .catch((error) => res.status(400).send({success: false, message: error }));    

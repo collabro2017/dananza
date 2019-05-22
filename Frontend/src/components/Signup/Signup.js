@@ -115,7 +115,7 @@ class Signup extends React.Component{
               type: 'google'
             }
         dispatch(userActions.register(user));
-        dispatch(userActions.login(response.profileObj.email, "", true));
+        //dispatch(userActions.login(response.profileObj.email, "", true));
       }
     };
 
@@ -125,7 +125,10 @@ class Signup extends React.Component{
 
       if(registered)
       {
-        this.props.dispatch(userActions.login(user_login.email, user_login.password));
+        if( user_login.type !== undefined )
+          this.props.dispatch(userActions.login(user_login.email, "", true));
+        else
+          this.props.dispatch(userActions.login(user_login.email, user_login.password));
       }
 
       if ( nextprops.profile != undefined && loggedIn && !this.register)
